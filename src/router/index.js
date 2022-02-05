@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 
 import Landing from "../views/Landing";
 import Terms from "../views/Terms";
+import Choose from "../views/Choose";
 
 const routes = [
   {
@@ -15,6 +16,10 @@ const routes = [
   {
     path: "/terms",
     component: Terms,
+  },
+  {
+    path: "/choose",
+    component: Choose,
   },
 ];
 

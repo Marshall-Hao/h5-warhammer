@@ -21,13 +21,13 @@
       <span id="landing-section-typed"></span>
     </div>
 
-    <div class="landing-section-begin">
+    <div class="landing-section-begin" @click="onClick">
       <img src="../assets/images/lightBall.png" alt="LightBall" />
       <h4>Press to Begin</h4>
     </div>
     <footer class="landing-footer">
       <router-link class="landing-footer-terms" :to="`/terms`"
-        >规则与条款</router-link
+        >服务与条款</router-link
       >
       <p class="landing-footer-beian">沪ICP备11032828号-1</p>
     </footer>
@@ -37,7 +37,7 @@
 <script>
 import HammerIcon from "../components/base/Icon/HammerIcon";
 import FlyBox from "../components/base/fly-box/FlyBox";
-import Typed from "typed.js";
+import useTyped from "../assets/js/use-typed";
 
 export default {
   name: "landing",
@@ -46,17 +46,21 @@ export default {
     FlyBox,
   },
   mounted() {
-    new Typed("#landing-section-typed", {
-      // Waits 1000ms after typing "First"
-      strings: [
+    useTyped(
+      "#landing-section-typed",
+      [
         "这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段",
       ],
-      typeSpeed: 60,
-      cursorChar: "_",
-    });
+      60,
+      "_"
+    );
   },
   methods: {
-    onClick() {},
+    onClick() {
+      this.$router.push({
+        path: "/choose",
+      });
+    },
   },
 };
 </script>

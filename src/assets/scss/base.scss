@@ -1,0 +1,15 @@
+body, html {
+  line-height: 1;
+  font-family: 'kuhei';
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  background: $color-background;
+  color: $color-text-p;
+  height: 100%;
+  position: relative;
+}
+
+.g-relative {
+  position: relative;
+}
+

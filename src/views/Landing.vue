@@ -1,37 +1,39 @@
 <template>
-  <header class="landing-header">
-    <div class="landing-header-icon">
-      <hammer-icon></hammer-icon>
-    </div>
-    <div class="landing-header-title">
-      <svg heightviewBox="0 0 200 40" width="320" height="40">
-        <text x="15" y="30">这是一个标题</text>
-      </svg>
-    </div>
-  </header>
+  <div>
+    <header class="landing-header">
+      <div class="landing-header-icon">
+        <hammer-icon></hammer-icon>
+      </div>
+      <div class="landing-header-title">
+        <svg heightviewBox="0 0 200 40" width="320" height="40">
+          <text x="15" y="30">这是一个标题</text>
+        </svg>
+      </div>
+    </header>
 
-  <section class="landing-section">
-    <div class="landing-section-video">
-      <fly-box :lineColor="`#BC3F2F`" :starColor="`#d93f30`" :duration="`5`">
-        <video src="#" poster="../assets/images/vidPoster.png"></video>
-      </fly-box>
-    </div>
+    <section class="landing-section">
+      <div class="landing-section-video">
+        <fly-box :lineColor="`#BC3F2F`" :starColor="`#d93f30`" :duration="`5`">
+          <video src="#" poster="../assets/images/vidPoster.png"></video>
+        </fly-box>
+      </div>
 
-    <div class="landing-section-description">
-      <span id="landing-section-typed"></span>
-    </div>
+      <div class="landing-section-description">
+        <span id="landing-section-typed"></span>
+      </div>
 
-    <div class="landing-section-begin" @click="onClick">
-      <img src="../assets/images/lightBall.png" alt="LightBall" />
-      <h4>Press to Begin</h4>
-    </div>
-    <footer class="landing-footer">
-      <router-link class="landing-footer-terms" :to="`/terms`"
-        >服务与条款</router-link
-      >
-      <p class="landing-footer-beian">沪ICP备11032828号-1</p>
-    </footer>
-  </section>
+      <div class="landing-section-begin" @click="onClick">
+        <img src="../assets/images/lightBall.png" alt="LightBall" />
+        <h4>Press to Begin</h4>
+      </div>
+      <footer class="landing-footer">
+        <router-link class="landing-footer-terms" :to="`/terms`"
+          >服务与条款</router-link
+        >
+        <p class="landing-footer-beian">沪ICP备11032828号-1</p>
+      </footer>
+    </section>
+  </div>
 </template>
 
 <script>

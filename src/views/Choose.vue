@@ -377,6 +377,7 @@ export default {
 
 <style lang="scss" scoped>
 .choose {
+  height: 100%;
   &-header {
     text-align: center;
     position: relative;
@@ -395,7 +396,7 @@ export default {
     position: absolute;
     left: 0;
     top: 13rem;
-    height: 60rem;
+    height: 60vh;
     width: 100vw;
     display: flex;
     z-index: 0;
@@ -425,7 +426,7 @@ export default {
     &-options {
       z-index: 2;
       position: absolute;
-      bottom: 8rem;
+      bottom: 16.5vh;
       left: 0;
       height: 6rem;
       width: 100vw;
@@ -468,7 +469,7 @@ export default {
     position: absolute;
     display: block;
     width: 100vw;
-    bottom: 2.5rem;
+    bottom: 6.5vh;
     text-align: center;
     animation: headShake 2s infinite ease-out;
   }

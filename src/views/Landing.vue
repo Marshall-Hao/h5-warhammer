@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="landing">
     <header class="landing-header">
       <div class="landing-header-icon">
         <hammer-icon></hammer-icon>
@@ -122,8 +122,6 @@ export default {
     display: flex;
     justify-content: space-between;
     font-size: 1.6rem;
-    animation: name duration timing-function delay iteration-count direction
-      fill-mode;
     &-terms {
       color: $color-text-py;
       //   text-decoration: underline $color-text-py;

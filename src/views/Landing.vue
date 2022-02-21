@@ -40,6 +40,8 @@
 import HammerIcon from "../components/base/Icon/HammerIcon";
 import FlyBox from "../components/base/fly-box/FlyBox";
 import useTyped from "../assets/js/use-typed";
+import login from "../services/login";
+import { mapActions } from "vuex";
 
 export default {
   name: "landing",
@@ -58,11 +60,19 @@ export default {
     );
   },
   methods: {
-    onClick() {
+    async onClick() {
+      const loginRes = await login();
+      console.log("qwe", loginRes);
+      const list = {
+        aos: loginRes["categories"]["aos"]["questions"],
+        fourtyK: loginRes["categories"]["40k"]["questions"],
+      };
+      this.addQuestions(list);
       this.$router.push({
         path: "/choose",
       });
     },
+    ...mapActions(["addQuestions"]),
   },
 };
 </script>

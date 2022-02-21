@@ -1,6 +1,7 @@
 import { onMounted, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import removeUnit from "../assets/js/util";
+import quizStart from "../services/choose";
 
 export default function useMiddleInteraction() {
   // * ref
@@ -70,13 +71,17 @@ export default function useMiddleInteraction() {
       maskTransform.blkOffset = 45;
       maskTransform.duration = 300;
     } else {
-      touch.percent > 0
-        ? router.push({
-            path: "/questions/40k/1",
-          })
-        : router.push({
-            path: "/questions/aos/1",
-          });
+      if (touch.percent > 0) {
+        quizStart(1);
+        router.push({
+          path: "/questions/40k/1",
+        });
+      } else {
+        quizStart(2);
+        router.push({
+          path: "/questions/aos/1",
+        });
+      }
     }
   }
 

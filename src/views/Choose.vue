@@ -383,7 +383,6 @@ export default {
   bottom: 0;
   right: 0;
   width: 100%;
-  overflow: hidden;
   &-header {
     text-align: center;
     position: relative;

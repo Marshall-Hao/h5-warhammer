@@ -23,7 +23,7 @@
       </div>
 
       <div class="landing-section-begin" @click="onClick">
-        <img src="../assets/images/lightBall.png" alt="LightBall" />
+        <landing-ball></landing-ball>
         <h4>Press to Begin</h4>
       </div>
       <footer class="landing-footer">
@@ -39,6 +39,7 @@
 <script>
 import HammerIcon from "../components/base/Icon/HammerIcon";
 import FlyBox from "../components/base/fly-box/FlyBox";
+import LandingBall from "../components/base/landingBall/LandingBall";
 import useTyped from "../assets/js/use-typed";
 import login from "../services/login";
 import { mapActions } from "vuex";
@@ -48,6 +49,7 @@ export default {
   components: {
     HammerIcon,
     FlyBox,
+    LandingBall,
   },
   mounted() {
     useTyped(
@@ -106,6 +108,7 @@ export default {
       margin-top: 1rem;
       padding: 0.5rem;
       text-align: center;
+      height: 11rem;
       span {
         font-size: $font-size-medium-x;
         line-height: 2.5rem;

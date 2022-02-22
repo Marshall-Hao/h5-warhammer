@@ -409,7 +409,7 @@ export default {
     &-displayF {
       height: 100%;
       width: 100%;
-      background: url(../assets/images/rightGuy.png);
+      background: url(../assets/images/chooseRightGuy.jpg);
       background-repeat: no-repeat;
       background-size: cover;
       filter: url(#fractal);
@@ -420,7 +420,7 @@ export default {
       left: 0;
       right: 0;
       bottom: 0;
-      background-image: url(../assets/images/leftGuy.png);
+      background-image: url(../assets/images/chooseLeftGuy.jpg);
       background-repeat: no-repeat;
       background-size: cover;
       mask: linear-gradient(90deg, #000 45%, transparent 60%);

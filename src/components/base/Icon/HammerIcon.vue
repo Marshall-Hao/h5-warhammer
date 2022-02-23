@@ -21,8 +21,6 @@
 </template>
 
 <script>
-import { onMounted, ref } from "vue";
-
 export default {
   name: "hammer-icon",
 };

@@ -77,7 +77,8 @@
 
 <script>
 import { ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
+import { debounce, throttle } from "../../assets/js/util";
 
 export default {
   name: "fourtyk-q1",
@@ -104,11 +105,17 @@ export default {
     }
     function choiceTouchEnd() {
       selected.value = null;
+      console.log("oops");
+      debounce(getPoinstAndNext, 500)();
+    }
+
+    function getPoinstAndNext() {
+      console.log("oops");
       //TODO; calculate the score based on the choice
-      emit("updateParams", 2);
-      router.push({
-        path: "/questions/40k/2",
-      });
+      // emit("updateParams", 2);
+      // router.push({
+      //   path: "/questions/40k/2",
+      // });
     }
     //  * return
     return {

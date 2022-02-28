@@ -1,6 +1,6 @@
 import { onMounted, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
-import removeUnit from "../assets/js/util";
+import { removeUnit } from "../assets/js/util";
 import quizStart from "../services/choose";
 
 export default function useMiddleInteraction() {

@@ -8,13 +8,17 @@
           ref="q"
           v-for="(answer, index) in questionChoices"
           :key="answer"
-          :class="{ 'selected-q': selected === index }"
-          :style="`background-image:url(${answer.image})`"
+          :style="{
+            backgroundImage: `url(${answer.image})`,
+          }"
           @touchstart.prevent="choiceTouchStart(index)"
           @touchmove.prevent="choiceTouchMove(index)"
           @touchend.prevent="choiceTouchEnd(index)"
         >
-          <div class="q2-section-choices-mask"></div>
+          <div
+            class="q2-section-choices-mask"
+            :class="{ 'selected-q': selected === index }"
+          ></div>
         </div>
       </div>
     </section>
@@ -22,6 +26,7 @@
 </template>
 
 <script>
+import { computed } from "@vue/runtime-core";
 import useSelectPattern from "../../assets/js/use-select-pattern";
 
 export default {
@@ -41,7 +46,6 @@ export default {
     const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
       useSelectPattern(emit);
     //  * computed
-
     //  * lifecycle
     //  * methods
     //  * return
@@ -55,7 +59,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @function randomNum($max, $min: 0, $u: 1) {
   @return ($min + random($max)) * $u;
 }
@@ -78,12 +82,12 @@ export default {
   &-title {
     margin: 6rem 0;
     font-size: 2.5rem;
-    animation: flipInX 2s;
+    animation: flipInX 2s, pulse 2s 2s infinite ease-in-out;
   }
   &-section {
     position: relative;
     height: 70rem;
-    animation: zoomInLeft 1s;
+    animation: zoomInLeft 1s, pulse 2s 1s infinite ease-in-out;
     &-choices {
       @include absCenter;
       div {
@@ -101,13 +105,8 @@ export default {
           width: 26rem;
           height: 14rem;
           mask: url(https://i.imgur.com/AYJuRke.png);
+          mask-position: 100% 0;
           mask-size: 3000% 100%;
-          @for $i from 1 through 4 {
-            &:nth-child(#{$i}) {
-              animation: maskMove 3s steps(29) infinite;
-              animation-delay: 1s;
-            }
-          }
           &::before {
             content: "";
             position: absolute;
@@ -115,9 +114,9 @@ export default {
             left: 0;
             height: 100%;
             width: 100%;
-            opacity: 0.8;
+            opacity: 0.5;
             border-radius: 2rem;
-            background-image: url(https://www.fauxhammer.com/wp-content/uploads/2020/05/Warhammer-40k-9th-Edition-Leaked-Featured-1.jpg);
+            background-image: url(../../assets/images/warhammerMask.jpg);
             background-repeat: no-repeat;
             background-size: cover;
           }
@@ -127,18 +126,15 @@ export default {
   }
 }
 .selected-q {
-  animation: fadeIn 2s ease-in-out infinite backwards,
-    jello 2s ease-in-out infinite backwards;
+  animation: maskmove 0.7s steps(29) forwards;
 }
-@keyframes maskMove {
+@keyframes maskmove {
   0% {
     mask-position: 100% 0;
   }
-  50% {
-    mask-position: 0 0;
-  }
+
   100% {
-    mask-position: 100% 0;
+    mask-position: 0 0;
   }
 }
 </style>

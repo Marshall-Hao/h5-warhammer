@@ -3,14 +3,12 @@ export function removeUnit(string, begin, end) {
 }
 
 // * debounce
-export function debounce(fn, delay) {
-  let _timer = null;
+let _timer = null;
+export function debounce(fn, delay, index) {
   return function () {
-    console.log("clear");
     clearTimeout(_timer);
     _timer = setTimeout(() => {
-      console.log(delay);
-      fn.apply(this, arguments);
+      fn(index);
     }, delay);
   };
 }

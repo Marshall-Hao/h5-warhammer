@@ -66,9 +66,9 @@
           :key="answer"
           :class="{ 'selected-q': selected === index }"
           :style="`background-image:url(${answer.image})`"
-          @touchstart.prevent="choiceTouchMove(index)"
+          @touchstart.prevent="choiceTouchStart(index)"
           @touchmove.prevent="choiceTouchMove(index)"
-          @touchend.prevent="choiceTouchEnd"
+          @touchend.prevent="choiceTouchEnd(index)"
         ></div>
       </div>
     </section>
@@ -76,9 +76,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
-import { debounce, throttle } from "../../assets/js/util";
+import useSelectPattern from "../../assets/js/use-select-pattern";
 
 export default {
   name: "fourtyk-q1",
@@ -90,37 +88,21 @@ export default {
   },
   emits: ["updateParams"],
   setup(props, { emit }) {
-    // * route
-    const router = useRouter();
     // * ref
-    const selected = ref(null);
     // * store
 
+    // * hooks
+    const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
+      useSelectPattern(emit);
     //  * computed
 
     //  * lifecycle
     //  * methods
-    function choiceTouchMove(index) {
-      selected.value = index;
-    }
-    function choiceTouchEnd() {
-      selected.value = null;
-      console.log("oops");
-      debounce(getPoinstAndNext, 500)();
-    }
-
-    function getPoinstAndNext() {
-      console.log("oops");
-      //TODO; calculate the score based on the choice
-      // emit("updateParams", 2);
-      // router.push({
-      //   path: "/questions/40k/2",
-      // });
-    }
     //  * return
     return {
       choiceTouchMove,
       choiceTouchEnd,
+      choiceTouchStart,
       selected,
     };
   },

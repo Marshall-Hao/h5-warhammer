@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { computed, onBeforeUpdate, ref } from "vue";
+import { computed, onBeforeUpdate, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import FourtykQ1 from "../components/fourtykq/FourtykQ1";
@@ -34,6 +34,7 @@ export default {
     FourtykQ6,
     FourtykQ7,
   },
+  // todo: fix the page reload problem ,hint: https://blog.csdn.net/qq_16772725/article/details/80467492
   setup() {
     //  * route
     const route = useRoute();
@@ -42,10 +43,12 @@ export default {
     const store = useStore();
     const questionId = ref(route.params.id);
     const realQuestionId = questionId.value;
+    console.log(realQuestionId, `__40kquestion${realQuestionId}__`);
     // * storage
     const questionCache = storage.session.get(
       `__40kquestion${realQuestionId}__`
     );
+    console.log(questionCache);
     // * computed
     const currentQuestion = computed(() => {
       if (
@@ -57,25 +60,28 @@ export default {
         const q = store.getters.currentFourtyKQuestion.find((q) => {
           return q.page_template_number === Number(questionId.value);
         });
-        storage.session.set(`__40kquestion${questionId.value}__`, q);
         return q;
       }
     });
-
     const questionBackground = computed(() => {
       const backgroundImage = `url(${
         currentQuestion.value && currentQuestion.value.bg_image
       })`;
       return { backgroundImage };
     });
-    function updateParams(id) {
-      questionId.value = id;
-    }
+    // * watch
     // *lifecycle
+    onMounted(() => {
+      updateParams(route.params.id);
+    });
     onBeforeUpdate(() => {
-      questionId.value = route.params.id;
+      updateParams(route.params.id);
     });
     // *methods
+    function updateParams(id) {
+      questionId.value = id;
+      console.log(questionId.value);
+    }
     // * return
     return {
       questionId,

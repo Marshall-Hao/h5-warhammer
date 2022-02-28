@@ -119,7 +119,7 @@ export default {
   overflow: scroll;
   text-align: center;
   &-background {
-    position: absolute;
+    position: fixed;
     background-size: cover;
     filter: url(#fractal2);
     height: 100%;

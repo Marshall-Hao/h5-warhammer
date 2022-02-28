@@ -26,7 +26,6 @@
 </template>
 
 <script>
-import { computed } from "@vue/runtime-core";
 import useSelectPattern from "../../assets/js/use-select-pattern";
 
 export default {
@@ -60,9 +59,6 @@ export default {
 </script>
 
 <style lang="scss">
-@function randomNum($max, $min: 0, $u: 1) {
-  @return ($min + random($max)) * $u;
-}
 .q2 {
   position: fixed;
   top: 0;
@@ -72,9 +68,8 @@ export default {
   overflow: scroll;
   text-align: center;
   &-background {
-    position: absolute;
+    position: fixed;
     background-size: cover;
-    filter: url(#fractal2);
     height: 100%;
     width: 100%;
     z-index: -2;
@@ -82,12 +77,12 @@ export default {
   &-title {
     margin: 6rem 0;
     font-size: 2.5rem;
-    animation: flipInX 2s, pulse 2s 2s infinite ease-in-out;
+    animation: flipInX 2s, pulse 2s infinite ease-in-out;
   }
   &-section {
     position: relative;
     height: 70rem;
-    animation: zoomInLeft 1s, pulse 2s 1s infinite ease-in-out;
+    animation: pulse 2s infinite ease-in-out;
     &-choices {
       @include absCenter;
       div {

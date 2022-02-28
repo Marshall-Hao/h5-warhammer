@@ -1,6 +1,6 @@
 <template>
   <fly-box :lineColor="lineColor" :starColor="starColor" :duration="duration">
-    <video src="#" poster="@/assets/images/vidPoster.png"></video>
+    <img src="@/assets/images/map.png" :width="width" :height="height" />
   </fly-box>
 </template>
 
@@ -24,7 +24,15 @@ export default {
     },
     posterUrl: {
       type: String,
-      default: "@/assets/images/vidPoster.png",
+      default: "@/assets/images/map.png",
+    },
+    width: {
+      type: Number,
+      default: 360,
+    },
+    height: {
+      type: Number,
+      default: 170,
     },
   },
   components: {
@@ -34,9 +42,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-video {
-  width: 36rem;
-  height: 17rem;
-  object-fit: cover;
+img {
+  object-fit: fit;
+  transform: scale(1.11, 1.175);
 }
 </style>

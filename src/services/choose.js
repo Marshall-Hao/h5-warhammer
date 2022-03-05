@@ -1,5 +1,5 @@
 import { post } from "./base";
-import { USER_KEY } from "../assets/js/constant";
+import { USER_KEY, QUIZ_KEY } from "../assets/js/constant";
 import storage from "good-storage";
 
 export default async function quizStart(categoryNum) {
@@ -13,5 +13,6 @@ export default async function quizStart(categoryNum) {
     },
     headers
   );
+  storage.session.set(QUIZ_KEY, quizCategory.id);
   console.log(quizCategory);
 }

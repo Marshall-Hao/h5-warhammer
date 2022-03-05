@@ -90,6 +90,7 @@ export default {
     questionText: String,
     questionChoices: Array,
   },
+  emits: ["updateParams"],
   setup() {
     // * ref
     // * store

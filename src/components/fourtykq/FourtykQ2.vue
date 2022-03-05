@@ -13,7 +13,7 @@
           }"
           @touchstart.prevent="choiceTouchStart(index)"
           @touchmove.prevent="choiceTouchMove(index)"
-          @touchend.prevent="choiceTouchEnd(index)"
+          @touchend.prevent="choiceTouchEnd(answer.id)"
         >
           <div
             class="q2-section-choices-mask"
@@ -38,12 +38,13 @@ export default {
   },
   emits: ["updateParams"],
   setup(props, { emit }) {
+    const questionId = props.currentQuestion.id;
     // * ref
     // * store
 
     // * hooks
     const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
-      useSelectPattern(emit);
+      useSelectPattern(emit, questionId);
     //  * computed
     //  * lifecycle
     //  * methods
@@ -77,12 +78,12 @@ export default {
   &-title {
     margin: 6rem 0;
     font-size: 2.5rem;
-    animation: flipInX 2s, pulse 2s infinite ease-in-out;
+    animation: pulse 2s infinite ease-in-out;
   }
   &-section {
     position: relative;
     height: 70rem;
-    animation: pulse 2s infinite ease-in-out;
+    animation: pulse 2s 1s infinite ease-in-out;
     &-choices {
       @include absCenter;
       div {

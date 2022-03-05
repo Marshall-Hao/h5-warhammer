@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { computed, onBeforeUpdate, onMounted, ref } from "vue";
+import { computed, onBeforeUpdate, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import FourtykQ1 from "../components/fourtykq/FourtykQ1";
@@ -21,7 +21,6 @@ import FourtykQ5 from "../components/fourtykq/FourtykQ5";
 import FourtykQ6 from "../components/fourtykq/FourtykQ6";
 import FourtykQ7 from "../components/fourtykq/FourtykQ7";
 import storage from "good-storage";
-import { Q_KEY } from "../assets/js/constant";
 
 export default {
   name: "40k-question",
@@ -45,17 +44,16 @@ export default {
     const realQuestionId = questionId.value;
     console.log(realQuestionId, `__40kquestion${realQuestionId}__`);
     // * storage
-    const questionCache = storage.session.get(
-      `__40kquestion${realQuestionId}__`
-    );
-    console.log(questionCache);
     // * computed
+    const questionCache = computed(() => {
+      return storage.session.get(`__40kquestion${questionId.value}__`);
+    });
     const currentQuestion = computed(() => {
       if (
-        questionCache &&
-        questionCache.page_template_number === Number(questionId.value)
+        questionCache.value &&
+        questionCache.value.page_template_number === Number(questionId.value)
       ) {
-        return questionCache;
+        return questionCache.value;
       } else {
         const q = store.getters.currentFourtyKQuestion.find((q) => {
           return q.page_template_number === Number(questionId.value);
@@ -71,16 +69,13 @@ export default {
     });
     // * watch
     // *lifecycle
-    onMounted(() => {
-      updateParams(route.params.id);
-    });
     onBeforeUpdate(() => {
       updateParams(route.params.id);
     });
+
     // *methods
     function updateParams(id) {
       questionId.value = id;
-      console.log(questionId.value);
     }
     // * return
     return {
@@ -88,6 +83,7 @@ export default {
       questionBackground,
       currentQuestion,
       updateParams,
+      store,
     };
   },
   // computed: {

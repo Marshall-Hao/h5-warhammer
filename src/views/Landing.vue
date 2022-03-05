@@ -75,7 +75,6 @@ export default {
   methods: {
     async onClick() {
       const loginRes = await login();
-      console.log("qwe", loginRes);
       const list = {
         aos: loginRes["categories"]["aos"]["questions"],
         fourtyK: loginRes["categories"]["40k"]["questions"],

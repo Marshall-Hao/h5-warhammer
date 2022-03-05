@@ -68,7 +68,7 @@
           :style="`background-image:url(${answer.image})`"
           @touchstart.prevent="choiceTouchStart(index)"
           @touchmove.prevent="choiceTouchMove(index)"
-          @touchend.prevent="choiceTouchEnd(index)"
+          @touchend.prevent="choiceTouchEnd(answer.id)"
         ></div>
       </div>
     </section>
@@ -88,12 +88,13 @@ export default {
   },
   emits: ["updateParams"],
   setup(props, { emit }) {
+    const questionId = props.currentQuestion.id;
     // * ref
     // * store
 
     // * hooks
     const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
-      useSelectPattern(emit);
+      useSelectPattern(emit, questionId);
     //  * computed
 
     //  * lifecycle

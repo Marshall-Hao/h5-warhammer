@@ -1,8 +1,9 @@
 import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { debounce } from "./util";
+import submitAnswer from "../../services/answer";
 
-export default function useSelectPattern(emit) {
+export default function useSelectPattern(emit, questionId) {
   //  * router
   const router = useRouter();
   const route = useRoute();
@@ -22,9 +23,12 @@ export default function useSelectPattern(emit) {
     debounce(getPoinstAndNext.bind(index), 1000, index)();
   }
 
-  function getPoinstAndNext(index) {
+  function getPoinstAndNext(choiceId) {
     //TODO; calculate the score based on the choice
-    console.log("the choice is", index);
+    submitAnswer({
+      questionId,
+      choiceId,
+    });
     //  * go to next question id
     const isFourtyK = route.path.includes("40k");
     const paramsId = Number(route.params.id);

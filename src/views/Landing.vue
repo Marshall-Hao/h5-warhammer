@@ -61,14 +61,16 @@ export default {
       60,
       "_"
     );
-    console.log(
-      ahoy.track("landingPage", {
-        url: "http://localhost:8080/",
-        title: "landing",
-        time: Date.now(),
-        page: "/landing",
-      })
-    );
+    //  * events track
+    ahoy.configure({
+      urlPrefix: "https://wh-staging.papercranetech.cn",
+    });
+    ahoy.track("landingPage", {
+      url: "http://localhost:8080/",
+      title: "landing",
+      time: Date.now(),
+      page: "/landing",
+    });
   },
   methods: {
     async onClick() {

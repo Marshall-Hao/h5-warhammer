@@ -43,6 +43,7 @@ import LandingBall from "../components/base/landingBall/LandingBall";
 import useTyped from "../assets/js/use-typed";
 import login from "../services/login";
 import { mapActions } from "vuex";
+import ahoy from "ahoy.js";
 
 export default {
   name: "landing",
@@ -59,6 +60,14 @@ export default {
       ],
       60,
       "_"
+    );
+    console.log(
+      ahoy.track("landingPage", {
+        url: "http://localhost:8080/",
+        title: "landing",
+        time: Date.now(),
+        page: "/landing",
+      })
     );
   },
   methods: {

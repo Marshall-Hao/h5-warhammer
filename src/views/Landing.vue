@@ -2,7 +2,13 @@
   <div class="landing">
     <header class="landing-header">
       <div class="landing-header-icon">
-        <hammer-icon></hammer-icon>
+        <svg-icon
+          :name="`hammer`"
+          :prefix="`war-`"
+          :fill="`none`"
+          :stroke="`#FFFFFF`"
+          :duration="duration"
+        ></svg-icon>
       </div>
       <div class="landing-header-title">
         <svg heightviewBox="0 0 200 40" width="320" height="40">
@@ -37,20 +43,27 @@
 </template>
 
 <script>
-import HammerIcon from "../components/base/Icon/HammerIcon";
 import FlyBox from "../components/base/fly-box/FlyBox";
 import LandingBall from "../components/base/landingBall/LandingBall";
 import useTyped from "../assets/js/use-typed";
 import login from "../services/login";
 import { mapActions } from "vuex";
 import ahoy from "ahoy.js";
+import SvgIcon from "../components/base/svgIcon/SvgIcon";
 
 export default {
   name: "landing",
   components: {
-    HammerIcon,
     FlyBox,
     LandingBall,
+    SvgIcon,
+  },
+  data() {
+    return {
+      duration: {
+        animation: "mainlogo 5s infinite alternate",
+      },
+    };
   },
   mounted() {
     useTyped(

@@ -180,7 +180,13 @@
         @touchmove.prevent="onMiddleTouchMove"
         @touchend.prevent="onMiddleTouchEnd"
       >
-        <hammer-icon></hammer-icon>
+        <svg-icon
+          :name="`hammer`"
+          :prefix="`war-`"
+          :fill="`none`"
+          :stroke="`#FFFFFF`"
+          :duration="animation"
+        ></svg-icon>
       </div>
       <div class="choose-section-options-r" ref="rightRef">
         <ul>
@@ -312,16 +318,19 @@
 </template>
 
 <script>
-import HammerIcon from "../components/base/Icon/HammerIcon";
+import SvgIcon from "../components/base/svgIcon/SvgIcon";
 import useTyped from "../assets/js/use-typed";
 import { computed, onMounted } from "@vue/runtime-core";
 import useMiddleInteraction from "./use-middle-interaction";
 export default {
   name: "choose",
   components: {
-    HammerIcon,
+    SvgIcon,
   },
   setup() {
+    const animation = {
+      animation: "mainlogo 5s infinite alternate",
+    };
     //   * ref
     //  * hooks
     const {
@@ -360,6 +369,7 @@ export default {
     // * methods
     // * return
     return {
+      animation,
       onMiddleTouchStart,
       onMiddleTouchMove,
       onMiddleTouchEnd,

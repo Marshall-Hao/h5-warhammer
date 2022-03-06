@@ -1,6 +1,6 @@
 <template>
   <svg class="icon">
-    <use :href="iconName"></use>
+    <use :href="iconName" :style="duration" :fill="fill" :stroke="stroke"></use>
   </svg>
 </template>
 
@@ -8,10 +8,25 @@
 export default {
   name: "svg-icon",
   props: {
-    name: Number,
+    name: [Number, String],
     prefix: {
       type: String,
       default: "war-q3",
+    },
+    duration: {
+      type: Object,
+      default: {
+        // animationDuration: "5s",
+        animation: "logo3 2s infinite alternate",
+      },
+    },
+    fill: {
+      type: String,
+      default: "black",
+    },
+    stroke: {
+      type: String,
+      default: "rgba(72, 138, 20, 0)",
     },
   },
   setup(props) {
@@ -31,33 +46,11 @@ export default {
 }
 
 use {
-  fill: black;
-  stroke: black;
+  // fill: black;
+  // stroke: black;
   stroke-width: 5;
 
-  animation: logo 2s infinite alternate;
-}
-
-@keyframes logo {
-  0% {
-    fill: rgba(72, 138, 20, 0);
-    stroke: black;
-    stroke-dashoffset: 25%;
-    stroke-dasharray: 0 50%;
-    stroke-width: 1;
-  }
-  70% {
-    fill: rgba(72, 138, 20, 0);
-    stroke: black;
-    stroke-width: 3;
-  }
-  90%,
-  100% {
-    fill: black;
-    stroke: rgba(54, 95, 160, 0);
-    stroke-dashoffset: -25%;
-    stroke-dasharray: 50% 0;
-    stroke-width: 0;
-  }
+  // animation: logo infinite alternate;
+  // animation-duration: 3s;
 }
 </style>

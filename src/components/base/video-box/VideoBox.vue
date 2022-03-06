@@ -1,11 +1,6 @@
 <template>
   <fly-box :lineColor="lineColor" :starColor="starColor" :duration="duration">
-    <img
-      src="@/assets/images/map.png"
-      :width="width"
-      :height="height"
-      style="filter: url(#fractal2)"
-    />
+    <img :src="posterUrl" :width="width" :height="height" />
   </fly-box>
 </template>
 

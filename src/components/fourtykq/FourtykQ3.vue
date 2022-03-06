@@ -26,7 +26,7 @@
           id="scale1"
           attributeName="scale"
           attributeType="XML"
-          from="15"
+          from="50"
           to="5"
           dur="2s"
           fill="freeze"
@@ -47,7 +47,7 @@
           attributeName="scale"
           attributeType="XML"
           from="0"
-          to="15"
+          to="50"
           dur="2s"
           fill="freeze"
           begin="scale2.end"
@@ -61,16 +61,26 @@
       <div class="q3-section-video">
         <video-box
           :lineColor="`rgb(67,80,102)`"
-          :starColor="`rgb(25,30,79)`"
+          :starColor="`#BC3F2F`"
           :duration="`5`"
-          :width="360"
-          :height="200"
-          :posterUrl="`../../assets/images/map.png`"
+          :width="361"
+          :height="202"
+          :posterUrl="currentQuestion.instruction_image"
         ></video-box>
       </div>
       <h1 class="q3-section-title">{{ questionText }}</h1>
       <div class="q3-section-choices">
-        <div v-for="answer in questionChoices" :key="answer"></div>
+        <div
+          v-for="(answer, index) in questionChoices"
+          :key="answer"
+          class="q3-section-choice"
+          :class="{ 'selected-q': selected === index }"
+          @touchstart.prevent="choiceTouchStart(index)"
+          @touchmove.prevent="choiceTouchMove(index)"
+          @touchend.prevent="choiceTouchEnd(answer.id)"
+        >
+          <svg-icon :name="index + 1"></svg-icon>
+        </div>
       </div>
     </div>
   </div>
@@ -78,11 +88,14 @@
 
 <script>
 import VideoBox from "../base/video-box/VideoBox";
+import SvgIcon from "../base/svgIcon/SvgIcon";
+import useSelectPattern from "../../assets/js/use-select-pattern";
 
 export default {
   name: "fourtyk-q3",
   components: {
     VideoBox,
+    SvgIcon,
   },
   props: {
     currentQuestion: Object,
@@ -91,16 +104,25 @@ export default {
     questionChoices: Array,
   },
   emits: ["updateParams"],
-  setup() {
+  setup(props, { emit }) {
+    const questionId = props.currentQuestion.id;
     // * ref
+
     // * store
 
     //  * computed
-
+    // *hooks
+    const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
+      useSelectPattern(emit, questionId);
     //  * lifecycle
     //  * methods
     //  * return
-    return {};
+    return {
+      choiceTouchMove,
+      choiceTouchEnd,
+      choiceTouchStart,
+      selected,
+    };
   },
 };
 </script>
@@ -120,6 +142,7 @@ export default {
     height: 100%;
     width: 100%;
     z-index: -2;
+    filter: url(#fractal2);
   }
   &-section {
     width: 37rem;
@@ -129,14 +152,35 @@ export default {
     text-align: center;
     &-video {
       width: 37rem;
-      margin-top: 3rem;
+      height: auto;
+      margin-top: 3.5rem;
       animation: backInDown 1s ease-in;
     }
     &-title {
-      margin: 2rem 0;
+      margin-top: 2.8rem;
+      line-height: 4rem;
       font-size: 3rem;
       animation: backInLeft 1s ease-in, pulse 3s ease-in-out infinite;
     }
+    &-choices {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 7rem;
+    }
+    &-choice {
+      @include absCenter;
+      position: relative;
+      width: 10rem;
+      margin-bottom: 4rem;
+      height: 10rem;
+      border-radius: 50%;
+      border: 0.3rem solid black;
+      background-color: $color-text-pr;
+      box-shadow: 0 0 1rem 0.1rem white;
+    }
   }
+}
+.selected-q {
+  animation: flash 1s infinite;
 }
 </style>

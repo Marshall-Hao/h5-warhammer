@@ -66,7 +66,8 @@ export default {
   left: 0;
   height: 100%;
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   text-align: center;
   &-background {
     position: fixed;

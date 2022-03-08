@@ -32,7 +32,7 @@
         </Mesh>
         <FbxModel
           :src="require('../../../assets/eaglelogo/eagle.fbx')"
-          :scale="{ x: 0.01, y: 0.01, z: 0.01 }"
+          :scale="{ x: 0.005, y: 0.005, z: 0.005 }"
           @load="onLoad"
         />
       </Scene>

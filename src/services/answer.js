@@ -5,7 +5,7 @@ import storage from "good-storage";
 export default async function submitAnswer({ questionId, choiceId }) {
   const headers = storage.session.get(USER_KEY);
   const quizId = storage.session.get(QUIZ_KEY);
-  await post(
+  const answer = await post(
     `/user_quizzes/${quizId}/user_answers
     `,
     {
@@ -16,4 +16,5 @@ export default async function submitAnswer({ questionId, choiceId }) {
     },
     headers
   );
+  console.log(answer);
 }

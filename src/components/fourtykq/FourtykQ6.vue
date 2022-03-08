@@ -1,6 +1,4 @@
-<template>
-  <div>6</div>
-</template>
+<template></template>
 
 <script>
 export default {
@@ -24,3 +22,16 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.q5 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  text-align: center;
+}
+</style>

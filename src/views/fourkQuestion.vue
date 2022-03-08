@@ -86,27 +86,5 @@ export default {
       store,
     };
   },
-  // computed: {
-  //   questionComp() {
-  //     const app = this.questionName;
-  //     return {
-  //       app: () =>
-  //         require(`../components/40kQ/FourtykQ${this.$route.params.id}.vue`)
-  //           .default,
-  //     };
-  //   },
-  // },
-  // created() {
-  //   this.loadComp();
-  //   console.log(this.questionComp.app);
-  // },
-  // methods: {
-  //   loadComp() {
-  //     this.questionComp = {
-  //       app: () =>
-  //         import(`../components/fourtykq/FourtykQ${this.$route.params.id}`),
-  //     };
-  //   },
-  // },
 };
 </script>

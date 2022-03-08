@@ -97,7 +97,7 @@ export default {
         { title: "11" },
       ],
       defaultConfig: {
-        speed: 10,
+        speed: 15,
       },
       choice1: ["1", "2", "3"],
       choice2: ["0", "11", "10"],
@@ -124,7 +124,7 @@ export default {
         const index = Math.floor(Math.random() * 11);
         // 调用stop停止旋转并传递中奖索引
         this.$refs.myLucky.stop(index);
-      }, 3000);
+      }, 4000);
     },
     // 抽奖结束会触发end回调
     endCallback(prize) {

@@ -22,10 +22,7 @@ export default {
       type: [String, Number],
       default: 2,
     },
-    posterUrl: {
-      type: String,
-      default: "@/assets/images/map.png",
-    },
+    posterUrl: String,
     width: {
       type: Number,
       default: 360,

@@ -173,6 +173,7 @@ export default {
   &-title {
     margin-top: 4.5rem;
     font-size: 2.5rem;
+    animation: pulse 3s infinite ease;
   }
   &-section {
     margin-top: 5rem;
@@ -182,6 +183,10 @@ export default {
       height: 28rem;
       &:not(:last-child) {
         margin-bottom: 13rem;
+        animation: fadeInDown 1s ease;
+      }
+      &:last-child {
+        animation: fadeInUp 1s ease;
       }
     }
   }

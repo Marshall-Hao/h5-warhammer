@@ -186,6 +186,7 @@ export default {
   }
   &-luckwheel {
     @include absCenter;
+    animation: zoomIn 1s ease;
   }
   &-button {
     @include absCenter;

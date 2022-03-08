@@ -98,7 +98,7 @@ export default {
     font-size: 3.5rem;
     color: #000;
     margin-top: 5.5rem;
-    animation: flipInY 1.8s ease;
+    animation: flipInY 1.8s ease infinite;
   }
   &-section {
     width: 100%;

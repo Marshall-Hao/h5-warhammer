@@ -10,9 +10,6 @@
 </template>
 
 <script>
-import { computed, onBeforeUpdate, ref } from "vue";
-import { useRoute } from "vue-router";
-import { useStore } from "vuex";
 import FourtykQ1 from "../components/fourtykq/FourtykQ1";
 import FourtykQ2 from "../components/fourtykq/FourtykQ2";
 import FourtykQ3 from "../components/fourtykq/FourtykQ3";
@@ -20,7 +17,7 @@ import FourtykQ4 from "../components/fourtykq/FourtykQ4";
 import FourtykQ5 from "../components/fourtykq/FourtykQ5";
 import FourtykQ6 from "../components/fourtykq/FourtykQ6";
 import FourtykQ7 from "../components/fourtykq/FourtykQ7";
-import storage from "good-storage";
+import questionPattern from "../assets/js/use-questions-pattern";
 
 export default {
   name: "40k-question",
@@ -33,51 +30,15 @@ export default {
     FourtykQ6,
     FourtykQ7,
   },
-  // todo: fix the page reload problem ,hint: https://blog.csdn.net/qq_16772725/article/details/80467492
   setup() {
-    //  * route
-    const route = useRoute();
-    // *ref
-    // * store
-    const store = useStore();
-    const questionId = ref(route.params.id);
-    const realQuestionId = questionId.value;
-    console.log(realQuestionId, `__40kquestion${realQuestionId}__`);
-    // * storage
-    // * computed
-    const questionCache = computed(() => {
-      return storage.session.get(`__40kquestion${questionId.value}__`);
-    });
-    const currentQuestion = computed(() => {
-      if (
-        questionCache.value &&
-        questionCache.value.page_template_number === Number(questionId.value)
-      ) {
-        return questionCache.value;
-      } else {
-        const q = store.getters.currentFourtyKQuestion.find((q) => {
-          return q.page_template_number === Number(questionId.value);
-        });
-        return q;
-      }
-    });
-    const questionBackground = computed(() => {
-      const backgroundImage = `url(${
-        currentQuestion.value && currentQuestion.value.bg_image
-      })`;
-      return { backgroundImage };
-    });
-    // * watch
-    // *lifecycle
-    onBeforeUpdate(() => {
-      updateParams(route.params.id);
-    });
+    const {
+      questionId,
+      questionBackground,
+      currentQuestion,
+      updateParams,
+      store,
+    } = questionPattern();
 
-    // *methods
-    function updateParams(id) {
-      questionId.value = id;
-    }
-    // * return
     return {
       questionId,
       questionBackground,

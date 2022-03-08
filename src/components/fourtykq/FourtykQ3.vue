@@ -177,6 +177,7 @@ export default {
       border: 0.3rem solid black;
       background-color: $color-text-pr;
       box-shadow: 0 0 1rem 0.1rem white;
+      animation: fadeIn 1s ease-in;
     }
   }
 }

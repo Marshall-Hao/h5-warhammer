@@ -63,8 +63,7 @@
           :lineColor="`rgb(67,80,102)`"
           :starColor="`#BC3F2F`"
           :duration="`5`"
-          :width="361"
-          :height="202"
+          :style="{ transform: 'scale(1.115,1.19)' }"
           :posterUrl="currentQuestion.instruction_image"
         ></video-box>
       </div>

@@ -56,7 +56,7 @@
       ></div>
     </section>
     <div class="choose-section-options">
-      <div class="choose-section-options-l" ref="leftRef">
+      <div class="choose-section-options-l" ref="swipeOne">
         <div :class="{ heartbeat: beatAnimate.left }">选择</div>
         <ul>
           <li>
@@ -188,7 +188,7 @@
           :duration="animation"
         ></svg-icon>
       </div>
-      <div class="choose-section-options-r" ref="rightRef">
+      <div class="choose-section-options-r" ref="swipeTwo">
         <ul>
           <li>
             <svg width="16.5" height="30" viewBox="0 0 110 200">
@@ -321,7 +321,7 @@
 import SvgIcon from "../components/base/svgIcon/SvgIcon";
 import useTyped from "../assets/js/use-typed";
 import { computed, onMounted } from "@vue/runtime-core";
-import useMiddleInteraction from "./use-middle-interaction";
+import useMiddleInteraction from "../assets/js/use-middle-interaction";
 export default {
   name: "choose",
   components: {
@@ -339,8 +339,8 @@ export default {
       onMiddleTouchEnd,
       iconTransform,
       maskTransform,
-      leftRef,
-      rightRef,
+      swipeOne,
+      swipeTwo,
       beatAnimate,
     } = useMiddleInteraction();
     //  * computed
@@ -374,8 +374,8 @@ export default {
       onMiddleTouchMove,
       onMiddleTouchEnd,
       iconTransform,
-      leftRef,
-      rightRef,
+      swipeOne,
+      swipeTwo,
       maskTransform,
       maskValue,
       duration,

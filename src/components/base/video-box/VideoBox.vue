@@ -1,6 +1,6 @@
 <template>
   <fly-box :lineColor="lineColor" :starColor="starColor" :duration="duration">
-    <img :src="posterUrl" :width="width" :height="height" />
+    <img :src="posterUrl" :style="style" />
   </fly-box>
 </template>
 
@@ -23,13 +23,11 @@ export default {
       default: 2,
     },
     posterUrl: String,
-    width: {
-      type: Number,
-      default: 360,
-    },
-    height: {
-      type: Number,
-      default: 170,
+    style: {
+      type: Object,
+      default: {
+        transform: "scale(1.112, 1.1)",
+      },
     },
   },
   components: {
@@ -41,6 +39,8 @@ export default {
 <style lang="scss" scoped>
 img {
   object-fit: fit;
-  transform: scale(1.11, 1.175);
+  height: 100%;
+  width: 100%;
+  // transform: scale(1.11, 1.1);
 }
 </style>

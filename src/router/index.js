@@ -3,7 +3,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Landing from "../views/Landing";
 import Terms from "../views/Terms";
 import Choose from "../views/Choose";
-import Questions from "../views/questions";
+import Questions from "../views/Questions";
 import FourkQuestion from "../views/fourkQuestion";
 import AosQuestion from "../views/aosQuestion";
 

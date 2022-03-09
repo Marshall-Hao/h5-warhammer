@@ -48,7 +48,9 @@ import LandingBall from "../components/base/landingBall/LandingBall";
 import useTyped from "../assets/js/use-typed";
 import login from "../services/login";
 import { mapActions } from "vuex";
-import ahoy from "ahoy.js";
+// import ahoy from "ahoy.js";
+import ahoy from "../services/ahoy"
+console.log({ahoy})
 import SvgIcon from "../components/base/svgIcon/SvgIcon";
 
 export default {
@@ -74,16 +76,17 @@ export default {
       60,
       "_"
     );
+    // ahoy.trackView()
     //  * events track
-    ahoy.configure({
-      urlPrefix: "https://wh-staging.papercranetech.cn",
-    });
-    ahoy.track("landingPage", {
-      url: "http://localhost:8080/",
-      title: "landing",
-      time: Date.now(),
-      page: "/landing",
-    });
+    // ahoy.configure({
+    //   urlPrefix: "https://wh-staging.papercranetech.cn",
+    // });
+    // ahoy.track("landingPage", {
+    //   url: "http://localhost:8080/",
+    //   title: "landing",
+    //   time: Date.now(),
+    //   page: "/landing",
+    // });
   },
   methods: {
     async onClick() {

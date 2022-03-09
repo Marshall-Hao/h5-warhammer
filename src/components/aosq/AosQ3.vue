@@ -1,9 +1,163 @@
 <template>
-  <div>aos3</div>
+  <svg width="0" height="0">
+    <filter
+      id="fractal2"
+      filterUnits="userSpaceOnUse"
+      x="0"
+      y="0"
+      width="100%"
+      height="100%"
+    >
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="0.995"
+        numOctaves="10"
+        seed="1"
+        result="img"
+      />
+      <feDisplacementMap
+        in="SourceGraphic"
+        in2="img"
+        xChannelSelector="R"
+        yChannelSelector="G"
+        scale="10"
+      >
+        <animate
+          id="scale1"
+          attributeName="scale"
+          attributeType="XML"
+          from="50"
+          to="5"
+          dur="2s"
+          fill="freeze"
+          begin="0; scale3.end"
+        />
+        <animate
+          id="scale2"
+          attributeName="scale"
+          attributeType="XML"
+          from="5"
+          to="0"
+          dur="2.5s"
+          fill="freeze"
+          begin="scale1.end"
+        />
+        <animate
+          id="scale3"
+          attributeName="scale"
+          attributeType="XML"
+          from="0"
+          to="50"
+          dur="2s"
+          fill="freeze"
+          begin="scale2.end"
+        />
+      </feDisplacementMap>
+    </filter>
+  </svg>
+  <div class="q3">
+    <div class="q3-background" :style="questionBackground"></div>
+    <h1 class="q3-title">{{ questionText }}</h1>
+    <div class="q3-choices">
+      <div
+        ref="q"
+        v-for="(answer, index) in questionChoices"
+        :key="answer"
+        :class="{ 'selected-q': selected === index }"
+        :style="`background-image:url(${answer.image})`"
+        @touchstart.prevent="choiceTouchStart(index)"
+        @touchmove.prevent="choiceTouchMove(index)"
+        @touchend.prevent="choiceTouchEnd(answer.id)"
+      ></div>
+    </div>
+  </div>
 </template>
 
 <script>
+import useSelectPattern from "../../assets/js/use-select-pattern";
+
 export default {
   name: "aos-q3",
+  props: {
+    currentQuestion: Object,
+    questionBackground: Object,
+    questionText: String,
+    questionChoices: Array,
+  },
+  emits: ["updateParams"],
+  setup(props, { emit }) {
+    const questionId = props.currentQuestion.id;
+    // * ref
+    // * store
+
+    // * hooks
+    const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
+      useSelectPattern(emit, questionId);
+    //  * computed
+
+    //  * lifecycle
+    //  * methods
+    //  * return
+    return {
+      choiceTouchMove,
+      choiceTouchEnd,
+      choiceTouchStart,
+      selected,
+    };
+  },
 };
 </script>
+
+<style lang="scss" scoped>
+.q3 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  text-align: center;
+  &-background {
+    position: fixed;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    z-index: -2;
+    filter: url(#fractal2);
+  }
+  &-title {
+    margin-top: 8rem;
+    font-size: 2.5rem;
+    letter-spacing: 0.2rem;
+    line-height: 4rem;
+    animation: rotateInDownLeft 1.5s, flash 5s 1.5s infinite;
+  }
+  &-choices {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 2.2rem;
+    margin-top: 16rem;
+    animation: rotateIn 1.5s;
+    div {
+      width: 16rem;
+      height: 16rem;
+      background-size: cover;
+      margin-bottom: 8rem;
+      animation: rotate 10s infinite ease-in-out forwards;
+    }
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0);
+  }
+  50% {
+    transform: rotateZ(360deg);
+  }
+  100% {
+    transform: rotateZ(0);
+  }
+}
+</style>

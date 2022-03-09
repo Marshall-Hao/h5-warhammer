@@ -30,11 +30,7 @@
             <Texture :src="scene" />
           </BasicMaterial>
         </Mesh>
-        <FbxModel
-          :src="require('../../../assets/eaglelogo/eagle.fbx')"
-          :scale="{ x: 0.005, y: 0.005, z: 0.005 }"
-          @load="onLoad"
-        />
+        <FbxModel :src="logo" :scale="scale" @load="onLoad" />
       </Scene>
     </Renderer>
   </div>
@@ -51,6 +47,13 @@ export default {
   props: {
     scene: {
       default: require("@/assets/images/fourtyk/1.png"),
+    },
+    logo: {
+      default: require("../../../assets/eaglelogo/eagle.fbx"),
+    },
+    scale: {
+      type: Object,
+      default: { x: 0.005, y: 0.005, z: 0.005 },
     },
   },
   mounted() {

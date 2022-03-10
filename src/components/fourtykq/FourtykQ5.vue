@@ -5,7 +5,7 @@
     <div class="q5-confirm" @touchstart.prevent="next">confirm</div>
     <ul class="q5-select">
       <li
-        v-for="index in [1, 2, 3]"
+        v-for="index in [1, 2, 3, 4, 5]"
         :key="index"
         :class="{ 'select-q': selected === index }"
         @touchstart.prevent="changeScene(index)"

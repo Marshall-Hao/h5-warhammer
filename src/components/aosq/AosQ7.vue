@@ -1,5 +1,22 @@
 <template>
   <div class="q7">
+    <div class="q7-background" :style="questionBackground"></div>
+    <div class="q7-banner">
+      <div class="q7-banner-inner"></div>
+    </div>
+    <h1 class="q7-title">{{ questionText }}</h1>
+    <div class="q7-choices">
+      <div
+        ref="q"
+        v-for="(answer, index) in questionChoices"
+        :key="answer"
+        :class="{ 'selected-q': selected === index }"
+        :style="`background-image:url(${answer.image})`"
+        @touchstart.prevent="choiceTouchStart(index)"
+        @touchmove.prevent="choiceTouchMove(index)"
+        @touchend.prevent="choiceTouchEnd(answer.id)"
+      ></div>
+    </div>
     <svg width="0" height="0">
       <filter
         id="fractal2"
@@ -56,23 +73,6 @@
         </feDisplacementMap>
       </filter>
     </svg>
-    <div class="q7-background" :style="questionBackground"></div>
-    <div class="q7-banner">
-      <div class="q7-banner-inner"></div>
-    </div>
-    <h1 class="q7-title">{{ questionText }}</h1>
-    <div class="q7-choices">
-      <div
-        ref="q"
-        v-for="(answer, index) in questionChoices"
-        :key="answer"
-        :class="{ 'selected-q': selected === index }"
-        :style="`background-image:url(${answer.image})`"
-        @touchstart.prevent="choiceTouchStart(index)"
-        @touchmove.prevent="choiceTouchMove(index)"
-        @touchend.prevent="choiceTouchEnd(answer.id)"
-      ></div>
-    </div>
   </div>
 </template>
 
@@ -154,7 +154,7 @@ $img: "../../assets/images/regular/q7banner.png";
       height: 20.5rem;
       background: url($img);
       background-size: cover;
-      animation: main-img-hide 7s infinite step-end;
+      animation: main-img-hide 5s infinite step-end;
       &::before,
       &::after {
         position: absolute;
@@ -167,12 +167,12 @@ $img: "../../assets/images/regular/q7banner.png";
 
       &::after {
         content: "";
-        animation: glitch-one 10s infinite step-end;
+        animation: glitch-one 5s infinite step-end;
       }
 
       &::before {
         content: "";
-        animation: glitch-two 10s infinite 1s step-end;
+        animation: glitch-two 5s infinite 1s step-end;
       }
     }
   }

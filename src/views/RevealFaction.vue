@@ -1,16 +1,26 @@
 <template>
   <div class="reveal">
-    <faction-fourtyk></faction-fourtyk>
+    <faction-fourtyk v-if="is40k"></faction-fourtyk>
+    <faction-aos v-else></faction-aos>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 import FactionFourtyk from "../components/fourtykq/FactionFourtyk";
-
+import FactionAos from "../components/aosq/FactionAos";
 export default {
   name: "reveal-faction",
   components: {
     FactionFourtyk,
+    FactionAos,
+  },
+  computed: {
+    is40k() {
+      console.log(this.category);
+      return this.category === "40k";
+    },
+    ...mapState(["category"]),
   },
 };
 </script>

@@ -1,5 +1,21 @@
 <template>
   <div class="q1">
+    <div class="q1-background" :style="questionBackground"></div>
+    <h1 class="q1-title">{{ questionText }}</h1>
+    <section class="q1-section">
+      <div class="q1-section-choices">
+        <div
+          ref="q"
+          v-for="(answer, index) in questionChoices"
+          :key="answer"
+          :class="{ 'selected-q': selected === index }"
+          :style="`background-image:url(${answer.image})`"
+          @touchstart.prevent="choiceTouchStart(index)"
+          @touchmove.prevent="choiceTouchMove(index)"
+          @touchend.prevent="choiceTouchEnd(answer.id)"
+        ></div>
+      </div>
+    </section>
     <svg width="0" height="0">
       <filter
         id="fractal2"
@@ -56,26 +72,11 @@
         </feDisplacementMap>
       </filter>
     </svg>
-    <div class="q1-background" :style="questionBackground"></div>
-    <h1 class="q1-title">{{ questionText }}</h1>
-    <section class="q1-section">
-      <div class="q1-section-choices">
-        <div
-          ref="q"
-          v-for="(answer, index) in questionChoices"
-          :key="answer"
-          :class="{ 'selected-q': selected === index }"
-          :style="`background-image:url(${answer.image})`"
-          @touchstart.prevent="choiceTouchStart(index)"
-          @touchmove.prevent="choiceTouchMove(index)"
-          @touchend.prevent="choiceTouchEnd(answer.id)"
-        ></div>
-      </div>
-    </section>
   </div>
 </template>
 
 <script>
+import { inject } from "@vue/runtime-core";
 import useSelectPattern from "../../assets/js/use-select-pattern";
 
 export default {

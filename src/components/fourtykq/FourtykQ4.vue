@@ -1,5 +1,24 @@
 <template>
   <div class="q4">
+    <div class="q4-bg">
+      <div
+        v-for="(answer, index) in questionChoices"
+        :key="answer"
+        :style="{ background: `url(${answer.image})` }"
+        :class="{ 'selected-q': selected === index }"
+      ></div>
+    </div>
+    <LuckyWheel
+      class="q4-luckwheel"
+      ref="myLucky"
+      width="400px"
+      height="400px"
+      :prizes="prizes"
+      :blocks="blocks"
+      :defaultConfig="defaultConfig"
+      @end="endCallback"
+    />
+    <div class="q4-button" @touchstart.prevent="startWheel"></div>
     <svg width="0" height="0">
       <filter
         id="fractal"
@@ -39,25 +58,6 @@
         <feDisplacementMap in="SourceGraphic" scale="15"></feDisplacementMap>
       </filter>
     </svg>
-    <div class="q4-bg">
-      <div
-        v-for="(answer, index) in questionChoices"
-        :key="answer"
-        :style="{ background: `url(${answer.image})` }"
-        :class="{ 'selected-q': selected === index }"
-      ></div>
-    </div>
-    <LuckyWheel
-      class="q4-luckwheel"
-      ref="myLucky"
-      width="400px"
-      height="400px"
-      :prizes="prizes"
-      :blocks="blocks"
-      :defaultConfig="defaultConfig"
-      @end="endCallback"
-    />
-    <div class="q4-button" @touchstart.prevent="startWheel"></div>
   </div>
 </template>
 

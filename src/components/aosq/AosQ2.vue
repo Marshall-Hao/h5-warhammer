@@ -1,17 +1,5 @@
 <template>
   <div class="q2" :style="questionBackground">
-    <svg width="0" height="0">
-      <filter id="smoke">
-        <feTurbulence
-          ref="turbulence"
-          id="turbulence"
-          type="fractalNoise"
-          baseFrequency=".03"
-          numOctaves="20"
-        />
-        <feDisplacementMap in="SourceGraphic" scale="30" />
-      </filter>
-    </svg>
     <h1 class="q2-title">
       {{ questionText }}
     </h1>
@@ -37,6 +25,18 @@
         @touchend.prevent="choiceTouchEnd(answer.id)"
       ></div>
     </div>
+    <svg width="0" height="0">
+      <filter id="smoke">
+        <feTurbulence
+          ref="turbulence"
+          id="turbulence"
+          type="fractalNoise"
+          baseFrequency=".03"
+          numOctaves="20"
+        />
+        <feDisplacementMap in="SourceGraphic" scale="30" />
+      </filter>
+    </svg>
   </div>
 </template>
 

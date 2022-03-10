@@ -511,6 +511,7 @@ export default {
     width: 100vw;
     bottom: 2.5vh;
     text-align: center;
+    font-size: 0.8rem;
     animation: headShake 2s infinite ease-out;
   }
 }

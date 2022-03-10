@@ -1,5 +1,19 @@
 <template>
   <div class="q3">
+    <div class="q3-background" :style="questionBackground"></div>
+    <h1 class="q3-title">{{ questionText }}</h1>
+    <div class="q3-choices">
+      <div
+        ref="q"
+        v-for="(answer, index) in questionChoices"
+        :key="answer"
+        :class="{ 'selected-q': selected === index }"
+        :style="`background-image:url(${answer.image})`"
+        @touchstart.prevent="choiceTouchStart(index)"
+        @touchmove.prevent="choiceTouchMove(index)"
+        @touchend.prevent="choiceTouchEnd(answer.id)"
+      ></div>
+    </div>
     <svg width="0" height="0">
       <filter
         id="fractal2"
@@ -56,20 +70,6 @@
         </feDisplacementMap>
       </filter>
     </svg>
-    <div class="q3-background" :style="questionBackground"></div>
-    <h1 class="q3-title">{{ questionText }}</h1>
-    <div class="q3-choices">
-      <div
-        ref="q"
-        v-for="(answer, index) in questionChoices"
-        :key="answer"
-        :class="{ 'selected-q': selected === index }"
-        :style="`background-image:url(${answer.image})`"
-        @touchstart.prevent="choiceTouchStart(index)"
-        @touchmove.prevent="choiceTouchMove(index)"
-        @touchend.prevent="choiceTouchEnd(answer.id)"
-      ></div>
-    </div>
   </div>
 </template>
 

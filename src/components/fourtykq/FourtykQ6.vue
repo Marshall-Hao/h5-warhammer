@@ -8,7 +8,6 @@
         class="q6-card"
         @touchstart.prevent="flipCard(index)"
         @touchmove.prevent="choiceTouchMove(index)"
-        @touchend.prevent="choiceTouchEnd(answer.id)"
       >
         <div
           class="q6-card-side q6-card-back"
@@ -18,6 +17,7 @@
             backgroundSize: `cover`,
           }"
           @touchmove.prevent="backPos"
+          @touchend.prevent="choiceTouchEnd(answer.id)"
         ></div>
         <div
           class="q6-card-side q6-card-front"
@@ -160,7 +160,7 @@ export default {
   }
   &-card {
     height: 25rem;
-    width: 18rem;
+    width: 17rem;
     margin-bottom: 3rem;
     position: relative;
     perspective: 150rem;
@@ -185,7 +185,6 @@ export default {
         text-align: center;
         position: relative;
         border-radius: 0.3rem;
-        box-shadow: 0 1.5rem 4rem rgba($color-background-d, 0.15);
         filter: url(#fractal2);
       }
       &-btn {

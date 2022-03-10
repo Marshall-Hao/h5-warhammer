@@ -1,5 +1,21 @@
 <template>
   <div class="q1">
+    <div class="q1-background" :style="questionBackground"></div>
+    <h1 class="q1-title">{{ questionText }}</h1>
+    <section class="q1-section">
+      <div class="q1-section-choices">
+        <div
+          ref="q"
+          v-for="(answer, index) in questionChoices"
+          :key="answer"
+          :class="{ 'selected-q': selected === index }"
+          :style="`background-image:url(${answer.image})`"
+          @touchstart.prevent="choiceTouchStart(index)"
+          @touchmove.prevent="choiceTouchMove(index)"
+          @touchend.prevent="choiceTouchEnd(answer.id)"
+        ></div>
+      </div>
+    </section>
     <svg width="0" height="0">
       <filter
         id="fractal2"
@@ -56,22 +72,6 @@
         </feDisplacementMap>
       </filter>
     </svg>
-    <div class="q1-background" :style="questionBackground"></div>
-    <h1 class="q1-title">{{ questionText }}</h1>
-    <section class="q1-section">
-      <div class="q1-section-choices">
-        <div
-          ref="q"
-          v-for="(answer, index) in questionChoices"
-          :key="answer"
-          :class="{ 'selected-q': selected === index }"
-          :style="`background-image:url(${answer.image})`"
-          @touchstart.prevent="choiceTouchStart(index)"
-          @touchmove.prevent="choiceTouchMove(index)"
-          @touchend.prevent="choiceTouchEnd(answer.id)"
-        ></div>
-      </div>
-    </section>
   </div>
 </template>
 
@@ -149,7 +149,7 @@ export default {
         background-size: cover;
         margin-bottom: 6rem;
         animation: zoomIn 0.8s ease-in,
-          main-img-hide 5s infinite step-end forwards;
+          main-img-hide 8s infinite step-end forwards;
       }
       div::before,
       div::after {
@@ -161,17 +161,21 @@ export default {
         background: inherit;
       }
 
-      div::after {
-        content: "";
-        animation: glitch-one 5s infinite step-end forwards;
-      }
+      // div::after {
+      //   content: "";
+      //   animation: glitch-one 5s infinite step-end forwards;
+      // }
 
-      div::before {
-        content: "";
-        animation: glitch-two 5s infinite 1s step-end forwards;
-      }
+      // div::before {
+      //   content: "";
+      //   animation: glitch-two 5s infinite 1s step-end forwards;
+      // }
     }
   }
+}
+.selected-q {
+  transition: all 0.7s ease-in;
+  transform: scale(1.2, 1.2);
 }
 @keyframes glitch-one {
   @for $i from 20 to 30 {

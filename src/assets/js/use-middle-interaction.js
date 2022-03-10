@@ -1,8 +1,9 @@
 import { onMounted, reactive, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import { removeUnit } from "./util";
 import quizStart from "../../services/choose";
 import submitAnswer from "../../services/answer";
+import { useStore } from "vuex";
 
 export default function useMiddleInteraction(
   direction = "h",
@@ -28,8 +29,9 @@ export default function useMiddleInteraction(
   });
   // * routers
   const router = useRouter();
-  const route = useRoute();
 
+  // * store
+  const store = useStore();
   // * util
   const touch = {};
 
@@ -133,11 +135,13 @@ export default function useMiddleInteraction(
     } else {
       if (touch.percentX > 0) {
         quizStart(1);
+        store.commit("setCategory", "40k");
         router.push({
           path: "/questions/40k/1",
         });
       } else {
         quizStart(2);
+        store.commit("setCategory", "aos");
         router.push({
           path: "/questions/aos/1",
         });

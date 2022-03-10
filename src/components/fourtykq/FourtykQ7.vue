@@ -1,17 +1,5 @@
 <template>
   <div class="q7" :style="questionBackground">
-    <svg width="0" height="0">
-      <filter id="smoke">
-        <feTurbulence
-          ref="turbulence"
-          id="turbulence"
-          type="fractalNoise"
-          baseFrequency=".03"
-          numOctaves="20"
-        />
-        <feDisplacementMap in="SourceGraphic" scale="30" />
-      </filter>
-    </svg>
     <h1 class="q7-title">{{ questionText }}</h1>
     <div class="q7-section">
       <div
@@ -55,6 +43,18 @@
         {{ currentQuestion.instruction }}
       </p>
     </div>
+    <svg width="0" height="0">
+      <filter id="smoke">
+        <feTurbulence
+          ref="turbulence"
+          id="turbulence"
+          type="fractalNoise"
+          baseFrequency=".03"
+          numOctaves="20"
+        />
+        <feDisplacementMap in="SourceGraphic" scale="30" />
+      </filter>
+    </svg>
   </div>
 </template>
 
@@ -229,18 +229,12 @@ export default {
         width: 120%;
         @include absXCenter;
         top: -0.9rem;
-        background: linear-gradient(
-          180deg,
-          rgb(222, 210, 233),
-          rgba(222, 210, 233, 0.9) 25%,
-          transparent 55%
-        );
         filter: url(#smoke);
       }
     }
     &-instruction {
       position: absolute;
-      left: 12.5%;
+      left: 23%;
       top: 57%;
       animation: shakeY 10s infinite ease;
     }

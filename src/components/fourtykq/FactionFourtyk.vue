@@ -130,7 +130,7 @@ export default {
   @include absXCenter;
   width: 25rem;
   position: absolute;
-  bottom: 12rem;
+  bottom: 7rem;
   font-size: 2rem;
   letter-spacing: 0.3rem;
   line-height: 3.2rem;

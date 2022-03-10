@@ -1,5 +1,31 @@
 <template>
   <div class="q3">
+    <div class="q3-background" :style="questionBackground"></div>
+    <div class="q3-section">
+      <div class="q3-section-video">
+        <video-box
+          :lineColor="`rgb(67,80,102)`"
+          :starColor="`#BC3F2F`"
+          :duration="`5`"
+          :style="{ transform: 'scale(1.115,1.19)' }"
+          :posterUrl="currentQuestion.instruction_image"
+        ></video-box>
+      </div>
+      <h1 class="q3-section-title">{{ questionText }}</h1>
+      <div class="q3-section-choices">
+        <div
+          v-for="(answer, index) in questionChoices"
+          :key="answer"
+          class="q3-section-choice"
+          :class="{ 'selected-q': selected === index }"
+          @touchstart.prevent="choiceTouchStart(index)"
+          @touchmove.prevent="choiceTouchMove(index)"
+          @touchend.prevent="choiceTouchEnd(answer.id)"
+        >
+          <svg-icon :name="index + 1"></svg-icon>
+        </div>
+      </div>
+    </div>
     <svg width="0" height="0">
       <filter
         id="fractal2"
@@ -56,32 +82,6 @@
         </feDisplacementMap>
       </filter>
     </svg>
-    <div class="q3-background" :style="questionBackground"></div>
-    <div class="q3-section">
-      <div class="q3-section-video">
-        <video-box
-          :lineColor="`rgb(67,80,102)`"
-          :starColor="`#BC3F2F`"
-          :duration="`5`"
-          :style="{ transform: 'scale(1.115,1.19)' }"
-          :posterUrl="currentQuestion.instruction_image"
-        ></video-box>
-      </div>
-      <h1 class="q3-section-title">{{ questionText }}</h1>
-      <div class="q3-section-choices">
-        <div
-          v-for="(answer, index) in questionChoices"
-          :key="answer"
-          class="q3-section-choice"
-          :class="{ 'selected-q': selected === index }"
-          @touchstart.prevent="choiceTouchStart(index)"
-          @touchmove.prevent="choiceTouchMove(index)"
-          @touchend.prevent="choiceTouchEnd(answer.id)"
-        >
-          <svg-icon :name="index + 1"></svg-icon>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 

@@ -76,7 +76,6 @@
 </template>
 
 <script>
-import { inject } from "@vue/runtime-core";
 import useSelectPattern from "../../assets/js/use-select-pattern";
 
 export default {

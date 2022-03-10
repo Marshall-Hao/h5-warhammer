@@ -82,7 +82,7 @@ export default {
     );
     //  * events track
     ahoy.configure({
-      urlPrefix: "https://wh-staging.papercranetech.cn",
+      urlPrefix: "https://api-staging.h5.games-workshop-china.com",
     });
     ahoy.track("landingPage", {
       url: "http://localhost:8080/",

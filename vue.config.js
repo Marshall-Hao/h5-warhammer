@@ -17,7 +17,7 @@ module.exports = {
     // * 翻墙导致的跨域代理不生效
     proxy: {
       "^/api/v1": {
-        target: "https://wh-staging.papercranetech.cn",
+        target: "https://api-staging.h5.games-workshop-china.com",
         secure: true,
         ws: true, //代理websocked
         changeOrigin: true, //虚拟的站点需要更管origin

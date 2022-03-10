@@ -149,6 +149,7 @@ export default {
     }
   }
 }
+
 @keyframes rotate {
   0% {
     transform: rotateZ(0);

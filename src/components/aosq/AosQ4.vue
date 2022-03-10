@@ -17,6 +17,7 @@
             ></div>
             <div
               class="q4-pick"
+              :class="{ 'selected-q': selected === index }"
               @touchstart.prevent="choiceTouchStart(index)"
               @touchmove.prevent="choiceTouchMove(index)"
               @touchend.prevent="choiceTouchEnd(answer.id)"
@@ -167,7 +168,7 @@ export default {
     animation: pulse 2s infinite forwards;
   }
   &-pick {
-    margin-top: 3rem;
+    // margin-top: 6rem;
     font-size: 2rem;
     height: 3rem;
     width: 10rem;
@@ -187,7 +188,9 @@ export default {
     animation: shakeX 10s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955);
   }
 }
-
+.selected-q {
+  animation: pulse 2s infinite forwards;
+}
 .glide__arrow {
   border: 0px;
   &--left {

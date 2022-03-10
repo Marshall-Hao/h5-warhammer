@@ -47,7 +47,7 @@ export default function useSelectPattern(emit, questionId) {
       });
     } else {
       router.push({
-        path: `/choose`,
+        path: `/reveal`,
       });
     }
   }

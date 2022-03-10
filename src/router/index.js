@@ -6,6 +6,7 @@ import Choose from "../views/Choose";
 import Questions from "../views/questions";
 import FourkQuestion from "../views/fourkQuestion";
 import AosQuestion from "../views/aosQuestion";
+import RevealFaction from "../views/RevealFaction";
 
 const routes = [
   {
@@ -37,6 +38,10 @@ const routes = [
         component: AosQuestion,
       },
     ],
+  },
+  {
+    path: "/reveal",
+    component: RevealFaction,
   },
 ];
 

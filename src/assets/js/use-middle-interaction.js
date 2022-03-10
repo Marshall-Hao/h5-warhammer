@@ -170,7 +170,7 @@ export default function useMiddleInteraction(
         });
       }
       router.push({
-        path: "/choose",
+        path: "/reveal",
       });
     }
   }

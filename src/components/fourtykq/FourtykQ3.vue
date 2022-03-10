@@ -154,7 +154,7 @@ export default {
       width: 37rem;
       height: auto;
       margin-top: 3.5rem;
-      animation: backInDown 1s ease-in;
+      animation: fadeIn 1s ease-in;
     }
     &-title {
       margin-top: 2.8rem;
@@ -166,6 +166,7 @@ export default {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       margin-top: 7rem;
+      animation: fadeInUp 1s;
     }
     &-choice {
       @include absCenter;

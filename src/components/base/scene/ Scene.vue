@@ -32,6 +32,10 @@
         </Mesh>
         <FbxModel :src="logo" :scale="scale" @load="onLoad" />
       </Scene>
+      <EffectComposer>
+        <RenderPass />
+        <FilmPass :noiseIntensity="0.3" :scanlinesIntensity="0.1" />
+      </EffectComposer>
     </Renderer>
   </div>
 </template>

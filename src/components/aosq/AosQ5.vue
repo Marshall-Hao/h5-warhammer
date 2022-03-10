@@ -42,6 +42,8 @@ export default {
     const logo = require("@/assets/khorne/source/Khorne.fbx");
     const questionId = props.currentQuestion.id;
     const defaultScene = props.questionChoices[0].image;
+    const defaultChoiceId = props.questionChoices[0].id;
+
     // * ref
     // * store
 
@@ -51,7 +53,8 @@ export default {
     //  * methods
     const { changeScene, next, scene, selected } = use3DView(
       questionId,
-      defaultScene
+      defaultScene,
+      defaultChoiceId
     );
     //  * return
     return {

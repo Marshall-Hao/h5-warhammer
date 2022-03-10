@@ -41,8 +41,39 @@
 </template>
 
 <script>
+import {
+  Renderer,
+  Camera,
+  Scene,
+  HemisphereLight,
+  DirectionalLight,
+  Mesh,
+  SphereGeometry,
+  BasicMaterial,
+  Texture,
+  FbxModel,
+  EffectComposer,
+  RenderPass,
+  FilmPass,
+} from "troisjs";
+
 export default {
   name: "scene",
+  components: {
+    Renderer,
+    Camera,
+    Scene,
+    HemisphereLight,
+    DirectionalLight,
+    Mesh,
+    SphereGeometry,
+    BasicMaterial,
+    Texture,
+    FbxModel,
+    EffectComposer,
+    RenderPass,
+    FilmPass,
+  },
   data() {
     return {
       ratio: 1,

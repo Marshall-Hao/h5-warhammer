@@ -12,9 +12,15 @@ export default function useSelectPattern(emit, questionId) {
     const currentQuiz = storage.session.get("__currentquiz__");
     console.log(Number(route.params.id), currentQuiz);
     if (Number(route.params.id) > currentQuiz) {
-      router.push({
-        path: `/questions/40k/${currentQuiz + 1}`,
-      });
+      if (isFourtyK) {
+        router.push({
+          path: `/questions/40k/${currentQuiz + 1}`,
+        });
+      } else {
+        router.push({
+          path: `/questions/aos/${currentQuiz + 1}`,
+        });
+      }
     }
   });
   // *cookie
@@ -23,6 +29,7 @@ export default function useSelectPattern(emit, questionId) {
   //  * router
   const router = useRouter();
   const route = useRoute();
+  const isFourtyK = route.path.includes("40k");
   // * ref
   const selected = ref(null);
   //  * methods
@@ -49,7 +56,6 @@ export default function useSelectPattern(emit, questionId) {
       headers
     );
     //  * go to next question id
-    const isFourtyK = route.path.includes("40k");
     const paramsId = Number(route.params.id);
     emit("updateParams", paramsId + 1);
     if (isFourtyK) {

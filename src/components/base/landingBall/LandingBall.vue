@@ -25,9 +25,27 @@
 
 <script>
 import chroma from "chroma-js";
+import {
+  Renderer,
+  Camera,
+  Scene,
+  AmbientLight,
+  PointLight,
+  Torus,
+  ToonMaterial,
+} from "troisjs";
 
 export default {
   name: "landing-ball",
+  components: {
+    Renderer,
+    Camera,
+    Scene,
+    AmbientLight,
+    PointLight,
+    Torus,
+    ToonMaterial,
+  },
   data() {
     return {
       n: 30,

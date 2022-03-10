@@ -11,7 +11,6 @@ import VueLuckyCanvas from "@lucky-canvas/vue";
 createApp(App)
   .use(store)
   .use(router)
-  .use(TroisJSVuePlugin)
   .use(VueLuckyCanvas)
   .use(VueCookieNext)
   .mount("#app");

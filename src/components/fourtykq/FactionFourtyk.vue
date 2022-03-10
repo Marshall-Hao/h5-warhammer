@@ -77,6 +77,20 @@
 </template>
 
 <script>
+import {
+  Renderer,
+  Camera,
+  Scene,
+  AmbientLight,
+  PointLight,
+  Sphere,
+  StandardMaterial,
+  Texture,
+  EffectComposer,
+  RenderPass,
+  FilmPass,
+  UnrealBloomPass,
+} from "troisjs";
 import { CubeTextureLoader, NearestFilter, sRGBEncoding } from "three";
 import { onMounted } from "@vue/runtime-core";
 import { ref } from "vue";
@@ -87,6 +101,18 @@ export default {
   name: "faction-fourtyk",
   components: {
     Lighting,
+    Renderer,
+    Camera,
+    Scene,
+    AmbientLight,
+    PointLight,
+    Sphere,
+    StandardMaterial,
+    Texture,
+    EffectComposer,
+    RenderPass,
+    FilmPass,
+    UnrealBloomPass,
   },
   setup() {
     const cubeTextureLoader = new CubeTextureLoader();

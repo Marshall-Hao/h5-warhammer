@@ -67,6 +67,7 @@
 
 <script>
 import submitAnswer from "../../services/answer";
+import { USER_KEY } from "../../assets/js/constant";
 
 export default {
   name: "fourtyk-q4",
@@ -132,6 +133,7 @@ export default {
     },
     // 抽奖结束会触发end回调
     endCallback(prize) {
+      const headers = this.$cookie.getCookie(USER_KEY);
       const result = prize.title;
       const questionId = this.currentQuestion.id;
       let choiceId;
@@ -149,10 +151,13 @@ export default {
         this.selected = 3;
       }
       this.$emit("updateParams", 5);
-      submitAnswer({
-        questionId,
-        choiceId,
-      });
+      submitAnswer(
+        {
+          questionId,
+          choiceId,
+        },
+        headers
+      );
       this.goNextPage();
     },
     goNextPage() {

@@ -1,9 +1,8 @@
 import { post } from "./base";
-import { USER_KEY, QUIZ_KEY } from "../assets/js/constant";
+import { QUIZ_KEY } from "../assets/js/constant";
 import storage from "good-storage";
 
-export default async function quizStart(categoryNum) {
-  const headers = storage.session.get(USER_KEY);
+export default async function quizStart(categoryNum, headers) {
   const quizCategory = await post(
     "/user_quizzes",
     {

@@ -2,8 +2,13 @@ import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { debounce } from "./util";
 import submitAnswer from "../../services/answer";
+import { useCookie } from "vue-cookie-next";
+import { USER_KEY } from "../../assets/js/constant";
 
 export default function useSelectPattern(emit, questionId) {
+  // *cookie
+  const cookie = useCookie();
+  const headers = cookie.getCookie(USER_KEY);
   //  * router
   const router = useRouter();
   const route = useRoute();
@@ -25,10 +30,13 @@ export default function useSelectPattern(emit, questionId) {
 
   function getPoinstAndNext(choiceId) {
     //TODO; calculate the score based on the choice
-    submitAnswer({
-      questionId,
-      choiceId,
-    });
+    submitAnswer(
+      {
+        questionId,
+        choiceId,
+      },
+      headers
+    );
     //  * go to next question id
     const isFourtyK = route.path.includes("40k");
     const paramsId = Number(route.params.id);

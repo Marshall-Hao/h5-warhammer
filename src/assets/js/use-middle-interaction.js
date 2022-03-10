@@ -5,12 +5,16 @@ import quizStart from "../../services/choose";
 import submitAnswer from "../../services/answer";
 import { useStore } from "vuex";
 import { detectMob } from "./util";
+import { useCookie } from "vue-cookie-next";
+import { USER_KEY } from "../../assets/js/constant";
 
 export default function useMiddleInteraction(
   direction = "h",
   questionId = 0,
   choices = {}
 ) {
+  const cookie = useCookie();
+  const headers = cookie.getCookie(USER_KEY);
   const isMob = detectMob();
   // * ref
   const swipeOne = ref(null);
@@ -147,13 +151,13 @@ export default function useMiddleInteraction(
       maskTransform.duration = 300;
     } else {
       if (touch.percentX > 0) {
-        quizStart(1);
+        quizStart(1, headers);
         store.commit("setCategory", "40k");
         router.push({
           path: "/questions/40k/1",
         });
       } else {
-        quizStart(2);
+        quizStart(2, headers);
         store.commit("setCategory", "aos");
         router.push({
           path: "/questions/aos/1",
@@ -176,15 +180,21 @@ export default function useMiddleInteraction(
       maskTransform.duration = 300;
     } else {
       if (touch.percentY < 0) {
-        submitAnswer({
-          questionId,
-          choiceId: choices[0].id,
-        });
+        submitAnswer(
+          {
+            questionId,
+            choiceId: choices[0].id,
+          },
+          headers
+        );
       } else {
-        submitAnswer({
-          questionId,
-          choiceId: choices[1].id,
-        });
+        submitAnswer(
+          {
+            questionId,
+            choiceId: choices[1].id,
+          },
+          headers
+        );
       }
       router.push({
         path: "/reveal",

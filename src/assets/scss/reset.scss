@@ -45,6 +45,17 @@ body {
   font-size: 10px;
   padding: 4rem 1rem;
   box-sizing: border-box;
+  position: relative;
+}
+@media screen and (min-width: 414px) {
+  body {
+    width: 414px;
+    margin: 0 auto !important;
+  }
+  html {
+    width: 414px;
+    margin: 0 auto !important;
+  }
 }
 
 blockquote, q {

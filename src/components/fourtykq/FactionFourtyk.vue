@@ -67,7 +67,11 @@
       <UnrealBloomPass :strength="0.2" />
     </EffectComposer>
   </Renderer>
-  <p class="reveal-title" @touchstart.prevent="onTouchstart">
+  <p
+    class="reveal-title"
+    @touchstart.prevent="onTouchstart"
+    @mousedown="onTouchstart"
+  >
     click to reveal your faction
   </p>
 </template>

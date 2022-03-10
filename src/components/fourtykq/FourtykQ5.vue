@@ -2,13 +2,16 @@
   <div class="q5">
     <div class="q5-title">{{ questionText }}</div>
     <scene :scene="scene"></scene>
-    <div class="q5-confirm" @touchstart.prevent="next">confirm</div>
+    <div class="q5-confirm" @touchstart.prevent="next" @mousedown="next">
+      confirm
+    </div>
     <ul class="q5-select">
       <li
         v-for="(answer, index) in questionChoices"
         :key="answer"
         :class="{ 'select-q': selected === index }"
         @touchstart.prevent="changeScene(answer, index)"
+        @mousedown="changeScene(answer, index)"
       >
         {{ index + 1 }}
       </li>
@@ -17,10 +20,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
 import Scene from "../base/scene/ Scene.vue";
-import submitAnswer from "../../services/answer";
 import use3DView from "../../assets/js/use-3dview-pattern";
 
 export default {
@@ -92,5 +92,6 @@ export default {
 }
 .select-q {
   color: $color-text-py;
+  transition: all 0.3s;
 }
 </style>

@@ -21,6 +21,9 @@
           @touchstart.prevent="choiceTouchStart(index)"
           @touchmove.prevent="choiceTouchMove(index)"
           @touchend.prevent="choiceTouchEnd(answer.id)"
+          @mouseenter.prevent="choiceTouchStart(index)"
+          @mousemove.prevent="choiceTouchMove(index)"
+          @mousedown="choiceTouchEnd(answer.id)"
         >
           <svg-icon :name="index + 1"></svg-icon>
         </div>

@@ -12,7 +12,7 @@ export default function useSelectPattern(emit, questionId) {
   //  * methods
   function choiceTouchStart(index) {
     selected.value = index;
-    debounce(getPoinstAndNext.bind(index), 1000, index)();
+    // debounce(getPoinstAndNext.bind(index), 1000, index)();
   }
 
   function choiceTouchMove(index) {

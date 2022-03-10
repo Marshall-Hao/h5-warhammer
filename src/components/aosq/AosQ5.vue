@@ -6,13 +6,16 @@
       :logo="logo"
       :scale="{ x: 0.5, y: 0.5, z: 0.5 }"
     ></scene>
-    <div class="q5-confirm" @touchstart.prevent="next">confirm</div>
+    <div class="q5-confirm" @touchstart.prevent="next" @mousedown="next">
+      confirm
+    </div>
     <ul class="q5-select">
       <li
         v-for="(answer, index) in questionChoices"
         :key="answer"
         :class="{ 'select-q': selected === index }"
         @touchstart.prevent="changeScene(answer, index)"
+        @mousedown="changeScene(answer, index)"
       >
         {{ index + 1 }}
       </li>
@@ -95,5 +98,6 @@ export default {
 }
 .select-q {
   color: $color-text-py;
+  transition: all 0.3s;
 }
 </style>

@@ -191,6 +191,9 @@
         @touchstart.prevent="onMiddleTouchStart"
         @touchmove.prevent="onMiddleTouchMove"
         @touchend.prevent="onMiddleTouchEnd"
+        @mouseenter.prevent="onMiddleTouchStart"
+        @mousemove.prevent="onMiddleTouchMove"
+        @mouseleave="onMiddleTouchEnd"
       >
         <svg-icon
           :name="`hammer`"

@@ -4,12 +4,14 @@ import { removeUnit } from "./util";
 import quizStart from "../../services/choose";
 import submitAnswer from "../../services/answer";
 import { useStore } from "vuex";
+import { detectMob } from "./util";
 
 export default function useMiddleInteraction(
   direction = "h",
   questionId = 0,
   choices = {}
 ) {
+  const isMob = detectMob();
   // * ref
   const swipeOne = ref(null);
   const swipeTwo = ref(null);
@@ -53,15 +55,26 @@ export default function useMiddleInteraction(
 
   //  * methods
   function onMiddleTouchStart(e) {
-    touch.startX = e.touches[0].pageX;
-    touch.startY = e.touches[0].pageY;
+    if (isMob) {
+      touch.startX = e.touches[0].pageX;
+      touch.startY = e.touches[0].pageY;
+    } else {
+      touch.startX = e.pageX;
+      touch.startY = e.pageY;
+    }
     touch.directionLocked = "";
   }
 
   function onMiddleTouchMove(e) {
     touch.directionLocked = direction === "h" ? "h" : "v";
-    const deltaX = e.touches[0].pageX - touch.startX;
-    const deltaY = e.touches[0].pageY - touch.startY;
+    let deltaX, deltaY;
+    if (isMob) {
+      deltaX = e.touches[0].pageX - touch.startX;
+      deltaY = e.touches[0].pageY - touch.startY;
+    } else {
+      deltaX = e.pageX - touch.startX;
+      deltaY = e.pageY - touch.startY;
+    }
     if (touch.directionLocked === "v") {
       verticalMoveAcion(deltaY);
     } else {

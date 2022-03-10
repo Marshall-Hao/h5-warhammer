@@ -72,6 +72,7 @@ export default {
     };
   },
   mounted() {
+    this.login();
     useTyped(
       "#landing-section-typed",
       [
@@ -92,16 +93,18 @@ export default {
     });
   },
   methods: {
-    async onClick() {
+    onClick() {
+      this.$router.push({
+        path: "/choose",
+      });
+    },
+    async login() {
       const loginRes = await login();
       const list = {
         aos: loginRes["categories"]["aos"]["questions"],
         fourtyK: loginRes["categories"]["40k"]["questions"],
       };
       this.addQuestions(list);
-      this.$router.push({
-        path: "/choose",
-      });
     },
     ...mapActions(["addQuestions"]),
   },

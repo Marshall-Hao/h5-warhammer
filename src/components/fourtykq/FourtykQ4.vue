@@ -18,7 +18,11 @@
       :defaultConfig="defaultConfig"
       @end="endCallback"
     />
-    <div class="q4-button" @touchstart.prevent="startWheel"></div>
+    <div
+      class="q4-button"
+      @touchstart.prevent="startWheel"
+      @mousedown="startWheel"
+    ></div>
     <svg width="0" height="0">
       <filter
         id="fractal"

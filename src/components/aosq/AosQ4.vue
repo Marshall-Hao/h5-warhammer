@@ -21,7 +21,7 @@
               @touchmove.prevent="choiceTouchMove(index)"
               @touchend.prevent="choiceTouchEnd(answer.id)"
             >
-              pick
+              Select
             </div>
           </li>
         </ul>
@@ -169,6 +169,13 @@ export default {
   &-pick {
     margin-top: 3rem;
     font-size: 2rem;
+    height: 3rem;
+    width: 10rem;
+    border: 1px solid $color-theme-y;
+    border-radius: 3rem;
+    text-align: center;
+    margin: 1.5rem auto;
+    padding-top: 0.4rem;
   }
   &-instruction {
     margin-top: 4rem;
@@ -180,6 +187,7 @@ export default {
     animation: shakeX 10s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955);
   }
 }
+
 .glide__arrow {
   border: 0px;
   &--left {
@@ -193,6 +201,7 @@ export default {
 }
 .glide__slide {
   overflow: visible;
+  position: relative;
 }
 .glide__bullets {
   bottom: 7rem;

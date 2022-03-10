@@ -7,35 +7,85 @@
         :key="answer"
         class="q6-card"
         @touchstart.prevent="flipCard(index)"
+        @touchmove.prevent="choiceTouchMove(index)"
+        @touchend.prevent="choiceTouchEnd(answer.id)"
       >
         <div
-          class="q6-card-side q6-card-front"
-          :class="{ 'front-flip': flip === index }"
+          class="q6-card-side q6-card-back"
+          :class="{ 'back-flip': flip === index }"
           :style="{
             background: `url(${answer.image})`,
             backgroundSize: `cover`,
           }"
+          @touchmove.prevent="backPos"
         ></div>
         <div
-          class="q6-card-side q6-card-back"
-          :class="{ 'back-flip': flip === index }"
-          @touchmove.prevent="backPos"
+          class="q6-card-side q6-card-front"
+          :class="{ 'front-flip': flip === index }"
         >
-          <div class="q6-card-back-content">
-            <div
-              class="q6-card-back-btn"
-              :class="{ 'selected-q': selected === index }"
-              @touchstart.prevent="choiceTouchStart(index)"
-              @touchmove.prevent="choiceTouchMove(index)"
-              @touchend.prevent="choiceTouchEnd(answer.id)"
-            >
-              pick the card
-            </div>
+          <div class="q6-card-front-content">
+            <div class="q6-card-front-btn">Flip</div>
           </div>
         </div>
       </div>
     </div>
     <p class="q6-text">{{ currentQuestion.instruction }}</p>
+    <svg width="0" height="0">
+      <filter
+        id="fractal2"
+        filterUnits="userSpaceOnUse"
+        x="0"
+        y="0"
+        width="100%"
+        height="100%"
+      >
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.995"
+          numOctaves="10"
+          seed="1"
+          result="img"
+        />
+        <feDisplacementMap
+          in="SourceGraphic"
+          in2="img"
+          xChannelSelector="R"
+          yChannelSelector="G"
+          scale="10"
+        >
+          <animate
+            id="scale1"
+            attributeName="scale"
+            attributeType="XML"
+            from="10"
+            to="5"
+            dur="2s"
+            fill="freeze"
+            begin="0; scale3.end"
+          />
+          <animate
+            id="scale2"
+            attributeName="scale"
+            attributeType="XML"
+            from="5"
+            to="0"
+            dur="2.5s"
+            fill="freeze"
+            begin="scale1.end"
+          />
+          <animate
+            id="scale3"
+            attributeName="scale"
+            attributeType="XML"
+            from="0"
+            to="10"
+            dur="2s"
+            fill="freeze"
+            begin="scale2.end"
+          />
+        </feDisplacementMap>
+      </filter>
+    </svg>
   </div>
 </template>
 
@@ -61,8 +111,10 @@ export default {
     //  * computed
     //  * lifecycle
     // * hooks
-    const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
-      useSelectPattern(emit, questionId);
+    const { choiceTouchMove, choiceTouchEnd } = useSelectPattern(
+      emit,
+      questionId
+    );
     //  * methods
     function flipCard(index) {
       flip.value = index;
@@ -77,8 +129,6 @@ export default {
       backPos,
       choiceTouchMove,
       choiceTouchEnd,
-      choiceTouchStart,
-      selected,
     };
   },
 };
@@ -124,23 +174,29 @@ export default {
       height: 25rem;
       backface-visibility: hidden;
       overflow: hidden;
-      transition: all 0.8s ease;
+      transition: all 0.6s ease;
     }
-    &-back {
-      transform: rotateY(180deg);
+    &-front {
       padding: 1.1rem 1rem 0.8rem 1rem;
       &-content {
-        background-color: $color-background;
+        background: url(../../assets/images/regular/warhammerMask.png);
         height: 100%;
         width: 100%;
         text-align: center;
         position: relative;
         border-radius: 0.3rem;
         box-shadow: 0 1.5rem 4rem rgba($color-background-d, 0.15);
+        filter: url(#fractal2);
       }
       &-btn {
         @include absCenter;
+        letter-spacing: 0.3rem;
+        font-size: 1.2rem;
+        animation: flipInY 1.8s ease infinite;
       }
+    }
+    &-back {
+      transform: rotateY(180deg);
     }
     &:hover &-front {
       transform: rotateY(-180deg);

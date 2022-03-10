@@ -1,12 +1,14 @@
 <template>
-  <component
-    :is="`aos-q${questionId}`"
-    :currentQuestion="currentQuestion"
-    :questionBackground="questionBackground"
-    :questionText="currentQuestion && currentQuestion.text"
-    :questionChoices="currentQuestion && currentQuestion.choices"
-    @updateParams="updateParams"
-  ></component>
+  <div>
+    <component
+      :is="`aos-q${questionId}`"
+      :currentQuestion="currentQuestion"
+      :questionBackground="questionBackground"
+      :questionText="currentQuestion && currentQuestion.text"
+      :questionChoices="currentQuestion && currentQuestion.choices"
+      @updateParams="updateParams"
+    ></component>
+  </div>
 </template>
 
 <script>
@@ -49,3 +51,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+div {
+  font-family: "jingdian";
+}
+</style>

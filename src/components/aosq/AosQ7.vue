@@ -1,61 +1,61 @@
 <template>
-  <svg width="0" height="0">
-    <filter
-      id="fractal2"
-      filterUnits="userSpaceOnUse"
-      x="0"
-      y="0"
-      width="100%"
-      height="100%"
-    >
-      <feTurbulence
-        type="fractalNoise"
-        baseFrequency="0.995"
-        numOctaves="10"
-        seed="1"
-        result="img"
-      />
-      <feDisplacementMap
-        in="SourceGraphic"
-        in2="img"
-        xChannelSelector="R"
-        yChannelSelector="G"
-        scale="10"
-      >
-        <animate
-          id="scale1"
-          attributeName="scale"
-          attributeType="XML"
-          from="50"
-          to="5"
-          dur="2s"
-          fill="freeze"
-          begin="0; scale3.end"
-        />
-        <animate
-          id="scale2"
-          attributeName="scale"
-          attributeType="XML"
-          from="5"
-          to="0"
-          dur="2.5s"
-          fill="freeze"
-          begin="scale1.end"
-        />
-        <animate
-          id="scale3"
-          attributeName="scale"
-          attributeType="XML"
-          from="0"
-          to="50"
-          dur="2s"
-          fill="freeze"
-          begin="scale2.end"
-        />
-      </feDisplacementMap>
-    </filter>
-  </svg>
   <div class="q7">
+    <svg width="0" height="0">
+      <filter
+        id="fractal2"
+        filterUnits="userSpaceOnUse"
+        x="0"
+        y="0"
+        width="100%"
+        height="100%"
+      >
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.995"
+          numOctaves="10"
+          seed="1"
+          result="img"
+        />
+        <feDisplacementMap
+          in="SourceGraphic"
+          in2="img"
+          xChannelSelector="R"
+          yChannelSelector="G"
+          scale="10"
+        >
+          <animate
+            id="scale1"
+            attributeName="scale"
+            attributeType="XML"
+            from="50"
+            to="5"
+            dur="2s"
+            fill="freeze"
+            begin="0; scale3.end"
+          />
+          <animate
+            id="scale2"
+            attributeName="scale"
+            attributeType="XML"
+            from="5"
+            to="0"
+            dur="2.5s"
+            fill="freeze"
+            begin="scale1.end"
+          />
+          <animate
+            id="scale3"
+            attributeName="scale"
+            attributeType="XML"
+            from="0"
+            to="50"
+            dur="2s"
+            fill="freeze"
+            begin="scale2.end"
+          />
+        </feDisplacementMap>
+      </filter>
+    </svg>
     <div class="q7-background" :style="questionBackground"></div>
     <div class="q7-banner">
       <div class="q7-banner-inner"></div>
@@ -111,7 +111,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$img: "../../assets/images/q7banner.png";
+$img: "../../assets/images/regular/q7banner.png";
 @function randomNum($max, $min: 0, $u: 1) {
   @return ($min + random($max)) * $u;
 }
@@ -140,7 +140,7 @@ $img: "../../assets/images/q7banner.png";
   }
   &-banner {
     position: relative;
-    background: url(../../assets/images/reel.png);
+    background: url(../../assets/images/regular/reel.png);
     background-size: contain;
     background-repeat: no-repeat;
     width: 100%;

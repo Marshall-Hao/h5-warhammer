@@ -1,15 +1,17 @@
 <template>
   <div class="q5">
+    <div class="q5-title">Where would you want to call homebase?</div>
     <scene
       :scene="scene"
       :logo="logo"
       :scale="{ x: 0.5, y: 0.5, z: 0.5 }"
     ></scene>
-    <div class="q5-confirm" @touchstart.prevent="next">确定</div>
+    <div class="q5-confirm" @touchstart.prevent="next">confirm</div>
     <ul class="q5-select">
       <li
         v-for="index in [1, 2, 3]"
         :key="index"
+        :class="{ 'select-q': selected === index }"
         @touchstart.prevent="changeScene(index)"
       >
         {{ index }}
@@ -39,6 +41,7 @@ export default {
     // * ref
     const scene = ref(require("@/assets/images/aos/1.png"));
     const logo = require("@/assets/khorne/source/Khorne.fbx");
+    const selected = ref(1);
     // * store
 
     //  * computed
@@ -47,6 +50,7 @@ export default {
     //  * methods
     function changeScene(index) {
       scene.value = require(`@/assets/images/aos/${index}.png`);
+      selected.value = index;
     }
     function next() {
       router.push({
@@ -59,6 +63,7 @@ export default {
       next,
       scene,
       logo,
+      selected,
     };
   },
 };
@@ -74,6 +79,13 @@ export default {
   overflow-y: scroll;
   overflow-x: hidden;
   text-align: center;
+  &-title {
+    @include absXCenter;
+    font-size: 2rem;
+    width: 100%;
+    line-height: 3rem;
+    top: 3rem;
+  }
   &-confirm {
     @include absXCenter;
     bottom: 10rem;
@@ -87,5 +99,8 @@ export default {
     width: 20rem;
     font-size: 3rem;
   }
+}
+.select-q {
+  color: $color-text-py;
 }
 </style>

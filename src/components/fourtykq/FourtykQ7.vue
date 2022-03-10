@@ -1,17 +1,17 @@
 <template>
-  <svg width="0">
-    <filter id="smoke">
-      <feTurbulence
-        ref="turbulence"
-        id="turbulence"
-        type="fractalNoise"
-        baseFrequency=".03"
-        numOctaves="20"
-      />
-      <feDisplacementMap in="SourceGraphic" scale="30" />
-    </filter>
-  </svg>
   <div class="q7" :style="questionBackground">
+    <svg width="0" height="0">
+      <filter id="smoke">
+        <feTurbulence
+          ref="turbulence"
+          id="turbulence"
+          type="fractalNoise"
+          baseFrequency=".03"
+          numOctaves="20"
+        />
+        <feDisplacementMap in="SourceGraphic" scale="30" />
+      </filter>
+    </svg>
     <h1 class="q7-title">{{ questionText }}</h1>
     <div class="q7-section">
       <div
@@ -197,7 +197,7 @@ export default {
     top: 12.6rem;
     &-top {
       position: absolute;
-      top: 0;
+      top: 1rem;
       width: 100%;
       height: 27rem;
       overflow: hidden;

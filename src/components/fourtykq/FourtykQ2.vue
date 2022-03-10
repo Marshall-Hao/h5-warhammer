@@ -113,7 +113,7 @@ export default {
             width: 100%;
             opacity: 0.5;
             border-radius: 2rem;
-            background-image: url(../../assets/images/warhammerMask.png);
+            background-image: url(../../assets/images/regular/warhammerMask.png);
             background-repeat: no-repeat;
             background-size: cover;
           }

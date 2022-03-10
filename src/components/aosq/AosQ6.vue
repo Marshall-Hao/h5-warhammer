@@ -1,43 +1,4 @@
 <template>
-  <svg width="0" height="0">
-    <filter
-      id="fractal"
-      filterUnits="objectBoundingBox"
-      x="0%"
-      y="0%"
-      width="100%"
-      height="100%"
-    >
-      <feTurbulence
-        id="turbulence"
-        type="fractalNoise"
-        baseFrequency="0.032 0.02"
-        numOctaves="1"
-      >
-        <animate
-          id="wave1"
-          attributeName="baseFrequency"
-          attributeType="XML"
-          from="0.032 0.02"
-          to="0.022 0.01"
-          dur="3.5s"
-          fill="freeze"
-          begin="0; wave2.end"
-        />
-        <animate
-          id="wave2"
-          attributeName="baseFrequency"
-          attributeType="XML"
-          from="0.022 0.01"
-          to="0.032 0.02"
-          dur="3.5s"
-          fill="freeze"
-          begin="wave1.end"
-        />
-      </feTurbulence>
-      <feDisplacementMap in="SourceGraphic" scale="15"></feDisplacementMap>
-    </filter>
-  </svg>
   <div class="q6">
     <div class="q6-background" :style="questionBackground"></div>
     <h1 class="q6-title">{{ questionText }}</h1>
@@ -56,6 +17,45 @@
         </div>
       </div>
     </section>
+    <svg width="0" height="0">
+      <filter
+        id="fractal"
+        filterUnits="objectBoundingBox"
+        x="0%"
+        y="0%"
+        width="100%"
+        height="100%"
+      >
+        <feTurbulence
+          id="turbulence"
+          type="fractalNoise"
+          baseFrequency="0.032 0.02"
+          numOctaves="1"
+        >
+          <animate
+            id="wave1"
+            attributeName="baseFrequency"
+            attributeType="XML"
+            from="0.032 0.02"
+            to="0.022 0.01"
+            dur="3.5s"
+            fill="freeze"
+            begin="0; wave2.end"
+          />
+          <animate
+            id="wave2"
+            attributeName="baseFrequency"
+            attributeType="XML"
+            from="0.022 0.01"
+            to="0.032 0.02"
+            dur="3.5s"
+            fill="freeze"
+            begin="wave1.end"
+          />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" scale="15"></feDisplacementMap>
+      </filter>
+    </svg>
   </div>
 </template>
 
@@ -113,10 +113,12 @@ export default {
     z-index: -2;
   }
   &-title {
-    margin-top: 4rem;
+    margin-top: 12rem;
     letter-spacing: 0.3rem;
     line-height: 3.2rem;
+    padding: 0 1rem;
     color: #7d300b;
+    font-size: 2rem;
     animation: fadeInDownBig 1s;
   }
   &-section {
@@ -136,6 +138,7 @@ export default {
   }
 }
 .selected-q {
+  color: $color-text-py;
   animation: headShake 2s infinite;
 }
 </style>

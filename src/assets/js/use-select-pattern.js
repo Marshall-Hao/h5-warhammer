@@ -1,11 +1,22 @@
 import { ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 import { debounce } from "./util";
 import submitAnswer from "../../services/answer";
 import { useCookie } from "vue-cookie-next";
 import { USER_KEY } from "../../assets/js/constant";
+import storage from "good-storage";
 
 export default function useSelectPattern(emit, questionId) {
+  // * router guard
+  onBeforeRouteUpdate(() => {
+    const currentQuiz = storage.session.get("__currentquiz__");
+    console.log(Number(route.params.id), currentQuiz);
+    if (Number(route.params.id) > currentQuiz) {
+      router.push({
+        path: `/questions/40k/${currentQuiz + 1}`,
+      });
+    }
+  });
   // *cookie
   const cookie = useCookie();
   const headers = cookie.getCookie(USER_KEY);
@@ -49,6 +60,7 @@ export default function useSelectPattern(emit, questionId) {
   }
 
   function nextPage(index, faction) {
+    storage.session.set("__currentquiz__", index);
     if (index !== 7) {
       router.push({
         path: `/questions/${faction}/${index + 1}`,

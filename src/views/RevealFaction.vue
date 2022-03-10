@@ -9,6 +9,10 @@
 import { mapState } from "vuex";
 import FactionFourtyk from "../components/fourtykq/FactionFourtyk";
 import FactionAos from "../components/aosq/FactionAos";
+import { useRouter } from "vue-router";
+import { onBeforeUnmount } from "vue";
+import storage from "good-storage";
+
 export default {
   name: "reveal-faction",
   components: {
@@ -21,6 +25,17 @@ export default {
       return this.category === "40k";
     },
     ...mapState(["category"]),
+  },
+  setup() {
+    const router = useRouter();
+    onBeforeUnmount(() => {
+      const currentQuiz = storage.session.get("__currentquiz__");
+      if (currentQuiz === 7) {
+        router.push({
+          path: `/reveal`,
+        });
+      }
+    });
   },
 };
 </script>

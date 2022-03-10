@@ -7,6 +7,7 @@ import { useStore } from "vuex";
 import { detectMob } from "./util";
 import { useCookie } from "vue-cookie-next";
 import { USER_KEY } from "../../assets/js/constant";
+import storage from "good-storage";
 
 export default function useMiddleInteraction(
   direction = "h",
@@ -150,6 +151,7 @@ export default function useMiddleInteraction(
       maskTransform.blkOffset = 45;
       maskTransform.duration = 300;
     } else {
+      storage.session.set("__currentquiz__", 1);
       if (touch.percentX > 0) {
         quizStart(1, headers);
         store.commit("setCategory", "40k");
@@ -196,6 +198,7 @@ export default function useMiddleInteraction(
           headers
         );
       }
+      storage.session.set("__currentquiz__", 7);
       router.push({
         path: "/reveal",
       });

@@ -50,7 +50,7 @@ export default {
   },
   props: {
     scene: {
-      default: require("@/assets/images/fourtyk/1.png"),
+      default: null,
     },
     logo: {
       default: require("../../../assets/eaglelogo/eagle.fbx"),

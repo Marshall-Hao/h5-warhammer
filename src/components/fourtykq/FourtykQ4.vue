@@ -68,6 +68,8 @@
 <script>
 import submitAnswer from "../../services/answer";
 import { USER_KEY } from "../../assets/js/constant";
+import storage from "good-storage";
+import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 
 export default {
   name: "fourtyk-q4",
@@ -161,12 +163,26 @@ export default {
       this.goNextPage();
     },
     goNextPage() {
+      storage.session.set("__currentquiz__", 4);
       setTimeout(() => {
         this.$router.push({
           path: "/questions/40k/5",
         });
       }, 1000);
     },
+  },
+  setup() {
+    const route = useRoute();
+    const router = useRouter();
+    onBeforeRouteUpdate(() => {
+      const currentQuiz = storage.session.get("__currentquiz__");
+      console.log(Number(route.params.id), currentQuiz);
+      if (Number(route.params.id) > currentQuiz) {
+        router.push({
+          path: `/questions/40k/${currentQuiz + 1}`,
+        });
+      }
+    });
   },
 };
 </script>

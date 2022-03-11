@@ -7,7 +7,7 @@ const Terms = () => import("../views/Terms");
 
 const Choose = () => import("../views/Choose");
 
-const Questions = () => import("../views/questions");
+const Questions = () => import("../views/Questions");
 
 const FourkQuestion = () => import("../views/fourkQuestion");
 

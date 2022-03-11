@@ -74,6 +74,7 @@ export default {
     };
   },
   mounted() {
+    this.login();
     useTyped(
       "#landing-section-typed",
       [
@@ -82,10 +83,9 @@ export default {
       60,
       "_"
     );
-    // ahoy.trackView()
-    //  * events track
+
     // ahoy.configure({
-    //   urlPrefix: "https://wh-staging.papercranetech.cn",
+    //   urlPrefix: "https://api-staging.h5.games-workshop-china.com",
     // });
     // ahoy.track("landingPage", {
     //   url: "http://localhost:8080/",
@@ -95,16 +95,18 @@ export default {
     // });
   },
   methods: {
-    async onClick() {
+    onClick() {
+      this.$router.push({
+        path: "/choose",
+      });
+    },
+    async login() {
       const loginRes = await login();
       const list = {
         aos: loginRes["categories"]["aos"]["questions"],
         fourtyK: loginRes["categories"]["40k"]["questions"],
       };
       this.addQuestions(list);
-      this.$router.push({
-        path: "/choose",
-      });
     },
     ...mapActions(["addQuestions"]),
   },

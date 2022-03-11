@@ -25,4 +25,8 @@
 
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+#app {
+  max-width: 414px;
+}
+</style>

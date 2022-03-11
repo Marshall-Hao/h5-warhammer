@@ -28,6 +28,9 @@
         @touchstart.prevent="onMiddleTouchStart"
         @touchmove.prevent="onMiddleTouchMove"
         @touchend.prevent="onMiddleTouchEnd"
+        @mouseenter.prevent="onMiddleTouchStart"
+        @mousemove.prevent="onMiddleTouchMove"
+        @mouseleave="onMiddleTouchEnd"
       >
         <div class="q7-progress-eagle">
           <svg-icon :name="3" fill="#fff" :duration="animation"></svg-icon>

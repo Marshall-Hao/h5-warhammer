@@ -1,11 +1,15 @@
 import { post } from "./base";
 import { USER_KEY } from "../assets/js/constant";
 import storage from "good-storage";
+import { useCookie } from "vue-cookie-next";
 
 export default async function login() {
-  const loginUser = storage.session.get(USER_KEY);
+  const cookie = useCookie();
+  const loginUser = cookie.getCookie(USER_KEY);
+  console.log(loginUser);
   let loginRes;
   if (loginUser) {
+    console.log("cookie test");
     loginRes = await post("/login", {
       email: loginUser["X-USER-EMAIL"],
     });
@@ -14,6 +18,7 @@ export default async function login() {
     return loginRes;
   } else {
     loginRes = await post("/login");
+    cookie.setCookie(USER_KEY, JSON.stringify(loginRes["headers"]));
     storage.session.set(USER_KEY, loginRes["headers"]);
     save40kQSession(loginRes["categories"]["40k"]["questions"]);
     saveAosQSession(loginRes["categories"]["aos"]["questions"]);

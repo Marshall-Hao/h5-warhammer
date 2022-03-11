@@ -4,12 +4,19 @@ import { removeUnit } from "./util";
 import quizStart from "../../services/choose";
 import submitAnswer from "../../services/answer";
 import { useStore } from "vuex";
+import { detectMob } from "./util";
+import { useCookie } from "vue-cookie-next";
+import { USER_KEY } from "../../assets/js/constant";
+import storage from "good-storage";
 
 export default function useMiddleInteraction(
   direction = "h",
   questionId = 0,
   choices = {}
 ) {
+  const cookie = useCookie();
+  const headers = cookie.getCookie(USER_KEY);
+  const isMob = detectMob();
   // * ref
   const swipeOne = ref(null);
   const swipeTwo = ref(null);
@@ -53,15 +60,26 @@ export default function useMiddleInteraction(
 
   //  * methods
   function onMiddleTouchStart(e) {
-    touch.startX = e.touches[0].pageX;
-    touch.startY = e.touches[0].pageY;
+    if (isMob) {
+      touch.startX = e.touches[0].pageX;
+      touch.startY = e.touches[0].pageY;
+    } else {
+      touch.startX = e.pageX;
+      touch.startY = e.pageY;
+    }
     touch.directionLocked = "";
   }
 
   function onMiddleTouchMove(e) {
     touch.directionLocked = direction === "h" ? "h" : "v";
-    const deltaX = e.touches[0].pageX - touch.startX;
-    const deltaY = e.touches[0].pageY - touch.startY;
+    let deltaX, deltaY;
+    if (isMob) {
+      deltaX = e.touches[0].pageX - touch.startX;
+      deltaY = e.touches[0].pageY - touch.startY;
+    } else {
+      deltaX = e.pageX - touch.startX;
+      deltaY = e.pageY - touch.startY;
+    }
     if (touch.directionLocked === "v") {
       verticalMoveAcion(deltaY);
     } else {
@@ -133,14 +151,15 @@ export default function useMiddleInteraction(
       maskTransform.blkOffset = 45;
       maskTransform.duration = 300;
     } else {
+      storage.session.set("__currentquiz__", 1);
       if (touch.percentX > 0) {
-        quizStart(1);
+        quizStart(1, headers);
         store.commit("setCategory", "40k");
         router.push({
           path: "/questions/40k/1",
         });
       } else {
-        quizStart(2);
+        quizStart(2, headers);
         store.commit("setCategory", "aos");
         router.push({
           path: "/questions/aos/1",
@@ -163,16 +182,23 @@ export default function useMiddleInteraction(
       maskTransform.duration = 300;
     } else {
       if (touch.percentY < 0) {
-        submitAnswer({
-          questionId,
-          choiceId: choices[0].id,
-        });
+        submitAnswer(
+          {
+            questionId,
+            choiceId: choices[0].id,
+          },
+          headers
+        );
       } else {
-        submitAnswer({
-          questionId,
-          choiceId: choices[1].id,
-        });
+        submitAnswer(
+          {
+            questionId,
+            choiceId: choices[1].id,
+          },
+          headers
+        );
       }
+      storage.session.set("__currentquiz__", 7);
       router.push({
         path: "/reveal",
       });

@@ -1,5 +1,5 @@
 import { computed, onBeforeUpdate, ref } from "vue";
-import { useRoute } from "vue-router";
+import { onBeforeRouteUpdate, useRoute } from "vue-router";
 import { useStore } from "vuex";
 import storage from "good-storage";
 // todo: fix the page reload problem ,hint: https://blog.csdn.net/qq_16772725/article/details/80467492

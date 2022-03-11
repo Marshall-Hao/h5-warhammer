@@ -18,7 +18,11 @@
       :defaultConfig="defaultConfig"
       @end="endCallback"
     />
-    <div class="q4-button" @touchstart.prevent="startWheel"></div>
+    <div
+      class="q4-button"
+      @touchstart.prevent="startWheel"
+      @mousedown="startWheel"
+    ></div>
     <svg width="0" height="0">
       <filter
         id="fractal"
@@ -63,6 +67,9 @@
 
 <script>
 import submitAnswer from "../../services/answer";
+import { USER_KEY } from "../../assets/js/constant";
+import storage from "good-storage";
+import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 
 export default {
   name: "fourtyk-q4",
@@ -128,6 +135,7 @@ export default {
     },
     // 抽奖结束会触发end回调
     endCallback(prize) {
+      const headers = this.$cookie.getCookie(USER_KEY);
       const result = prize.title;
       const questionId = this.currentQuestion.id;
       let choiceId;
@@ -145,19 +153,36 @@ export default {
         this.selected = 3;
       }
       this.$emit("updateParams", 5);
-      submitAnswer({
-        questionId,
-        choiceId,
-      });
+      submitAnswer(
+        {
+          questionId,
+          choiceId,
+        },
+        headers
+      );
       this.goNextPage();
     },
     goNextPage() {
+      storage.session.set("__currentquiz__", 4);
       setTimeout(() => {
         this.$router.push({
           path: "/questions/40k/5",
         });
       }, 1000);
     },
+  },
+  setup() {
+    const route = useRoute();
+    const router = useRouter();
+    onBeforeRouteUpdate(() => {
+      const currentQuiz = storage.session.get("__currentquiz__");
+      console.log(Number(route.params.id), currentQuiz);
+      if (Number(route.params.id) > currentQuiz) {
+        router.push({
+          path: `/questions/40k/${currentQuiz + 1}`,
+        });
+      }
+    });
   },
 };
 </script>

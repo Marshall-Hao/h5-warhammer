@@ -1,6 +1,13 @@
 <template>
   <div class="q6">
     <div class="q6-background" :style="questionBackground"></div>
+    <div
+      class="q6-icon"
+      :style="{
+        background: `url(${currentQuestion.selector_image})`,
+        backgroundSize: `cover`,
+      }"
+    ></div>
     <h1 class="q6-title">{{ questionText }}</h1>
     <section class="q6-section">
       <div class="q6-section-choices">
@@ -12,6 +19,9 @@
           @touchstart.prevent="choiceTouchStart(index)"
           @touchmove.prevent="choiceTouchMove(index)"
           @touchend.prevent="choiceTouchEnd(answer.id)"
+          @mouseenter.prevent="choiceTouchStart(index)"
+          @mousemove.prevent="choiceTouchMove(index)"
+          @mousedown="choiceTouchEnd(answer.id)"
         >
           {{ answer.text }}
         </div>
@@ -112,6 +122,13 @@ export default {
     width: 100%;
     z-index: -2;
   }
+  &-icon {
+    @include absXCenter;
+    margin-top: 2rem;
+    height: 10.9rem;
+    width: 10rem;
+    filter: url(#fractal);
+  }
   &-title {
     margin-top: 12rem;
     letter-spacing: 0.3rem;
@@ -119,7 +136,7 @@ export default {
     padding: 0 1rem;
     color: #7d300b;
     font-size: 2rem;
-    animation: fadeInDownBig 1s;
+    animation: fadeInDownBig 1s, shadowtext 5s infinite ease-out;
   }
   &-section {
     margin-top: 10rem;
@@ -129,16 +146,33 @@ export default {
       padding: 0 3rem;
       animation: backInUp 1s ease-in, pulse 2s infinite;
       div {
+        position: relative;
         font-size: 1.5rem;
         letter-spacing: 0.3rem;
         line-height: 3.2rem;
         margin-bottom: 3rem;
+        border-radius: 1rem;
+        transition: 0.2s all;
       }
     }
   }
 }
 .selected-q {
   color: $color-text-py;
-  animation: headShake 2s infinite;
+  box-shadow: 0;
+  box-shadow: inset -7px -7px 12px transparent,
+    inset 7px 7px 12px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes shadowtext {
+  0% {
+    text-shadow: 1px 1px 1px #fff, -1px -1px 1px #000;
+  }
+  50% {
+    text-shadow: 1px 1px 1px #000, -1px -1px 1px #fff;
+  }
+  100% {
+    text-shadow: 1px 1px 1px #fff, -1px -1px 1px #000;
+  }
 }
 </style>

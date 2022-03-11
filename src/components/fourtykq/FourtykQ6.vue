@@ -8,6 +8,8 @@
         class="q6-card"
         @touchstart.prevent="flipCard(index)"
         @touchmove.prevent="choiceTouchMove(index)"
+        @mouseenter.prevent="flipCard(index)"
+        @mousemove.prevent="choiceTouchMove(index)"
       >
         <div
           class="q6-card-side q6-card-back"
@@ -18,6 +20,8 @@
           }"
           @touchmove.prevent="backPos"
           @touchend.prevent="choiceTouchEnd(answer.id)"
+          @mousemove.prevent="backPos"
+          @mouseleave="choiceTouchEnd(answer.id)"
         ></div>
         <div
           class="q6-card-side q6-card-front"

@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
+import storage from "good-storage";
 
 import Landing from "../views/Landing";
 import Terms from "../views/Terms";
@@ -28,6 +29,16 @@ const routes = [
   {
     path: "/questions",
     component: Questions,
+    beforeEnter: (to, from, next) => {
+      const currentQuiz = storage.session.get("__currentquiz__");
+      if (!currentQuiz) {
+        next({
+          path: "/landing",
+        });
+      } else {
+        next();
+      }
+    },
     children: [
       {
         path: "40k/:id",

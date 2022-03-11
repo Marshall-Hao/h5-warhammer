@@ -13,6 +13,9 @@
           @touchstart.prevent="choiceTouchStart(index)"
           @touchmove.prevent="choiceTouchMove(index)"
           @touchend.prevent="choiceTouchEnd(answer.id)"
+          @mouseenter.prevent="choiceTouchStart(index)"
+          @mousemove.prevent="choiceTouchMove(index)"
+          @mousedown="choiceTouchEnd(answer.id)"
         ></div>
       </div>
     </section>
@@ -76,7 +79,6 @@
 </template>
 
 <script>
-import { inject } from "@vue/runtime-core";
 import useSelectPattern from "../../assets/js/use-select-pattern";
 
 export default {

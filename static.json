@@ -3,5 +3,6 @@
     "clean_urls": true,
     "routes": {
       "/**": "index.html"
-    }
+    },
+    "build": "npm run build",
   }

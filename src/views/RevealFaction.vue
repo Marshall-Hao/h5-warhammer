@@ -2,6 +2,7 @@
   <div class="reveal">
     <faction-fourtyk v-if="is40k"></faction-fourtyk>
     <faction-aos v-else></faction-aos>
+    <!-- <div v-else>aos</div> -->
   </div>
 </template>
 
@@ -32,7 +33,7 @@ export default {
       const currentQuiz = storage.session.get("__currentquiz__");
       if (currentQuiz === 7) {
         router.push({
-          path: `/reveal`,
+          path: `/share`,
         });
       }
     });

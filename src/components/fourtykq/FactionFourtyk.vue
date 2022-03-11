@@ -96,6 +96,7 @@ import { onMounted } from "@vue/runtime-core";
 import { ref } from "vue";
 import { gsap } from "gsap";
 import Lighting from "../base/lighting/Lighting.vue";
+import { useRouter } from "vue-router";
 
 export default {
   name: "faction-fourtyk",
@@ -127,6 +128,8 @@ export default {
     environmentMap.generateMipmaps = false;
     environmentMap.minFilter = NearestFilter;
     environmentMap.encoding = sRGBEncoding;
+    // * router
+    const router = useRouter();
     //    * ref
     const scene = ref(null);
     const camera = ref(null);
@@ -140,9 +143,19 @@ export default {
     // * methods
     function onTouchstart() {
       console.log(camera.value.camera.position.z);
-      gsap
-        .timeline()
-        .to(camera.value.camera.position, { z: 10, x: 5, y: 5, duration: 4 });
+      gsap.timeline().to(camera.value.camera.position, {
+        z: 10,
+        x: 5,
+        y: 5,
+        duration: 4,
+        onComplete: () => {
+          setTimeout(() => {
+            router.push({
+              path: `/share`,
+            });
+          }, 2000);
+        },
+      });
       blink.value = true;
     }
     return {

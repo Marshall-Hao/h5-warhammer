@@ -22,6 +22,7 @@
       console.log({loginRes})
     }
   }
+
 </script>
 
 <style lang="scss"></style>

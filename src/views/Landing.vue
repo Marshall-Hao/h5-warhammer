@@ -11,8 +11,8 @@
         ></svg-icon>
       </div>
       <div class="landing-header-title">
-        <svg heightviewBox="0 0 200 40" width="320" height="40">
-          <text x="15" y="30">这是一个标题</text>
+        <svg heightviewBox="0 0 200 40" width="360" height="40">
+          <text x="65" y="30">Warhammer</text>
         </svg>
       </div>
     </header>
@@ -20,7 +20,10 @@
     <section class="landing-section">
       <div class="landing-section-video">
         <fly-box :lineColor="`#BC3F2F`" :starColor="`#d93f30`" :duration="`5`">
-          <video src="#" poster="../assets/images/vidPoster.png"></video>
+          <video
+            src="#"
+            poster="../assets/images/regular/vidPoster.png"
+          ></video>
         </fly-box>
       </div>
 
@@ -30,7 +33,10 @@
 
       <div class="landing-section-begin" @click="onClick">
         <landing-ball></landing-ball>
-        <h4>Press to Begin</h4>
+        <h4>
+          Where do you belong in these incredible settings? Discover your
+          destiny now.
+        </h4>
       </div>
       <footer class="landing-footer">
         <router-link class="landing-footer-terms" :to="`/terms`"
@@ -71,7 +77,7 @@ export default {
     useTyped(
       "#landing-section-typed",
       [
-        "这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段",
+        "War is everything. Mighty empires clash in the eternal struggle for domination – across realms of magic, and the bleak vastness of space. ",
       ],
       60,
       "_"
@@ -115,6 +121,11 @@ export default {
     }
     &-title {
       margin-top: $font-size-medium-x;
+      text {
+        width: 100%;
+        font-size: 2.5rem;
+        line-break: auto;
+      }
     }
   }
 
@@ -148,15 +159,18 @@ export default {
         width: 20rem;
       }
       h4 {
-        font-family: "otr";
-        font-size: 1.4rem;
+        margin-top: 1rem;
+        padding: 0 1.4rem;
+        font-size: 1.5rem;
+        letter-spacing: 0.05rem;
+        line-height: 1.5rem;
         animation: heartBeat 2s infinite;
       }
     }
   }
 
   &-footer {
-    margin-top: 12rem;
+    margin-top: 9rem;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -164,10 +178,10 @@ export default {
     &-terms {
       color: $color-text-py;
       //   text-decoration: underline $color-text-py;
-      animation: slideInLeft 6s ease-in, underline 2s ease-in-out 6s infinite;
+      animation: slideInLeft 3s ease-in, underline 2s ease-in-out 6s infinite;
     }
     &-beian {
-      animation: slideInRight 6s ease-in;
+      animation: slideInRight 3s ease-in;
     }
   }
 }

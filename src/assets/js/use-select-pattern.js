@@ -45,6 +45,10 @@ export default function useSelectPattern(emit, questionId) {
       router.push({
         path: `/questions/${faction}/${index + 1}`,
       });
+    } else {
+      router.push({
+        path: `/reveal`,
+      });
     }
   }
 

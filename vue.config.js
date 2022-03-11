@@ -25,4 +25,14 @@ module.exports = {
     },
     //  proxy: "http://localhost:8080",
   },
+
+  chainWebpack: (config) => {
+    // gltf Loader
+    config.module
+      .rule("gltf")
+      .test(/\.(glb|gltf|fbx)$/i)
+      .use("file-loader")
+      .loader("file-loader")
+      .end();
+  },
 };

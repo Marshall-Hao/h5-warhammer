@@ -101,7 +101,7 @@ export default {
           z-index: 2;
           width: 26rem;
           height: 14rem;
-          mask: url(https://i.imgur.com/AYJuRke.png);
+          mask: url(../../assets/images/regular/maskdetail.png);
           mask-position: 100% 0;
           mask-size: 3000% 100%;
           &::before {
@@ -113,7 +113,7 @@ export default {
             width: 100%;
             opacity: 0.5;
             border-radius: 2rem;
-            background-image: url(../../assets/images/warhammerMask.jpg);
+            background-image: url(../../assets/images/regular/warhammerMask.png);
             background-repeat: no-repeat;
             background-size: cover;
           }

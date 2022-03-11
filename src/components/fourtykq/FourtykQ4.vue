@@ -1,43 +1,4 @@
 <template>
-  <svg width="0" height="0">
-    <filter
-      id="fractal"
-      filterUnits="objectBoundingBox"
-      x="0%"
-      y="0%"
-      width="100%"
-      height="100%"
-    >
-      <feTurbulence
-        id="turbulence"
-        type="fractalNoise"
-        baseFrequency="0.032 0.02"
-        numOctaves="1"
-      >
-        <animate
-          id="wave1"
-          attributeName="baseFrequency"
-          attributeType="XML"
-          from="0.032 0.02"
-          to="0.022 0.01"
-          dur="3.5s"
-          fill="freeze"
-          begin="0; wave2.end"
-        />
-        <animate
-          id="wave2"
-          attributeName="baseFrequency"
-          attributeType="XML"
-          from="0.022 0.01"
-          to="0.032 0.02"
-          dur="3.5s"
-          fill="freeze"
-          begin="wave1.end"
-        />
-      </feTurbulence>
-      <feDisplacementMap in="SourceGraphic" scale="15"></feDisplacementMap>
-    </filter>
-  </svg>
   <div class="q4">
     <div class="q4-bg">
       <div
@@ -58,6 +19,45 @@
       @end="endCallback"
     />
     <div class="q4-button" @touchstart.prevent="startWheel"></div>
+    <svg width="0" height="0">
+      <filter
+        id="fractal"
+        filterUnits="objectBoundingBox"
+        x="0%"
+        y="0%"
+        width="100%"
+        height="100%"
+      >
+        <feTurbulence
+          id="turbulence"
+          type="fractalNoise"
+          baseFrequency="0.032 0.02"
+          numOctaves="1"
+        >
+          <animate
+            id="wave1"
+            attributeName="baseFrequency"
+            attributeType="XML"
+            from="0.032 0.02"
+            to="0.022 0.01"
+            dur="3.5s"
+            fill="freeze"
+            begin="0; wave2.end"
+          />
+          <animate
+            id="wave2"
+            attributeName="baseFrequency"
+            attributeType="XML"
+            from="0.022 0.01"
+            to="0.032 0.02"
+            dur="3.5s"
+            fill="freeze"
+            begin="wave1.end"
+          />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" scale="15"></feDisplacementMap>
+      </filter>
+    </svg>
   </div>
 </template>
 
@@ -97,7 +97,7 @@ export default {
         { title: "11" },
       ],
       defaultConfig: {
-        speed: 10,
+        speed: 15,
       },
       choice1: ["1", "2", "3"],
       choice2: ["0", "11", "10"],
@@ -124,7 +124,7 @@ export default {
         const index = Math.floor(Math.random() * 11);
         // 调用stop停止旋转并传递中奖索引
         this.$refs.myLucky.stop(index);
-      }, 3000);
+      }, 4000);
     },
     // 抽奖结束会触发end回调
     endCallback(prize) {
@@ -186,6 +186,7 @@ export default {
   }
   &-luckwheel {
     @include absCenter;
+    animation: zoomIn 1s ease;
   }
   &-button {
     @include absCenter;

@@ -1,5 +1,14 @@
 <template>
-  <component :is="`aos-q${questionId}`"></component>
+  <div>
+    <component
+      :is="`aos-q${questionId}`"
+      :currentQuestion="currentQuestion"
+      :questionBackground="questionBackground"
+      :questionText="currentQuestion && currentQuestion.text"
+      :questionChoices="currentQuestion && currentQuestion.choices"
+      @updateParams="updateParams"
+    ></component>
+  </div>
 </template>
 
 <script>
@@ -10,6 +19,7 @@ import AosQ4 from "../components/aosq/AosQ4";
 import AosQ5 from "../components/aosq/AosQ5";
 import AosQ6 from "../components/aosq/AosQ6";
 import AosQ7 from "../components/aosq/AosQ7";
+import questionPattern from "../assets/js/use-questions-pattern";
 
 export default {
   name: "aos-question",
@@ -22,10 +32,28 @@ export default {
     AosQ6,
     AosQ7,
   },
-  data() {
+  setup() {
+    const {
+      questionId,
+      questionBackground,
+      currentQuestion,
+      updateParams,
+      store,
+    } = questionPattern();
+
     return {
-      questionId: this.$route.params.id,
+      questionId,
+      questionBackground,
+      currentQuestion,
+      updateParams,
+      store,
     };
   },
 };
 </script>
+
+<style scoped>
+div {
+  font-family: "jingdian";
+}
+</style>

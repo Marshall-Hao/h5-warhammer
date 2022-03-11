@@ -1,6 +1,6 @@
 <template>
   <div class="fly-box" ref="flyBoxRef">
-    <svg :width="width" :height="height">
+    <svg :width="width" :height="height" :viewBox="`0 0 ${width} ${height}`">
       <defs>
         <path :id="pathId" :d="path" fill="none" />
         <mask :id="maskId">

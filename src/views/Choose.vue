@@ -42,10 +42,22 @@
 
     <header class="choose-header">
       <div class="choose-header-icons">
-        <img src="../assets/images/sigMarSmallIcon.png" alt="sigMar" />
-        <img src="../assets/images/40,000SmallIcon.png" alt="40,000" />
+        <div>
+          <img
+            src="../assets/images/regular/sigMarSmallIcon.png"
+            alt="sigMar"
+          />
+
+          <p id="choose-header-description-left"></p>
+        </div>
+        <div>
+          <img
+            src="../assets/images/regular/40,000SmallIcon.png"
+            alt="40,000"
+          />
+          <p id="choose-header-description-right"></p>
+        </div>
       </div>
-      <p id="choose-header-description"></p>
     </header>
 
     <section class="choose-section">
@@ -56,8 +68,8 @@
       ></div>
     </section>
     <div class="choose-section-options">
-      <div class="choose-section-options-l" ref="leftRef">
-        <div :class="{ heartbeat: beatAnimate.left }">选择</div>
+      <div class="choose-section-options-l" ref="swipeOne">
+        <div :class="{ heartbeat: beatAnimate.left }">前尘</div>
         <ul>
           <li>
             <svg width="16.5" height="30" viewBox="0 0 110 200">
@@ -188,7 +200,7 @@
           :duration="animation"
         ></svg-icon>
       </div>
-      <div class="choose-section-options-r" ref="rightRef">
+      <div class="choose-section-options-r" ref="swipeTwo">
         <ul>
           <li>
             <svg width="16.5" height="30" viewBox="0 0 110 200">
@@ -307,12 +319,12 @@
           style="color: #64798b; text-align: right"
           :class="{ heartbeat: beatAnimate.right }"
         >
-          选择
+          未来
         </div>
       </div>
     </div>
     <div class="choose-tips">
-      <h1>左右滑动进行选择</h1>
+      <h1>Swipe left or right to get started.</h1>
     </div>
   </div>
 </template>
@@ -321,7 +333,7 @@
 import SvgIcon from "../components/base/svgIcon/SvgIcon";
 import useTyped from "../assets/js/use-typed";
 import { computed, onMounted } from "@vue/runtime-core";
-import useMiddleInteraction from "./use-middle-interaction";
+import useMiddleInteraction from "../assets/js/use-middle-interaction";
 export default {
   name: "choose",
   components: {
@@ -339,8 +351,8 @@ export default {
       onMiddleTouchEnd,
       iconTransform,
       maskTransform,
-      leftRef,
-      rightRef,
+      swipeOne,
+      swipeTwo,
       beatAnimate,
     } = useMiddleInteraction();
     //  * computed
@@ -354,14 +366,27 @@ export default {
     // * lifecycle
     onMounted(() => {
       useTyped(
-        "#choose-header-description",
+        "#choose-header-description-left",
         [
-          "这是一个很长的描述这是一个很长的描述",
-          "这是一个很长的描述这是一个很长的描述",
-          "这是一个很长的描述这是一个很长的描述",
+          "Enter the Mortal Realms in",
+          "Warhammer Age of Sigmar",
+          "a fantasy setting full of",
+          " magic,gods, and monsters.",
         ],
         20,
-        "WarHammer",
+        "",
+        true
+      );
+      useTyped(
+        "#choose-header-description-right",
+        [
+          "Explore the grim darkness of",
+          "far future in Warhammer 40,000",
+          "where science and sorcery",
+          " fuel endless war.",
+        ],
+        20,
+        "",
         true
       );
     });
@@ -374,8 +399,8 @@ export default {
       onMiddleTouchMove,
       onMiddleTouchEnd,
       iconTransform,
-      leftRef,
-      rightRef,
+      swipeOne,
+      swipeTwo,
       maskTransform,
       maskValue,
       duration,
@@ -419,7 +444,7 @@ export default {
     &-displayF {
       height: 100%;
       width: 100%;
-      background: url(../assets/images/chooseRightGuy.jpg);
+      background: url(../assets/images/regular/chooseRightGuy.jpg);
       background-repeat: no-repeat;
       background-size: cover;
       filter: url(#fractal);
@@ -430,7 +455,7 @@ export default {
       left: 0;
       right: 0;
       bottom: 0;
-      background-image: url(../assets/images/chooseLeftGuy.jpg);
+      background-image: url(../assets/images/regular/chooseLeftGuy.jpg);
       background-repeat: no-repeat;
       background-size: cover;
       mask: linear-gradient(90deg, #000 45%, transparent 60%);
@@ -486,16 +511,25 @@ export default {
     width: 100vw;
     bottom: 2.5vh;
     text-align: center;
+    font-size: 0.8rem;
     animation: headShake 2s infinite ease-out;
   }
 }
 
-#choose-header-description {
+#choose-header-description-left {
+  width: 16.6rem;
   padding: 0 2rem;
-  margin-top: 3rem;
-  line-height: 3rem;
+  line-height: 2rem;
   letter-spacing: 0.2rem;
-  font-size: $font-size-medium-x;
+  font-size: 1.2rem;
+}
+
+#choose-header-description-right {
+  width: 16.6rem;
+  padding: 0 2rem;
+  line-height: 2rem;
+  letter-spacing: 0.2rem;
+  font-size: 1.2rem;
 }
 
 .heartbeat {

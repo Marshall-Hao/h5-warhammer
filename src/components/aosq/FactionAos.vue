@@ -1,46 +1,47 @@
 <template>
-  <div>
-    <Renderer ref="renderer" pointer resize="window">
-      <Camera :position="{ z: 0 }" :fov="50" />
-      <Scene>
-        <Points ref="points" :position="{ z: -150 }">
-          <BufferGeometry :attributes="attributes" />
-          <ShaderMaterial
-            :props="{
-              uniforms: uniforms,
-              fragmentShader: fragmentShader,
-              vertexShader: vertexShader,
-              blending: 2,
-              depthTest: false,
-            }"
-          >
-            <Texture
-              :src="require('@/assets/images/star/9.png')"
-              uniform="uTexture"
-            />
-          </ShaderMaterial>
-        </Points>
-      </Scene>
-      <EffectComposer>
-        <RenderPass />
-        <UnrealBloomPass :strength="0.5" :radius="0" :threshold="0" />
-        <ZoomBlurPass :strength="zoomStrength" />
-      </EffectComposer>
-    </Renderer>
-    <div
-      class="effect"
-      @click="updateColors"
-      @touchstart.prevent="holdReveal"
-      @touchmove.prevent="targetTimeCoef = 100"
-      @touchend.prevent="updateColors"
-      @mouseenter="targetTimeCoef = 100"
-      @mouseleave="targetTimeCoef = 1"
-    >
-      Hold to Reveal Your Faction<br />
-      Release for Fun
-    </div>
-    <div class="number" ref="number">0</div>
+  <div v-if="blink">
+    <lighting></lighting>
   </div>
+  <Renderer ref="renderer" pointer resize="window">
+    <Camera :position="{ z: 0 }" :fov="50" />
+    <Scene>
+      <Points ref="points" :position="{ z: -150 }">
+        <BufferGeometry :attributes="attributes" />
+        <ShaderMaterial
+          :props="{
+            uniforms: uniforms,
+            fragmentShader: fragmentShader,
+            vertexShader: vertexShader,
+            blending: 2,
+            depthTest: false,
+          }"
+        >
+          <Texture
+            :src="require('@/assets/images/star/9.png')"
+            uniform="uTexture"
+          />
+        </ShaderMaterial>
+      </Points>
+    </Scene>
+    <EffectComposer>
+      <RenderPass />
+      <UnrealBloomPass :strength="0.5" :radius="0" :threshold="0" />
+      <ZoomBlurPass :strength="zoomStrength" />
+    </EffectComposer>
+  </Renderer>
+  <div
+    class="effect"
+    @click="updateColors"
+    @touchstart.prevent="holdReveal"
+    @touchmove.prevent="targetTimeCoef = 100"
+    @touchend.prevent="updateColors"
+    @mouseenter="targetTimeCoef = 100"
+    @mouseleave="targetTimeCoef = 1"
+  >
+    Hold to Reveal Your Faction<br />
+    Release for Fun
+  </div>
+  <div class="number" ref="number">0</div>
 </template>
 
 <script>
@@ -60,6 +61,7 @@ import {
 } from "troisjs";
 import { Clock, Color, MathUtils, Vector3 } from "three";
 import gsap from "gsap";
+import Lighting from "../base/lighting/Lighting.vue";
 
 const niceColors = require("nice-color-palettes");
 
@@ -78,10 +80,12 @@ export default {
     Texture,
     UnrealBloomPass,
     ZoomBlurPass,
+    Lighting,
   },
   data() {
     return {
       zoomStrength: 0,
+      blink: false,
     };
   },
   mounted() {
@@ -138,6 +142,7 @@ export default {
           innerText: 1,
         },
         onUpdate: () => {
+          this.blink = true;
           if (number.innerText > 25) {
             number.style.color = "#A5935D";
           }

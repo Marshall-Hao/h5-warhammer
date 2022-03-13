@@ -38,8 +38,9 @@ const routes = [
     path: "/questions",
     component: Questions,
     beforeEnter: (to, from, next) => {
+      const id = to.params.id;
       const currentQuiz = storage.session.get("__currentquiz__");
-      if (!currentQuiz) {
+      if (!currentQuiz || id > 7) {
         next({
           path: "/landing",
         });
@@ -71,6 +72,16 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (!to.matched.length) {
+    next({
+      path: "/landing",
+    });
+  } else {
+    next();
+  }
 });
 
 export default router;

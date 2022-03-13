@@ -16,14 +16,16 @@
           v-for="(answer, index) in questionChoices"
           :key="answer"
           :class="{ 'selected-q': selected === index }"
-          @touchstart.prevent="choiceTouchStart(index)"
-          @touchmove.prevent="choiceTouchMove(index)"
-          @touchend.prevent="choiceTouchEnd(answer.id)"
-          @mouseenter.prevent="choiceTouchStart(index)"
-          @mousemove.prevent="choiceTouchMove(index)"
-          @mousedown="choiceTouchEnd(answer.id)"
         >
           {{ answer.text }}
+          <div
+            @touchstart.prevent="choiceTouchStart(index)"
+            @touchmove.prevent="choiceTouchMove(index)"
+            @touchend.prevent="choiceTouchEnd(answer.id)"
+            @mouseenter.prevent="choiceTouchStart(index)"
+            @mousemove.prevent="choiceTouchMove(index)"
+            @mousedown="choiceTouchEnd(answer.id)"
+          ></div>
         </div>
       </div>
     </section>
@@ -153,6 +155,11 @@ export default {
         margin-bottom: 3rem;
         border-radius: 1rem;
         transition: 0.2s all;
+        div {
+          height: 60%;
+          width: 50%;
+          @include absCenter;
+        }
       }
     }
   }

@@ -12,13 +12,16 @@
         :key="answer"
         :class="{ 'selected-q': selected === index }"
         :style="`background-image:url(${answer.image})`"
-        @touchstart.prevent="choiceTouchStart(index)"
-        @touchmove.prevent="choiceTouchMove(index)"
-        @touchend.prevent="choiceTouchEnd(answer.id)"
-        @mouseenter.prevent="choiceTouchStart(index)"
-        @mousemove.prevent="choiceTouchMove(index)"
-        @mousedown="choiceTouchEnd(answer.id)"
-      ></div>
+      >
+        <div
+          @touchstart.prevent="choiceTouchStart(index)"
+          @touchmove.prevent="choiceTouchMove(index)"
+          @touchend.prevent="choiceTouchEnd(answer.id)"
+          @mouseenter.prevent="choiceTouchStart(index)"
+          @mousemove.prevent="choiceTouchMove(index)"
+          @mousedown="choiceTouchEnd(answer.id)"
+        ></div>
+      </div>
     </div>
     <svg width="0" height="0">
       <filter
@@ -188,6 +191,12 @@ $img: "../../assets/images/regular/q7banner.png";
       height: 7.4rem;
       background-size: cover;
       margin-bottom: 5rem;
+      position: relative;
+      div {
+        height: 70%;
+        width: 55%;
+        @include absCenter;
+      }
     }
   }
 }

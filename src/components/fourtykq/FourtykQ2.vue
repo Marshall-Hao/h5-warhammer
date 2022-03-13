@@ -107,6 +107,7 @@ export default {
           mask: url(../../assets/images/regular/maskdetail.png);
           mask-position: 100% 0;
           mask-size: 3000% 100%;
+
           &::before {
             content: "";
             position: absolute;

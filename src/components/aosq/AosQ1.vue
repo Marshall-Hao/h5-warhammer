@@ -10,13 +10,16 @@
           :key="answer"
           :class="{ 'selected-q': selected === index }"
           :style="`background-image:url(${answer.image})`"
-          @touchstart.prevent="choiceTouchStart(index)"
-          @touchmove.prevent="choiceTouchMove(index)"
-          @touchend.prevent="choiceTouchEnd(answer.id)"
-          @mouseenter.prevent="choiceTouchStart(index)"
-          @mousemove.prevent="choiceTouchMove(index)"
-          @mousedown="choiceTouchEnd(answer.id)"
-        ></div>
+        >
+          <div
+            @touchstart.prevent="choiceTouchStart(index)"
+            @touchmove.prevent="choiceTouchMove(index)"
+            @touchend.prevent="choiceTouchEnd(answer.id)"
+            @mouseenter.prevent="choiceTouchStart(index)"
+            @mousemove.prevent="choiceTouchMove(index)"
+            @mousedown="choiceTouchEnd(answer.id)"
+          ></div>
+        </div>
       </div>
     </section>
     <svg width="0" height="0">
@@ -153,6 +156,11 @@ export default {
         margin-bottom: 6rem;
         animation: zoomIn 0.8s ease-in,
           main-img-hide 8s infinite step-end forwards;
+        div {
+          height: 13rem;
+          width: 7rem;
+          margin: 12rem auto;
+        }
       }
       div::before,
       div::after {
@@ -163,16 +171,6 @@ export default {
         left: 0;
         background: inherit;
       }
-
-      // div::after {
-      //   content: "";
-      //   animation: glitch-one 5s infinite step-end forwards;
-      // }
-
-      // div::before {
-      //   content: "";
-      //   animation: glitch-two 5s infinite 1s step-end forwards;
-      // }
     }
   }
 }

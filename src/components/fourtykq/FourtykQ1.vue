@@ -10,13 +10,16 @@
           :key="answer"
           :class="{ 'selected-q': selected === index }"
           :style="`background-image:url(${answer.image})`"
-          @touchstart.prevent="choiceTouchStart(index)"
-          @touchmove.prevent="choiceTouchMove(index)"
-          @touchend.prevent="choiceTouchEnd(answer.id)"
-          @mouseenter.prevent="choiceTouchStart(index)"
-          @mousemove.prevent="choiceTouchMove(index)"
-          @mousedown="choiceTouchEnd(answer.id)"
-        ></div>
+        >
+          <div
+            @touchstart.prevent="choiceTouchStart(index)"
+            @touchmove.prevent="choiceTouchMove(index)"
+            @touchend.prevent="choiceTouchEnd(answer.id)"
+            @mouseenter.prevent="choiceTouchStart(index)"
+            @mousemove.prevent="choiceTouchMove(index)"
+            @mousedown="choiceTouchEnd(answer.id)"
+          ></div>
+        </div>
       </div>
     </section>
     <svg width="0" height="0">
@@ -134,7 +137,7 @@ export default {
   &-title {
     margin: 6rem 0;
     font-size: 3rem;
-    animation: fadeInDown 1s;
+    animation: fadeInDown 1s, flash 6.5s infinite;
   }
   &-section {
     position: relative;
@@ -148,6 +151,12 @@ export default {
         background-size: cover;
         background-repeat: no-repeat;
         margin-bottom: 4rem;
+        position: relative;
+        div {
+          height: 60%;
+          width: 60%;
+          @include absCenter;
+        }
       }
     }
   }

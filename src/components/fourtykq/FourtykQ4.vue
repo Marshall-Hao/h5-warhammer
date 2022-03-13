@@ -104,7 +104,7 @@ export default {
         { title: "11" },
       ],
       defaultConfig: {
-        speed: 15,
+        speed: 20,
       },
       choice1: ["1", "2", "3"],
       choice2: ["0", "11", "10"],

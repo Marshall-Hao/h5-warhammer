@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, onUpdated, ref } from "vue";
 import { v4 as uuidv4 } from "uuid";
 
 export default {
@@ -72,6 +72,9 @@ export default {
       return `M5 5 L${width.value - 5} 5 L${width.value - 5} ${
         height.value - 5
       } L5 ${height.value - 5} Z`;
+    });
+    onUpdated(() => {
+      init();
     });
 
     onMounted(() => {

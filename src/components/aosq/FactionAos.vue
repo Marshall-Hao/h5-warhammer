@@ -38,8 +38,8 @@
     @mouseenter="targetTimeCoef = 100"
     @mouseleave="targetTimeCoef = 1"
   >
-    Hold to Reveal Your Faction<br />
-    Release for Fun
+    Hold to Reveal Faction<br />
+    Release for Color
   </div>
   <div class="number" ref="number">0</div>
 </template>
@@ -231,8 +231,10 @@ export default {
 .effect {
   position: fixed;
   bottom: 10%;
-  left: 25%;
-  padding: 1rem;
+  left: 50%;
+  width: 22rem;
+  transform: translateX(-50%);
+  padding: 1rem 2rem;
   font-family: sans-serif;
   font-size: 1.5rem;
   line-height: 2rem;
@@ -240,7 +242,6 @@ export default {
   border-radius: 3rem;
   background: rgba(0, 0, 0, 1);
   opacity: 0.6;
-  animation: breath 2s infinite;
 }
 .number {
   position: fixed;

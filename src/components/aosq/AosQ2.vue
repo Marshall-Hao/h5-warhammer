@@ -20,13 +20,16 @@
           background: `url(${answer.image})`,
           backgroundSize: 'cover',
         }"
-        @touchstart.prevent="choiceTouchStart(index)"
-        @touchmove.prevent="choiceTouchMove(index)"
-        @touchend.prevent="choiceTouchEnd(answer.id)"
-        @mouseenter.prevent="choiceTouchStart(index)"
-        @mousemove.prevent="choiceTouchMove(index)"
-        @mousedown="choiceTouchEnd(answer.id)"
-      ></div>
+      >
+        <div
+          @touchstart.prevent="choiceTouchStart(index)"
+          @touchmove.prevent="choiceTouchMove(index)"
+          @touchend.prevent="choiceTouchEnd(answer.id)"
+          @mouseenter.prevent="choiceTouchStart(index)"
+          @mousemove.prevent="choiceTouchMove(index)"
+          @mousedown="choiceTouchEnd(answer.id)"
+        ></div>
+      </div>
     </div>
     <svg width="0" height="0">
       <filter id="smoke">
@@ -119,7 +122,7 @@ export default {
     height: 20.5rem;
     animation: flipInY 1.5s;
     position: relative;
-    overflow: hidden;
+
     &::before {
       content: "";
       position: absolute;
@@ -145,6 +148,12 @@ export default {
       width: 23.3rem;
       height: 9rem;
       margin-bottom: 1.5rem;
+      position: relative;
+      div {
+        height: 60%;
+        width: 60%;
+        @include absCenter;
+      }
     }
   }
 }

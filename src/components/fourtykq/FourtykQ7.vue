@@ -229,7 +229,8 @@ export default {
       overflow: hidden;
       &-mask {
         height: 100%;
-        width: 120%;
+        width: 130%;
+        transform: scaleX(1.3);
         @include absXCenter;
         top: -0.9rem;
         filter: url(#smoke);

@@ -34,7 +34,7 @@
       </Scene>
       <EffectComposer>
         <RenderPass />
-        <FilmPass :noiseIntensity="0.3" :scanlinesIntensity="0.1" />
+        <FilmPass :noiseIntensity="0.2" :scanlinesIntensity="0.01" />
       </EffectComposer>
     </Renderer>
   </div>

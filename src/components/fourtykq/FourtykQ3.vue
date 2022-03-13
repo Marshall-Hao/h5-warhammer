@@ -155,9 +155,9 @@ export default {
     text-align: center;
     &-video {
       width: 37rem;
-      height: auto;
+      height: 26.4rem;
       margin-top: 3.5rem;
-      animation: fadeIn 1s ease-in;
+      // animation: fadeIn 1s ease-in;
     }
     &-title {
       margin-top: 2.8rem;

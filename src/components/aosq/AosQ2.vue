@@ -111,6 +111,9 @@ export default {
   overflow-y: scroll;
   overflow-x: hidden;
   text-align: center;
+  &-title {
+    margin: 5rem auto 3rem;
+  }
   &-banner {
     width: 100%;
     height: 20.5rem;

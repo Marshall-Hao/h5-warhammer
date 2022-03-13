@@ -2,12 +2,13 @@ import axios from "axios";
 
 let baseURL;
 if (process.env.NODE_ENV !== "production") {
-  baseURL = "/api/v1/";
+  baseURL = "https://api-staging.h5.games-workshop-china.com/api/v1/";
 } else {
   baseURL = "https://api-staging.h5.games-workshop-china.com/api/v1/";
 }
 
 axios.defaults.baseURL = baseURL;
+axios.defaults.headers["Content-Type"] = "application/json";
 
 export function get(url, params) {
   return axios

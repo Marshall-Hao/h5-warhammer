@@ -7,11 +7,11 @@
       }"
     ></div>
     <section class="q6-section">
-      <div class="q6-section-logo"></div>
+      <div class="q6-section-logo" :style="factionLogo"></div>
       <h1 class="q6-section-name">{{ faction && faction.name }}</h1>
       <p class="q6-section-des">{{ faction && faction.short_desc }}</p>
       <h3 class="q6-section-title" v-if="subFactions">Sub Faction:</h3>
-      <div class="glide">
+      <div class="glide q6-section-glide">
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
             <li class="glide__slide" v-for="sub in subFactions" :key="sub">
@@ -21,6 +21,10 @@
                   backgroundImage: ` url(${sub.image})`,
                 }"
               ></div>
+              <div class="q6-section-subtitle">
+                {{ sub.name }}
+              </div>
+              <div>关于</div>
             </li>
           </ul>
         </div>
@@ -82,33 +86,46 @@
             </svg>
           </button>
         </div>
+      </div>
+      <div class="q6-section-func">
+        <p @touchstart.prevent="retake">Retake Quiz</p>
+        <p>Share Quiz</p>
+      </div>
+    </section>
+    <div class="q6-packs">
+      <h4 class="q6-packs-title">Starter Packs:</h4>
+      <div class="glide2 q6-packs-glide2">
+        <div class="glide__track" data-glide-el="track">
+          <ul class="glide__slides">
+            <li
+              class="glide__slide"
+              v-for="product in factionProducts"
+              :key="product"
+            >
+              <div class="q6-product">
+                <div class="q6-product-container">
+                  <div
+                    class="q6-product-container-image"
+                    :style="{
+                      backgroundImage: ` url(${product.image})`,
+                    }"
+                  ></div>
+                  <a :href="product.shop_url">{{ product.name }}</a>
+                  <div class="q6-product-container-desc">
+                    "奇知歌調門格大受：時重元的寶你場現找能和手行得北國成奇知歌調門格大受"
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
         <div class="glide__bullets" data-glide-el="controls[nav]">
           <button class="glide__bullet" data-glide-dir="=0"></button>
           <button class="glide__bullet" data-glide-dir="=1"></button>
           <button class="glide__bullet" data-glide-dir="=2"></button>
         </div>
       </div>
-      <div class="q6-section-func">
-        <p>Retake Quiz</p>
-        <p>Share Quiz</p>
-      </div>
-    </section>
-    <!-- <div class="q6-packs">
-      <h4 class="q6-packs-title">Starter Packs:</h4>
-      <div class="glide">
-        <div class="glide__track" data-glide-el="track">
-          <ul class="glide__slides">
-            <li
-              class="glide__slide"
-              v-for="pack in faction && faction.products"
-              :key="pack"
-            >
-              <div class="q6-packs-pack"></div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -116,8 +133,9 @@
 import { USER_KEY } from "../assets/js/constant";
 import { useCookie } from "vue-cookie-next";
 import useFaction from "../services/faction";
-import { computed, onBeforeMount, onMounted, ref } from "vue";
+import { computed, onBeforeMount, onMounted, onUpdated, ref } from "vue";
 import Glide from "@glidejs/glide";
+import { useRouter } from "vue-router";
 
 export default {
   name: "share",
@@ -125,31 +143,56 @@ export default {
     // * api request
     const cookie = useCookie();
     const headers = cookie.getCookie(USER_KEY);
+    // *router
+    const router = useRouter();
+    // *ref
     const faction = ref("");
     // * computed
     const subFactions = computed(() => {
       return faction.value.sub_factions;
     });
+    const factionProducts = computed(() => {
+      return faction.value.products;
+    });
+    const factionLogo = computed(() => {
+      if (faction.value && faction.value.category.name === "AOS") {
+        return {
+          backgroundImage: `url(${require("../assets/images/regular/sigMarSmallIcon.png")})`,
+        };
+      } else {
+        return {
+          backgroundImage: `url(${require("../assets/images/regular/40,000SmallIcon.png")})`,
+        };
+      }
+    });
     //  * lifecycle
     onBeforeMount(async () => {
       faction.value = await useFaction(headers);
-      // factionBg.value = faction.bg_image;
-      // factionLogo.value = faction.category.logo;
-      // factionName = faction.name;
-      // factionDescription = faction.short_desc;
-      // factionProducts = faction.products;
-      // subFaction = faction.sub_factions;
     });
-    onMounted(() => {
+    onUpdated(() => {
       new Glide(".glide", {
         type: "carousel",
         startAt: 0,
         perView: 2,
       }).mount();
+      new Glide(".glide2", {
+        type: "carousel",
+        startAt: 0,
+        perView: 1,
+      }).mount();
     });
+    // * methods
+    function retake() {
+      router.push({
+        path: "/choose",
+      });
+    }
     return {
       faction,
       subFactions,
+      factionProducts,
+      factionLogo,
+      retake,
     };
   },
 };
@@ -168,6 +211,7 @@ export default {
   padding: 1.2rem;
   overflow-y: scroll;
   font-family: "jingdian";
+  font-weight: 400;
   &-bg {
     position: absolute;
     top: 0;
@@ -182,59 +226,106 @@ export default {
     width: 100%;
     border: 0.3rem solid rgba(255, 255, 255, 0.7);
     text-align: center;
+
     &-logo {
-      width: 17rem;
+      width: 18rem;
       height: 4.8rem;
-      background-image: url("../assets/images/regular/40,000SmallIcon.png");
-      background-size: fit;
+      background-size: cover;
       background-repeat: no-repeat;
       margin: 1rem auto 38rem;
     }
     &-name {
       font-size: 4.2rem;
-      font-weight: 400;
+
       color: $color-text-py;
       margin-bottom: 0.5rem;
     }
     &-des {
       font-size: 1.4rem;
-      font-weight: 400;
+
       line-height: 1.8rem;
       margin: 0.5rem 0.6rem 3rem;
     }
     &-title {
       font-size: 1.6rem;
-      font-weight: 400;
+
       color: $color-text-py;
       margin-bottom: 2rem;
+    }
+    &-glide {
+      width: 85%;
+      margin: auto;
     }
     &-func {
       display: flex;
       justify-content: space-between;
       color: $color-text-py;
       text-decoration: underline;
-      margin: 3rem 5rem 1rem;
+      margin: 3rem 6.5rem 1rem;
       font-size: 1.2rem;
-      font-weight: 400;
     }
     &-sub {
-      margin: auto;
+      margin: 0rem auto 2rem;
       width: 12rem;
       height: 15.7rem;
       background-size: cover;
+      font-size: 1.6rem;
+      animation: pulse 2s infinite forwards;
+    }
+    &-subtitle {
+      color: $color-sub-theme;
+      margin-bottom: 1rem;
     }
   }
   &-packs {
     margin-top: 2rem;
     text-align: center;
+    position: relative;
     &-title {
       color: $color-text-py;
       font-size: 2rem;
+      margin-bottom: 2rem;
     }
-    &-pack {
+    &-glide2 {
       width: 31.5rem;
-      height: 38.7rem;
-      background: red;
+      margin: auto;
+    }
+  }
+  &-product {
+    width: 31.5rem;
+    height: 28.7rem;
+    background: #fff;
+    border-radius: 0.7rem;
+    margin-bottom: 2rem;
+    position: relative;
+    &-container {
+      border: 0.15rem solid #000;
+      height: 97%;
+      width: 97%;
+      @include absCenter;
+      border-radius: 0.7rem;
+      &-image {
+        width: 17.5rem;
+        height: 15.9rem;
+        background-size: cover;
+        @include absXCenter;
+        margin: 2rem 0;
+      }
+      a {
+        color: $color-text-pr;
+        font-size: 1.4rem;
+        font-weight: 700;
+        @include absCenter;
+        margin-top: 6rem;
+      }
+      &-desc {
+        width: 100%;
+        color: #000;
+        @include absCenter;
+        font-size: 1.2rem;
+        line-height: 1.7rem;
+        margin-top: 10rem;
+      }
     }
   }
 }
@@ -246,14 +337,27 @@ export default {
 .glide__arrow {
   border: 0px;
   &--left {
-    left: 1rem;
+    left: -2rem;
     animation: left 2s infinite forwards ease-in-out;
   }
   &--right {
-    right: 0rem;
+    right: -2.5rem;
     animation: right 2s infinite backwards ease-in-out;
   }
 }
+
+.glide__bullets {
+  bottom: 0rem;
+}
+
+.glide__bullet {
+  height: 0.5rem;
+  width: 0.5rem;
+  &--active {
+    background-color: $color-text-py;
+  }
+}
+
 @keyframes left {
   0% {
     transform: translateX(0);

@@ -13,6 +13,9 @@ import FactionAos from "../components/aosq/FactionAos";
 import { useRouter } from "vue-router";
 import { onBeforeUnmount } from "vue";
 import storage from "good-storage";
+import { USER_KEY } from "../assets/js/constant";
+import { useCookie } from "vue-cookie-next";
+import useFaction from "../services/faction";
 
 export default {
   name: "reveal-faction",
@@ -37,6 +40,10 @@ export default {
         });
       }
     });
+
+    const cookie = useCookie();
+    const headers = cookie.getCookie(USER_KEY);
+    useFaction(headers);
   },
 };
 </script>

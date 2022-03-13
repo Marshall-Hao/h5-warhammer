@@ -10,4 +10,5 @@ export default async function faction(headers) {
     headers
   );
   console.log(faction);
+  return faction;
 }

@@ -48,14 +48,20 @@
             alt="sigMar"
           />
 
-          <p id="choose-header-description-left"></p>
+          <p id="choose-header-description-left">
+            Enter the Mortal Realms in Warhammer Age of Sigmar, a fantasy
+            setting full of magic, gods, and monsters.
+          </p>
         </div>
         <div>
           <img
             src="../assets/images/regular/40,000SmallIcon.png"
             alt="40,000"
           />
-          <p id="choose-header-description-right"></p>
+          <p id="choose-header-description-right">
+            Explore the grim darkness of the far future in Warhammer 40,000,
+            where science and sorcery fuel endless war.
+          </p>
         </div>
       </div>
     </header>
@@ -334,8 +340,7 @@
 
 <script>
 import SvgIcon from "../components/base/svgIcon/SvgIcon";
-import useTyped from "../assets/js/use-typed";
-import { computed, onMounted } from "@vue/runtime-core";
+import { computed } from "@vue/runtime-core";
 import useMiddleInteraction from "../assets/js/use-middle-interaction";
 export default {
   name: "choose",
@@ -367,32 +372,6 @@ export default {
     });
     //  * watch
     // * lifecycle
-    onMounted(() => {
-      useTyped(
-        "#choose-header-description-left",
-        [
-          "Enter the Mortal Realms in",
-          "Warhammer Age of Sigmar",
-          "a fantasy setting full of",
-          " magic,gods, and monsters.",
-        ],
-        20,
-        "",
-        true
-      );
-      useTyped(
-        "#choose-header-description-right",
-        [
-          "Explore the grim darkness of",
-          "far future in Warhammer 40,000",
-          "where science and sorcery",
-          " fuel endless war.",
-        ],
-        20,
-        "",
-        true
-      );
-    });
 
     // * methods
     // * return
@@ -520,22 +499,20 @@ export default {
 }
 
 #choose-header-description-left {
-  width: 16.6rem;
-  padding: 0 2rem;
+  width: 16.7rem;
+
   line-height: 2rem;
-  letter-spacing: 0.2rem;
   font-size: 1.2rem;
 }
 
 #choose-header-description-right {
-  width: 16.6rem;
-  padding: 0 2rem;
+  width: 16.7rem;
+
   line-height: 2rem;
-  letter-spacing: 0.2rem;
   font-size: 1.2rem;
 }
 
 .heartbeat {
-  animation: heartBeat 2s infinite;
+  filter: url(#fractal);
 }
 </style>

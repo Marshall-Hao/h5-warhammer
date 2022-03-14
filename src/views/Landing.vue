@@ -12,7 +12,10 @@
       </div>
       <div class="landing-header-title">
         <svg heightviewBox="0 0 200 40" width="360" height="40">
-          <text x="65" y="30">Warhammer</text>
+          <text x="15" y="30">Enter the Worlds of Warhammer</text>
+        </svg>
+        <svg heightviewBox="0 0 200 40" width="360" height="40">
+          <text x="40" y="30">of Warhammer</text>
         </svg>
       </div>
     </header>
@@ -45,6 +48,45 @@
         <p class="landing-footer-beian">沪ICP备11032828号-1</p>
       </footer>
     </section>
+    <svg width="0" height="0">
+      <filter
+        id="fractal"
+        filterUnits="objectBoundingBox"
+        x="0%"
+        y="0%"
+        width="100%"
+        height="100%"
+      >
+        <feTurbulence
+          id="turbulence"
+          type="fractalNoise"
+          baseFrequency="0.032 0.02"
+          numOctaves="1"
+        >
+          <animate
+            id="wave1"
+            attributeName="baseFrequency"
+            attributeType="XML"
+            from="0.032 0.02"
+            to="0.022 0.01"
+            dur="3.5s"
+            fill="freeze"
+            begin="0; wave2.end"
+          />
+          <animate
+            id="wave2"
+            attributeName="baseFrequency"
+            attributeType="XML"
+            from="0.022 0.01"
+            to="0.032 0.02"
+            dur="3.5s"
+            fill="freeze"
+            begin="wave1.end"
+          />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" scale="15"></feDisplacementMap>
+      </filter>
+    </svg>
   </div>
 </template>
 
@@ -78,7 +120,7 @@ export default {
       [
         "War is everything. Mighty empires clash in the eternal struggle for domination – across realms of magic, and the bleak vastness of space. ",
       ],
-      60,
+      25,
       "_"
     );
     //  * events track
@@ -164,7 +206,7 @@ export default {
         font-size: 1.5rem;
         letter-spacing: 0.05rem;
         line-height: 1.5rem;
-        animation: heartBeat 2s infinite;
+        filter: url(#fractal);
       }
     }
   }

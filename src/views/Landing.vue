@@ -12,7 +12,7 @@
       </div>
       <div class="landing-header-title">
         <svg heightviewBox="0 0 200 40" width="360" height="40">
-          <text x="15" y="30">Enter the Worlds of Warhammer</text>
+          <text x="6.5" y="30">Enter the Worlds of Warhammer</text>
         </svg>
         <svg heightviewBox="0 0 200 40" width="360" height="40">
           <text x="40" y="30">of Warhammer</text>
@@ -67,9 +67,9 @@
             id="wave1"
             attributeName="baseFrequency"
             attributeType="XML"
-            from="0.032 0.02"
+            from="0.025 0.02"
             to="0.022 0.01"
-            dur="3.5s"
+            dur="5.5s"
             fill="freeze"
             begin="0; wave2.end"
           />
@@ -78,8 +78,8 @@
             attributeName="baseFrequency"
             attributeType="XML"
             from="0.022 0.01"
-            to="0.032 0.02"
-            dur="3.5s"
+            to="0.025 0.02"
+            dur="5.5s"
             fill="freeze"
             begin="wave1.end"
           />

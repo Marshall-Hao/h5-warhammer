@@ -201,7 +201,7 @@ $img: "../../assets/images/regular/q7banner.png";
   }
 }
 .selected-q {
-  animation: fadeOutDown 2s infinite forwards;
+  animation: flash 2s infinite forwards;
 }
 
 @keyframes opacity {

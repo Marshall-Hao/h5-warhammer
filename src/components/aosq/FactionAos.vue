@@ -39,7 +39,7 @@
   </Renderer>
   <div
     v-show="!pre"
-    class="effect"
+    class="effect-page"
     @click="updateColors"
     @touchstart.prevent="holdReveal"
     @touchmove.prevent="targetTimeCoef = 100"
@@ -47,7 +47,7 @@
     @mouseenter="targetTimeCoef = 100"
     @mouseleave="targetTimeCoef = 1"
   >
-    Press until faction reveal
+    <p class="effect">Press until faction reveal</p>
   </div>
   <div v-show="!pre" class="number" ref="number">0</div>
 </template>
@@ -240,6 +240,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.effect-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
 .effect {
   position: fixed;
   bottom: 10%;

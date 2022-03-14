@@ -132,16 +132,16 @@ export default {
     filter: url(#fractal);
   }
   &-title {
-    margin-top: 12rem;
+    margin-top: 14rem;
     letter-spacing: 0.3rem;
     line-height: 3.2rem;
     padding: 0 1rem;
     color: #7d300b;
-    font-size: 2rem;
+    font-size: 2.6rem;
     animation: fadeInDownBig 1s, shadowtext 5s infinite ease-out;
   }
   &-section {
-    margin-top: 10rem;
+    margin-top: 6rem;
     &-choices {
       display: flex;
       flex-direction: column;
@@ -149,12 +149,14 @@ export default {
       animation: backInUp 1s ease-in, pulse 2s infinite;
       div {
         position: relative;
-        font-size: 1.5rem;
+
+        font-size: 1.4rem;
         letter-spacing: 0.3rem;
-        line-height: 3.2rem;
-        margin-bottom: 3rem;
+        line-height: 1.5rem;
+        margin: 0 auto 3rem;
         border-radius: 1rem;
         transition: 0.2s all;
+        width: 25.5rem;
         div {
           height: 60%;
           width: 50%;

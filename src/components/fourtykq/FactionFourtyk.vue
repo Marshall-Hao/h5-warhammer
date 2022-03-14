@@ -67,6 +67,11 @@
       <UnrealBloomPass :strength="0.2" />
     </EffectComposer>
   </Renderer>
+  <div
+    class="reveal-block"
+    @touchstart.prevent="onTouchstart"
+    @mousedown="onTouchstart"
+  ></div>
   <p
     class="reveal-title"
     @touchstart.prevent="onTouchstart"
@@ -177,5 +182,11 @@ export default {
   font-size: 2rem;
   letter-spacing: 0.3rem;
   line-height: 3.2rem;
+}
+
+.reveal-block {
+  @include absCenter;
+  height: 15rem;
+  width: 15rem;
 }
 </style>

@@ -142,7 +142,7 @@ $img: "../../assets/images/regular/q7banner.png";
   &-title {
     letter-spacing: 0.3rem;
     line-height: 3.2rem;
-    animation: zoomInUp 1.5s ease-in-out, swing 3s infinite;
+    filter: url(#fractal);
   }
   &-banner {
     position: relative;

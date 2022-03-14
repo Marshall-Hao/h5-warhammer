@@ -10,8 +10,8 @@
       <div class="q6-section-logo" :style="factionLogo"></div>
       <h1 class="q6-section-name">{{ faction && faction.name }}</h1>
       <p class="q6-section-des">{{ faction && faction.short_desc }}</p>
-      <h3 class="q6-section-title" v-if="subFactions.length">关于我的团:</h3>
-      <div v-if="subFactions.length" class="glide q6-section-glide">
+      <h3 class="q6-section-title" v-if="showSub">关于我的团:</h3>
+      <div v-if="showSub" class="glide q6-section-glide">
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
             <li class="glide__slide" v-for="sub in subFactions" :key="sub">
@@ -165,6 +165,13 @@ export default {
         };
       }
     });
+    const showSub = computed(() => {
+      if (subFactions.value && subFactions.value.length === 0) {
+        return false;
+      } else {
+        return true;
+      }
+    });
     //  * lifecycle
     onBeforeMount(async () => {
       faction.value = await useFaction(headers);
@@ -192,6 +199,7 @@ export default {
       subFactions,
       factionProducts,
       factionLogo,
+      showSub,
       retake,
     };
   },

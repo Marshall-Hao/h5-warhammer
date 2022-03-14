@@ -2,6 +2,14 @@
   <div v-if="blink">
     <lighting></lighting>
   </div>
+  <div
+    class="pre-reveal"
+    :class="{ revealed: !pre }"
+    @touchstart.prevent="preReveal"
+    @mousedown="preReveal"
+  >
+    <p>Click to reveal your faction</p>
+  </div>
   <Renderer ref="renderer" pointer resize="window">
     <Camera :position="{ z: 0 }" :fov="50" />
     <Scene>
@@ -30,6 +38,7 @@
     </EffectComposer>
   </Renderer>
   <div
+    v-show="!pre"
     class="effect"
     @click="updateColors"
     @touchstart.prevent="holdReveal"
@@ -41,7 +50,7 @@
     Hold to Reveal Faction<br />
     Release for Color
   </div>
-  <div class="number" ref="number">0</div>
+  <div v-show="!pre" class="number" ref="number">0</div>
 </template>
 
 <script>
@@ -86,6 +95,7 @@ export default {
     return {
       zoomStrength: 0,
       blink: false,
+      pre: true,
     };
   },
   mounted() {
@@ -156,6 +166,9 @@ export default {
           });
         },
       });
+    },
+    preReveal() {
+      this.pre = false;
     },
   },
   setup() {
@@ -251,6 +264,28 @@ export default {
   font-size: 4rem;
   opacity: 0.6;
   color: #c9c9c9;
+}
+
+.pre-reveal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url(../../assets/images/regular/aosprereveal.jpeg);
+  background-size: cover;
+  filter: url(#fractal);
+  p {
+    font-size: 2rem;
+    width: 17.6rem;
+    line-height: 3.6rem;
+    @include absXCenter;
+    bottom: 18%;
+  }
+}
+
+.revealed {
+  animation: fadeOut 1.5s forwards;
 }
 
 @keyframes breath {

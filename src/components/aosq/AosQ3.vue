@@ -130,24 +130,24 @@ export default {
     filter: url(#fractal2);
   }
   &-title {
-    margin-top: 8rem;
+    margin-top: 5rem;
     font-size: 2.5rem;
     letter-spacing: 0.2rem;
     line-height: 4rem;
-    animation: rotateInDownLeft 1.5s, flash 5s 1.5s infinite;
+    filter: url(#fractal);
   }
   &-choices {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 0 2.2rem;
-    margin-top: 16rem;
+    margin-top: 9.5rem;
     animation: rotateIn 1.5s;
     div {
       width: 16rem;
       height: 16rem;
       background-size: cover;
-      margin-bottom: 8rem;
+      margin-bottom: 5rem;
       animation: rotate 10s infinite ease-in-out forwards;
     }
   }

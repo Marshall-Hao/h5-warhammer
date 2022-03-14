@@ -138,7 +138,7 @@ export default {
     z-index: -2;
   }
   &-title {
-    margin: 8rem 0;
+    margin: 5rem 0 4rem;
     font-size: 2.5rem;
     animation: fadeInDown 1s, flash 3s infinite ease;
   }
@@ -150,10 +150,11 @@ export default {
       flex-wrap: wrap;
 
       div {
-        width: 16rem;
-        height: 26rem;
-        background-size: cover;
-        margin-bottom: 6rem;
+        width: 16.5rem;
+        height: 28rem;
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin-bottom: 4rem;
         animation: zoomIn 0.8s ease-in,
           main-img-hide 8s infinite step-end forwards;
         div {

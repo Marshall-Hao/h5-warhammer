@@ -82,7 +82,7 @@ export default {
   &-title {
     margin: 6rem 0;
     font-size: 2.5rem;
-    animation: pulse 2s infinite ease-in-out;
+    filter: url(#fractal);
   }
   &-section {
     position: relative;

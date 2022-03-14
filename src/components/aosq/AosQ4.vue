@@ -161,7 +161,7 @@ export default {
     line-height: 3rem;
   }
   &-section {
-    margin-top: 13rem;
+    margin-top: 6rem;
   }
   &-choice {
     margin: auto;
@@ -178,7 +178,7 @@ export default {
     border: 1px solid $color-theme-y;
     border-radius: 3rem;
     text-align: center;
-    margin: 1.5rem auto;
+    margin: 4rem auto 1.5rem;
     padding-top: 0.4rem;
   }
   &-instruction {
@@ -210,7 +210,7 @@ export default {
   position: relative;
 }
 .glide__bullets {
-  bottom: 7rem;
+  bottom: 9rem;
 }
 @keyframes left {
   0% {

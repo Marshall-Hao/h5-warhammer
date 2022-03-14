@@ -10,10 +10,11 @@
           :key="answer"
           :class="{ 'selected-q': selected === index }"
           :style="`background-image:url(${answer.image})`"
-          @touchstart="choiceTouchMove(index)"
         >
           <div
-            @click.prevent="choiceTouchEnd(answer.id)"
+            @touchstart.prevent="choiceTouchMove(index)"
+            @touchmove.prevent="choiceTouchMove(index)"
+            @touchend.prevent="choiceTouchEnd(answer.id)"
             @mouseenter.prevent="choiceTouchStart(index)"
             @mousemove.prevent="choiceTouchMove(index)"
             @mousedown="choiceTouchEnd(answer.id)"
@@ -153,7 +154,7 @@ export default {
         position: relative;
         div {
           height: 60%;
-          width: 60%;
+          width: 50%;
           @include absCenter;
         }
       }

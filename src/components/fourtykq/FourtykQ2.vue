@@ -11,8 +11,9 @@
           :style="{
             backgroundImage: `url(${answer.image})`,
           }"
+          @touchstart.prevent="choiceTouchStart(index)"
           @touchmove.prevent="choiceTouchMove(index)"
-          @click="choiceTouchEnd(answer.id)"
+          @touchend.prevent="choiceTouchEnd(answer.id)"
           @mouseenter.prevent="choiceTouchStart(index)"
           @mousemove.prevent="choiceTouchMove(index)"
           @mousedown="choiceTouchEnd(answer.id)"
@@ -126,6 +127,7 @@ export default {
     }
   }
 }
+
 .selected-q {
   animation: fadeOut 1s;
 }

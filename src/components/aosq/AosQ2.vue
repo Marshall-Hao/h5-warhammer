@@ -20,11 +20,11 @@
           background: `url(${answer.image})`,
           backgroundSize: 'cover',
         }"
-        @touchstart="choiceTouchStart(index)"
-        @touchmove.prevent="choiceTouchMove(index)"
       >
         <div
-          @click="choiceTouchEnd(answer.id)"
+          @touchmove.prevent="choiceTouchMove(index)"
+          @touchstart.prevent="choiceTouchStart(index)"
+          @touchend.prevent="choiceTouchEnd(answer.id)"
           @mouseenter.prevent="choiceTouchStart(index)"
           @mousemove.prevent="choiceTouchMove(index)"
           @mousedown="choiceTouchEnd(answer.id)"

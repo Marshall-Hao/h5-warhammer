@@ -6,10 +6,6 @@
         v-for="(answer, index) in questionChoices"
         :key="answer"
         class="q6-card"
-        @click="flipCard(index, answer.id)"
-        @touchmove.prevent="choiceTouchMove(index)"
-        @mouseenter.prevent="flipCard(index, answer.id)"
-        @mousemove.prevent="choiceTouchMove(index)"
       >
         <div
           class="q6-card-side q6-card-back"
@@ -18,7 +14,6 @@
             background: `url(${answer.image})`,
             backgroundSize: `cover`,
           }"
-          @touchend.prevent="backPos"
           @mouseleave="backPos"
         ></div>
         <div
@@ -26,7 +21,14 @@
           :class="{ 'front-flip': flip === index }"
         >
           <div class="q6-card-front-content">
-            <div class="q6-card-front-btn">Flip</div>
+            <div
+              class="q6-card-front-btn"
+              @touchstart.prevent="flipCard(index, answer.id)"
+              @mouseenter.prevent="flipCard(index, answer.id)"
+              @mousemove.prevent="choiceTouchMove(index)"
+            >
+              Flip
+            </div>
           </div>
         </div>
       </div>
@@ -232,6 +234,9 @@ export default {
         @include absCenter;
         letter-spacing: 0.3rem;
         font-size: 1.2rem;
+        height: 16rem;
+        width: 8rem;
+        padding-top: 7rem;
       }
     }
     &-back {

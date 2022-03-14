@@ -112,7 +112,7 @@
                   ></div>
                   <a :href="product.shop_url">{{ product.name }}</a>
                   <div class="q6-product-container-desc">
-                    "奇知歌調門格大受：時重元的寶你場現找能和手行得北國成奇知歌調門格大受"
+                    {{ product.short_desc }}
                   </div>
                 </div>
               </div>
@@ -327,7 +327,9 @@ export default {
         font-size: 1.4rem;
         font-weight: 700;
         @include absCenter;
-        margin-top: 6rem;
+        margin-top: 5rem;
+        font-family: Heiti SC, STHeiti, SimHei;
+        width: 21rem;
       }
       &-desc {
         width: 100%;
@@ -335,6 +337,8 @@ export default {
         @include absCenter;
         font-size: 1.2rem;
         line-height: 1.7rem;
+        font-family: Heiti SC, STHeiti, SimHei;
+
         margin-top: 10rem;
       }
     }

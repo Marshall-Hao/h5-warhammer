@@ -4,6 +4,7 @@ import storage from "good-storage";
 
 export default async function faction(headers) {
   const quizId = storage.session.get(QUIZ_KEY);
+  console.log(quizId);
   const faction = await post(
     `user_quizzes/${quizId}/reveal_faction`,
     {},

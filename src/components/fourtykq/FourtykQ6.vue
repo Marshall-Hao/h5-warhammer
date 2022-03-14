@@ -6,7 +6,7 @@
         v-for="(answer, index) in questionChoices"
         :key="answer"
         class="q6-card"
-        @touchstart.prevent="flipCard(index, answer.id)"
+        @click="flipCard(index, answer.id)"
         @touchmove.prevent="choiceTouchMove(index)"
         @mouseenter.prevent="flipCard(index, answer.id)"
         @mousemove.prevent="choiceTouchMove(index)"

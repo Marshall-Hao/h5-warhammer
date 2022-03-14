@@ -11,9 +11,8 @@
           :style="{
             backgroundImage: `url(${answer.image})`,
           }"
-          @touchstart.prevent="choiceTouchStart(index)"
           @touchmove.prevent="choiceTouchMove(index)"
-          @touchend.prevent="choiceTouchEnd(answer.id)"
+          @click="choiceTouchEnd(answer.id)"
           @mouseenter.prevent="choiceTouchStart(index)"
           @mousemove.prevent="choiceTouchMove(index)"
           @mousedown="choiceTouchEnd(answer.id)"
@@ -97,7 +96,7 @@ export default {
         background-size: cover;
         background-repeat: no-repeat;
         margin-bottom: 4rem;
-        animation: maskmove 2s steps(29) forwards;
+        animation: maskmove 2s 1s steps(29) forwards;
         div {
           position: absolute;
           top: 0;

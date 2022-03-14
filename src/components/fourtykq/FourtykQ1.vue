@@ -10,11 +10,10 @@
           :key="answer"
           :class="{ 'selected-q': selected === index }"
           :style="`background-image:url(${answer.image})`"
+          @touchstart="choiceTouchMove(index)"
         >
           <div
-            @touchstart.prevent="choiceTouchStart(index)"
-            @touchmove.prevent="choiceTouchMove(index)"
-            @touchend.prevent="choiceTouchEnd(answer.id)"
+            @click.prevent="choiceTouchEnd(answer.id)"
             @mouseenter.prevent="choiceTouchStart(index)"
             @mousemove.prevent="choiceTouchMove(index)"
             @mousedown="choiceTouchEnd(answer.id)"

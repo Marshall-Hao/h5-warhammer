@@ -418,7 +418,7 @@ export default {
     position: absolute;
     left: 0;
     top: 13rem;
-    height: 68vh;
+    height: 68%;
     width: 100vw;
     display: flex;
     z-index: 0;
@@ -448,7 +448,7 @@ export default {
     &-options {
       z-index: 2;
       position: absolute;
-      bottom: 8.6vh;
+      bottom: 8.4%;
       left: 0;
       height: 6rem;
       width: 100vw;
@@ -465,7 +465,7 @@ export default {
         align-items: center;
         & > div {
           width: 25%;
-          font-size: 2rem;
+          font-size: 1.5rem;
           color: $color-theme-y;
         }
         ul {

@@ -12,11 +12,11 @@
         :key="answer"
         :class="{ 'selected-q': selected === index }"
         :style="`background-image:url(${answer.image})`"
+        @touchstart="choiceTouchStart(index)"
+        @touchmove.prevent="choiceTouchMove(index)"
       >
         <div
-          @touchstart.prevent="choiceTouchStart(index)"
-          @touchmove.prevent="choiceTouchMove(index)"
-          @touchend.prevent="choiceTouchEnd(answer.id)"
+          @click="choiceTouchEnd(answer.id)"
           @mouseenter.prevent="choiceTouchStart(index)"
           @mousemove.prevent="choiceTouchMove(index)"
           @mousedown="choiceTouchEnd(answer.id)"
@@ -125,8 +125,8 @@ $img: "../../assets/images/regular/q7banner.png";
   position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   overflow-y: scroll;
   overflow-x: hidden;
   text-align: center;
@@ -135,8 +135,8 @@ $img: "../../assets/images/regular/q7banner.png";
     background-size: cover;
     background-repeat: no-repeat;
     filter: url(#fractal2);
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     z-index: -2;
   }
   &-title {
@@ -201,7 +201,7 @@ $img: "../../assets/images/regular/q7banner.png";
   }
 }
 .selected-q {
-  animation: fadeOutDown 2s forwards;
+  animation: fadeOutDown 2s infinite forwards;
 }
 
 @keyframes opacity {

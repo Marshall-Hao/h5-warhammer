@@ -36,6 +36,62 @@
 
       <div class="landing-section-begin" @click="onClick">
         <landing-ball></landing-ball>
+        <div class="landing-section-begin-intro">
+          <div>
+            <svg width="16.5" height="30" viewBox="0 0 110 200">
+              <polyline
+                points="100 0, 0 100, 100 200,110 190,25 100, 110 10 "
+                fill="rgb(255, 255, 255)"
+                stroke-linecap="round"
+              >
+                <animate
+                  id="l41"
+                  attributeName="fill"
+                  attributeType="XML"
+                  from="rgb(255, 255, 255,0.9)"
+                  to="rgb(255, 255, 255)"
+                  dur="2s"
+                  begin="0; l42.end"
+                ></animate>
+                <animate
+                  id="l42"
+                  attributeName="fill"
+                  attributeType="XML"
+                  from="rgb(255, 255, 255)"
+                  to="rgb(255, 255, 255,0.9)"
+                  dur="2s"
+                  begin="l41.end"
+                ></animate>
+              </polyline>
+            </svg>
+            <svg width="16.5" height="30" viewBox="0 0 110 200">
+              <polyline
+                points="100 0, 0 100, 100 200,110 190,25 100, 110 10 "
+                fill="rgb(255, 255, 255)"
+                stroke-linecap="round"
+              >
+                <animate
+                  id="l41"
+                  attributeName="fill"
+                  attributeType="XML"
+                  from="rgb(255, 255, 255,0.9)"
+                  to="rgb(255, 255, 255)"
+                  dur="2s"
+                  begin="0; l42.end"
+                ></animate>
+                <animate
+                  id="l42"
+                  attributeName="fill"
+                  attributeType="XML"
+                  from="rgb(255, 255, 255)"
+                  to="rgb(255, 255, 255,0.9)"
+                  dur="2s"
+                  begin="l41.end"
+                ></animate>
+              </polyline>
+            </svg>
+          </div>
+        </div>
         <h4>
           Where do you belong in these incredible settings? Discover your
           destiny now.
@@ -200,6 +256,12 @@ export default {
         height: 20rem;
         width: 20rem;
       }
+      &-intro {
+        animation: jump 2s infinite forwards;
+        div {
+          transform: rotateZ(90deg);
+        }
+      }
       h4 {
         margin-top: 1rem;
         padding: 0 1.4rem;
@@ -261,6 +323,17 @@ text {
   }
   to {
     text-decoration: underline $color-text-py;
+  }
+}
+@keyframes jump {
+  0% {
+    transform: translateY(-0.5rem);
+  }
+  50% {
+    transform: translateY(0.5rem);
+  }
+  100% {
+    transform: translateY(-0.5rem);
   }
 }
 </style>

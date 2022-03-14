@@ -16,12 +16,12 @@
           v-for="(answer, index) in questionChoices"
           :key="answer"
           :class="{ 'selected-q': selected === index }"
+          @touchstart="choiceTouchStart(index)"
+          @touchmove.prevent="choiceTouchMove(index)"
         >
           {{ answer.text }}
           <div
-            @touchstart.prevent="choiceTouchStart(index)"
-            @touchmove.prevent="choiceTouchMove(index)"
-            @touchend.prevent="choiceTouchEnd(answer.id)"
+            @click="choiceTouchEnd(answer.id)"
             @mouseenter.prevent="choiceTouchStart(index)"
             @mousemove.prevent="choiceTouchMove(index)"
             @mousedown="choiceTouchEnd(answer.id)"

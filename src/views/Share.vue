@@ -10,8 +10,8 @@
       <div class="q6-section-logo" :style="factionLogo"></div>
       <h1 class="q6-section-name">{{ faction && faction.name }}</h1>
       <p class="q6-section-des">{{ faction && faction.short_desc }}</p>
-      <h3 class="q6-section-title" v-if="subFactions">Sub Faction:</h3>
-      <div class="glide q6-section-glide">
+      <h3 class="q6-section-title" v-if="subFactions.length">关于我的团:</h3>
+      <div v-if="subFactions.length" class="glide q6-section-glide">
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
             <li class="glide__slide" v-for="sub in subFactions" :key="sub">
@@ -219,7 +219,7 @@ export default {
     height: 60rem;
     width: 100%;
     background-size: cover;
-    mask: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 10%, transparent 90%);
+    mask: linear-gradient(180deg, #222222 25%, #222222 50%, transparent 90%);
     z-index: -2;
   }
   &-section {
@@ -265,10 +265,11 @@ export default {
       font-size: 1.2rem;
     }
     &-sub {
-      margin: 0rem auto 2rem;
+      margin: 0rem 2.2rem 2rem;
       width: 12rem;
       height: 15.7rem;
-      background-size: cover;
+      background-size: contain;
+      background-repeat: no-repeat;
       font-size: 1.6rem;
       animation: pulse 2s infinite forwards;
     }

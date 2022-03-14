@@ -24,37 +24,37 @@
       />
       <Sphere
         ref="mesh"
-        :radius="2.5"
+        :radius="3.0"
         :width-segments="200"
         :height-segments="200"
       >
         <StandardMaterial :props="{ displacementScale: 0.2 }">
           <Texture
             :src="
-              require('../../assets/images/skullplane/Ground Skull_basecolor.jpg')
+              require('../../assets/images/rockplane/Rocks_Hexagons_001_basecolor.jpg')
             "
           />
           <Texture
             :src="
-              require('../../assets/images/skullplane/Ground Skull_height.png')
+              require('../../assets/images/rockplane/Rocks_Hexagons_001_height.png')
             "
             name="displacementMap"
           />
           <Texture
             :src="
-              require('../../assets/images/skullplane/Ground Skull_normal.jpg')
+              require('../../assets/images/rockplane/Rocks_Hexagons_001_normal.jpg')
             "
             name="normalMap"
           />
           <Texture
             :src="
-              require('../../assets/images/skullplane/Ground Skull_roughness.jpg')
+              require('../../assets/images/rockplane/Rocks_Hexagons_001_roughness.jpg')
             "
             name="roughnessMap"
           />
           <Texture
             :src="
-              require('../../assets/images/skullplane/Ground Skull_ambientOcclusion.jpg')
+              require('../../assets/images/rockplane/Rocks_Hexagons_001_ambientOcclusion.jpg')
             "
             name="aoMap"
           />

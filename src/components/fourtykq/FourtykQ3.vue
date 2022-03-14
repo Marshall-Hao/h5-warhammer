@@ -25,7 +25,7 @@
           @mousemove.prevent="choiceTouchMove(index)"
           @mousedown="choiceTouchEnd(answer.id)"
         >
-          <svg-icon :name="index + 1"></svg-icon>
+          <svg-icon :name="index + 1" :duration="{}"></svg-icon>
         </div>
       </div>
     </div>
@@ -108,6 +108,7 @@ export default {
   emits: ["updateParams"],
   setup(props, { emit }) {
     const questionId = props.currentQuestion.id;
+
     // * ref
 
     // * store
@@ -172,16 +173,16 @@ export default {
       animation: fadeInUp 1s;
     }
     &-choice {
-      @include absCenter;
+      // @include absCenter;
       position: relative;
       width: 10rem;
-      margin-bottom: 4rem;
+      margin: 0 auto 4rem;
       height: 10rem;
       border-radius: 50%;
       border: 0.3rem solid black;
       background-color: $color-text-pr;
       box-shadow: 0 0 1rem 0.1rem white;
-      animation: fadeIn 1s ease-in;
+      animation: fadeIn 1s ease-in, logo4 10s infinite ease-in-out forwards;
     }
   }
 }

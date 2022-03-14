@@ -17,7 +17,7 @@ export default {
       type: Object,
       default: {
         // animationDuration: "5s",
-        animation: "logo3 2s infinite alternate",
+        animation: "logo3 3s infinite alternate",
       },
     },
     fill: {

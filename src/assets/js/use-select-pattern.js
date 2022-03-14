@@ -42,7 +42,7 @@ export default function useSelectPattern(emit, questionId) {
     selected.value = index;
   }
   function choiceTouchEnd(index) {
-    selected.value = null;
+    // selected.value = null;
     debounce(getPoinstAndNext.bind(index), 1000, index)();
   }
 

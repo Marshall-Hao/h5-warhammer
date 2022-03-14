@@ -6,9 +6,9 @@
         v-for="(answer, index) in questionChoices"
         :key="answer"
         class="q6-card"
-        @touchstart.prevent="flipCard(index)"
+        @touchstart.prevent="flipCard(index, answer.id)"
         @touchmove.prevent="choiceTouchMove(index)"
-        @mouseenter.prevent="flipCard(index)"
+        @mouseenter.prevent="flipCard(index, answer.id)"
         @mousemove.prevent="choiceTouchMove(index)"
       >
         <div
@@ -18,10 +18,8 @@
             background: `url(${answer.image})`,
             backgroundSize: `cover`,
           }"
-          @touchmove.prevent="backPos"
-          @touchend.prevent="choiceTouchEnd(answer.id)"
-          @mousemove.prevent="backPos"
-          @mouseleave="choiceTouchEnd(answer.id)"
+          @touchend.prevent="backPos"
+          @mouseleave="backPos"
         ></div>
         <div
           class="q6-card-side q6-card-front"
@@ -90,6 +88,45 @@
         </feDisplacementMap>
       </filter>
     </svg>
+    <svg width="0" height="0">
+      <filter
+        id="fractal"
+        filterUnits="objectBoundingBox"
+        x="0%"
+        y="0%"
+        width="100%"
+        height="100%"
+      >
+        <feTurbulence
+          id="turbulence"
+          type="fractalNoise"
+          baseFrequency="0.032 0.02"
+          numOctaves="1"
+        >
+          <animate
+            id="wave1"
+            attributeName="baseFrequency"
+            attributeType="XML"
+            from="0.032 0.02"
+            to="0.022 0.01"
+            dur="3.5s"
+            fill="freeze"
+            begin="0; wave2.end"
+          />
+          <animate
+            id="wave2"
+            attributeName="baseFrequency"
+            attributeType="XML"
+            from="0.022 0.01"
+            to="0.032 0.02"
+            dur="3.5s"
+            fill="freeze"
+            begin="wave1.end"
+          />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" scale="15"></feDisplacementMap>
+      </filter>
+    </svg>
   </div>
 </template>
 
@@ -120,7 +157,8 @@ export default {
       questionId
     );
     //  * methods
-    function flipCard(index) {
+    function flipCard(index, answer) {
+      choiceTouchEnd(answer);
       flip.value = index;
     }
     function backPos() {
@@ -132,7 +170,6 @@ export default {
       flipCard,
       backPos,
       choiceTouchMove,
-      choiceTouchEnd,
     };
   },
 };
@@ -152,7 +189,7 @@ export default {
     font-size: 3.5rem;
     color: #000;
     margin-top: 5.5rem;
-    animation: flipInY 1.8s ease infinite;
+    filter: url(#fractal);
   }
   &-section {
     width: 100%;
@@ -178,7 +215,7 @@ export default {
       height: 25rem;
       backface-visibility: hidden;
       overflow: hidden;
-      transition: all 0.6s ease;
+      transition: all 0.5s ease;
     }
     &-front {
       padding: 1.1rem 1rem 0.8rem 1rem;
@@ -195,7 +232,6 @@ export default {
         @include absCenter;
         letter-spacing: 0.3rem;
         font-size: 1.2rem;
-        animation: flipInY 1.8s ease infinite;
       }
     }
     &-back {
@@ -213,7 +249,7 @@ export default {
     margin-top: 3rem;
     color: $color-text-pr;
     font-size: 2rem;
-    animation: flipInY 1.8s ease infinite;
+    filter: url(#fractal);
   }
 }
 .front-flip {

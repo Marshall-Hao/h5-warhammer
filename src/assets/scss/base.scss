@@ -73,3 +73,15 @@ body, html {
     stroke-width: 0;
   }
 }
+
+@keyframes logo4 {
+  0% {
+    transform: rotateZ(0);
+  }
+  50% {
+    transform: rotateZ(360deg);
+  }
+  100% {
+    transform: rotateZ(0);
+  }
+}

@@ -12,10 +12,10 @@
       </div>
       <div class="landing-header-title">
         <svg heightviewBox="0 0 200 40" width="360" height="40">
-          <text x="6.5" y="30">Enter the Worlds of Warhammer</text>
+          <text x="39" y="30">Enter the Worlds of</text>
         </svg>
         <svg heightviewBox="0 0 200 40" width="360" height="40">
-          <text x="40" y="30">of Warhammer</text>
+          <text x="95" y="30">Warhammer</text>
         </svg>
       </div>
     </header>
@@ -162,11 +162,11 @@ export default {
       height: 6rem;
     }
     &-title {
-      margin-top: $font-size-medium-x;
+      margin: $font-size-medium-x auto 0;
       text {
         width: 100%;
         font-size: 2.5rem;
-        line-break: auto;
+        letter-spacing: 0.3rem;
       }
     }
   }
@@ -230,7 +230,6 @@ export default {
 
 text {
   animation: stroke 5s infinite alternate;
-  letter-spacing: 10px;
   font-size: 4rem;
 }
 @keyframes stroke {

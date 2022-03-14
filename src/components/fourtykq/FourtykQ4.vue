@@ -4,7 +4,7 @@
       <div
         v-for="(answer, index) in questionChoices"
         :key="answer"
-        :style="{ background: `url(${answer.image})` }"
+        :style="{ backgroundImage: `url(${answer.image})` }"
         :class="{ 'selected-q': selected === index }"
       ></div>
     </div>
@@ -14,15 +14,15 @@
         <svg width="16.5" height="30" viewBox="0 0 110 200">
           <polyline
             points="100 0, 0 100, 100 200,110 190,25 100, 110 10 "
-            fill="rgb(165, 147, 93)"
+            fill="rgb(255, 255, 255)"
             stroke-linecap="round"
           >
             <animate
               id="l41"
               attributeName="fill"
               attributeType="XML"
-              from="rgb(255, 255, 255)"
-              to="rgb(165, 147, 93)"
+              from="rgb(255, 255, 255,0.9)"
+              to="rgb(255, 255, 255)"
               dur="2s"
               begin="0; l42.end"
             ></animate>
@@ -30,8 +30,8 @@
               id="l42"
               attributeName="fill"
               attributeType="XML"
-              from="rgb(165, 147, 93)"
-              to="rgb(255, 255, 255)"
+              from="rgb(255, 255, 255)"
+              to="rgb(255, 255, 255,0.9)"
               dur="2s"
               begin="l41.end"
             ></animate>
@@ -40,15 +40,15 @@
         <svg width="16.5" height="30" viewBox="0 0 110 200">
           <polyline
             points="100 0, 0 100, 100 200,110 190,25 100, 110 10 "
-            fill="rgb(165, 147, 93)"
+            fill="rgb(255, 255, 255)"
             stroke-linecap="round"
           >
             <animate
               id="l41"
               attributeName="fill"
               attributeType="XML"
-              from="rgb(255, 255, 255)"
-              to="rgb(165, 147, 93)"
+              from="rgb(255, 255, 255,0.9)"
+              to="rgb(255, 255, 255)"
               dur="2s"
               begin="0; l42.end"
             ></animate>
@@ -56,8 +56,8 @@
               id="l42"
               attributeName="fill"
               attributeType="XML"
-              from="rgb(165, 147, 93)"
-              to="rgb(255, 255, 255)"
+              from="rgb(255, 255, 255)"
+              to="rgb(255, 255, 255,0.9)"
               dur="2s"
               begin="l41.end"
             ></animate>
@@ -268,8 +268,8 @@ export default {
   }
   &-intro {
     position: absolute;
-    left: 45.3%;
-    top: 25%;
+    left: 44.3%;
+    top: 14.5%;
     animation: jump 2s infinite ease-in-out forwards;
     p {
       font-size: 1.8rem;

@@ -97,6 +97,7 @@ export default {
         background-size: cover;
         background-repeat: no-repeat;
         margin-bottom: 4rem;
+        animation: maskmove 2s steps(29) forwards;
         div {
           position: absolute;
           top: 0;
@@ -127,7 +128,7 @@ export default {
   }
 }
 .selected-q {
-  animation: maskmove 0.7s steps(29) forwards;
+  animation: fadeOut 1s;
 }
 @keyframes maskmove {
   0% {

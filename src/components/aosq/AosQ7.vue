@@ -151,7 +151,7 @@ $img: "../../assets/images/regular/q7banner.png";
     background-repeat: no-repeat;
     width: 100%;
     height: 37rem;
-    margin-top: 8rem;
+    margin-top: 3rem;
     animation: fadeIn 1.5s;
     &-inner {
       @include absXCenter;
@@ -201,7 +201,7 @@ $img: "../../assets/images/regular/q7banner.png";
   }
 }
 .selected-q {
-  animation: rubberBand 2s infinite;
+  animation: fadeOutDown 2s forwards;
 }
 
 @keyframes opacity {

@@ -154,7 +154,7 @@ export default {
         height: 28rem;
         background-size: contain;
         background-repeat: no-repeat;
-        margin-bottom: 4rem;
+        margin-bottom: 1rem;
         animation: zoomIn 0.8s ease-in,
           main-img-hide 8s infinite step-end forwards;
         div {

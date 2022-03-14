@@ -177,16 +177,18 @@ export default {
       faction.value = await useFaction(headers);
     });
     onUpdated(() => {
-      new Glide(".glide", {
-        type: "carousel",
-        startAt: 0,
-        perView: 2,
-      }).mount();
-      new Glide(".glide2", {
-        type: "carousel",
-        startAt: 0,
-        perView: 1,
-      }).mount();
+      if (showSub.value) {
+        new Glide(".glide", {
+          type: "carousel",
+          startAt: 0,
+          perView: 2,
+        }).mount();
+        new Glide(".glide2", {
+          type: "carousel",
+          startAt: 0,
+          perView: 1,
+        }).mount();
+      }
     });
     // * methods
     function retake() {

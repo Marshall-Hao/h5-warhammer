@@ -47,8 +47,7 @@
     @mouseenter="targetTimeCoef = 100"
     @mouseleave="targetTimeCoef = 1"
   >
-    Hold to Reveal Faction<br />
-    Release for Color
+    Press until faction reveal
   </div>
   <div v-show="!pre" class="number" ref="number">0</div>
 </template>
@@ -198,7 +197,7 @@ export default {
 `;
     const POINTS_COUNT = 50000;
 
-    const palette = niceColors[95];
+    const palette = niceColors[14];
 
     const positions = new Float32Array(POINTS_COUNT * 3);
     const colors = new Float32Array(POINTS_COUNT * 3);

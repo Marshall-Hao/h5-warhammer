@@ -10,6 +10,13 @@ body, html {
   overflow-x: hidden;
 }
 
+.fixed-no-scroll {
+  position: fixed !important;
+  top: 0 !important;; bottom: 0 !important;;
+  left: 0 !important;; right: 0 !important;;
+  overflow-y: hidden !important;;
+}
+
 .g-relative {
   position: relative;
 }

@@ -144,8 +144,8 @@ export default {
   &-section {
     position: relative;
     // height: 66rem;
-    height: 80%; width: 100%;
     animation: fadeInUp 1s;
+    height: 80%; width: 100%;
     padding-bottom: 4.5rem;
     box-sizing: border-box;
     @include flexCenter;

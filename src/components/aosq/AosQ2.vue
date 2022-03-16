@@ -1,5 +1,5 @@
 <template>
-  <div class="q2" :style="questionBackground">
+  <div class="q2 fixed-no-scroll" :style="questionBackground">
     <h1 class="q2-title">
       {{ questionText }}
     </h1>
@@ -10,25 +10,26 @@
         backgroundSize: 'cover',
       }"
     ></div>
-    <div class="q2-choices">
-      <div
-        ref="q"
-        v-for="(answer, index) in questionChoices"
-        :key="answer"
-        :class="{ 'selected-q': selected === index }"
-        :style="{
-          background: `url(${answer.image})`,
-          backgroundSize: 'cover',
-        }"
-      >
+    <div class="q2-section">
+      <div class="q2-choices">
         <div
-          @touchmove.prevent="choiceTouchMove(index)"
-          @touchstart.prevent="choiceTouchStart(index)"
-          @touchend.prevent="choiceTouchEnd(answer.id)"
-          @mouseenter.prevent="choiceTouchStart(index)"
-          @mousemove.prevent="choiceTouchMove(index)"
-          @mousedown="choiceTouchEnd(answer.id)"
-        ></div>
+          ref="q"
+          v-for="(answer, index) in questionChoices"
+          :key="answer"
+          :class="{ 'selected-q': selected === index }"
+          :style="{
+            'backgroundImage': `url(${answer.image})`
+          }"
+        >
+          <div
+            @touchmove.prevent="choiceTouchMove(index)"
+            @touchstart.prevent="choiceTouchStart(index)"
+            @touchend.prevent="choiceTouchEnd(answer.id)"
+            @mouseenter.prevent="choiceTouchStart(index)"
+            @mousemove.prevent="choiceTouchMove(index)"
+            @mousedown="choiceTouchEnd(answer.id)"
+          ></div>
+        </div>
       </div>
     </div>
     <svg width="0" height="0">
@@ -106,49 +107,69 @@ export default {
 
 <style lang="scss" scoped>
 .q2 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // height: 100%;
+  // width: 100%;
+  // overflow-y: scroll;
+  // overflow-x: hidden;
   text-align: center;
   &-title {
-    margin: 5rem auto 3rem;
+    height: 10%; width: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem;
+    // margin: 5rem auto 3rem;
   }
   &-banner {
-    width: 100%;
-    height: 20.5rem;
+    width: auto;
+    margin: 0 1.5rem;
+    // height: 20.5rem;
+    height: 25%;
     animation: flipInY 1.5s;
     position: relative;
 
-    &::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: -0.8rem;
-      right: 0;
-      bottom: 0;
-      width: 120%;
-      background: linear-gradient(
-        180deg,
-        rgba(35, 46, 254, 1),
-        rgba(192, 247, 254, 0.8) 20%,
-        transparent 35%
-      );
-      filter: url(#smoke);
-    }
+    // &::before {
+    //   content: "";
+    //   position: absolute;
+    //   left: 0;
+    //   top: -0.8rem;
+    //   right: 0;
+    //   bottom: 0;
+    //   width: 120%;
+    //   background: linear-gradient(
+    //     180deg,
+    //     rgba(35, 46, 254, 1),
+    //     rgba(192, 247, 254, 0.8) 20%,
+    //     transparent 35%
+    //   );
+    //   filter: url(#smoke);
+    // }
+  }
+  &-section {
+    @include flexCenter;
+    padding: 2rem 0rem;
+    height: 65%; width: 100%;
+    box-sizing: border-box;
   }
   &-choices {
-    @include absXCenter;
-    margin-top: 4rem;
+    // @include absXCenter;
+    // margin-top: 4rem;
+    display: flex; flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     animation: zoomInUp 1s ease-in;
+    width: 100%;
     div {
-      width: 23.3rem;
-      height: 9rem;
-      margin-bottom: 1.5rem;
+      // width: 23.3rem;
+      width: 70%;
+      // height: 9rem;
+      height: 100%;
+      // margin-bottom: 1.5rem;
       position: relative;
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
       div {
         height: 60%;
         width: 60%;

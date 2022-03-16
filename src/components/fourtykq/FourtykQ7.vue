@@ -247,21 +247,15 @@ export default {
     }
   }
 
-  @media only screen and (min-width: 375px) and (max-width: 375px) {
-    .q7-progress-bottom {
-      bottom: 17.5%;
-    }
-  }
-
   @media only screen and (min-width: 412px) and (max-width: 414px) {
     .q7-progress-bottom {
-      bottom: 26.6%;
+      bottom: 27%;
     }
   }
 
   @media only screen and (min-width: 360px) and (max-width: 360px) {
     .q7-progress-bottom {
-      bottom: 23.3%;
+      bottom: 26.9%;
     }
   }
 }

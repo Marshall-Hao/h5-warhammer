@@ -1,26 +1,28 @@
 <template>
-  <div class="q7">
+  <div class="q7 fixed-no-scroll">
     <div class="q7-background" :style="questionBackground"></div>
     <div class="q7-banner">
       <div class="q7-banner-inner"></div>
     </div>
-    <h1 class="q7-title">{{ questionText }}</h1>
-    <div class="q7-choices">
-      <div
-        ref="q"
-        v-for="(answer, index) in questionChoices"
-        :key="answer"
-        :class="{ 'selected-q': selected === index }"
-        :style="`background-image:url(${answer.image})`"
-      >
+    <div class="q7-section">
+      <h1 class="q7-title">{{ questionText }}</h1>
+      <div class="q7-choices">
         <div
-          @touchstart.prevent="choiceTouchStart(index)"
-          @touchmove.prevent="choiceTouchMove(index)"
-          @touchend.prevent="choiceTouchEnd(answer.id)"
-          @mouseenter.prevent="choiceTouchStart(index)"
-          @mousemove.prevent="choiceTouchMove(index)"
-          @mousedown="choiceTouchEnd(answer.id)"
-        ></div>
+          ref="q"
+          v-for="(answer, index) in questionChoices"
+          :key="answer"
+          :class="{ 'selected-q': selected === index }"
+          :style="`background-image:url(${answer.image})`"
+        >
+          <div
+            @touchstart.prevent="choiceTouchStart(index)"
+            @touchmove.prevent="choiceTouchMove(index)"
+            @touchend.prevent="choiceTouchEnd(answer.id)"
+            @mouseenter.prevent="choiceTouchStart(index)"
+            @mousemove.prevent="choiceTouchMove(index)"
+            @mousedown="choiceTouchEnd(answer.id)"
+          ></div>
+        </div>
       </div>
     </div>
     <svg width="0" height="0">
@@ -113,6 +115,19 @@ export default {
       selected,
     };
   },
+  mounted() {
+    // setting dimensions dynamically
+    const scrollDim = {w: 563, h: 512}
+    const bannerDim = {w: 296, h: 205}
+    const banner = document.querySelector('.q7-banner')
+    banner.style.height = `${banner.offsetWidth * (scrollDim.h/scrollDim.w)}px`
+    // console.log('banner', document.querySelector('.q7-banner'))
+    const innerBanner = document.querySelector('.q7-banner-inner')
+    innerBanner.style.width = `${0.8 * banner.offsetWidth}px`
+    innerBanner.style.height = `${0.8 * banner.offsetWidth * (bannerDim.h/bannerDim.w)}px`
+    const section = document.querySelector('.q7-section')
+    section.style.height = `${window.innerHeight - banner.offsetHeight}px`
+  }
 };
 </script>
 
@@ -122,12 +137,12 @@ $img: "../../assets/images/regular/q7banner.png";
   @return ($min + random($max)) * $u;
 }
 .q7 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  overflow-y: scroll;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // height: 100vh;
+  // width: 100vw;
+  // overflow-y: scroll;
   overflow-x: hidden;
   text-align: center;
   &-background {
@@ -139,58 +154,86 @@ $img: "../../assets/images/regular/q7banner.png";
     width: 100vw;
     z-index: -2;
   }
-  &-title {
-    letter-spacing: 0.3rem;
-    line-height: 3.2rem;
-    filter: url(#fractal);
-  }
   &-banner {
     position: relative;
     background: url(../../assets/images/regular/reel.png);
-    background-size: contain;
+    // background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
-    height: 37rem;
-    margin-top: 3rem;
+    // height: 37rem;
+    // margin-top: 3rem;
     animation: fadeIn 1.5s;
     &-inner {
       @include absXCenter;
-      margin-top: 8rem;
-      width: 29rem;
-      height: 20.5rem;
+      top: 20%;
+      // margin-top: 8rem;
+      // width: 29rem;
+      // height: 20.5rem;
       background: url($img);
-      background-size: cover;
-      animation: main-img-hide 5s infinite step-end;
-      &::before,
-      &::after {
-        position: absolute;
-        width: 29rem;
-        height: 20.5rem;
-        top: 0;
-        left: 0;
-        background: inherit;
-      }
+      // background-size: cover;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
 
-      &::after {
-        content: "";
-        animation: glitch-one 5s infinite step-end;
-      }
+      // animation: main-img-hide 5s infinite step-end;
+      // &::before,
+      // &::after {
+      //   position: absolute;
+      //   width: 29rem;
+      //   height: 20.5rem;
+      //   top: 0;
+      //   left: 0;
+      //   background: inherit;
+      // }
 
-      &::before {
-        content: "";
-        animation: glitch-two 5s infinite 1s step-end;
-      }
+      // &::after {
+      //   content: "";
+      //   animation: glitch-one 5s infinite step-end;
+      // }
+
+      // &::before {
+      //   content: "";
+      //   animation: glitch-two 5s infinite 1s step-end;
+      // }
     }
   }
+  &-section {
+    display: flex; flex-direction: column;
+    padding-bottom: 5rem;
+    box-sizing: border-box;
+  }
+  &-title {
+    height: 25%; width: 100%;
+    display: flex; align-items: center; justify-content: center;
+    // letter-spacing: 0.3rem;
+    font-size: 2.5rem;
+    line-height: 3.2rem;
+    // filter: url(#fractal);
+  }
+
+
+
   &-choices {
-    margin-top: 7rem;
-    @include absXCenter;
+    // margin-top: 7rem;
+    height: 75%; width: 100%;
+    // @include absXCenter;
+    display: flex; flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
     animation: zoomIn 1.5s ease-in-out, opacity 5s infinite ease-out;
     div {
-      width: 31.2rem;
-      height: 7.4rem;
-      background-size: cover;
-      margin-bottom: 5rem;
+      // width: 31.2rem;
+      // height: 7.4rem;
+      width: 80%;
+      height: 40%;
+      @media only screen and (max-height: 667px) {
+        height: 50%;
+      }
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      // margin-bottom: 5rem;
       position: relative;
       div {
         height: 70%;

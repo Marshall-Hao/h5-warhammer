@@ -119,7 +119,7 @@ export default {
   &-background {
     position: fixed;
     background-size: cover;
-    filter: url(#fractal);
+
     height: 100%;
     width: 100%;
     z-index: -2;
@@ -129,7 +129,7 @@ export default {
     margin-top: 2rem;
     height: 10.9rem;
     width: 10rem;
-    filter: url(#fractal);
+    // filter: url(#fractal);
   }
   &-title {
     margin-top: 14rem;
@@ -146,7 +146,7 @@ export default {
       display: flex;
       flex-direction: column;
       padding: 0 3rem;
-      animation: backInUp 1s ease-in, pulse 2s infinite;
+      animation: backInUp 1s ease-in;
       div {
         position: relative;
 

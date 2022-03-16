@@ -1,5 +1,5 @@
 <template>
-  <div class="landing">
+  <div class="landing fixed-no-scroll">
     <header class="landing-header">
       <div class="landing-header-icon">
         <svg-icon
@@ -93,13 +93,19 @@
           destiny now.
         </h4>
       </div>
-      <footer class="landing-footer">
+      <!-- <footer class="landing-footer">
         <router-link class="landing-footer-terms" :to="`/terms`"
           >服务与条款</router-link
         >
         <p class="landing-footer-beian">沪ICP备11032828号-1</p>
-      </footer>
+      </footer> -->
     </section>
+    <footer class="landing-footer">
+      <router-link class="landing-footer-terms" :to="`/terms`"
+        >服务与条款</router-link
+      >
+      <p class="landing-footer-beian">沪ICP备11032828号-1</p>
+    </footer>
     <svg width="0" height="0">
       <filter
         id="fractal"
@@ -164,6 +170,8 @@ export default {
     };
   },
   mounted() {
+    const desc = document.querySelector('.landing-section-description')
+    console.log('desc h', desc.offsetHeight)
     this.login();
     useTyped(
       "#landing-section-typed",
@@ -205,63 +213,101 @@ export default {
 
 <style lang="scss" scoped>
 .landing {
+  padding: 1rem 0;
+  @media only screen and (max-height: 740px) {
+    padding: 1rem 0;
+  }
   &-header {
+    height: 25%;
+    @media only screen and (max-height: 740px) {
+      height: 22%;
+    }
     text-align: center;
+    display: flex; flex-direction: column;
+    justify-content: center;
     &-icon {
       position: relative;
-      height: 6rem;
+      // height: 6rem;
+      height: 30%;
+      // @media only screen and (max-height: 740px) {
+      //   height: 25%;
+      // }
     }
     &-title {
       margin: $font-size-medium-x auto 0;
-      font-size: 3rem;
+      // font-size: 3rem;
+      font-size: 220%;
       line-height: 3.3rem;
       color: #c9c9c9;
       font-weight: 400;
-      letter-spacing: 0.1rem;
+      // letter-spacing: 0.1rem;
     }
   }
 
   &-section {
-    margin-top: 3rem;
-    width: 35rem;
-    height: 18rem;
-    @include absXCenter;
+    height: 75%;
+    // margin-top: 3rem;
+    // width: 35rem;
+    // height: 18rem;
+    // @include absXCenter;
     &-video {
-      border: 1px solid $color-text-pr;
+      // border: 1px solid $color-text-pr;
+      width: 100%;
+      padding: 0 2.5rem;
+      display: flex; justify-content: center;
       video {
+        border: 1px solid $color-text-pr;
         width: 100%;
-        height: 100%;
+        @media only screen and (max-height: 740px) {
+          width: 85%;
+        }
+        // height: 100%;
         object-fit: cover;
       }
     }
     &-description {
       margin-top: 1rem;
-      padding: 0.5rem;
+      padding: 0.5rem 2.5rem;
       text-align: center;
-      height: 11rem;
+      // height: 11rem;
       span {
         font-size: $font-size-medium-x;
-        line-height: 2.5rem;
+        @media only screen and (max-height: 740px) {
+          font-size: $font-size-medium;
+          line-height: $font-size-large;
+        }
+        line-height: 2rem;
       }
     }
 
     &-begin {
       position: relative;
+      width: 100%;
+      display: flex; justify-content: center;
+      padding: 1rem 0;
       img {
-        top: -2rem;
-        @include absXCenter;
+        // top: -2rem;
+        // @include absXCenter;
         height: 15rem;
         width: 15rem;
+        @media only screen and (max-height: 740px) {
+          height: 12rem; width: 12rem;
+        }
         object-fit: fit;
       }
     }
     &-intro {
-      margin-top: 10.5rem;
+      position: relative;
+      top: -1rem;
+      // margin-top: 10.5rem;
       text-align: center;
       div {
         animation: jump 2s infinite forwards;
-        width: 1.7rem;
-        margin: 0 auto;
+        // width: 1.7rem;
+        // margin: 0 auto;
+        width: 100%;
+        display: flex; flex-direction: column;
+        justify-content: center; align-items: center;
         svg {
           width: 1rem;
           height: 1rem;
@@ -271,19 +317,31 @@ export default {
       h4 {
         margin-top: 1rem;
         padding: 0 1.4rem;
-        font-size: 1.5rem;
+        font-size: $font-size-medium;
         letter-spacing: 0.05rem;
-        line-height: 1.5rem;
+        line-height: $font-size-large;
+        @media only screen and (max-height: 740px) {
+          font-size: $font-size-small;
+          line-height: $font-size-medium-x;
+        }
       }
     }
   }
 
   &-footer {
-    margin-top: 9rem;
+    // margin-top: 9rem;
+    position: fixed;
+    bottom: 1rem;
+    left: 0; right: 0;
+    padding: 0.5rem 2.5rem;
     width: 100%;
     display: flex;
     justify-content: space-between;
-    font-size: 1.6rem;
+    // font-size: 1.6rem;
+    font-size: $font-size-medium;
+    @media only screen and (max-height: 740px) {
+      font-size: $font-size-small;
+    }
     &-terms {
       color: $color-text-py;
       //   text-decoration: underline $color-text-py;

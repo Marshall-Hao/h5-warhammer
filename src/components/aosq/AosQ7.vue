@@ -119,6 +119,7 @@ export default {
     // setting dimensions dynamically
     const scrollDim = {w: 563, h: 512}
     const bannerDim = {w: 296, h: 205}
+    const choiceDim = {w: 312, h: 74}
     const banner = document.querySelector('.q7-banner')
     banner.style.height = `${banner.offsetWidth * (scrollDim.h/scrollDim.w)}px`
     // console.log('banner', document.querySelector('.q7-banner'))
@@ -127,6 +128,12 @@ export default {
     innerBanner.style.height = `${0.8 * banner.offsetWidth * (bannerDim.h/bannerDim.w)}px`
     const section = document.querySelector('.q7-section')
     section.style.height = `${window.innerHeight - banner.offsetHeight}px`
+    const choices = document.querySelectorAll('.q7-choices > div')
+    // console.log({choices})
+    choices.forEach(c => {
+      c.style.width = `${0.85 * window.innerWidth}px`
+      c.style.height = `${(0.85 * window.innerWidth) * (choiceDim.h/choiceDim.w)}px`
+    })
   }
 };
 </script>
@@ -225,11 +232,12 @@ $img: "../../assets/images/regular/q7banner.png";
     div {
       // width: 31.2rem;
       // height: 7.4rem;
-      width: 80%;
-      height: 40%;
-      @media only screen and (max-height: 667px) {
-        height: 50%;
-      }
+      // width: 80%;
+      // height: 40%;
+      margin-top: 2.5rem;
+      // @media only screen and (max-height: 667px) {
+      //   height: 50%;
+      // }
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;

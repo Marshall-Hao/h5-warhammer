@@ -170,8 +170,8 @@ export default {
     };
   },
   mounted() {
-    const desc = document.querySelector('.landing-section-description')
-    console.log('desc h', desc.offsetHeight)
+    const desc = document.querySelector(".landing-section-description");
+    console.log("desc h", desc.offsetHeight);
     this.login();
     useTyped(
       "#landing-section-typed",
@@ -223,7 +223,8 @@ export default {
       height: 22%;
     }
     text-align: center;
-    display: flex; flex-direction: column;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     &-icon {
       position: relative;
@@ -250,18 +251,23 @@ export default {
     // width: 35rem;
     // height: 18rem;
     // @include absXCenter;
+    padding: 0 2rem;
+    @media only screen and (max-height: 667px) {
+      padding: 0 1rem;
+    }
     &-video {
       // border: 1px solid $color-text-pr;
       width: 100%;
-      padding: 0 2.5rem;
-      display: flex; justify-content: center;
+      // padding: 0 1.5rem;
+      display: flex;
+      justify-content: center;
       video {
         border: 1px solid $color-text-pr;
         width: 100%;
         @media only screen and (max-height: 740px) {
           width: 85%;
         }
-        // height: 100%;
+        height: 100%;
         object-fit: cover;
       }
     }
@@ -269,7 +275,7 @@ export default {
       margin-top: 1rem;
       padding: 0.5rem 2.5rem;
       text-align: center;
-      // height: 11rem;
+      height: 6rem;
       span {
         font-size: $font-size-medium-x;
         @media only screen and (max-height: 740px) {
@@ -283,7 +289,8 @@ export default {
     &-begin {
       position: relative;
       width: 100%;
-      display: flex; justify-content: center;
+      display: flex;
+      justify-content: center;
       padding: 1rem 0;
       img {
         // top: -2rem;
@@ -291,7 +298,8 @@ export default {
         height: 15rem;
         width: 15rem;
         @media only screen and (max-height: 740px) {
-          height: 12rem; width: 12rem;
+          height: 12rem;
+          width: 12rem;
         }
         object-fit: fit;
       }
@@ -306,8 +314,10 @@ export default {
         // width: 1.7rem;
         // margin: 0 auto;
         width: 100%;
-        display: flex; flex-direction: column;
-        justify-content: center; align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         svg {
           width: 1rem;
           height: 1rem;
@@ -332,7 +342,11 @@ export default {
     // margin-top: 9rem;
     position: fixed;
     bottom: 1rem;
-    left: 0; right: 0;
+    @media only screen and (max-height: 667px) {
+      bottom: 0.3rem;
+    }
+    left: 0;
+    right: 0;
     padding: 0.5rem 2.5rem;
     width: 100%;
     display: flex;

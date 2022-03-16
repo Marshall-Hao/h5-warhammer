@@ -3,9 +3,9 @@
     <div class="q3-background" :style="questionBackground"></div>
     <h1 class="q3-title">{{ questionText }}</h1>
     <div class="q3-section">
-
       <div class="q3-choices">
-        <div class="q3-choice"
+        <div
+          class="q3-choice"
           ref="q"
           v-for="(answer, index) in questionChoices"
           :key="answer"
@@ -19,9 +19,8 @@
           @mousedown="choiceTouchEnd(answer.id)"
         ></div>
       </div>
-
     </div>
-    <svg width="0" height="0">
+    <!-- <svg width="0" height="0">
       <filter
         id="fractal2"
         filterUnits="userSpaceOnUse"
@@ -76,7 +75,7 @@
           />
         </feDisplacementMap>
       </filter>
-    </svg>
+    </svg> -->
   </div>
 </template>
 
@@ -113,13 +112,13 @@ export default {
     };
   },
   mounted() {
-    const choices = document.querySelectorAll('.q3-choice')
-    choices.forEach(c => {
-      const w = (window.innerWidth/2) - (24)
-      c.style.width = `${w}px`
-      c.style.height = `${w}px`
-    })
-  }
+    const choices = document.querySelectorAll(".q3-choice");
+    choices.forEach((c) => {
+      const w = window.innerWidth / 2 - 24;
+      c.style.width = `${w}px`;
+      c.style.height = `${w}px`;
+    });
+  },
 };
 </script>
 
@@ -144,17 +143,20 @@ export default {
   &-title {
     // margin-top: 5rem;
     padding: 1rem 3rem;
-    height: 20%; width: 100%;
-    display: flex; align-items: center; justify-content: center;
+    height: 20%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 2.5rem;
     letter-spacing: 0.2rem;
     line-height: 4rem;
-    filter: url(#fractal);
   }
   &-section {
     padding: 4rem 3rem;
     box-sizing: border-box;
-    height: 80%; width: 100%;
+    height: 80%;
+    width: 100%;
     box-sizing: border-box;
     @include flexCenter;
     align-items: flex-start;
@@ -173,8 +175,10 @@ export default {
     div {
       // width: 16rem;
       // height: 16rem;
-      width: 100%; height: 100%;
-      align-self: center; justify-self: center;
+      width: 100%;
+      height: 100%;
+      align-self: center;
+      justify-self: center;
       background-size: cover;
       // margin-bottom: 5rem;
       animation: rotate 10s infinite ease-in-out forwards;

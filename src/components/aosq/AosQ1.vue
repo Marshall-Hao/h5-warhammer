@@ -4,7 +4,8 @@
     <h1 class="q1-title">{{ questionText }}</h1>
     <section class="q1-section">
       <div class="q1-section-choices">
-        <div class="q1-section-choice"
+        <div
+          class="q1-section-choice"
           ref="q"
           v-for="(answer, index) in questionChoices"
           :key="answer"
@@ -114,27 +115,27 @@ export default {
     };
   },
   mounted() {
-    const choices = document.querySelectorAll('.q1-section-choice')
-    console.log({choices})
+    const choices = document.querySelectorAll(".q1-section-choice");
+    console.log({ choices });
 
     if (window.innerHeight > 700) {
       // document.querySelector('.q1-title').style.height = "25%"
       // document.querySelector('.q1-section').style.height = "75%"
-      choices.forEach(c => {
-        const w = (window.innerWidth/2) - 10
-        c.style.width = `${w}px`
-        c.style.height = `${w*(25/17)}px`
-      })
+      choices.forEach((c) => {
+        const w = window.innerWidth / 2 - 10;
+        c.style.width = `${w}px`;
+        c.style.height = `${w * (25 / 17)}px`;
+      });
     } else {
-      document.querySelector('.q1-title').style.height = "15%"
-      document.querySelector('.q1-section').style.height = "85%"
-      choices.forEach(c => {
-        const w = (window.innerWidth/2) - 20
-        c.style.width = `${w}px`
-        c.style.height = `${w*(25/17)}px`
-      })
+      document.querySelector(".q1-title").style.height = "15%";
+      document.querySelector(".q1-section").style.height = "85%";
+      choices.forEach((c) => {
+        const w = window.innerWidth / 2 - 20;
+        c.style.width = `${w}px`;
+        c.style.height = `${w * (25 / 17)}px`;
+      });
     }
-  }
+  },
 };
 </script>
 
@@ -166,14 +167,18 @@ export default {
   }
   &-title {
     // margin: 5rem 0 4rem;
-    height: 20%; width: 100%;
-    display: flex; align-items: center; justify-content: center;
+    height: 20%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 2.5rem;
-    animation: fadeInDown 1s, flash 3s infinite ease;
+    animation: fadeInDown 1s;
   }
   &-section {
     padding: 0rem 1rem;
-    height: 80%; width: 100%;
+    height: 80%;
+    width: 100%;
     box-sizing: border-box;
     @include flexCenter;
     align-items: flex-start;
@@ -199,25 +204,26 @@ export default {
         background-size: contain;
         background-repeat: no-repeat;
         margin-bottom: 1rem;
-        animation: zoomIn 0.8s ease-in,
-          main-img-hide 8s infinite step-end forwards;
+        animation: zoomIn 0.8s ease-in;
         div {
           // height: 13rem;
           // width: 7rem;
-          width: 100%; height: 100%;
+          width: 100%;
+          height: 100%;
           // margin: 12rem auto;
         }
       }
-      div::before,
-      div::after {
-        position: absolute;
-        // width: 16rem;
-        // height: 26rem;
-        width: 100%; height: 100%;
-        top: 0;
-        left: 0;
-        background: inherit;
-      }
+      // div::before,
+      // div::after {
+      //   position: absolute;
+      //   // width: 16rem;
+      //   // height: 26rem;
+      //   width: 100%;
+      //   height: 100%;
+      //   top: 0;
+      //   left: 0;
+      //   background: inherit;
+      // }
     }
   }
 }

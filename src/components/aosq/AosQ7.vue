@@ -131,8 +131,8 @@ export default {
     const choices = document.querySelectorAll('.q7-choices > div')
     // console.log({choices})
     choices.forEach(c => {
-      c.style.width = `${0.8 * window.innerWidth}px`
-      c.style.height = `${(0.8 * window.innerWidth) * (choiceDim.h/choiceDim.w)}px`
+      c.style.width = `${0.85 * window.innerWidth}px`
+      c.style.height = `${(0.85 * window.innerWidth) * (choiceDim.h/choiceDim.w)}px`
     })
   }
 };
@@ -234,10 +234,10 @@ $img: "../../assets/images/regular/q7banner.png";
       // height: 7.4rem;
       // width: 80%;
       // height: 40%;
-      margin: 2rem 0;
-      @media only screen and (max-height: 667px) {
-        height: 50%;
-      }
+      margin-top: 2.5rem;
+      // @media only screen and (max-height: 667px) {
+      //   height: 50%;
+      // }
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;

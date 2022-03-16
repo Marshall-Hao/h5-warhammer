@@ -37,12 +37,19 @@ footer, header, menu, nav, section {
 }
 
 html {
-  font-size: 62.5%;
+  // font-size: 62.5%;
+  font-size: 10px;
+  @media screen and (max-width: 375px) {
+    font-size: 8px;
+  }
 }
 
 body {
   line-height: 1;
-  font-size: 10px;
+  // font-size: 10px;
+  // @media screen and (max-width: 375px) {
+  //   font-size: 8px;
+  // }
   padding: 4rem 1rem;
   box-sizing: border-box;
   position: relative;

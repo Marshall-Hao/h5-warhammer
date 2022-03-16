@@ -213,7 +213,7 @@ export default {
 
 <style lang="scss" scoped>
 .landing {
-  padding: 4rem 0;
+  padding: 1rem 0;
   @media only screen and (max-height: 740px) {
     padding: 1rem 0;
   }
@@ -303,8 +303,11 @@ export default {
       text-align: center;
       div {
         animation: jump 2s infinite forwards;
-        width: 1.7rem;
-        margin: 0 auto;
+        // width: 1.7rem;
+        // margin: 0 auto;
+        width: 100%;
+        display: flex; flex-direction: column;
+        justify-content: center; align-items: center;
         svg {
           width: 1rem;
           height: 1rem;

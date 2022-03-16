@@ -183,9 +183,14 @@ export default {
     const cards = document.querySelectorAll(".q6-card");
     console.log({ cards });
     cards.forEach((card) => {
-      const w = window.innerWidth / 2 - 20;
-      card.style.width = `${w}px`;
-      card.style.height = `${w * (25 / 17)}px`;
+      // const w = window.innerWidth / 2 - 20;
+      // card.style.width = `${w}px`;
+      // card.style.height = `${w * (25 / 17)}px`;
+      // 45px is the padding bottom of the container
+      // 16px is the grid row-gap
+      const h = ((window.innerHeight * 0.8) / 2 ) - 45 -16;
+      card.style.height = `${h}px`;
+      card.style.width = `${h * (17/25)}px`;
     });
     if (window.innerHeight > 800) {
       document.querySelector(".q6").classList.add("paddingY");
@@ -236,7 +241,8 @@ export default {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 0.25rem;
     row-gap: 1rem;
-    width: 100%;
+
+    // width: 100%;
   }
   &-card {
     // height: 25rem;

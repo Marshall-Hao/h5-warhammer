@@ -145,18 +145,19 @@ export default {
     &-choices {
       display: flex;
       flex-direction: column;
-      padding: 0 3rem;
+      // padding: 0 3rem;
       animation: backInUp 1s ease-in;
       div {
         position: relative;
 
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         letter-spacing: 0.3rem;
         line-height: 1.5rem;
         margin: 0 auto 3rem;
         border-radius: 1rem;
         transition: 0.2s all;
-        width: 25.5rem;
+        // width: 25.5rem;
+        width: 70%;
         div {
           height: 60%;
           width: 50%;

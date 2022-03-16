@@ -136,23 +136,27 @@ export default {
   }
   &-title {
     // margin: 6rem 0;
-    height: 20%; width: 100%;
-    display: flex; align-items: center; justify-content: center;
+    height: 20%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 3rem;
-    animation: fadeInDown 1s, flash 6.5s infinite;
   }
   &-section {
     position: relative;
     // height: 66rem;
     animation: fadeInUp 1s;
-    height: 80%; width: 100%;
+    height: 80%;
+    width: 100%;
     padding-bottom: 4.5rem;
     box-sizing: border-box;
     @include flexCenter;
     &-choices {
       // @include absCenter;
       height: 100%;
-      display: flex; flex-direction: column;
+      display: flex;
+      flex-direction: column;
       justify-content: space-between;
       div {
         width: 28rem;

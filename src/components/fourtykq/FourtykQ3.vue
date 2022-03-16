@@ -25,7 +25,17 @@
           @mousemove.prevent="choiceTouchMove(index)"
           @mousedown="choiceTouchEnd(answer.id)"
         >
-          <svg-icon :name="index + 1" :duration="{}"></svg-icon>
+          <svg-icon
+            :name="index + 1"
+            :duration="{}"
+            v-if="index !== 2"
+          ></svg-icon>
+          <svg-icon
+            :name="index + 1"
+            :duration="{}"
+            icon="icon-special"
+            v-else
+          ></svg-icon>
         </div>
       </div>
     </div>
@@ -164,14 +174,18 @@ export default {
     }
     &-title {
       // margin-top: 2.8rem;
-      height: 25%; width: 100%;
-      display: flex; align-items: center; justify-content: center;
+      height: 25%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       line-height: 4rem;
       font-size: 3rem;
       animation: backInLeft 1s ease-in, pulse 3s ease-in-out infinite;
     }
     &-choices {
-      height: 75%; width: 100%;
+      height: 75%;
+      width: 100%;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       column-gap: 4rem;
@@ -184,7 +198,8 @@ export default {
     &-choice {
       // @include absCenter;
       position: relative;
-      justify-self: center; align-self: center;
+      justify-self: center;
+      align-self: center;
       width: 12rem;
       height: 12rem;
       // margin: 0 auto 4rem;

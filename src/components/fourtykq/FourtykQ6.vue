@@ -2,7 +2,6 @@
   <div class="q6 fixed-no-scroll" :style="questionBackground">
     <h1 class="q6-title">{{ questionText }}</h1>
     <div class="q6-section">
-
       <div class="q6-grid">
         <div
           v-for="(answer, index) in questionChoices"
@@ -15,6 +14,7 @@
             :style="{
               background: `url(${answer.image})`,
               backgroundSize: `cover`,
+              borderRadius: '1.3rem',
             }"
             @mouseleave="backPos"
           ></div>
@@ -35,9 +35,7 @@
           </div>
         </div>
       </div>
-
     </div>
-    <!-- <p class="q6-text">{{ currentQuestion.instruction }}</p> -->
     <svg width="0" height="0">
       <filter
         id="fractal2"
@@ -179,21 +177,20 @@ export default {
     };
   },
   mounted() {
-    console.log(window)
-    this.innerHeight = window.innerHeight
-    this.innerWidth = window.innerWidth
-    const cards = document.querySelectorAll('.q6-card')
-    console.log({cards})
-    cards.forEach(card => {
-      const w = (window.innerWidth/2) - 20
-      card.style.width = `${w}px`
-      card.style.height = `${w*(25/17)}px`
-    })
+    console.log(window);
+    this.innerHeight = window.innerHeight;
+    this.innerWidth = window.innerWidth;
+    const cards = document.querySelectorAll(".q6-card");
+    console.log({ cards });
+    cards.forEach((card) => {
+      const w = window.innerWidth / 2 - 20;
+      card.style.width = `${w}px`;
+      card.style.height = `${w * (25 / 17)}px`;
+    });
     if (window.innerHeight > 800) {
-      document.querySelector('.q6').classList.add('paddingY')
-
+      document.querySelector(".q6").classList.add("paddingY");
     }
-  }
+  },
 };
 </script>
 
@@ -213,14 +210,17 @@ export default {
   &-title {
     font-size: 3rem;
     color: #000;
-    height: 20%; width: 100%;
-    display: flex; align-items: center; justify-content: center;
+    height: 20%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 0 4rem;
     // margin-top: 5.5rem;
-    filter: url(#fractal);
   }
   &-section {
-    height: 80%; width: 100%;
+    height: 80%;
+    width: 100%;
     box-sizing: border-box;
     @include flexCenter;
     align-items: flex-start;
@@ -244,11 +244,13 @@ export default {
     // height: 100%;;
     // width: 100%;
     // margin-bottom: 3rem;
-    align-self: center; justify-self: center;
+    align-self: center;
+    justify-self: center;
     position: relative;
     perspective: 150rem;
     -moz-perspective: 150rem;
     animation: zoomIn 1.8s ease;
+
     &-side {
       position: absolute;
       top: 0;
@@ -262,14 +264,15 @@ export default {
     }
     &-front {
       padding: 1.1rem 1rem 0.8rem 1rem;
+
       &-content {
         background: url(../../assets/images/regular/warhammerMask.png);
         height: 100%;
         width: 100%;
         text-align: center;
         position: relative;
-        border-radius: 0.3rem;
-        filter: url(#fractal2);
+        border-radius: 1.5rem;
+        // filter: url(#fractal2);
       }
       &-btn {
         @include absCenter;

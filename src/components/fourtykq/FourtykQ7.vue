@@ -33,7 +33,7 @@
         @mouseleave="onMiddleTouchEnd"
       >
         <div class="q7-progress-eagle">
-          <svg-icon :name="3" fill="#fff" :duration="animation"></svg-icon>
+          <svg-icon :name="3" fill="#fff" duration="''"></svg-icon>
         </div>
       </div>
       <div class="q7-progress-bottom" ref="swipeTwo">
@@ -175,10 +175,12 @@ export default {
   background-size: cover;
   &-title {
     // margin-top: 4.5rem;
-    height: 20%; width: 100%;
-    display: flex; align-items: center; justify-content: center;
+    height: 20%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 2.5rem;
-    animation: pulse 3s infinite ease;
   }
   &-section {
     // margin-top: 5rem;

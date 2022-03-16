@@ -133,30 +133,32 @@ export default {
   }
   &-title {
     margin-top: 14rem;
-    letter-spacing: 0.3rem;
+    // letter-spacing: 0.3rem;
     line-height: 3.2rem;
-    padding: 0 1rem;
-    color: #7d300b;
+    padding: 0 4rem;
+    // color: #7d300b;
+    color: $color-text-py;
     font-size: 2.6rem;
-    animation: fadeInDownBig 1s, shadowtext 5s infinite ease-out;
+    // animation: fadeInDownBig 1s, shadowtext 5s infinite ease-out;
+    animation: fadeInDownBig 1s;
   }
   &-section {
     margin-top: 6rem;
     &-choices {
       display: flex;
       flex-direction: column;
-      padding: 0 3rem;
+      // padding: 0 3rem;
       animation: backInUp 1s ease-in;
       div {
         position: relative;
-
-        font-size: 1.4rem;
+        font-size: 1.8rem;
         letter-spacing: 0.3rem;
-        line-height: 1.5rem;
-        margin: 0 auto 3rem;
+        line-height: 2rem;
+        margin: 0 auto 4rem;
         border-radius: 1rem;
         transition: 0.2s all;
-        width: 25.5rem;
+        // width: 25.5rem;
+        width: 70%;
         div {
           height: 60%;
           width: 50%;

@@ -68,8 +68,8 @@
     <LuckyWheel
       class="q4-luckwheel"
       ref="myLucky"
-      width="400px"
-      height="400px"
+      width="40rem"
+      height="40rem"
       :prizes="prizes"
       :blocks="blocks"
       :defaultConfig="defaultConfig"
@@ -161,7 +161,7 @@ export default {
         { title: "11" },
       ],
       defaultConfig: {
-        speed: 20,
+        speed: 30,
       },
       choice1: ["1", "2", "3"],
       choice2: ["0", "11", "10"],
@@ -260,10 +260,36 @@ export default {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    filter: url(#fractal);
     div {
-      transform: scale(1.01, 1.01);
       background-size: cover;
+      background-repeat: no-repeat;
+      background-position: right;
+      position: relative;
+      transform: scale(1.01, 1.01);
+      &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+      }
+      &:nth-child(-n + 2) {
+        &::after {
+          content: "";
+          background: linear-gradient(0deg, #fff 0%, #fff 4%, transparent 50%);
+        }
+      }
+      &:nth-child(n + 3) {
+        &::after {
+          content: "";
+          background: linear-gradient(
+            180deg,
+            #fff 0%,
+            #fff 4%,
+            transparent 50%
+          );
+        }
+      }
     }
   }
   &-intro {

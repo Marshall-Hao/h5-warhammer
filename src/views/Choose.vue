@@ -77,7 +77,7 @@
       <div class="choose-section-options-l" ref="swipeOne">
         <div :class="{ heartbeat: beatAnimate.left }">前尘</div>
         <ul>
-          <li>
+          <!-- <li>
             <svg width="16.5" height="30" viewBox="0 0 110 200">
               <polyline
                 points="100 0, 0 100, 100 200,110 190,25 100, 110 10 "
@@ -104,7 +104,7 @@
                 ></animate>
               </polyline>
             </svg>
-          </li>
+          </li> -->
           <li>
             <svg width="16.5" height="30" viewBox="0 0 110 200">
               <polyline
@@ -204,9 +204,9 @@
         <svg-icon
           :name="`hammer`"
           :prefix="`war-`"
-          :fill="`none`"
-          :stroke="`#FFFFFF`"
-          :duration="animation"
+          fill="#FFFFFF"
+          stroke="#FFFFFF"
+          :duration="{}"
         ></svg-icon>
       </div>
       <div class="choose-section-options-r" ref="swipeTwo">
@@ -295,7 +295,7 @@
               </polyline>
             </svg>
           </li>
-          <li>
+          <!-- <li>
             <svg width="16.5" height="30" viewBox="0 0 110 200">
               <polyline
                 points="10 200, 110 100, 10 0,0 10,85 100, 0 190 "
@@ -322,7 +322,7 @@
                 ></animate>
               </polyline>
             </svg>
-          </li>
+          </li> -->
         </ul>
         <div
           style="color: #64798b; text-align: right"
@@ -408,9 +408,6 @@ export default {
       width: 100%;
       display: flex;
       justify-content: space-between;
-      img {
-        filter: url(#fractal);
-      }
     }
   }
 
@@ -429,7 +426,6 @@ export default {
       background: url(../assets/images/regular/chooseRightGuy.jpg);
       background-repeat: no-repeat;
       background-size: cover;
-      filter: url(#fractal);
     }
     &-displayS {
       position: absolute;
@@ -442,7 +438,6 @@ export default {
       background-size: cover;
       mask: linear-gradient(90deg, #000 45%, transparent 60%);
       z-index: 1;
-      filter: url(#fractal);
     }
 
     &-options {
@@ -464,12 +459,12 @@ export default {
         justify-content: space-between;
         align-items: center;
         & > div {
-          width: 25%;
-          font-size: 1.5rem;
+          width: 35%;
+          font-size: 2rem;
           color: $color-theme-y;
         }
         ul {
-          width: 75%;
+          width: 65%;
           display: flex;
           flex-direction: row-reverse;
           justify-content: space-between;

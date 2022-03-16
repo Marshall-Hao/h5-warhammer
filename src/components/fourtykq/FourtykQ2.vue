@@ -80,24 +80,29 @@ export default {
     z-index: -2;
   }
   &-title {
-    height: 20%; width: 100%;
-    display: flex; align-items: center; justify-content: center;
+    height: 20%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     // margin: 6rem 0;
     font-size: 2.5rem;
-    filter: url(#fractal);
+    // filter: url(#fractal);
   }
   &-section {
     position: relative;
     // height: 70rem;
     animation: pulse 2s 1s infinite ease-in-out;
-    height: 80%; width: 100%;
+    height: 80%;
+    width: 100%;
     padding-bottom: 4.5rem;
     box-sizing: border-box;
     @include flexCenter;
     &-choices {
       // @include absCenter;
       height: 100%;
-      display: flex; flex-direction: column;
+      display: flex;
+      flex-direction: column;
       justify-content: space-between;
       div {
         position: relative;

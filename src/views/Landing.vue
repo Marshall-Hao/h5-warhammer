@@ -5,29 +5,20 @@
         <svg-icon
           :name="`hammer`"
           :prefix="`war-`"
-          :fill="`none`"
+          fill="#FFFFFF"
           :stroke="`#FFFFFF`"
-          :duration="duration"
+          :duration="{}"
         ></svg-icon>
       </div>
       <div class="landing-header-title">
-        <svg heightviewBox="0 0 200 40" width="360" height="40">
-          <text x="39" y="30">Enter the Worlds of</text>
-        </svg>
-        <svg heightviewBox="0 0 200 40" width="360" height="40">
-          <text x="95" y="30">Warhammer</text>
-        </svg>
+        Enter the Worlds of<br />
+        Warhammer
       </div>
     </header>
 
     <section class="landing-section">
       <div class="landing-section-video">
-        <fly-box :lineColor="`#BC3F2F`" :starColor="`#d93f30`" :duration="`5`">
-          <video
-            src="#"
-            poster="../assets/images/regular/vidPoster.png"
-          ></video>
-        </fly-box>
+        <video src="#" poster="../assets/images/regular/vidPoster.png"></video>
       </div>
 
       <div class="landing-section-description">
@@ -35,63 +26,68 @@
       </div>
 
       <div class="landing-section-begin" @click="onClick">
-        <landing-ball></landing-ball>
-        <div class="landing-section-begin-intro">
-          <div>
-            <svg width="16.5" height="30" viewBox="0 0 110 200">
-              <polyline
-                points="100 0, 0 100, 100 200,110 190,25 100, 110 10 "
-                fill="rgb(255, 255, 255)"
-                stroke-linecap="round"
-              >
-                <animate
-                  id="l41"
-                  attributeName="fill"
-                  attributeType="XML"
-                  from="rgb(255, 255, 255,0.9)"
-                  to="rgb(255, 255, 255)"
-                  dur="2s"
-                  begin="0; l42.end"
-                ></animate>
-                <animate
-                  id="l42"
-                  attributeName="fill"
-                  attributeType="XML"
-                  from="rgb(255, 255, 255)"
-                  to="rgb(255, 255, 255,0.9)"
-                  dur="2s"
-                  begin="l41.end"
-                ></animate>
-              </polyline>
-            </svg>
-            <svg width="16.5" height="30" viewBox="0 0 110 200">
-              <polyline
-                points="100 0, 0 100, 100 200,110 190,25 100, 110 10 "
-                fill="rgb(255, 255, 255)"
-                stroke-linecap="round"
-              >
-                <animate
-                  id="l41"
-                  attributeName="fill"
-                  attributeType="XML"
-                  from="rgb(255, 255, 255,0.9)"
-                  to="rgb(255, 255, 255)"
-                  dur="2s"
-                  begin="0; l42.end"
-                ></animate>
-                <animate
-                  id="l42"
-                  attributeName="fill"
-                  attributeType="XML"
-                  from="rgb(255, 255, 255)"
-                  to="rgb(255, 255, 255,0.9)"
-                  dur="2s"
-                  begin="l41.end"
-                ></animate>
-              </polyline>
-            </svg>
-          </div>
+        <img src="../assets/images/regular/pulsing_orb.gif" alt="orb" />
+      </div>
+      <div class="landing-section-intro">
+        <div>
+          <svg width="11" height="20" viewBox="0 0 110 200">
+            <polyline
+              points="100 0, 0 100, 100 200,110 190,25 100, 110 10 "
+              fill="rgb(255, 255, 255)"
+              stroke-linecap="round"
+              transform-origin="55 100"
+              transform="rotate(90)"
+            >
+              <animate
+                id="l41"
+                attributeName="fill"
+                attributeType="XML"
+                from="rgb(255, 255, 255,0.9)"
+                to="rgb(255, 255, 255)"
+                dur="2s"
+                begin="0; l42.end"
+              ></animate>
+              <animate
+                id="l42"
+                attributeName="fill"
+                attributeType="XML"
+                from="rgb(255, 255, 255)"
+                to="rgb(255, 255, 255,0.9)"
+                dur="2s"
+                begin="l41.end"
+              ></animate>
+            </polyline>
+          </svg>
+          <svg width="11" height="20" viewBox="0 0 110 200">
+            <polyline
+              points="100 0, 0 100, 100 200,110 190,25 100, 110 10 "
+              fill="rgb(255, 255, 255)"
+              stroke-linecap="round"
+              transform-origin="55 100"
+              transform="rotate(90)"
+            >
+              <animate
+                id="l41"
+                attributeName="fill"
+                attributeType="XML"
+                from="rgb(255, 255, 255,0.9)"
+                to="rgb(255, 255, 255)"
+                dur="2s"
+                begin="0; l42.end"
+              ></animate>
+              <animate
+                id="l42"
+                attributeName="fill"
+                attributeType="XML"
+                from="rgb(255, 255, 255)"
+                to="rgb(255, 255, 255,0.9)"
+                dur="2s"
+                begin="l41.end"
+              ></animate>
+            </polyline>
+          </svg>
         </div>
+
         <h4>
           Where do you belong in these incredible settings? Discover your
           destiny now.
@@ -147,7 +143,6 @@
 </template>
 
 <script>
-import FlyBox from "../components/base/fly-box/FlyBox";
 import LandingBall from "../components/base/landingBall/LandingBall";
 import useTyped from "../assets/js/use-typed";
 import login from "../services/login";
@@ -158,7 +153,6 @@ import SvgIcon from "../components/base/svgIcon/SvgIcon";
 export default {
   name: "landing",
   components: {
-    FlyBox,
     LandingBall,
     SvgIcon,
   },
@@ -174,10 +168,10 @@ export default {
     useTyped(
       "#landing-section-typed",
       [
-        "War is everything. Mighty empires clash in the eternal struggle for domination – across realms of magic, and the bleak vastness of space. ",
+        "War is everything. Mighty empires clash in the eternal struggle for domination – across realms of magic, and the bleak vastness of space ",
       ],
       25,
-      "_"
+      "."
     );
     //  * events track
     ahoy.configure({
@@ -219,11 +213,11 @@ export default {
     }
     &-title {
       margin: $font-size-medium-x auto 0;
-      text {
-        width: 100%;
-        font-size: 2.5rem;
-        letter-spacing: 0.3rem;
-      }
+      font-size: 3rem;
+      line-height: 3.3rem;
+      color: #c9c9c9;
+      font-weight: 400;
+      letter-spacing: 0.1rem;
     }
   }
 
@@ -233,9 +227,10 @@ export default {
     height: 18rem;
     @include absXCenter;
     &-video {
+      border: 1px solid $color-text-pr;
       video {
-        width: 34rem;
-        height: 17rem;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
       }
     }
@@ -251,15 +246,26 @@ export default {
     }
 
     &-begin {
-      text-align: center;
+      position: relative;
       img {
-        height: 20rem;
-        width: 20rem;
+        top: -2rem;
+        @include absXCenter;
+        height: 15rem;
+        width: 15rem;
+        object-fit: fit;
       }
-      &-intro {
+    }
+    &-intro {
+      margin-top: 10.5rem;
+      text-align: center;
+      div {
         animation: jump 2s infinite forwards;
-        div {
-          transform: rotateZ(90deg);
+        width: 1.7rem;
+        margin: 0 auto;
+        svg {
+          width: 1rem;
+          height: 1rem;
+          opacity: 0.5;
         }
       }
       h4 {
@@ -268,7 +274,6 @@ export default {
         font-size: 1.5rem;
         letter-spacing: 0.05rem;
         line-height: 1.5rem;
-        filter: url(#fractal);
       }
     }
   }
@@ -290,10 +295,6 @@ export default {
   }
 }
 
-text {
-  animation: stroke 5s infinite alternate;
-  font-size: 4rem;
-}
 @keyframes stroke {
   0% {
     fill: rgba(72, 138, 20, 0);
@@ -327,13 +328,13 @@ text {
 }
 @keyframes jump {
   0% {
-    transform: translateY(-0.5rem);
+    transform: translateY(-0.3rem);
   }
   50% {
-    transform: translateY(0.5rem);
+    transform: translateY(0.3rem);
   }
   100% {
-    transform: translateY(-0.5rem);
+    transform: translateY(-0.3rem);
   }
 }
 </style>

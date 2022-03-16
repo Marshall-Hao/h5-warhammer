@@ -1,5 +1,5 @@
 <template>
-  <svg class="icon">
+  <svg :class="icon">
     <use :href="iconName" :style="duration" :fill="fill" :stroke="stroke"></use>
   </svg>
 </template>
@@ -28,6 +28,10 @@ export default {
       type: String,
       default: "rgba(72, 138, 20, 0)",
     },
+    icon: {
+      type: String,
+      default: "icon",
+    },
   },
   setup(props) {
     const iconName = `#${props.prefix}${props.name}`;
@@ -43,6 +47,13 @@ export default {
   height: 100%;
   width: 100%;
   @include absCenter;
+}
+
+.icon-special {
+  height: 100%;
+  width: 100%;
+  @include absXCenter;
+  top: 11%;
 }
 
 use {

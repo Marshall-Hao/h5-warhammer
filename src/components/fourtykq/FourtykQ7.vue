@@ -10,9 +10,10 @@
         <video-box
           :posterUrl="answer.image"
           :duration="4"
-          starColor="#BC3F2F"
+          starColor="rgb(222, 210, 233,0.8)"
           lineColor="#65798b"
-        ></video-box>
+        >
+        </video-box>
       </div>
     </div>
     <div class="q7-progress">
@@ -33,7 +34,7 @@
         @mouseleave="onMiddleTouchEnd"
       >
         <div class="q7-progress-eagle">
-          <svg-icon :name="3" fill="#fff" duration="''"></svg-icon>
+          <svg-icon :name="3" fill="#fff" :duration="{}"></svg-icon>
         </div>
       </div>
       <div class="q7-progress-bottom" ref="swipeTwo">
@@ -46,18 +47,6 @@
         {{ currentQuestion.instruction }}
       </p>
     </div>
-    <svg width="0" height="0">
-      <filter id="smoke">
-        <feTurbulence
-          ref="turbulence"
-          id="turbulence"
-          type="fractalNoise"
-          baseFrequency=".03"
-          numOctaves="20"
-        />
-        <feDisplacementMap in="SourceGraphic" scale="30" />
-      </filter>
-    </svg>
   </div>
 </template>
 
@@ -100,16 +89,16 @@ export default {
     const maskValue = computed(() => {
       return `linear-gradient(
           0,
-          rgba(229, 23, 49, 1),
-          rgba(229, 23, 49, 0.9) ${maskTransform.redOffset}%,
+          rgb(222, 210, 233,0.8),
+          rgba(222, 210, 233, 0.6) ${maskTransform.redOffset}%,
           transparent ${maskTransform.transparentOffsetY}%
         );`;
     });
     const greyMask = computed(() => {
       return `linear-gradient(
            180deg,
-          rgb(222, 210, 233),
-          rgba(222, 210, 233, 0.9) ${maskTransform.greyOffset}%,
+          rgb(222, 210, 233,0.8),
+          rgba(222, 210, 233, 0.6) ${maskTransform.greyOffset}%,
           transparent ${maskTransform.transparentOffsetYGrey}%
         );`;
     });
@@ -170,12 +159,13 @@ export default {
   // height: 100%;
   // width: 100%;
   // overflow-y: scroll;
+
   overflow-x: hidden;
   text-align: center;
   background-size: cover;
   &-title {
     // margin-top: 4.5rem;
-    height: 20%;
+    height: 15%;
     width: 100%;
     display: flex;
     align-items: center;
@@ -185,28 +175,32 @@ export default {
   &-section {
     // margin-top: 5rem;
     @include absXCenter;
+    width: 100%;
+    height: 100%;
     &-option {
-      width: 23rem;
-      height: 28rem;
+      width: 73.3%;
+      height: 29.1%;
+      position: relative;
       &:not(:last-child) {
-        margin-bottom: 13rem;
+        margin: 0 auto 13rem;
         animation: fadeInDown 1s ease;
       }
       &:last-child {
+        margin: 0 auto;
         animation: fadeInUp 1s ease;
       }
     }
   }
+
   &-progress {
-    height: 67.8rem;
-    width: 22rem;
+    height: 100%;
+    width: 73.3%;
     @include absXCenter;
-    top: 12.6rem;
     &-top {
       position: absolute;
-      top: 1rem;
+      top: -0.5rem;
       width: 100%;
-      height: 27rem;
+      height: 29.1%;
       overflow: hidden;
       &-mask {
         height: 100%;
@@ -214,38 +208,73 @@ export default {
 
         bottom: -0.9rem;
         @include absXCenter;
-        filter: url(#smoke);
+        // filter: url(#smoke);
       }
     }
     &-container {
-      @include absCenter;
+      @include absXCenter;
+      top: 33%;
     }
     &-eagle {
       width: 16rem;
       height: 7.41rem;
-      @include absCenter;
+
+      @include absXCenter;
     }
     &-bottom {
       position: absolute;
-      bottom: 0;
+
+      bottom: 25.6%;
       width: 100%;
-      height: 27rem;
+      height: 29.1%;
       overflow: hidden;
+      // background: red;
       &-mask {
         height: 100%;
         width: 130%;
         transform: scaleX(1.3);
         @include absXCenter;
         top: -0.9rem;
-        filter: url(#smoke);
+        // filter: url(#smoke);
       }
     }
+
     &-instruction {
       position: absolute;
-      left: 23%;
-      top: 57%;
-      animation: shakeY 10s infinite ease;
+      left: 26.5%;
+      top: 43%;
+      animation: jump 2s infinite ease;
     }
+  }
+
+  @media only screen and (min-width: 375px) and (max-width: 375px) {
+    .q7-progress-bottom {
+      bottom: 17.5%;
+    }
+  }
+
+  @media only screen and (min-width: 412px) and (max-width: 414px) {
+    .q7-progress-bottom {
+      bottom: 26.6%;
+    }
+  }
+
+  @media only screen and (min-width: 360px) and (max-width: 360px) {
+    .q7-progress-bottom {
+      bottom: 23.3%;
+    }
+  }
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(-0.3rem);
+  }
+  50% {
+    transform: translateY(0.3rem);
+  }
+  100% {
+    transform: translateY(-0.3rem);
   }
 }
 </style>

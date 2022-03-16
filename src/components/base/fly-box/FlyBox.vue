@@ -69,9 +69,9 @@ export default {
     const radialId = `radial-graident-${uuid}`;
     const maskId = `fly-box-mask-${uuid}`;
     const path = computed(() => {
-      return `M5 5 L${width.value - 5} 5 L${width.value - 5} ${
+      return `M0 5 L${width.value} 5 L${width.value} ${height.value - 5} L5 ${
         height.value - 5
-      } L5 ${height.value - 5} Z`;
+      } Z`;
     });
     onUpdated(() => {
       init();

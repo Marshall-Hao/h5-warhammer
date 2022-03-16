@@ -177,9 +177,8 @@ export default {
     };
   },
   mounted() {
-    console.log(window);
-    this.innerHeight = window.innerHeight;
-    this.innerWidth = window.innerWidth;
+    const phoneDimension = {w: 1, h: window.innerHeight/window.innerWidth}
+    console.log({phoneDimension});
     const cards = document.querySelectorAll(".q6-card");
     console.log({ cards });
     cards.forEach((card) => {

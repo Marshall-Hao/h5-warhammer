@@ -214,9 +214,9 @@ export default {
 <style lang="scss" scoped>
 .landing {
   padding: 1rem 0;
-  @media only screen and (max-height: 740px) {
-    padding: 1rem 0;
-  }
+  // @media only screen and (max-height: 740px) {
+  //   padding: 1rem 0;
+  // }
   &-header {
     height: 25%;
     @media only screen and (max-height: 740px) {
@@ -235,8 +235,8 @@ export default {
     }
     &-title {
       margin: $font-size-medium-x auto 0;
-      // font-size: 3rem;
-      font-size: 220%;
+      font-size: 2.75rem;
+      // font-size: 220%;
       line-height: 3.3rem;
       color: #c9c9c9;
       font-weight: 400;
@@ -272,10 +272,10 @@ export default {
       // height: 11rem;
       span {
         font-size: $font-size-medium-x;
-        @media only screen and (max-height: 740px) {
-          font-size: $font-size-medium;
-          line-height: $font-size-large;
-        }
+        // @media only screen and (max-height: 740px) {
+        //   font-size: $font-size-medium;
+        //   line-height: $font-size-large;
+        // }
         line-height: 2rem;
       }
     }
@@ -290,9 +290,9 @@ export default {
         // @include absXCenter;
         height: 15rem;
         width: 15rem;
-        @media only screen and (max-height: 740px) {
-          height: 12rem; width: 12rem;
-        }
+        // @media only screen and (max-height: 740px) {
+        //   height: 12rem; width: 12rem;
+        // }
         object-fit: fit;
       }
     }
@@ -316,14 +316,14 @@ export default {
       }
       h4 {
         margin-top: 1rem;
-        padding: 0 1.4rem;
+        padding: 0 2.5rem;
         font-size: $font-size-medium;
         letter-spacing: 0.05rem;
         line-height: $font-size-large;
-        @media only screen and (max-height: 740px) {
-          font-size: $font-size-small;
-          line-height: $font-size-medium-x;
-        }
+        // @media only screen and (max-height: 740px) {
+        //   font-size: $font-size-small;
+        //   line-height: $font-size-medium-x;
+        // }
       }
     }
   }
@@ -339,9 +339,9 @@ export default {
     justify-content: space-between;
     // font-size: 1.6rem;
     font-size: $font-size-medium;
-    @media only screen and (max-height: 740px) {
-      font-size: $font-size-small;
-    }
+    // @media only screen and (max-height: 740px) {
+    //   font-size: $font-size-small;
+    // }
     &-terms {
       color: $color-text-py;
       //   text-decoration: underline $color-text-py;

@@ -177,20 +177,22 @@ export default {
     };
   },
   mounted() {
-    console.log(window);
-    this.innerHeight = window.innerHeight;
-    this.innerWidth = window.innerWidth;
+    const phoneDimension = {w: 1, h: window.innerHeight/window.innerWidth}
+    console.log({phoneDimension});
     const cards = document.querySelectorAll(".q6-card");
     console.log({ cards });
     cards.forEach((card) => {
-      // const w = window.innerWidth / 2 - 20;
-      // card.style.width = `${w}px`;
-      // card.style.height = `${w * (25 / 17)}px`;
-      // 45px is the padding bottom of the container
-      // 16px is the grid row-gap
-      const h = ((window.innerHeight * 0.8) / 2 ) - 45 -16;
-      card.style.height = `${h}px`;
-      card.style.width = `${h * (17/25)}px`;
+      if (window.innerHeight > 700) {
+        const w = window.innerWidth / 2 - 20;
+        card.style.width = `${w}px`;
+        card.style.height = `${w * (25 / 17)}px`;
+      } else {
+        // 45px is the padding bottom of the container
+        // 16px is the grid row-gap
+        const h = (((window.innerHeight * 0.8) - 45 -16) / 2 );
+        card.style.height = `${h}px`;
+        card.style.width = `${h * (17/25)}px`;
+      }
     });
     if (window.innerHeight > 800) {
       document.querySelector(".q6").classList.add("paddingY");

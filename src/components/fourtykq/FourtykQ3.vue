@@ -1,8 +1,8 @@
 <template>
-  <div class="q3">
+  <div class="q3 fixed-no-scroll">
     <div class="q3-background" :style="questionBackground"></div>
     <div class="q3-section">
-      <div class="q3-section-video">
+      <!-- <div class="q3-section-video">
         <video-box
           :lineColor="`rgb(67,80,102)`"
           :starColor="`#BC3F2F`"
@@ -10,7 +10,7 @@
           :style="{ transform: 'scale(1.115,1.19)' }"
           :posterUrl="currentQuestion.instruction_image"
         ></video-box>
-      </div>
+      </div> -->
       <h1 class="q3-section-title">{{ questionText }}</h1>
       <div class="q3-section-choices">
         <div
@@ -132,12 +132,12 @@ export default {
 
 <style lang="scss" scoped>
 .q3 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  overflow-y: scroll;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // height: 100%;
+  // width: 100%;
+  // overflow-y: scroll;
   overflow-x: hidden;
   text-align: center;
   &-background {
@@ -150,7 +150,9 @@ export default {
   }
   &-section {
     width: 37rem;
-    margin-top: 1rem;
+    height: 100%;
+    padding: 2.25rem 4rem;
+    // margin-top: 1rem;
     position: relative;
     @include absXCenter;
     text-align: center;
@@ -161,23 +163,31 @@ export default {
       // animation: fadeIn 1s ease-in;
     }
     &-title {
-      margin-top: 2.8rem;
+      // margin-top: 2.8rem;
+      height: 25%; width: 100%;
+      display: flex; align-items: center; justify-content: center;
       line-height: 4rem;
       font-size: 3rem;
       animation: backInLeft 1s ease-in, pulse 3s ease-in-out infinite;
     }
     &-choices {
+      height: 75%; width: 100%;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      margin-top: 7rem;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 4rem;
+      row-gap: 1.25rem;
+      // margin-top: 3rem;
+      // padding: 2rem 0;
+      padding-bottom: 3rem;
       animation: fadeInUp 1s;
     }
     &-choice {
       // @include absCenter;
       position: relative;
-      width: 10rem;
-      margin: 0 auto 4rem;
-      height: 10rem;
+      justify-self: center; align-self: center;
+      width: 12rem;
+      height: 12rem;
+      // margin: 0 auto 4rem;
       border-radius: 50%;
       border: 0.3rem solid black;
       background-color: $color-text-pr;

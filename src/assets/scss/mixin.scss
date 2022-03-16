@@ -33,6 +33,12 @@
   transform: translate(-50%, -50%);
 }
 
+@mixin flexCenter {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 @mixin absXCenter {
   position: absolute;
   left: 50%;

@@ -1,39 +1,43 @@
 <template>
-  <div class="q6" :style="questionBackground">
+  <div class="q6 fixed-no-scroll" :style="questionBackground">
     <h1 class="q6-title">{{ questionText }}</h1>
     <div class="q6-section">
-      <div
-        v-for="(answer, index) in questionChoices"
-        :key="answer"
-        class="q6-card"
-      >
+
+      <div class="q6-grid">
         <div
-          class="q6-card-side q6-card-back"
-          :class="{ 'back-flip': flip === index }"
-          :style="{
-            background: `url(${answer.image})`,
-            backgroundSize: `cover`,
-          }"
-          @mouseleave="backPos"
-        ></div>
-        <div
-          class="q6-card-side q6-card-front"
-          :class="{ 'front-flip': flip === index }"
+          v-for="(answer, index) in questionChoices"
+          :key="answer"
+          class="q6-card"
         >
-          <div class="q6-card-front-content">
-            <div
-              class="q6-card-front-btn"
-              @touchstart.prevent="flipCard(index, answer.id)"
-              @mouseenter.prevent="flipCard(index, answer.id)"
-              @mousemove.prevent="choiceTouchMove(index)"
-            >
-              Flip
+          <div
+            class="q6-card-side q6-card-back"
+            :class="{ 'back-flip': flip === index }"
+            :style="{
+              background: `url(${answer.image})`,
+              backgroundSize: `cover`,
+            }"
+            @mouseleave="backPos"
+          ></div>
+          <div
+            class="q6-card-side q6-card-front"
+            :class="{ 'front-flip': flip === index }"
+          >
+            <div class="q6-card-front-content">
+              <div
+                class="q6-card-front-btn"
+                @touchstart.prevent="flipCard(index, answer.id)"
+                @mouseenter.prevent="flipCard(index, answer.id)"
+                @mousemove.prevent="choiceTouchMove(index)"
+              >
+                Flip
+              </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
-    <p class="q6-text">{{ currentQuestion.instruction }}</p>
+    <!-- <p class="q6-text">{{ currentQuestion.instruction }}</p> -->
     <svg width="0" height="0">
       <filter
         id="fractal2"
@@ -174,37 +178,73 @@ export default {
       choiceTouchMove,
     };
   },
+  mounted() {
+    console.log(window)
+    this.innerHeight = window.innerHeight
+    this.innerWidth = window.innerWidth
+    const cards = document.querySelectorAll('.q6-card')
+    console.log({cards})
+    cards.forEach(card => {
+      const w = (window.innerWidth/2) - 20
+      card.style.width = `${w}px`
+      card.style.height = `${w*(25/17)}px`
+    })
+    if (window.innerHeight > 800) {
+      document.querySelector('.q6').classList.add('paddingY')
+
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
+.paddingY {
+  padding: 4rem 0;
+}
 .q6 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  overflow-y: scroll;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // height: 100%;
+  // width: 100%;
+  // overflow-y: scroll;
   overflow-x: hidden;
   text-align: center;
   &-title {
-    font-size: 3.5rem;
+    font-size: 3rem;
     color: #000;
-    margin-top: 5.5rem;
+    height: 20%; width: 100%;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 4rem;
+    // margin-top: 5.5rem;
     filter: url(#fractal);
   }
   &-section {
+    height: 80%; width: 100%;
+    box-sizing: border-box;
+    @include flexCenter;
+    align-items: flex-start;
+    padding: 0rem 2rem 4.5rem 2rem;
+    box-sizing: border-box;
+    // display: flex;
+    // justify-content: space-between;
+    // flex-wrap: wrap;
+    // margin-top: 6rem;
+  }
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 0.25rem;
+    row-gap: 1rem;
     width: 100%;
-    padding: 0rem 1rem;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-top: 6rem;
   }
   &-card {
-    height: 25rem;
-    width: 17rem;
-    margin-bottom: 3rem;
+    // height: 25rem;
+    // width: 17rem;
+    // height: 100%;;
+    // width: 100%;
+    // margin-bottom: 3rem;
+    align-self: center; justify-self: center;
     position: relative;
     perspective: 150rem;
     -moz-perspective: 150rem;
@@ -214,7 +254,8 @@ export default {
       top: 0;
       left: 0;
       width: 100%;
-      height: 25rem;
+      height: 100%;
+      // height: 25rem;
       backface-visibility: hidden;
       overflow: hidden;
       transition: all 0.5s ease;

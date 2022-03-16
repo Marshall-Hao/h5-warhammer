@@ -1,5 +1,5 @@
 <template>
-  <div class="q7" :style="questionBackground">
+  <div class="q7 fixed-no-scroll" :style="questionBackground">
     <h1 class="q7-title">{{ questionText }}</h1>
     <div class="q7-section">
       <div
@@ -164,22 +164,24 @@ export default {
 
 <style lang="scss" scoped>
 .q7 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  overflow-y: scroll;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // height: 100%;
+  // width: 100%;
+  // overflow-y: scroll;
   overflow-x: hidden;
   text-align: center;
   background-size: cover;
   &-title {
-    margin-top: 4.5rem;
+    // margin-top: 4.5rem;
+    height: 20%; width: 100%;
+    display: flex; align-items: center; justify-content: center;
     font-size: 2.5rem;
     animation: pulse 3s infinite ease;
   }
   &-section {
-    margin-top: 5rem;
+    // margin-top: 5rem;
     @include absXCenter;
     &-option {
       width: 23rem;

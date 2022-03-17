@@ -14,7 +14,7 @@
       <div v-if="showSub" class="glide q6-section-glide">
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
-            <li class="glide__slide" v-for="sub in subFactions" :key="sub">
+            <li class="glide__slide" style="display: flex; flex-direction: column;" v-for="sub in subFactions" :key="sub">
               <div
                 class="q6-section-sub"
                 :style="{
@@ -24,7 +24,7 @@
               <div class="q6-section-subtitle">
                 {{ sub.name }}
               </div>
-              <div>关于</div>
+              <div class="q6-section-about">关于</div>
             </li>
           </ul>
         </div>
@@ -254,7 +254,8 @@ export default {
       font-size: 1.4rem;
 
       line-height: 1.8rem;
-      margin: 0.5rem 0.6rem 3rem;
+      // margin: 0.5rem 0.6rem 3rem;
+      margin: 0.5rem 1.6rem 3rem;
     }
     &-title {
       font-size: 1.6rem;
@@ -271,11 +272,15 @@ export default {
       justify-content: space-between;
       color: $color-text-py;
       text-decoration: underline;
-      margin: 3rem 6.5rem 1rem;
-      font-size: 1.2rem;
+      // margin: 3rem 6.5rem 1rem;
+      margin: 3rem 6.5rem;
+      // font-size: 1.2rem;
+      font-size: 1.5rem;
     }
     &-sub {
-      margin: 0rem 2.2rem 2rem;
+      // margin: 0rem 2.2rem 2rem;
+      margin-bottom: 2rem;
+      align-self: center; justify-self: center;
       width: 12rem;
       height: 15.7rem;
       background-size: contain;
@@ -286,10 +291,16 @@ export default {
     &-subtitle {
       color: $color-sub-theme;
       margin-bottom: 1rem;
+      font-size: 2rem;
+      text-transform: uppercase;
+    }
+    &-about {
+      font-size: 1.5rem;
     }
   }
   &-packs {
-    margin-top: 2rem;
+    // margin-top: 2rem;
+    margin: 2rem 0;
     text-align: center;
     position: relative;
     &-title {
@@ -304,13 +315,15 @@ export default {
   }
   &-product {
     width: 31.5rem;
-    height: 28.7rem;
-    background: #fff;
-    border-radius: 0.7rem;
-    margin-bottom: 2rem;
+    // height: 28.7rem;
+    height: 32.7rem;
+    // background: #fff;
+    // border-radius: 0.7rem;
+    // margin-bottom: 2rem;
+    margin-bottom: 3rem;
     position: relative;
     &-container {
-      border: 0.15rem solid #000;
+      // border: 0.15rem solid #000;
       height: 97%;
       width: 97%;
       @include absCenter;
@@ -324,10 +337,10 @@ export default {
       }
       a {
         color: $color-text-pr;
-        font-size: 1.4rem;
+        font-size: 1.7rem;
         font-weight: 700;
         @include absCenter;
-        margin-top: 5rem;
+        margin-top: 6rem;
         font-family: Heiti SC, STHeiti, SimHei;
         width: 21rem;
       }
@@ -335,11 +348,12 @@ export default {
         width: 100%;
         color: #000;
         @include absCenter;
-        font-size: 1.2rem;
-        line-height: 1.7rem;
+        font-size: 1.5rem;
+        line-height: 2rem;
         font-family: Heiti SC, STHeiti, SimHei;
-
-        margin-top: 10rem;
+        color: #fff;
+        // margin-top: 10rem;
+        margin-top: 13rem;
       }
     }
   }

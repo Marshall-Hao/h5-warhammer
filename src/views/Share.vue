@@ -14,7 +14,7 @@
       <div v-if="showSub" class="glide q6-section-glide">
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
-            <li class="glide__slide" v-for="sub in subFactions" :key="sub">
+            <li class="glide__slide" style="display: flex; flex-direction: column;" v-for="sub in subFactions" :key="sub">
               <div
                 class="q6-section-sub"
                 :style="{
@@ -24,7 +24,7 @@
               <div class="q6-section-subtitle">
                 {{ sub.name }}
               </div>
-              <div>关于</div>
+              <div class="q6-section-about">关于</div>
             </li>
           </ul>
         </div>
@@ -110,10 +110,14 @@
                       backgroundImage: ` url(${product.image})`,
                     }"
                   ></div>
-                  <a :href="product.shop_url">{{ product.name }}</a>
+                  <!-- <a :href="product.shop_url">{{ product.name }}</a> -->
+                  <div class="q6-product-container-title">{{ product.name }}</div>
                   <div class="q6-product-container-desc">
                     {{ product.short_desc }}
                   </div>
+                  <a :href="product.shop_url" class="q6-product-container-btn">
+                    <span>BUY NOW</span>
+                  </a>
                 </div>
               </div>
             </li>
@@ -254,7 +258,8 @@ export default {
       font-size: 1.4rem;
 
       line-height: 1.8rem;
-      margin: 0.5rem 0.6rem 3rem;
+      // margin: 0.5rem 0.6rem 3rem;
+      margin: 0.5rem 1.6rem 3rem;
     }
     &-title {
       font-size: 1.6rem;
@@ -271,25 +276,36 @@ export default {
       justify-content: space-between;
       color: $color-text-py;
       text-decoration: underline;
-      margin: 3rem 6.5rem 1rem;
-      font-size: 1.2rem;
+      // margin: 3rem 6.5rem 1rem;
+      margin: 3rem 6.5rem;
+      // font-size: 1.2rem;
+      font-size: 1.5rem;
     }
     &-sub {
-      margin: 0rem 2.2rem 2rem;
+      // margin: 0rem 2.2rem 2rem;
+      margin-bottom: 2rem;
+      align-self: center; justify-self: center;
       width: 12rem;
       height: 15.7rem;
       background-size: contain;
       background-repeat: no-repeat;
+      background-position: center;
       font-size: 1.6rem;
       animation: pulse 2s infinite forwards;
     }
     &-subtitle {
       color: $color-sub-theme;
       margin-bottom: 1rem;
+      font-size: 1.825rem;
+      text-transform: uppercase;
+    }
+    &-about {
+      font-size: 1.5rem;
     }
   }
   &-packs {
-    margin-top: 2rem;
+    // margin-top: 2rem;
+    margin: 2rem 0;
     text-align: center;
     position: relative;
     &-title {
@@ -304,13 +320,17 @@ export default {
   }
   &-product {
     width: 31.5rem;
-    height: 28.7rem;
+
+    // height: 28.7rem;
+    height: 37.7rem;
     // background: #fff;
-    border-radius: 0.7rem;
-    margin-bottom: 2rem;
+    // border-radius: 0.7rem;
+    // margin-bottom: 2rem;
+    margin-bottom: 3rem;
+
     position: relative;
     &-container {
-      border: 0.15rem solid #000;
+      // border: 0.15rem solid #000;
       height: 97%;
       width: 97%;
       @include absCenter;
@@ -323,24 +343,44 @@ export default {
         margin: 2rem 0;
         mix-blend-mode: multiply;
       }
-      a {
+      // a
+      &-title {
         color: $color-text-pr;
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         font-weight: 700;
         @include absCenter;
-        margin-top: 5rem;
+        margin-top: 3.5rem;
         font-family: Heiti SC, STHeiti, SimHei;
-        width: 21rem;
+        // width: 21rem;
+        width: 100%;
+        text-align: center;
       }
       &-desc {
         width: 100%;
         color: #000;
         @include absCenter;
-        font-size: 1.2rem;
-        line-height: 1.7rem;
+        font-size: 1.325rem;
+        line-height: 1.8rem;
         font-family: Heiti SC, STHeiti, SimHei;
-
-        margin-top: 10rem;
+        color: #fff;
+        // margin-top: 10rem;
+        margin-top: 9.5rem;
+      }
+      &-btn {
+        @include absCenter;
+        width: 16rem;
+        height: 3.314rem;
+        background-image: url('../assets/images/misc/button_yellow.png');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin-top: 17rem;
+        // padding-top: 0.25rem;
+        color: #000;
+        font-family: Heiti SC, STHeiti, SimHei;
+        font-size: 2rem; font-weight: 700;
+        display: flex;
+        justify-content: center; align-items: center;
       }
     }
   }

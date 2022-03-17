@@ -406,14 +406,17 @@ export default {
   right: 0;
   width: 100%;
   &-header {
-    padding: 0 1.2rem;
+    padding: 0 1rem;
     text-align: center;
     position: relative;
     z-index: 10;
     &-icons {
       width: 100%;
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 1rem;
+      // display: flex;
+      // justify-content: space-between;
     }
   }
 
@@ -510,15 +513,15 @@ export default {
 }
 
 #choose-header-description-left {
-  width: 16.7rem;
-
+  // width: 16.7rem;
+  width: 95%; margin: auto;
   line-height: 2rem;
   font-size: 1.2rem;
 }
 
 #choose-header-description-right {
-  width: 16.7rem;
-
+  // width: 16.7rem;
+  width: 95%; margin: auto;
   line-height: 2rem;
   font-size: 1.2rem;
 }

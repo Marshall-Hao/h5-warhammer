@@ -241,9 +241,18 @@ export default {
 
     &-instruction {
       position: absolute;
-      left: 26.5%;
+      left: 31.5%;
+      @media only screen and (min-height: 844px) {
+        left: 28%;
+      }
       top: 43%;
       animation: jump 2s infinite ease;
+    }
+  }
+
+  @media only screen and (min-width: 375px) and (max-width: 375px) {
+    .q7-progress-bottom {
+      bottom: 22%;
     }
   }
 

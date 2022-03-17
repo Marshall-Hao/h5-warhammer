@@ -219,6 +219,7 @@ export default {
     }
     &-container {
       @include absXCenter;
+
       top: 31%;
     }
     &-eagle {
@@ -248,12 +249,14 @@ export default {
     &-instruction {
       color: $color-text-py;
       font-size: 1.4rem;
+
       line-height: 3.6rem;
       text-align: center;
       position: absolute;
       // left: 31.5%;
       left: 0;
       right: 0;
+
       // @media only screen and (min-height: 844px) {
       //   left: 28%;
       // }

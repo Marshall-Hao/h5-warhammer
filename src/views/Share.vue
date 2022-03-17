@@ -285,6 +285,7 @@ export default {
       height: 15.7rem;
       background-size: contain;
       background-repeat: no-repeat;
+      background-position: center;
       font-size: 1.6rem;
       animation: pulse 2s infinite forwards;
     }

@@ -116,7 +116,7 @@
                     {{ product.short_desc }}
                   </div>
                   <a :href="product.shop_url" class="q6-product-container-btn">
-                    BUY NOW
+                    <span>BUY NOW</span>
                   </a>
                 </div>
               </div>
@@ -365,18 +365,19 @@ export default {
       }
       &-btn {
         @include absCenter;
-        width: 14rem;
-        height: 2.9rem;
+        width: 16rem;
+        height: 3.314rem;
         background-image: url('../assets/images/misc/button_yellow.png');
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
         margin-top: 17rem;
-        padding-top: 0.25rem;
+        // padding-top: 0.25rem;
         color: #000;
         font-family: Heiti SC, STHeiti, SimHei;
         font-size: 2rem; font-weight: 700;
-        @include flexCenter; align-items: center;
+        display: flex;
+        justify-content: center; align-items: center;
       }
     }
   }

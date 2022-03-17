@@ -19,21 +19,45 @@
 export default {
   name: "lighting",
   mounted() {
-    let { getMultiPathSVGCode } = require("lindsvg");
+    const { getMultiPathSVGCode } = require("lindsvg");
     // L-system parameters
-    let lsParams = {
+    const lsParamsOne = {
       axiom: "FYX",
       rules: {
         F: "FFFXFX-[FFFXFXY]",
         X: "Y+F+XF",
-        Y: "[F+F+F+F]",
+        Y: "[F]",
       },
       alpha: (160 * Math.PI) / 180,
-      theta: (42 * Math.PI) / 180,
+      theta: (34 * Math.PI) / 180,
       iterations: 4,
       step: 1,
     };
-    let svgParams = {
+    const lsParamsTwo = {
+      axiom: "FYX",
+      rules: {
+        F: "FFFXFX-[FFFXFXY]",
+        X: "Y+F+XF",
+        Y: "[F+F]",
+      },
+      alpha: (160 * Math.PI) / 180,
+      theta: (40 * Math.PI) / 180,
+      iterations: 4,
+      step: 1,
+    };
+    const lsParamsThree = {
+      axiom: "FYX",
+      rules: {
+        F: "FFFXFX-[FFFXFXY]",
+        X: "Y+F+XF",
+        Y: "[F]",
+      },
+      alpha: (160 * Math.PI) / 180,
+      theta: (40 * Math.PI) / 180,
+      iterations: 4,
+      step: 1,
+    };
+    const svgParams = {
       width: 815,
       height: 755,
       pathAttributes: {
@@ -44,10 +68,13 @@ export default {
       },
     };
 
-    let svgCode = getMultiPathSVGCode(lsParams, svgParams);
+    const svgCodeOne = getMultiPathSVGCode(lsParamsOne, svgParams);
+    const svgCodeTwo = getMultiPathSVGCode(lsParamsTwo, svgParams);
+    const svgCodeThree = getMultiPathSVGCode(lsParamsThree, svgParams);
+
     this.$refs.light.insertAdjacentHTML(
       "beforeend",
-      `<div id="sky">${svgCode}</div>`
+      `<div id="sky">${svgCodeOne}${svgCodeTwo}${svgCodeThree}</div>`
     );
   },
 };
@@ -59,17 +86,19 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
+  z-index: 3;
 }
 #sky {
-  animation: sky 4s ease-in-out infinite;
+  animation: sky 3s ease-in-out infinite;
   bottom: 0;
   left: 0;
   position: fixed;
+  background: black;
   right: 0;
   top: 0;
 }
-#sky svg {
-  animation: lightning 4s ease-in-out infinite;
+#sky svg:nth-child(1) {
+  animation: lightning1 3s ease-in-out infinite;
   max-height: 100vh;
   max-width: 100vw;
   position: absolute;
@@ -77,12 +106,72 @@ export default {
   transform: translate(-50%, 0) scale(1.5, 1.5);
 }
 
-@keyframes lightning {
+#sky svg:nth-child(2) {
+  animation: lightning2 3s ease-in-out infinite;
+  max-height: 100vh;
+  max-width: 100vw;
+  position: absolute;
+  top: 0;
+  transform: translate(-85%, 0) scale(1.5, 1.5);
+}
+
+#sky svg:nth-child(3) {
+  animation: lightning3 3s ease-in-out infinite;
+  max-height: 100vh;
+  max-width: 100vw;
+  position: absolute;
+  top: 0;
+  transform: translate(-50%, 0) scale(1.5, 1.5);
+}
+
+@keyframes lightning1 {
   0% {
     opacity: 0;
   }
   15% {
     opacity: 0.8;
+  }
+  20% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.1;
+  }
+  75% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes lightning2 {
+  0% {
+    opacity: 1;
+  }
+  15% {
+    opacity: 0.1;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  25% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes lightning3 {
+  0% {
+    opacity: 0.8;
+  }
+  15% {
+    opacity: 0.1;
   }
   20% {
     opacity: 0.1;
@@ -94,9 +183,10 @@ export default {
     opacity: 0;
   }
   100% {
-    opacity: 0;
+    opacity: 1;
   }
 }
+
 @keyframes sky {
   0% {
     opacity: 0.2;
@@ -108,13 +198,13 @@ export default {
     opacity: 0.6;
   }
   25% {
-    opacity: 1;
+    opacity: 0.8;
   }
   75% {
-    opacity: 0.2;
+    opacity: 0.8;
   }
   100% {
-    opacity: 0.2;
+    opacity: 0.8;
   }
 }
 </style>

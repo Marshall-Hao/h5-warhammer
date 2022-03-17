@@ -110,10 +110,14 @@
                       backgroundImage: ` url(${product.image})`,
                     }"
                   ></div>
-                  <a :href="product.shop_url">{{ product.name }}</a>
+                  <!-- <a :href="product.shop_url">{{ product.name }}</a> -->
+                  <div class="q6-product-container-title">{{ product.name }}</div>
                   <div class="q6-product-container-desc">
                     {{ product.short_desc }}
                   </div>
+                  <a :href="product.shop_url" class="q6-product-container-btn">
+                    BUY NOW
+                  </a>
                 </div>
               </div>
             </li>
@@ -292,7 +296,7 @@ export default {
     &-subtitle {
       color: $color-sub-theme;
       margin-bottom: 1rem;
-      font-size: 2rem;
+      font-size: 1.825rem;
       text-transform: uppercase;
     }
     &-about {
@@ -317,7 +321,7 @@ export default {
   &-product {
     width: 31.5rem;
     // height: 28.7rem;
-    height: 32.7rem;
+    height: 37.7rem;
     // background: #fff;
     // border-radius: 0.7rem;
     // margin-bottom: 2rem;
@@ -336,25 +340,43 @@ export default {
         @include absXCenter;
         margin: 2rem 0;
       }
-      a {
+      // a
+      &-title {
         color: $color-text-pr;
-        font-size: 1.7rem;
+        font-size: 1.6rem;
         font-weight: 700;
         @include absCenter;
-        margin-top: 6rem;
+        margin-top: 3.5rem;
         font-family: Heiti SC, STHeiti, SimHei;
-        width: 21rem;
+        // width: 21rem;
+        width: 100%;
+        text-align: center;
       }
       &-desc {
         width: 100%;
         color: #000;
         @include absCenter;
-        font-size: 1.5rem;
-        line-height: 2rem;
+        font-size: 1.325rem;
+        line-height: 1.8rem;
         font-family: Heiti SC, STHeiti, SimHei;
         color: #fff;
         // margin-top: 10rem;
-        margin-top: 13rem;
+        margin-top: 9.5rem;
+      }
+      &-btn {
+        @include absCenter;
+        width: 14rem;
+        height: 2.9rem;
+        background-image: url('../assets/images/misc/button_yellow.png');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin-top: 17rem;
+        padding-top: 0.25rem;
+        color: #000;
+        font-family: Heiti SC, STHeiti, SimHei;
+        font-size: 2rem; font-weight: 700;
+        @include flexCenter; align-items: center;
       }
     }
   }

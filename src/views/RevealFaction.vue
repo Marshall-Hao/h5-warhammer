@@ -25,7 +25,6 @@ export default {
   },
   computed: {
     is40k() {
-      console.log(this.category);
       return this.category === "40k";
     },
     ...mapState(["category"]),

@@ -1,13 +1,11 @@
 <template>
-  <div v-if="blink">
-    <lighting></lighting>
-  </div>
   <div
     class="pre-reveal"
     :class="{ revealed: !pre }"
     @touchstart.prevent="preReveal"
     @mousedown="preReveal"
   >
+    <img src="../../assets/images/regular/black_hole.gif" alt="blackhole" />
     <p>Click to reveal your faction</p>
   </div>
   <Renderer ref="renderer" pointer resize="window">
@@ -40,6 +38,7 @@
   <div
     v-show="!pre"
     class="effect-page"
+    ref="white"
     @click="updateColors"
     @touchstart.prevent="holdReveal"
     @touchmove.prevent="targetTimeCoef = 100"
@@ -93,7 +92,6 @@ export default {
   data() {
     return {
       zoomStrength: 0,
-      blink: false,
       pre: true,
     };
   },
@@ -144,6 +142,7 @@ export default {
     async holdReveal() {
       this.targetTimeCoef = 100;
       const number = this.$refs.number;
+      const white = this.$refs.white;
       animate1 = gsap.to(number, {
         innerText: 100,
         duration: 5,
@@ -151,12 +150,14 @@ export default {
           innerText: 1,
         },
         onUpdate: () => {
-          this.blink = true;
           if (number.innerText > 25) {
             number.style.color = "#A5935D";
           }
           if (number.innerText > 50) {
             number.style.color = "#edcc69";
+          }
+          if (number.innerText > 98) {
+            white.style.background = "rgba(255, 255, 255, 0.7)";
           }
         },
         onComplete: () => {
@@ -246,7 +247,9 @@ export default {
   left: 0;
   height: 100%;
   width: 100%;
+  transition: all 0.5s;
 }
+
 .effect {
   position: fixed;
   bottom: 10%;
@@ -278,15 +281,19 @@ export default {
   left: 0;
   height: 100%;
   width: 100%;
-  background-image: url(../../assets/images/regular/aosprereveal.jpeg);
+  background-image: url(../../assets/images/regular/prereveal.png);
   background-size: cover;
-  filter: url(#fractal);
+  img {
+    @include absCenter;
+    height: 24.3rem;
+    width: 24.3rem;
+  }
   p {
     font-size: 2rem;
     width: 17.6rem;
     line-height: 3.6rem;
     @include absXCenter;
-    bottom: 18%;
+    bottom: 12%;
   }
 }
 

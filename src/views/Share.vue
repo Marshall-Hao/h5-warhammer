@@ -305,7 +305,7 @@ export default {
   &-product {
     width: 31.5rem;
     height: 28.7rem;
-    background: #fff;
+    // background: #fff;
     border-radius: 0.7rem;
     margin-bottom: 2rem;
     position: relative;
@@ -321,6 +321,7 @@ export default {
         background-size: cover;
         @include absXCenter;
         margin: 2rem 0;
+        mix-blend-mode: multiply;
       }
       a {
         color: $color-text-pr;

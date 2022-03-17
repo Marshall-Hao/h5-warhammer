@@ -205,6 +205,7 @@ export default {
         fourtyK: loginRes["categories"]["40k"]["questions"],
       };
       this.addQuestions(list);
+      console.log(loginRes);
     },
     ...mapActions(["addQuestions"]),
   },

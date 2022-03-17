@@ -16,14 +16,16 @@
           v-for="(answer, index) in questionChoices"
           :key="answer"
           :class="{ 'selected-q': selected === index }"
-          @touchstart.prevent="choiceTouchStart(index)"
-          @touchmove.prevent="choiceTouchMove(index)"
-          @touchend.prevent="choiceTouchEnd(answer.id)"
-          @mouseenter.prevent="choiceTouchStart(index)"
-          @mousemove.prevent="choiceTouchMove(index)"
-          @mousedown="choiceTouchEnd(answer.id)"
         >
           {{ answer.text }}
+          <div
+            @touchstart.prevent="choiceTouchStart(index)"
+            @touchmove.prevent="choiceTouchMove(index)"
+            @touchend.prevent="choiceTouchEnd(answer.id)"
+            @mouseenter.prevent="choiceTouchStart(index)"
+            @mousemove.prevent="choiceTouchMove(index)"
+            @mousedown="choiceTouchEnd(answer.id)"
+          ></div>
         </div>
       </div>
     </section>
@@ -117,7 +119,7 @@ export default {
   &-background {
     position: fixed;
     background-size: cover;
-    filter: url(#fractal);
+
     height: 100%;
     width: 100%;
     z-index: -2;
@@ -127,32 +129,41 @@ export default {
     margin-top: 2rem;
     height: 10.9rem;
     width: 10rem;
-    filter: url(#fractal);
+    // filter: url(#fractal);
   }
   &-title {
-    margin-top: 12rem;
-    letter-spacing: 0.3rem;
+    margin-top: 14rem;
+    // letter-spacing: 0.3rem;
     line-height: 3.2rem;
-    padding: 0 1rem;
-    color: #7d300b;
-    font-size: 2rem;
-    animation: fadeInDownBig 1s, shadowtext 5s infinite ease-out;
+    padding: 0 4rem;
+    // color: #7d300b;
+    color: $color-text-py;
+    font-size: 2.6rem;
+    // animation: fadeInDownBig 1s, shadowtext 5s infinite ease-out;
+    animation: fadeInDownBig 1s;
   }
   &-section {
-    margin-top: 10rem;
+    margin-top: 6rem;
     &-choices {
       display: flex;
       flex-direction: column;
-      padding: 0 3rem;
-      animation: backInUp 1s ease-in, pulse 2s infinite;
+      // padding: 0 3rem;
+      animation: backInUp 1s ease-in;
       div {
         position: relative;
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         letter-spacing: 0.3rem;
-        line-height: 3.2rem;
-        margin-bottom: 3rem;
+        line-height: 2rem;
+        margin: 0 auto 4rem;
         border-radius: 1rem;
         transition: 0.2s all;
+        // width: 25.5rem;
+        width: 70%;
+        div {
+          height: 60%;
+          width: 50%;
+          @include absCenter;
+        }
       }
     }
   }

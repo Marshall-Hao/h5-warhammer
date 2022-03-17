@@ -4,15 +4,72 @@
       <div
         v-for="(answer, index) in questionChoices"
         :key="answer"
-        :style="{ background: `url(${answer.image})` }"
+        :style="{ backgroundImage: `url(${answer.image})` }"
         :class="{ 'selected-q': selected === index }"
       ></div>
+    </div>
+    <div class="q4-intro">
+      <p>Press</p>
+      <div>
+        <svg width="16.5" height="30" viewBox="0 0 110 200">
+          <polyline
+            points="100 0, 0 100, 100 200,110 190,25 100, 110 10 "
+            fill="rgb(255, 255, 255)"
+            stroke-linecap="round"
+          >
+            <animate
+              id="l41"
+              attributeName="fill"
+              attributeType="XML"
+              from="rgb(255, 255, 255,0.9)"
+              to="rgb(255, 255, 255)"
+              dur="2s"
+              begin="0; l42.end"
+            ></animate>
+            <animate
+              id="l42"
+              attributeName="fill"
+              attributeType="XML"
+              from="rgb(255, 255, 255)"
+              to="rgb(255, 255, 255,0.9)"
+              dur="2s"
+              begin="l41.end"
+            ></animate>
+          </polyline>
+        </svg>
+        <svg width="16.5" height="30" viewBox="0 0 110 200">
+          <polyline
+            points="100 0, 0 100, 100 200,110 190,25 100, 110 10 "
+            fill="rgb(255, 255, 255)"
+            stroke-linecap="round"
+          >
+            <animate
+              id="l41"
+              attributeName="fill"
+              attributeType="XML"
+              from="rgb(255, 255, 255,0.9)"
+              to="rgb(255, 255, 255)"
+              dur="2s"
+              begin="0; l42.end"
+            ></animate>
+            <animate
+              id="l42"
+              attributeName="fill"
+              attributeType="XML"
+              from="rgb(255, 255, 255)"
+              to="rgb(255, 255, 255,0.9)"
+              dur="2s"
+              begin="l41.end"
+            ></animate>
+          </polyline>
+        </svg>
+      </div>
     </div>
     <LuckyWheel
       class="q4-luckwheel"
       ref="myLucky"
-      width="400px"
-      height="400px"
+      width="40rem"
+      height="40rem"
       :prizes="prizes"
       :blocks="blocks"
       :defaultConfig="defaultConfig"
@@ -104,7 +161,7 @@ export default {
         { title: "11" },
       ],
       defaultConfig: {
-        speed: 15,
+        speed: 30,
       },
       choice1: ["1", "2", "3"],
       choice2: ["0", "11", "10"],
@@ -203,10 +260,49 @@ export default {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    filter: url(#fractal);
     div {
-      transform: scale(1.01, 1.01);
       background-size: cover;
+      background-repeat: no-repeat;
+      background-position: right;
+      position: relative;
+      transform: scale(1.01, 1.01);
+      &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+      }
+      &:nth-child(-n + 2) {
+        &::after {
+          content: "";
+          background: linear-gradient(0deg, #fff 0%, #fff 4%, transparent 50%);
+        }
+      }
+      &:nth-child(n + 3) {
+        &::after {
+          content: "";
+          background: linear-gradient(
+            180deg,
+            #fff 0%,
+            #fff 4%,
+            transparent 50%
+          );
+        }
+      }
+    }
+  }
+  &-intro {
+    position: absolute;
+    left: 44.3%;
+    top: 14.5%;
+    animation: jump 2s infinite ease-in-out forwards;
+    p {
+      font-size: 1.8rem;
+    }
+    div {
+      transform: rotateZ(270deg);
+      margin-top: 1.4rem;
     }
   }
   &-luckwheel {
@@ -222,5 +318,17 @@ export default {
 }
 .selected-q {
   animation: pulse 0.7s infinite;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(-0.5rem);
+  }
+  50% {
+    transform: translateY(0.5rem);
+  }
+  100% {
+    transform: translateY(-0.5rem);
+  }
 }
 </style>

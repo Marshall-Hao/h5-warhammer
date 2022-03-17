@@ -1,39 +1,41 @@
 <template>
-  <div class="q6" :style="questionBackground">
+  <div class="q6 fixed-no-scroll" :style="questionBackground">
     <h1 class="q6-title">{{ questionText }}</h1>
     <div class="q6-section">
-      <div
-        v-for="(answer, index) in questionChoices"
-        :key="answer"
-        class="q6-card"
-        @touchstart.prevent="flipCard(index)"
-        @touchmove.prevent="choiceTouchMove(index)"
-        @mouseenter.prevent="flipCard(index)"
-        @mousemove.prevent="choiceTouchMove(index)"
-      >
+      <div class="q6-grid">
         <div
-          class="q6-card-side q6-card-back"
-          :class="{ 'back-flip': flip === index }"
-          :style="{
-            background: `url(${answer.image})`,
-            backgroundSize: `cover`,
-          }"
-          @touchmove.prevent="backPos"
-          @touchend.prevent="choiceTouchEnd(answer.id)"
-          @mousemove.prevent="backPos"
-          @mouseleave="choiceTouchEnd(answer.id)"
-        ></div>
-        <div
-          class="q6-card-side q6-card-front"
-          :class="{ 'front-flip': flip === index }"
+          v-for="(answer, index) in questionChoices"
+          :key="answer"
+          class="q6-card"
         >
-          <div class="q6-card-front-content">
-            <div class="q6-card-front-btn">Flip</div>
+          <div
+            class="q6-card-side q6-card-back"
+            :class="{ 'back-flip': flip === index }"
+            :style="{
+              background: `url(${answer.image})`,
+              backgroundSize: `cover`,
+              borderRadius: '1.3rem',
+            }"
+            @mouseleave="backPos"
+          ></div>
+          <div
+            class="q6-card-side q6-card-front"
+            :class="{ 'front-flip': flip === index }"
+          >
+            <div class="q6-card-front-content">
+              <div
+                class="q6-card-front-btn"
+                @touchstart.prevent="flipCard(index, answer.id)"
+                @mouseenter.prevent="flipCard(index, answer.id)"
+                @mousemove.prevent="choiceTouchMove(index)"
+              >
+                Flip
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <p class="q6-text">{{ currentQuestion.instruction }}</p>
     <svg width="0" height="0">
       <filter
         id="fractal2"
@@ -90,6 +92,45 @@
         </feDisplacementMap>
       </filter>
     </svg>
+    <svg width="0" height="0">
+      <filter
+        id="fractal"
+        filterUnits="objectBoundingBox"
+        x="0%"
+        y="0%"
+        width="100%"
+        height="100%"
+      >
+        <feTurbulence
+          id="turbulence"
+          type="fractalNoise"
+          baseFrequency="0.032 0.02"
+          numOctaves="1"
+        >
+          <animate
+            id="wave1"
+            attributeName="baseFrequency"
+            attributeType="XML"
+            from="0.032 0.02"
+            to="0.022 0.01"
+            dur="3.5s"
+            fill="freeze"
+            begin="0; wave2.end"
+          />
+          <animate
+            id="wave2"
+            attributeName="baseFrequency"
+            attributeType="XML"
+            from="0.022 0.01"
+            to="0.032 0.02"
+            dur="3.5s"
+            fill="freeze"
+            begin="wave1.end"
+          />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" scale="15"></feDisplacementMap>
+      </filter>
+    </svg>
   </div>
 </template>
 
@@ -120,7 +161,8 @@ export default {
       questionId
     );
     //  * methods
-    function flipCard(index) {
+    function flipCard(index, answer) {
+      choiceTouchEnd(answer);
       flip.value = index;
     }
     function backPos() {
@@ -132,70 +174,149 @@ export default {
       flipCard,
       backPos,
       choiceTouchMove,
-      choiceTouchEnd,
     };
   },
+  mounted() {
+    if (window.innerHeight > 800) {
+      document.querySelector(".q6").classList.add("paddingY");
+    }
+
+    if (window.innerWidth > 375) {
+      this.setChoiceDimension(0.8);
+    } else {
+      this.setChoiceDimension(0.8);
+    }
+
+  },
+  methods: {
+    setChoiceDimension(sectionH) {
+      const cards = document.querySelectorAll(".q6-card");
+      console.log({ cards });
+
+      let w = (window.innerWidth - 40 - 2)
+      let h = ((window.innerHeight * sectionH) - 45 - 10)
+
+      const useW = (w/2 * (25/17)) * 2 <= h
+      console.log({useW})
+
+      if (useW) {
+        cards.forEach((c) => {
+          c.style.width = `${w/2}px`;
+          c.style.height = `${w/2 * (25 / 17)}px`;
+        });
+      } else {
+        cards.forEach((c) => {
+          c.style.height = `${h/2}px`;
+          c.style.width = `${h/2 * (17/25)}px`;
+        });
+      }
+
+      // cards.forEach((card) => {
+      //   if (window.innerHeight > 700) {
+      //     const w = window.innerWidth / 2 - 20;
+      //     card.style.width = `${w}px`;
+      //     card.style.height = `${w * (25 / 17)}px`;
+      //   } else {
+      //     // 45px is the padding bottom of the container
+      //     // 16px is the grid row-gap
+      //     const h = (((window.innerHeight * 0.8) - 45 -16) / 2 );
+      //     card.style.height = `${h}px`;
+      //     card.style.width = `${h * (17/25)}px`;
+      //   }
+      // });
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
+.paddingY {
+  padding: 4rem 0;
+}
 .q6 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  overflow-y: scroll;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // height: 100%;
+  // width: 100%;
+  // overflow-y: scroll;
   overflow-x: hidden;
   text-align: center;
   &-title {
-    font-size: 3.5rem;
+    font-size: 3rem;
     color: #000;
-    margin-top: 5.5rem;
-    animation: flipInY 1.8s ease infinite;
+    height: 20%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4rem;
+    // margin-top: 5.5rem;
   }
   &-section {
+    height: 80%;
     width: 100%;
-    padding: 0rem 1rem;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-top: 6rem;
+    box-sizing: border-box;
+    @include flexCenter;
+    align-items: flex-start;
+    padding: 0rem 2rem 4.5rem 2rem;
+    box-sizing: border-box;
+    // display: flex;
+    // justify-content: space-between;
+    // flex-wrap: wrap;
+    // margin-top: 6rem;
+  }
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 0.25rem;
+    row-gap: 1rem;
+
+    // width: 100%;
   }
   &-card {
-    height: 25rem;
-    width: 17rem;
-    margin-bottom: 3rem;
+    // height: 25rem;
+    // width: 17rem;
+    // height: 100%;;
+    // width: 100%;
+    // margin-bottom: 3rem;
+    align-self: center;
+    justify-self: center;
     position: relative;
     perspective: 150rem;
     -moz-perspective: 150rem;
     animation: zoomIn 1.8s ease;
+
     &-side {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      height: 25rem;
+      height: 100%;
+      // height: 25rem;
       backface-visibility: hidden;
       overflow: hidden;
-      transition: all 0.6s ease;
+      transition: all 0.5s ease;
     }
     &-front {
       padding: 1.1rem 1rem 0.8rem 1rem;
+
       &-content {
         background: url(../../assets/images/regular/warhammerMask.png);
         height: 100%;
         width: 100%;
         text-align: center;
         position: relative;
-        border-radius: 0.3rem;
-        filter: url(#fractal2);
+        border-radius: 1.5rem;
+        // filter: url(#fractal2);
       }
       &-btn {
         @include absCenter;
         letter-spacing: 0.3rem;
         font-size: 1.2rem;
-        animation: flipInY 1.8s ease infinite;
+        height: 16rem;
+        width: 8rem;
+        padding-top: 7rem;
       }
     }
     &-back {
@@ -213,7 +334,7 @@ export default {
     margin-top: 3rem;
     color: $color-text-pr;
     font-size: 2rem;
-    animation: flipInY 1.8s ease infinite;
+    filter: url(#fractal);
   }
 }
 .front-flip {

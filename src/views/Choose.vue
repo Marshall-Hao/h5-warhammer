@@ -48,14 +48,20 @@
             alt="sigMar"
           />
 
-          <p id="choose-header-description-left"></p>
+          <p id="choose-header-description-left">
+            Enter the Mortal Realms in Warhammer Age of Sigmar, a fantasy
+            setting full of magic, gods, and monsters.
+          </p>
         </div>
         <div>
           <img
             src="../assets/images/regular/40,000SmallIcon.png"
             alt="40,000"
           />
-          <p id="choose-header-description-right"></p>
+          <p id="choose-header-description-right">
+            Explore the grim darkness of the far future in Warhammer 40,000,
+            where science and sorcery fuel endless war.
+          </p>
         </div>
       </div>
     </header>
@@ -71,7 +77,7 @@
       <div class="choose-section-options-l" ref="swipeOne">
         <div :class="{ heartbeat: beatAnimate.left }">前尘</div>
         <ul>
-          <li>
+          <!-- <li>
             <svg width="16.5" height="30" viewBox="0 0 110 200">
               <polyline
                 points="100 0, 0 100, 100 200,110 190,25 100, 110 10 "
@@ -98,9 +104,9 @@
                 ></animate>
               </polyline>
             </svg>
-          </li>
+          </li> -->
           <li>
-            <svg width="16.5" height="30" viewBox="0 0 110 200">
+            <svg width="16.5" height="24" viewBox="0 0 110 200">
               <polyline
                 points="100 0, 0 100, 100 200,110 190,25 100, 110 10 "
                 fill="rgba(165, 147, 93, 0.6)"
@@ -128,7 +134,7 @@
             </svg>
           </li>
           <li>
-            <svg width="16.5" height="30" viewBox="0 0 110 200">
+            <svg width="16.5" height="24" viewBox="0 0 110 200">
               <polyline
                 points="100 0, 0 100, 100 200,110 190,25 100, 110 10 "
                 fill="rgba(165, 147, 93, 0.8)"
@@ -156,7 +162,7 @@
             </svg>
           </li>
           <li>
-            <svg width="16.5" height="30" viewBox="0 0 110 200">
+            <svg width="16.5" height="24" viewBox="0 0 110 200">
               <polyline
                 points="100 0, 0 100, 100 200,110 190,25 100, 110 10 "
                 fill="rgb(165, 147, 93)"
@@ -198,15 +204,15 @@
         <svg-icon
           :name="`hammer`"
           :prefix="`war-`"
-          :fill="`none`"
-          :stroke="`#FFFFFF`"
-          :duration="animation"
+          fill="#FFFFFF"
+          stroke="#FFFFFF"
+          :duration="{}"
         ></svg-icon>
       </div>
       <div class="choose-section-options-r" ref="swipeTwo">
         <ul>
           <li>
-            <svg width="16.5" height="30" viewBox="0 0 110 200">
+            <svg width="16.5" height="24" viewBox="0 0 110 200">
               <polyline
                 points="10 200, 110 100, 10 0,0 10,85 100, 0 190 "
                 fill="#64798B"
@@ -234,7 +240,7 @@
             </svg>
           </li>
           <li>
-            <svg width="16.5" height="30" viewBox="0 0 110 200">
+            <svg width="16.5" height="24" viewBox="0 0 110 200">
               <polyline
                 points="10 200, 110 100, 10 0,0 10,85 100, 0 190 "
                 fill="rgba(100, 121, 139, 0.8)"
@@ -262,7 +268,7 @@
             </svg>
           </li>
           <li>
-            <svg width="16.5" height="30" viewBox="0 0 110 200">
+            <svg width="16.5" height="24" viewBox="0 0 110 200">
               <polyline
                 points="10 200, 110 100, 10 0,0 10,85 100, 0 190 "
                 fill="rgba(100, 121, 139, 0.6)"
@@ -289,8 +295,8 @@
               </polyline>
             </svg>
           </li>
-          <li>
-            <svg width="16.5" height="30" viewBox="0 0 110 200">
+          <!-- <li>
+            <svg width="16.5" height="24" viewBox="0 0 110 200">
               <polyline
                 points="10 200, 110 100, 10 0,0 10,85 100, 0 190 "
                 fill="rgba(100, 121, 139, 0.4)"
@@ -316,7 +322,7 @@
                 ></animate>
               </polyline>
             </svg>
-          </li>
+          </li> -->
         </ul>
         <div
           style="color: #64798b; text-align: right"
@@ -334,8 +340,7 @@
 
 <script>
 import SvgIcon from "../components/base/svgIcon/SvgIcon";
-import useTyped from "../assets/js/use-typed";
-import { computed, onMounted } from "@vue/runtime-core";
+import { computed } from "@vue/runtime-core";
 import useMiddleInteraction from "../assets/js/use-middle-interaction";
 export default {
   name: "choose",
@@ -367,32 +372,6 @@ export default {
     });
     //  * watch
     // * lifecycle
-    onMounted(() => {
-      useTyped(
-        "#choose-header-description-left",
-        [
-          "Enter the Mortal Realms in",
-          "Warhammer Age of Sigmar",
-          "a fantasy setting full of",
-          " magic,gods, and monsters.",
-        ],
-        20,
-        "",
-        true
-      );
-      useTyped(
-        "#choose-header-description-right",
-        [
-          "Explore the grim darkness of",
-          "far future in Warhammer 40,000",
-          "where science and sorcery",
-          " fuel endless war.",
-        ],
-        20,
-        "",
-        true
-      );
-    });
 
     // * methods
     // * return
@@ -410,6 +389,11 @@ export default {
       beatAnimate,
     };
   },
+  mounted() {
+    if (window.innerWidth/window.innerHeight > 0.5) {
+      document.querySelector('.choose-section').style.height = '62%'
+    }
+  }
 };
 </script>
 
@@ -422,24 +406,26 @@ export default {
   right: 0;
   width: 100%;
   &-header {
+    padding: 0 1rem;
     text-align: center;
     position: relative;
     z-index: 10;
     &-icons {
       width: 100%;
-      display: flex;
-      justify-content: space-between;
-      img {
-        filter: url(#fractal);
-      }
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 1rem;
+      // display: flex;
+      // justify-content: space-between;
     }
   }
 
   &-section {
-    position: absolute;
-    left: 0;
-    top: 13rem;
-    height: 68vh;
+    // position: absolute;
+    // left: 0;
+    // top: 13rem;
+    position: relative;
+    height: 68%;
     width: 100vw;
     display: flex;
     z-index: 0;
@@ -450,7 +436,6 @@ export default {
       background: url(../assets/images/regular/chooseRightGuy.jpg);
       background-repeat: no-repeat;
       background-size: cover;
-      filter: url(#fractal);
     }
     &-displayS {
       position: absolute;
@@ -463,17 +448,17 @@ export default {
       background-size: cover;
       mask: linear-gradient(90deg, #000 45%, transparent 60%);
       z-index: 1;
-      filter: url(#fractal);
     }
 
     &-options {
       z-index: 2;
-      position: absolute;
-      bottom: 8.6vh;
-      left: 0;
+      // position: absolute;
+      // bottom: 8.4%;
+      // left: 0;
+      position: relative;
       height: 6rem;
       width: 100vw;
-      padding: 0.3rem;
+      padding: 0.3rem 1.4rem;
       background-color: $color-theme-lb;
       box-shadow: 0 0rem 2rem 0.5rem $color-text-pr;
       display: flex;
@@ -485,18 +470,20 @@ export default {
         justify-content: space-between;
         align-items: center;
         & > div {
-          width: 25%;
+          width: 35%;
           font-size: 2rem;
           color: $color-theme-y;
         }
         ul {
-          width: 75%;
+          width: 65%;
           display: flex;
           flex-direction: row-reverse;
           justify-content: space-between;
+          align-items: center;
           li {
             width: 1.65rem;
-            height: 3rem;
+            // height: 3rem;
+            height: 24px;
           }
         }
       }
@@ -509,10 +496,16 @@ export default {
   }
 
   &-tips {
-    position: absolute;
-    display: block;
+    // position: absolute;
+    // display: block;
+    position: relative;
+    margin-top: 2.8rem;
+    // @media screen and (max-width: 375px) {
+    //   margin-top: 2.4rem;
+    // }
     width: 100vw;
-    bottom: 2.5vh;
+    // bottom: 2.5vh;
+    // bottom: 3vh;
     text-align: center;
     font-size: 0.8rem;
     animation: headShake 2s infinite ease-out;
@@ -520,22 +513,20 @@ export default {
 }
 
 #choose-header-description-left {
-  width: 16.6rem;
-  padding: 0 2rem;
+  // width: 16.7rem;
+  width: 95%; margin: auto;
   line-height: 2rem;
-  letter-spacing: 0.2rem;
   font-size: 1.2rem;
 }
 
 #choose-header-description-right {
-  width: 16.6rem;
-  padding: 0 2rem;
+  // width: 16.7rem;
+  width: 95%; margin: auto;
   line-height: 2rem;
-  letter-spacing: 0.2rem;
   font-size: 1.2rem;
 }
 
 .heartbeat {
-  animation: heartBeat 2s infinite;
+  filter: url(#fractal);
 }
 </style>

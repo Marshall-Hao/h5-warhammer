@@ -1,5 +1,5 @@
 <template>
-  <div class="q2">
+  <div class="q2 fixed-no-scroll">
     <div class="q2-background" :style="questionBackground"></div>
     <h1 class="q2-title">{{ questionText }}</h1>
     <section class="q2-section">
@@ -64,12 +64,12 @@ export default {
 
 <style lang="scss">
 .q2 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  overflow-y: scroll;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // height: 100%;
+  // width: 100%;
+  // overflow-y: scroll;
   overflow-x: hidden;
   text-align: center;
   &-background {
@@ -80,33 +80,54 @@ export default {
     z-index: -2;
   }
   &-title {
-    margin: 6rem 0;
+    height: 20%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // margin: 6rem 0;
     font-size: 2.5rem;
-    animation: pulse 2s infinite ease-in-out;
+    // filter: url(#fractal);
   }
   &-section {
     position: relative;
-    height: 70rem;
+    // height: 70rem;
     animation: pulse 2s 1s infinite ease-in-out;
+    height: 80%;
+    width: 100%;
+    padding-bottom: 4.5rem;
+    box-sizing: border-box;
+    @include flexCenter;
     &-choices {
-      @include absCenter;
+      // @include absCenter;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       div {
         position: relative;
         width: 26rem;
-        height: 14rem;
-        background-size: cover;
+        // height: 14rem;
+        height: 22%;
+        // background-size: cover;
+        background-size: contain;
+        background-position: center;
         background-repeat: no-repeat;
-        margin-bottom: 4rem;
+        // margin-bottom: 4rem;
+        animation: maskmove 2s 1s steps(29) forwards;
         div {
           position: absolute;
           top: 0;
           left: 0;
+          right: 0;
           z-index: 2;
-          width: 26rem;
-          height: 14rem;
+          // width: 26rem;
+          // height: 14rem;
+          height: 100%;
           mask: url(../../assets/images/regular/maskdetail.png);
           mask-position: 100% 0;
           mask-size: 3000% 100%;
+
           &::before {
             content: "";
             position: absolute;
@@ -118,6 +139,8 @@ export default {
             border-radius: 2rem;
             background-image: url(../../assets/images/regular/warhammerMask.png);
             background-repeat: no-repeat;
+            // background-size: contain;
+            // background-position: center;
             background-size: cover;
           }
         }
@@ -125,8 +148,9 @@ export default {
     }
   }
 }
+
 .selected-q {
-  animation: maskmove 0.7s steps(29) forwards;
+  animation: fadeOut 1s;
 }
 @keyframes maskmove {
   0% {

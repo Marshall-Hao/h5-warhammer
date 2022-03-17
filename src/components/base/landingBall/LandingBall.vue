@@ -76,6 +76,6 @@ export default {
 
 <style lang="scss" scoped>
 .landing-ball {
-  height: 20rem;
+  height: 15rem;
 }
 </style>

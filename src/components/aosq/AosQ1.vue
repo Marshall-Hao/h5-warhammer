@@ -1,22 +1,26 @@
 <template>
-  <div class="q1">
+  <div class="q1 fixed-no-scroll">
     <div class="q1-background" :style="questionBackground"></div>
     <h1 class="q1-title">{{ questionText }}</h1>
     <section class="q1-section">
       <div class="q1-section-choices">
         <div
+          class="q1-section-choice"
           ref="q"
           v-for="(answer, index) in questionChoices"
           :key="answer"
           :class="{ 'selected-q': selected === index }"
           :style="`background-image:url(${answer.image})`"
-          @touchstart.prevent="choiceTouchStart(index)"
-          @touchmove.prevent="choiceTouchMove(index)"
-          @touchend.prevent="choiceTouchEnd(answer.id)"
-          @mouseenter.prevent="choiceTouchStart(index)"
-          @mousemove.prevent="choiceTouchMove(index)"
-          @mousedown="choiceTouchEnd(answer.id)"
-        ></div>
+        >
+          <div
+            @touchstart.prevent="choiceTouchStart(index)"
+            @touchmove.prevent="choiceTouchMove(index)"
+            @touchend.prevent="choiceTouchEnd(answer.id)"
+            @mouseenter.prevent="choiceTouchStart(index)"
+            @mousemove.prevent="choiceTouchMove(index)"
+            @mousedown="choiceTouchEnd(answer.id)"
+          ></div>
+        </div>
       </div>
     </section>
     <svg width="0" height="0">
@@ -110,6 +114,43 @@ export default {
       selected,
     };
   },
+  mounted() {
+    if (window.innerWidth > 375) {
+      // document.querySelector('.q1-title').style.height = "25%"
+      // document.querySelector('.q1-section').style.height = "75%"
+      this.setChoiceDimension(0.8);
+    } else {
+      document.querySelector(".q1-title").style.height = "15%";
+      document.querySelector(".q1-section").style.height = "85%";
+      this.setChoiceDimension(0.85);
+    }
+  },
+  methods: {
+    setChoiceDimension(sectionH) {
+      const choices = document.querySelectorAll(".q1-section-choice");
+      console.log({ choices });
+
+      // how about just maximize and either use h or w depending on dimension ?
+      let w = (window.innerWidth - 10)
+      let h = ((window.innerHeight * sectionH) - 45 - 2)
+
+      const useW = (w/2 * (25/17)) * 2 <= h
+
+      console.log({useW})
+
+      if (useW) {
+        choices.forEach((c) => {
+          c.style.width = `${w/2}px`;
+          c.style.height = `${w/2 * (25 / 17)}px`;
+        });
+      } else {
+        choices.forEach((c) => {
+          c.style.height = `${h/2}px`;
+          c.style.width = `${h/2 * (17/25)}px`;
+        });
+      }
+    }
+  }
 };
 </script>
 
@@ -117,13 +158,18 @@ export default {
 @function randomNum($max, $min: 0, $u: 1) {
   @return ($min + random($max)) * $u;
 }
+
+.paddingY {
+  padding: 4rem 0;
+}
+
 .q1 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  overflow-y: scroll;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // height: 100%;
+  // width: 100%;
+  // overflow-y: scroll;
   overflow-x: hidden;
   text-align: center;
   &-background {
@@ -135,43 +181,62 @@ export default {
     z-index: -2;
   }
   &-title {
-    margin: 8rem 0;
+    // margin: 5rem 0 4rem;
+    height: 20%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 2.5rem;
-    animation: fadeInDown 1s, flash 3s infinite ease;
+    animation: fadeInDown 1s;
   }
   &-section {
-    padding: 0rem 2rem;
+    padding: 0rem 1rem 4rem 1rem;
+    height: 80%;
+    width: 100%;
+    box-sizing: border-box;
+    @include flexCenter;
+    align-items: flex-start;
+
+    &-choice {
+      justify-self: center;
+      align-self: center;
+    }
     &-choices {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-
+      // display: flex;
+      // justify-content: space-between;
+      // flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 0.25rem;
+      // row-gap: 1rem;
+      width: 100%;
       div {
-        width: 16rem;
-        height: 26rem;
-        background-size: cover;
-        margin-bottom: 6rem;
-        animation: zoomIn 0.8s ease-in,
-          main-img-hide 8s infinite step-end forwards;
+        // width: 16.5rem;
+        // height: 28rem; dynamically injected
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin-bottom: 1rem;
+        animation: zoomIn 0.8s ease-in;
+        div {
+          // height: 13rem;
+          // width: 7rem;
+          width: 100%;
+          height: 100%;
+          // margin: 12rem auto;
+        }
       }
-      div::before,
-      div::after {
-        position: absolute;
-        width: 16rem;
-        height: 26rem;
-        top: 0;
-        left: 0;
-        background: inherit;
-      }
-
+      // div::before,
       // div::after {
-      //   content: "";
-      //   animation: glitch-one 5s infinite step-end forwards;
-      // }
-
-      // div::before {
-      //   content: "";
-      //   animation: glitch-two 5s infinite 1s step-end forwards;
+      //   position: absolute;
+      //   // width: 16rem;
+      //   // height: 26rem;
+      //   width: 100%;
+      //   height: 100%;
+      //   top: 0;
+      //   left: 0;
+      //   background: inherit;
       // }
     }
   }

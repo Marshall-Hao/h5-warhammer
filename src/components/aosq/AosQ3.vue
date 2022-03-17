@@ -1,23 +1,26 @@
 <template>
-  <div class="q3">
+  <div class="q3 fixed-no-scroll">
     <div class="q3-background" :style="questionBackground"></div>
     <h1 class="q3-title">{{ questionText }}</h1>
-    <div class="q3-choices">
-      <div
-        ref="q"
-        v-for="(answer, index) in questionChoices"
-        :key="answer"
-        :class="{ 'selected-q': selected === index }"
-        :style="`background-image:url(${answer.image})`"
-        @touchstart.prevent="choiceTouchStart(index)"
-        @touchmove.prevent="choiceTouchMove(index)"
-        @touchend.prevent="choiceTouchEnd(answer.id)"
-        @mouseenter.prevent="choiceTouchStart(index)"
-        @mousemove.prevent="choiceTouchMove(index)"
-        @mousedown="choiceTouchEnd(answer.id)"
-      ></div>
+    <div class="q3-section">
+      <div class="q3-choices">
+        <div
+          class="q3-choice"
+          ref="q"
+          v-for="(answer, index) in questionChoices"
+          :key="answer"
+          :class="{ 'selected-q': selected === index }"
+          :style="`background-image:url(${answer.image})`"
+          @touchstart.prevent="choiceTouchStart(index)"
+          @touchmove.prevent="choiceTouchMove(index)"
+          @touchend.prevent="choiceTouchEnd(answer.id)"
+          @mouseenter.prevent="choiceTouchStart(index)"
+          @mousemove.prevent="choiceTouchMove(index)"
+          @mousedown="choiceTouchEnd(answer.id)"
+        ></div>
+      </div>
     </div>
-    <svg width="0" height="0">
+    <!-- <svg width="0" height="0">
       <filter
         id="fractal2"
         filterUnits="userSpaceOnUse"
@@ -72,7 +75,7 @@
           />
         </feDisplacementMap>
       </filter>
-    </svg>
+    </svg> -->
   </div>
 </template>
 
@@ -108,17 +111,25 @@ export default {
       selected,
     };
   },
+  mounted() {
+    const choices = document.querySelectorAll(".q3-choice");
+    choices.forEach((c) => {
+      const w = window.innerWidth / 2 - 24;
+      c.style.width = `${w}px`;
+      c.style.height = `${w}px`;
+    });
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .q3 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  overflow-y: scroll;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // height: 100%;
+  // width: 100%;
+  // overflow-y: scroll;
   overflow-x: hidden;
   text-align: center;
   &-background {
@@ -130,24 +141,46 @@ export default {
     filter: url(#fractal2);
   }
   &-title {
-    margin-top: 8rem;
+    // margin-top: 5rem;
+    padding: 1rem 3rem;
+    height: 20%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 2.5rem;
     letter-spacing: 0.2rem;
     line-height: 4rem;
-    animation: rotateInDownLeft 1.5s, flash 5s 1.5s infinite;
+  }
+  &-section {
+    padding: 4rem 3rem;
+    box-sizing: border-box;
+    height: 80%;
+    width: 100%;
+    box-sizing: border-box;
+    @include flexCenter;
+    align-items: flex-start;
   }
   &-choices {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 0 2.2rem;
-    margin-top: 16rem;
+    // display: flex;
+    // justify-content: space-between;
+    // flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1rem;
+    row-gap: 4rem;
+    // padding: 0 2.2rem;
+    // margin-top: 9.5rem;
     animation: rotateIn 1.5s;
     div {
-      width: 16rem;
-      height: 16rem;
+      // width: 16rem;
+      // height: 16rem;
+      width: 100%;
+      height: 100%;
+      align-self: center;
+      justify-self: center;
       background-size: cover;
-      margin-bottom: 8rem;
+      // margin-bottom: 5rem;
       animation: rotate 10s infinite ease-in-out forwards;
     }
   }

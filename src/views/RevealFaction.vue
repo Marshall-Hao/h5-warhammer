@@ -2,6 +2,7 @@
   <div class="reveal">
     <faction-fourtyk v-if="is40k"></faction-fourtyk>
     <faction-aos v-else></faction-aos>
+    <!-- <div v-else>aos</div> -->
   </div>
 </template>
 
@@ -12,6 +13,9 @@ import FactionAos from "../components/aosq/FactionAos";
 import { useRouter } from "vue-router";
 import { onBeforeUnmount } from "vue";
 import storage from "good-storage";
+import { USER_KEY } from "../assets/js/constant";
+import { useCookie } from "vue-cookie-next";
+import useFaction from "../services/faction";
 
 export default {
   name: "reveal-faction",
@@ -21,7 +25,6 @@ export default {
   },
   computed: {
     is40k() {
-      console.log(this.category);
       return this.category === "40k";
     },
     ...mapState(["category"]),
@@ -32,10 +35,14 @@ export default {
       const currentQuiz = storage.session.get("__currentquiz__");
       if (currentQuiz === 7) {
         router.push({
-          path: `/reveal`,
+          path: `/share`,
         });
       }
     });
+
+    const cookie = useCookie();
+    const headers = cookie.getCookie(USER_KEY);
+    useFaction(headers);
   },
 };
 </script>

@@ -81,7 +81,7 @@ export default {
   &-confirm {
     @include absXCenter;
     bottom: 13rem;
-    font-size: 4rem;
+    font-size: 2rem;
   }
   &-select {
     @include absXCenter;

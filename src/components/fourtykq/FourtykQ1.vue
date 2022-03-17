@@ -1,5 +1,5 @@
 <template>
-  <div class="q1">
+  <div class="q1 fixed-no-scroll">
     <div class="q1-background" :style="questionBackground"></div>
     <h1 class="q1-title">{{ questionText }}</h1>
     <section class="q1-section">
@@ -10,13 +10,16 @@
           :key="answer"
           :class="{ 'selected-q': selected === index }"
           :style="`background-image:url(${answer.image})`"
-          @touchstart.prevent="choiceTouchStart(index)"
-          @touchmove.prevent="choiceTouchMove(index)"
-          @touchend.prevent="choiceTouchEnd(answer.id)"
-          @mouseenter.prevent="choiceTouchStart(index)"
-          @mousemove.prevent="choiceTouchMove(index)"
-          @mousedown="choiceTouchEnd(answer.id)"
-        ></div>
+        >
+          <div
+            @touchstart.prevent="choiceTouchMove(index)"
+            @touchmove.prevent="choiceTouchMove(index)"
+            @touchend.prevent="choiceTouchEnd(answer.id)"
+            @mouseenter.prevent="choiceTouchStart(index)"
+            @mousemove.prevent="choiceTouchMove(index)"
+            @mousedown="choiceTouchEnd(answer.id)"
+          ></div>
+        </div>
       </div>
     </section>
     <svg width="0" height="0">
@@ -115,12 +118,12 @@ export default {
 
 <style lang="scss" scoped>
 .q1 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  overflow-y: scroll;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // height: 100%;
+  // width: 100%;
+  // overflow-y: scroll;
   overflow-x: hidden;
   text-align: center;
   &-background {
@@ -132,22 +135,44 @@ export default {
     z-index: -2;
   }
   &-title {
-    margin: 6rem 0;
+    // margin: 6rem 0;
+    height: 20%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 3rem;
-    animation: fadeInDown 1s;
   }
   &-section {
     position: relative;
-    height: 66rem;
+    // height: 66rem;
     animation: fadeInUp 1s;
+    height: 80%;
+    width: 100%;
+    padding-bottom: 4.5rem;
+    box-sizing: border-box;
+    @include flexCenter;
     &-choices {
-      @include absCenter;
+      // @include absCenter;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       div {
         width: 28rem;
-        height: 6.5rem;
-        background-size: cover;
+        // height: 6.5rem;
+        height: 12%;
+        background-size: contain;
+        background-position: center;
+        // background-size: cover;
         background-repeat: no-repeat;
-        margin-bottom: 4rem;
+        // margin-bottom: 4rem;
+        position: relative;
+        div {
+          height: 60%;
+          width: 50%;
+          @include absCenter;
+        }
       }
     }
   }

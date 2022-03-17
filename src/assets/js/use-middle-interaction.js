@@ -169,7 +169,7 @@ export default function useMiddleInteraction(
   }
 
   function verticalEndAction() {
-    if (Math.abs(touch.percentY) < 0.95) {
+    if (Math.abs(touch.percentY) < 0.75) {
       const deltaY = 0;
       iconTransform.value = {
         transform: `translate3d(0,${deltaY}px,0)`,

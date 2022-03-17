@@ -320,12 +320,14 @@ export default {
   }
   &-product {
     width: 31.5rem;
+
     // height: 28.7rem;
     height: 37.7rem;
     // background: #fff;
     // border-radius: 0.7rem;
     // margin-bottom: 2rem;
     margin-bottom: 3rem;
+
     position: relative;
     &-container {
       // border: 0.15rem solid #000;
@@ -339,6 +341,7 @@ export default {
         background-size: cover;
         @include absXCenter;
         margin: 2rem 0;
+        mix-blend-mode: multiply;
       }
       // a
       &-title {

@@ -115,27 +115,42 @@ export default {
     };
   },
   mounted() {
-    const choices = document.querySelectorAll(".q1-section-choice");
-    console.log({ choices });
 
-    if (window.innerHeight > 700) {
+
+    if (window.innerWidth > 375) {
       // document.querySelector('.q1-title').style.height = "25%"
       // document.querySelector('.q1-section').style.height = "75%"
-      choices.forEach((c) => {
-        const w = window.innerWidth / 2 - 10;
-        c.style.width = `${w}px`;
-        c.style.height = `${w * (25 / 17)}px`;
-      });
+      this.setChoiceDimension(0.8);
     } else {
       document.querySelector(".q1-title").style.height = "15%";
       document.querySelector(".q1-section").style.height = "85%";
-      choices.forEach((c) => {
-        const w = window.innerWidth / 2 - 20;
-        c.style.width = `${w}px`;
-        c.style.height = `${w * (25 / 17)}px`;
-      });
+      this.setChoiceDimension(0.85);
     }
   },
+  methods: {
+    setChoiceDimension(sectionH) {
+      const choices = document.querySelectorAll(".q1-section-choice");
+      console.log({ choices });
+
+      // how about just maximize and either use h or w depending on dimension ?
+      let w = (window.innerWidth - 10)
+      let h = ((window.innerHeight * sectionH) - 45 - 2)
+
+      const useW = (w/2 * (25/17)) * 2 <= h
+
+      if (useW) {
+        choices.forEach((c) => {
+          c.style.width = `${w/2}px`;
+          c.style.height = `${w/2 * (25 / 17)}px`;
+        });
+      } else {
+        choices.forEach((c) => {
+          c.style.height = `${h/2}px`;
+          c.style.width = `${h/2 * (17/25)}px`;
+        });
+      }
+    }
+  }
 };
 </script>
 
@@ -176,7 +191,7 @@ export default {
     animation: fadeInDown 1s;
   }
   &-section {
-    padding: 0rem 1rem;
+    padding: 0rem 1rem 4rem 1rem;
     height: 80%;
     width: 100%;
     box-sizing: border-box;
@@ -196,7 +211,6 @@ export default {
       column-gap: 0.25rem;
       // row-gap: 1rem;
       width: 100%;
-
       div {
         // width: 16.5rem;
         // height: 28rem; dynamically injected

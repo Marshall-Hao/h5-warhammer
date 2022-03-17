@@ -98,6 +98,7 @@
       </div>
     </section>
     <div class="q6-packs">
+      <div class="q6-bottom"></div>
       <h4 class="q6-packs-title">Starter Packs:</h4>
       <div class="glide2 q6-packs-glide2">
         <div class="glide__track" data-glide-el="track">
@@ -115,7 +116,6 @@
                       backgroundImage: ` url(${product.image})`,
                     }"
                   ></div>
-                  <!-- <a :href="product.shop_url">{{ product.name }}</a> -->
                   <div class="q6-product-container-title">
                     {{ product.name }}
                   </div>
@@ -234,6 +234,7 @@ export default {
   width: 100%;
   padding: 1.2rem;
   overflow-y: scroll;
+  overflow-x: hidden;
   font-family: "jingdian";
   font-weight: 400;
   &-bg {
@@ -314,11 +315,26 @@ export default {
       font-size: 1.5rem;
     }
   }
+  &-bottom {
+    background-image: url(../assets/images/regular/homelanding.png);
+    background-size: cover;
+    position: absolute;
+    top: -3rem;
+    left: -2rem;
+    height: 115%;
+    width: 120%;
+    z-index: -1;
+    mask: linear-gradient(0, #222222 5%, #222222 5%, transparent 100%);
+  }
   &-packs {
     // margin-top: 2rem;
     margin: 2rem 0;
     text-align: center;
     position: relative;
+
+    // div {
+    //   background-size: cover;
+    // }
     &-title {
       color: $color-text-py;
       font-size: 2rem;

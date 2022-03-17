@@ -22,7 +22,10 @@
       </div>
 
       <div class="landing-section-description">
-        <span id="landing-section-typed"></span>
+        <span id="landing-section-typed">
+          War is everything. Mighty empires clash in the eternal struggle for
+          domination – across realms of magic, and the bleak vastness of space
+        </span>
       </div>
 
       <div class="landing-section-begin" @click="onClick">
@@ -93,12 +96,6 @@
           destiny now.
         </h4>
       </div>
-      <!-- <footer class="landing-footer">
-        <router-link class="landing-footer-terms" :to="`/terms`"
-          >服务与条款</router-link
-        >
-        <p class="landing-footer-beian">沪ICP备11032828号-1</p>
-      </footer> -->
     </section>
     <footer class="landing-footer">
       <router-link class="landing-footer-terms" :to="`/terms`"
@@ -150,7 +147,6 @@
 
 <script>
 import LandingBall from "../components/base/landingBall/LandingBall";
-import useTyped from "../assets/js/use-typed";
 import login from "../services/login";
 import { mapActions } from "vuex";
 import ahoy from "ahoy.js";
@@ -173,14 +169,7 @@ export default {
     const desc = document.querySelector(".landing-section-description");
     console.log("desc h", desc.offsetHeight);
     this.login();
-    useTyped(
-      "#landing-section-typed",
-      [
-        "War is everything. Mighty empires clash in the eternal struggle for domination – across realms of magic, and the bleak vastness of space ",
-      ],
-      25,
-      "."
-    );
+
     //  * events track
     ahoy.configure({
       urlPrefix: "https://api-staging.h5.games-workshop-china.com",

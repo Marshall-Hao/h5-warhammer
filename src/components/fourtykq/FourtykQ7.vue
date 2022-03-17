@@ -4,18 +4,30 @@
     <div class="q7-section">
       <div
         class="q7-section-option"
-        v-for="answer in questionChoices"
+        v-for="(answer, index) in questionChoices"
         :key="answer"
       >
-        <div :style="{ backgroundImage: `url(${answer.image})` }"></div>
+        <div
+          :style="{ backgroundImage: `url(${answer.image})` }"
+          v-if="index === 0"
+        >
+          <div
+            :style="`background: ${maskValue};transition:all ${duration};`"
+          ></div>
+        </div>
+        <div v-else :style="{ backgroundImage: `url(${answer.image})` }">
+          <div
+            :style="`background: ${greyMask};transition:all ${duration};`"
+          ></div>
+        </div>
       </div>
     </div>
     <div class="q7-progress">
       <div class="q7-progress-top" ref="swipeOne">
-        <div
+        <!-- <div
           class="q7-progress-top-mask"
           :style="`background: ${maskValue};transition:all ${duration};`"
-        ></div>
+        ></div> -->
       </div>
       <div
         class="q7-progress-container"
@@ -32,10 +44,10 @@
         </div>
       </div>
       <div class="q7-progress-bottom" ref="swipeTwo">
-        <div
+        <!-- <div
           class="q7-progress-bottom-mask"
           :style="`background: ${greyMask};transition:all ${duration};`"
-        ></div>
+        ></div> -->
       </div>
       <p class="q7-progress-instruction">
         {{ currentQuestion.instruction }}
@@ -83,16 +95,16 @@ export default {
     const maskValue = computed(() => {
       return `linear-gradient(
           0,
-          rgb(222, 210, 233,0.8),
-          rgba(222, 210, 233, 0.6) ${maskTransform.redOffset}%,
+          rgb(222, 210, 233),
+          rgba(222, 210, 233, 0.8) ${maskTransform.redOffset}%,
           transparent ${maskTransform.transparentOffsetY}%
         );`;
     });
     const greyMask = computed(() => {
       return `linear-gradient(
            180deg,
-          rgb(222, 210, 233,0.8),
-          rgba(222, 210, 233, 0.6) ${maskTransform.greyOffset}%,
+          rgb(222, 210, 233),
+          rgba(222, 210, 233, 0.8) ${maskTransform.greyOffset}%,
           transparent ${maskTransform.transparentOffsetYGrey}%
         );`;
     });
@@ -178,10 +190,23 @@ export default {
       div {
         width: 100%;
         height: 100%;
+        position: relative;
         background-size: cover;
-        transform: scale(1.04, 1.04) translateX(-0.8rem);
-        @media only screen and (min-width: 375px) and (max-width: 375px) {
-          transform: scale(1.08, 1.08);
+        // transform: scale(1.04, 1.04) translateX(-0.8rem);
+        // @media only screen and (min-height: 667px) and (max-height: 667px) {
+        //   transform: scale(1.08, 1.08);
+        // }
+        div {
+          border-radius: 2%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          // transform: translateX(2.5%);
+          // @media only screen and (min-height: 667px) and (max-height: 667px) {
+          //   transform: translateX(0%);
+          // }
         }
       }
       &:not(:last-child) {
@@ -202,7 +227,7 @@ export default {
     &-top {
       position: absolute;
       top: -0.6rem;
-      @media only screen and (min-width: 375px) and (max-width: 375px) {
+      @media only screen and (min-height: 667px) and (max-height: 667px) {
         top: 0.8rem;
       }
       width: 100%;
@@ -266,7 +291,7 @@ export default {
     }
   }
 
-  @media only screen and (min-width: 375px) and (max-width: 375px) {
+  @media only screen and (min-height: 667px) and (max-height: 667px) {
     .q7-progress-bottom {
       bottom: 22%;
     }

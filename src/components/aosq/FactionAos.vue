@@ -1,5 +1,5 @@
 <template>
-  <div v-if="blink">
+  <div v-show="blink">
     <lighting></lighting>
   </div>
   <div

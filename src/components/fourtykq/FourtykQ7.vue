@@ -7,13 +7,7 @@
         v-for="answer in questionChoices"
         :key="answer"
       >
-        <video-box
-          :posterUrl="answer.image"
-          :duration="4"
-          starColor="rgb(222, 210, 233,0.8)"
-          lineColor="#65798b"
-        >
-        </video-box>
+        <div :style="{ backgroundImage: `url(${answer.image})` }"></div>
       </div>
     </div>
     <div class="q7-progress">
@@ -181,6 +175,15 @@ export default {
       width: 73.3%;
       height: 29.1%;
       position: relative;
+      div {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        transform: scale(1.04, 1.04) translateX(-0.8rem);
+        @media only screen and (min-width: 375px) and (max-width: 375px) {
+          transform: scale(1.08, 1.08);
+        }
+      }
       &:not(:last-child) {
         margin: 0 auto 13rem;
         animation: fadeInDown 1s ease;
@@ -198,13 +201,16 @@ export default {
     @include absXCenter;
     &-top {
       position: absolute;
-      top: -0.5rem;
+      top: -0.6rem;
+      @media only screen and (min-width: 375px) and (max-width: 375px) {
+        top: 0.8rem;
+      }
       width: 100%;
       height: 29.1%;
       overflow: hidden;
       &-mask {
         height: 100%;
-        width: 120%;
+        width: 100%;
 
         bottom: -0.9rem;
         @include absXCenter;
@@ -213,7 +219,7 @@ export default {
     }
     &-container {
       @include absXCenter;
-      top: 33%;
+      top: 31%;
     }
     &-eagle {
       width: 16rem;
@@ -231,8 +237,8 @@ export default {
       // background: red;
       &-mask {
         height: 100%;
-        width: 130%;
-        transform: scaleX(1.3);
+        width: 100%;
+
         @include absXCenter;
         top: -0.9rem;
         // filter: url(#smoke);
@@ -240,12 +246,19 @@ export default {
     }
 
     &-instruction {
+      color: $color-text-py;
+      font-size: 1.4rem;
+      line-height: 3.6rem;
+      text-align: center;
       position: absolute;
-      left: 31.5%;
-      @media only screen and (min-height: 844px) {
-        left: 28%;
-      }
-      top: 43%;
+      // left: 31.5%;
+      left: 0;
+      right: 0;
+      // @media only screen and (min-height: 844px) {
+      //   left: 28%;
+      // }
+      // top: 43%;
+      top: 39%;
       animation: jump 2s infinite ease;
     }
   }

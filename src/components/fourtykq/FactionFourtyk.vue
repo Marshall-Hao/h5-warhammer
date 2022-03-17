@@ -197,8 +197,8 @@ export default {
   }
 `;
     const POINTS_COUNT = 50000;
-
-    const palette = niceColors[14];
+    console.log(niceColors[14]);
+    const palette = ["#112c6c", "#5ea6f5", "#0e205b", "#151a26", "#404661"];
 
     const positions = new Float32Array(POINTS_COUNT * 3);
     const colors = new Float32Array(POINTS_COUNT * 3);

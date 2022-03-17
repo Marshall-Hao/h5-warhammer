@@ -106,7 +106,7 @@
             </svg>
           </li> -->
           <li>
-            <svg width="16.5" height="30" viewBox="0 0 110 200">
+            <svg width="16.5" height="24" viewBox="0 0 110 200">
               <polyline
                 points="100 0, 0 100, 100 200,110 190,25 100, 110 10 "
                 fill="rgba(165, 147, 93, 0.6)"
@@ -134,7 +134,7 @@
             </svg>
           </li>
           <li>
-            <svg width="16.5" height="30" viewBox="0 0 110 200">
+            <svg width="16.5" height="24" viewBox="0 0 110 200">
               <polyline
                 points="100 0, 0 100, 100 200,110 190,25 100, 110 10 "
                 fill="rgba(165, 147, 93, 0.8)"
@@ -162,7 +162,7 @@
             </svg>
           </li>
           <li>
-            <svg width="16.5" height="30" viewBox="0 0 110 200">
+            <svg width="16.5" height="24" viewBox="0 0 110 200">
               <polyline
                 points="100 0, 0 100, 100 200,110 190,25 100, 110 10 "
                 fill="rgb(165, 147, 93)"
@@ -212,7 +212,7 @@
       <div class="choose-section-options-r" ref="swipeTwo">
         <ul>
           <li>
-            <svg width="16.5" height="30" viewBox="0 0 110 200">
+            <svg width="16.5" height="24" viewBox="0 0 110 200">
               <polyline
                 points="10 200, 110 100, 10 0,0 10,85 100, 0 190 "
                 fill="#64798B"
@@ -240,7 +240,7 @@
             </svg>
           </li>
           <li>
-            <svg width="16.5" height="30" viewBox="0 0 110 200">
+            <svg width="16.5" height="24" viewBox="0 0 110 200">
               <polyline
                 points="10 200, 110 100, 10 0,0 10,85 100, 0 190 "
                 fill="rgba(100, 121, 139, 0.8)"
@@ -268,7 +268,7 @@
             </svg>
           </li>
           <li>
-            <svg width="16.5" height="30" viewBox="0 0 110 200">
+            <svg width="16.5" height="24" viewBox="0 0 110 200">
               <polyline
                 points="10 200, 110 100, 10 0,0 10,85 100, 0 190 "
                 fill="rgba(100, 121, 139, 0.6)"
@@ -296,7 +296,7 @@
             </svg>
           </li>
           <!-- <li>
-            <svg width="16.5" height="30" viewBox="0 0 110 200">
+            <svg width="16.5" height="24" viewBox="0 0 110 200">
               <polyline
                 points="10 200, 110 100, 10 0,0 10,85 100, 0 190 "
                 fill="rgba(100, 121, 139, 0.4)"
@@ -389,6 +389,11 @@ export default {
       beatAnimate,
     };
   },
+  mounted() {
+    if (window.innerWidth/window.innerHeight > 0.5) {
+      document.querySelector('.choose-section').style.height = '62%'
+    }
+  }
 };
 </script>
 
@@ -401,6 +406,7 @@ export default {
   right: 0;
   width: 100%;
   &-header {
+    padding: 0 1.2rem;
     text-align: center;
     position: relative;
     z-index: 10;
@@ -412,9 +418,10 @@ export default {
   }
 
   &-section {
-    position: absolute;
-    left: 0;
-    top: 13rem;
+    // position: absolute;
+    // left: 0;
+    // top: 13rem;
+    position: relative;
     height: 68%;
     width: 100vw;
     display: flex;
@@ -442,12 +449,13 @@ export default {
 
     &-options {
       z-index: 2;
-      position: absolute;
-      bottom: 8.4%;
-      left: 0;
+      // position: absolute;
+      // bottom: 8.4%;
+      // left: 0;
+      position: relative;
       height: 6rem;
       width: 100vw;
-      padding: 0.3rem;
+      padding: 0.3rem 1.4rem;
       background-color: $color-theme-lb;
       box-shadow: 0 0rem 2rem 0.5rem $color-text-pr;
       display: flex;
@@ -468,9 +476,11 @@ export default {
           display: flex;
           flex-direction: row-reverse;
           justify-content: space-between;
+          align-items: center;
           li {
             width: 1.65rem;
-            height: 3rem;
+            // height: 3rem;
+            height: 24px;
           }
         }
       }
@@ -483,10 +493,16 @@ export default {
   }
 
   &-tips {
-    position: absolute;
-    display: block;
+    // position: absolute;
+    // display: block;
+    position: relative;
+    margin-top: 2.8rem;
+    // @media screen and (max-width: 375px) {
+    //   margin-top: 2.4rem;
+    // }
     width: 100vw;
-    bottom: 2.5vh;
+    // bottom: 2.5vh;
+    // bottom: 3vh;
     text-align: center;
     font-size: 0.8rem;
     animation: headShake 2s infinite ease-out;

@@ -14,7 +14,12 @@
       <div v-if="showSub" class="glide q6-section-glide">
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
-            <li class="glide__slide" style="display: flex; flex-direction: column;" v-for="sub in subFactions" :key="sub">
+            <li
+              class="glide__slide"
+              style="display: flex; flex-direction: column"
+              v-for="sub in subFactions"
+              :key="sub"
+            >
               <div
                 class="q6-section-sub"
                 :style="{
@@ -111,7 +116,9 @@
                     }"
                   ></div>
                   <!-- <a :href="product.shop_url">{{ product.name }}</a> -->
-                  <div class="q6-product-container-title">{{ product.name }}</div>
+                  <div class="q6-product-container-title">
+                    {{ product.name }}
+                  </div>
                   <div class="q6-product-container-desc">
                     {{ product.short_desc }}
                   </div>
@@ -124,9 +131,12 @@
           </ul>
         </div>
         <div class="glide__bullets" data-glide-el="controls[nav]">
-          <button class="glide__bullet" data-glide-dir="=0"></button>
-          <button class="glide__bullet" data-glide-dir="=1"></button>
-          <button class="glide__bullet" data-glide-dir="=2"></button>
+          <button
+            v-for="(product, index) in factionProducts"
+            :key="product"
+            class="glide__bullet"
+            :data-glide-dir="`=${index}`"
+          ></button>
         </div>
       </div>
     </div>
@@ -284,7 +294,8 @@ export default {
     &-sub {
       // margin: 0rem 2.2rem 2rem;
       margin-bottom: 2rem;
-      align-self: center; justify-self: center;
+      align-self: center;
+      justify-self: center;
       width: 12rem;
       height: 15.7rem;
       background-size: contain;
@@ -370,7 +381,7 @@ export default {
         @include absCenter;
         width: 16rem;
         height: 3.314rem;
-        background-image: url('../assets/images/misc/button_yellow.png');
+        background-image: url("../assets/images/misc/button_yellow.png");
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
@@ -378,9 +389,11 @@ export default {
         // padding-top: 0.25rem;
         color: #000;
         font-family: Heiti SC, STHeiti, SimHei;
-        font-size: 2rem; font-weight: 700;
+        font-size: 2rem;
+        font-weight: 700;
         display: flex;
-        justify-content: center; align-items: center;
+        justify-content: center;
+        align-items: center;
       }
     }
   }

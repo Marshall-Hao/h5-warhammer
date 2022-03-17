@@ -180,7 +180,7 @@ export default {
         height: 100%;
         background-size: cover;
         transform: scale(1.04, 1.04) translateX(-0.8rem);
-        @media only screen and (min-width: 375px) and (max-width: 375px) {
+        @media only screen and (min-height: 667px) and (max-height: 667px) {
           transform: scale(1.08, 1.08);
         }
       }
@@ -202,7 +202,7 @@ export default {
     &-top {
       position: absolute;
       top: -0.6rem;
-      @media only screen and (min-width: 375px) and (max-width: 375px) {
+      @media only screen and (min-height: 667px) and (max-height: 667px) {
         top: 0.8rem;
       }
       width: 100%;
@@ -263,7 +263,7 @@ export default {
     }
   }
 
-  @media only screen and (min-width: 375px) and (max-width: 375px) {
+  @media only screen and (min-height: 667px) and (max-height: 667px) {
     .q7-progress-bottom {
       bottom: 22%;
     }

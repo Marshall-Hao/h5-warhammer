@@ -115,8 +115,6 @@ export default {
     };
   },
   mounted() {
-
-
     if (window.innerWidth > 375) {
       // document.querySelector('.q1-title').style.height = "25%"
       // document.querySelector('.q1-section').style.height = "75%"
@@ -137,6 +135,8 @@ export default {
       let h = ((window.innerHeight * sectionH) - 45 - 2)
 
       const useW = (w/2 * (25/17)) * 2 <= h
+
+      console.log({useW})
 
       if (useW) {
         choices.forEach((c) => {

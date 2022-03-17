@@ -1,8 +1,10 @@
 <template>
-  <section class="terms">
-    <h2 class="terms-title">服务与条款</h2>
-    <p id="terms-description"></p>
-  </section>
+  <div>
+    <section class="terms">
+      <h2 class="terms-title">服务与条款</h2>
+      <p id="terms-description"></p>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -18,6 +20,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+div {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url(../assets/images/regular/homelanding.png);
+  background-size: cover;
+}
 .terms {
   text-align: center;
   &-title {

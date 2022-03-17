@@ -205,6 +205,7 @@ export default {
         fourtyK: loginRes["categories"]["40k"]["questions"],
       };
       this.addQuestions(list);
+      console.log(loginRes);
     },
     ...mapActions(["addQuestions"]),
   },
@@ -217,6 +218,8 @@ export default {
   // @media only screen and (max-height: 740px) {
   //   padding: 1rem 0;
   // }
+  background-image: url(../assets/images/regular/homelanding.png);
+  background-size: cover;
   &-header {
     height: 25%;
     @media only screen and (max-height: 740px) {

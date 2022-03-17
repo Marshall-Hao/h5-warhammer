@@ -61,11 +61,11 @@
         </StandardMaterial>
       </Sphere>
     </Scene>
-    <EffectComposer>
+    <!-- <EffectComposer>
       <RenderPass />
       <FilmPass :noiseIntensity="3" :scanlinesIntensity="0.1" />
       <UnrealBloomPass :strength="0.2" />
-    </EffectComposer>
+    </EffectComposer> -->
   </Renderer>
   <div
     class="reveal-block"

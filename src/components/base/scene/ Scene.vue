@@ -32,10 +32,6 @@
         </Mesh>
         <FbxModel :src="logo" :scale="scale" @load="onLoad" />
       </Scene>
-      <EffectComposer>
-        <RenderPass />
-        <FilmPass :noiseIntensity="0.2" :scanlinesIntensity="0.01" />
-      </EffectComposer>
     </Renderer>
   </div>
 </template>
@@ -52,9 +48,6 @@ import {
   BasicMaterial,
   Texture,
   FbxModel,
-  EffectComposer,
-  RenderPass,
-  FilmPass,
 } from "troisjs";
 
 export default {
@@ -70,9 +63,6 @@ export default {
     BasicMaterial,
     Texture,
     FbxModel,
-    EffectComposer,
-    RenderPass,
-    FilmPass,
   },
   data() {
     return {

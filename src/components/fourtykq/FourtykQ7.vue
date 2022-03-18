@@ -11,24 +11,19 @@
           :style="{ backgroundImage: `url(${answer.image})` }"
           v-if="index === 0"
         >
-          <div
+          <!-- <div
             :style="`background: ${maskValue};transition:all ${duration};`"
-          ></div>
+          ></div> -->
         </div>
         <div v-else :style="{ backgroundImage: `url(${answer.image})` }">
-          <div
+          <!-- <div
             :style="`background: ${greyMask};transition:all ${duration};`"
-          ></div>
+          ></div> -->
         </div>
       </div>
     </div>
     <div class="q7-progress">
-      <div class="q7-progress-top" ref="swipeOne">
-        <!-- <div
-          class="q7-progress-top-mask"
-          :style="`background: ${maskValue};transition:all ${duration};`"
-        ></div> -->
-      </div>
+      <div class="q7-progress-top" ref="swipeOne"></div>
       <div
         class="q7-progress-container"
         :style="iconTransform"
@@ -41,17 +36,12 @@
       >
         <div class="q7-progress-eagle">
           <svg-icon :name="3" fill="#fff" :duration="{}"></svg-icon>
+          <p class="q7-progress-instruction">
+            {{ currentQuestion.instruction }}
+          </p>
         </div>
       </div>
-      <div class="q7-progress-bottom" ref="swipeTwo">
-        <!-- <div
-          class="q7-progress-bottom-mask"
-          :style="`background: ${greyMask};transition:all ${duration};`"
-        ></div> -->
-      </div>
-      <p class="q7-progress-instruction">
-        {{ currentQuestion.instruction }}
-      </p>
+      <div class="q7-progress-bottom" ref="swipeTwo"></div>
     </div>
   </div>
 </template>
@@ -192,6 +182,8 @@ export default {
         height: 100%;
         position: relative;
         background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
         // transform: scale(1.04, 1.04) translateX(-0.8rem);
         // @media only screen and (min-height: 667px) and (max-height: 667px) {
         //   transform: scale(1.08, 1.08);
@@ -248,7 +240,7 @@ export default {
       top: 31%;
     }
     &-eagle {
-      width: 16rem;
+      width: 19rem;
       height: 7.41rem;
 
       @include absXCenter;
@@ -278,15 +270,15 @@ export default {
       line-height: 3.6rem;
       text-align: center;
       position: absolute;
-      // left: 31.5%;
-      left: 0;
-      right: 0;
+      left: 3%;
+      // left: 0;
+      // right: 0;
 
       // @media only screen and (min-height: 844px) {
       //   left: 28%;
       // }
-      // top: 43%;
-      top: 39%;
+      top: 75%;
+      // top: 39%;
       animation: jump 2s infinite ease;
     }
   }

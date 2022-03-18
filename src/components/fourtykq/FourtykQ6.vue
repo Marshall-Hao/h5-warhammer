@@ -29,7 +29,7 @@
                 @mouseenter.prevent="flipCard(index, answer.id)"
                 @mousemove.prevent="choiceTouchMove(index)"
               >
-                Flip
+                <!-- Flip -->
               </div>
             </div>
           </div>
@@ -209,20 +209,6 @@ export default {
           c.style.width = `${(h / 2) * (17 / 25)}px`;
         });
       }
-
-      // cards.forEach((card) => {
-      //   if (window.innerHeight > 700) {
-      //     const w = window.innerWidth / 2 - 20;
-      //     card.style.width = `${w}px`;
-      //     card.style.height = `${w * (25 / 17)}px`;
-      //   } else {
-      //     // 45px is the padding bottom of the container
-      //     // 16px is the grid row-gap
-      //     const h = (((window.innerHeight * 0.8) - 45 -16) / 2 );
-      //     card.style.height = `${h}px`;
-      //     card.style.width = `${h * (17/25)}px`;
-      //   }
-      // });
     },
   },
 };
@@ -285,6 +271,7 @@ export default {
     perspective: 150rem;
     -moz-perspective: 150rem;
     animation: zoomIn 1.8s ease;
+    filter: drop-shadow(0px 0px 10px #64798b);
 
     &-side {
       position: absolute;

@@ -89,10 +89,10 @@
             </button>
           </div>
           <div class="glide__bullets" data-glide-el="controls[nav]">
-            <button class="glide__bullet" data-glide-dir="=0"></button>
+            <!-- <button class="glide__bullet" data-glide-dir="=0"></button>
             <button class="glide__bullet" data-glide-dir="=1"></button>
             <button class="glide__bullet" data-glide-dir="=2"></button>
-            <button class="glide__bullet" data-glide-dir="=3"></button>
+            <button class="glide__bullet" data-glide-dir="=3"></button> -->
           </div>
         </div>
 
@@ -202,7 +202,7 @@ export default {
     // width: 27.1rem;
     // height: 37.5rem;
     background-size: cover;
-    animation: pulse 2s infinite forwards;
+    // animation: pulse 2s infinite forwards;
   }
   &-pick {
     // margin-top: 6rem;
@@ -234,11 +234,11 @@ export default {
   border: 0px;
   &--left {
     left: 1rem;
-    animation: left 2s infinite forwards ease-in-out;
+    // animation: left 2s infinite forwards ease-in-out;
   }
   &--right {
     right: 0rem;
-    animation: right 2s infinite backwards ease-in-out;
+    // animation: right 2s infinite backwards ease-in-out;
   }
 }
 .glide__track {

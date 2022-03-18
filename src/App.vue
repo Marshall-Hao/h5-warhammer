@@ -9,7 +9,8 @@
 <script>
   import login from "./services/login";
   import ahoy from "./services/ahoy"
-  console.log({ahoy})
+  import { mapActions } from "vuex";
+  // console.log({ahoy})
 
   export default {
     data() {
@@ -17,9 +18,22 @@
 
       }
     },
-    async mounted() {
-      const loginRes = await login();
-      console.log({loginRes})
+    mounted() {
+      // const loginRes = await login();
+      // console.log({loginRes})
+      this.login()
+    },
+    methods: {
+      async login() {
+        const loginRes = await login();
+        const list = {
+          aos: loginRes["categories"]["aos"]["questions"],
+          fourtyK: loginRes["categories"]["40k"]["questions"],
+        };
+        this.addQuestions(list);
+        console.log(loginRes);
+      },
+      ...mapActions(["addQuestions"]),
     }
   }
 

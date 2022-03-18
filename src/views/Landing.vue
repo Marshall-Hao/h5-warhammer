@@ -170,18 +170,18 @@ export default {
   mounted() {
     const desc = document.querySelector(".landing-section-description");
     console.log("desc h", desc.offsetHeight);
-    this.login();
+    // this.login();
 
     //  * events track
-    ahoy.configure({
-      urlPrefix: "https://api-staging.h5.games-workshop-china.com",
-    });
-    ahoy.track("landingPage", {
-      url: "http://localhost:8080/",
-      title: "landing",
-      time: Date.now(),
-      page: "/landing",
-    });
+    // ahoy.configure({
+    //   urlPrefix: "https://api-staging.h5.games-workshop-china.com",
+    // });
+    // ahoy.track("landingPage", {
+    //   url: "http://localhost:8080/",
+    //   title: "landing",
+    //   time: Date.now(),
+    //   page: "/landing",
+    // });
   },
   methods: {
     onClick() {

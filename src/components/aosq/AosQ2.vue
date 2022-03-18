@@ -3,13 +3,13 @@
     <h1 class="q2-title">
       {{ questionText }}
     </h1>
-    <div
+    <!-- <div
       class="q2-banner"
       :style="{
         background: `url(${currentQuestion.instruction_image})`,
         backgroundSize: 'cover',
       }"
-    ></div>
+    ></div> -->
     <div class="q2-section">
       <div class="q2-choices">
         <div
@@ -116,18 +116,18 @@ export default {
   // overflow-x: hidden;
   text-align: center;
   &-title {
-    height: 10%; width: 100%;
+    height: 20%; width: 100%;
     display: flex; align-items: center; justify-content: center;
     font-size: 2.5rem;
     // margin: 5rem auto 3rem;
   }
-  &-banner {
-    width: auto;
-    margin: 0 1.5rem;
-    // height: 20.5rem;
-    height: 25%;
-    animation: flipInY 1.5s;
-    position: relative;
+  // &-banner {
+  //   width: auto;
+  //   margin: 0 1.5rem;
+  //   // height: 20.5rem;
+  //   height: 25%;
+  //   animation: flipInY 1.5s;
+  //   position: relative;
 
     // &::before {
     //   content: "";
@@ -145,11 +145,12 @@ export default {
     //   );
     //   filter: url(#smoke);
     // }
-  }
+  // }
   &-section {
     @include flexCenter;
-    padding: 2rem 0rem;
-    height: 65%; width: 100%;
+    // padding: 2rem 0rem;
+    padding-bottom: 4.5rem;
+    height: 80%; width: 100%;
     box-sizing: border-box;
   }
   &-choices {
@@ -167,7 +168,7 @@ export default {
       height: 100%;
       // margin-bottom: 1.5rem;
       position: relative;
-      background-position: center;
+      background-position: top;
       background-size: contain;
       background-repeat: no-repeat;
       div {

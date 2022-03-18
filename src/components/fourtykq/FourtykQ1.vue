@@ -8,7 +8,7 @@
           ref="q"
           v-for="(answer, index) in questionChoices"
           :key="answer"
-          :class="{ 'selected-q': selected === index }"
+          :class="{ 'selected-q1': selected === index }"
           :style="`background-image:url(${answer.image})`"
         >
           <div
@@ -162,12 +162,13 @@ export default {
         width: 28rem;
         // height: 6.5rem;
         height: 12%;
-        background-size: contain;
+        background-size: 102% 108%;
         background-position: center;
         // background-size: cover;
         background-repeat: no-repeat;
         // margin-bottom: 4rem;
         position: relative;
+        transition: all 0.3s;
         div {
           height: 60%;
           width: 50%;
@@ -177,8 +178,7 @@ export default {
     }
   }
 }
-.selected-q {
-  animation: fadeIn 2s ease-in-out infinite backwards,
-    bounceIn 2s ease-in-out infinite backwards;
+.selected-q1 {
+  box-shadow: 0 0 0.5rem 0.5rem rgb(78, 137, 66);
 }
 </style>

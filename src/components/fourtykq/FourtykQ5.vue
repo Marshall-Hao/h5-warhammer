@@ -2,6 +2,7 @@
   <div class="q5">
     <div class="q5-title">{{ questionText }}</div>
     <scene :scene="scene"></scene>
+    <div class="q5-rotate"></div>
     <div class="q5-confirm" @touchstart.prevent="next" @mousedown="next">
       confirm
     </div>
@@ -77,6 +78,15 @@ export default {
     width: 100%;
     line-height: 3rem;
     top: 3rem;
+  }
+  &-rotate {
+    @include absCenter;
+    height: 10rem;
+    width: 10rem;
+    background-image: url(../../assets/images/regular/rotate.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.6;
   }
   &-confirm {
     @include absXCenter;

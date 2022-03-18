@@ -156,7 +156,6 @@ export default {
     height: 100%;
     width: 100%;
     z-index: -2;
-    filter: url(#fractal2);
   }
   &-section {
     width: 37rem;
@@ -181,7 +180,7 @@ export default {
       justify-content: center;
       line-height: 4rem;
       font-size: 3rem;
-      animation: backInLeft 1s ease-in, pulse 3s ease-in-out infinite;
+      animation: backInLeft 1s ease-in;
     }
     &-choices {
       height: 75%;

@@ -253,9 +253,9 @@ export default {
       // padding: 0 1.5rem;
       display: flex;
       justify-content: center;
-      box-shadow: 0 0 0.8rem 0.2rem rgba(255, 255, 255, 0.5);
-      border: 1px solid $color-text-pr;
       video {
+        box-shadow: 0 0 0.8rem 0.2rem rgba(255, 255, 255, 0.5);
+        border: 1px solid $color-text-pr;
         width: 100%;
         @media only screen and (max-height: 740px) {
           width: 85%;

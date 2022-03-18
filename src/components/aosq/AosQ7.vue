@@ -2,7 +2,10 @@
   <div class="q7 fixed-no-scroll">
     <div class="q7-background" :style="questionBackground"></div>
     <div class="q7-banner">
-      <div class="q7-banner-inner"></div>
+      <div class="q7-banner-inner"
+        :style="{
+        'background-image': `url(${currentQuestion.instruction_image})`}">
+      </div>
     </div>
     <div class="q7-section">
       <h1 class="q7-title">{{ questionText }}</h1>
@@ -118,7 +121,8 @@ export default {
   mounted() {
     // setting dimensions dynamically
     const scrollDim = { w: 563, h: 512 };
-    const bannerDim = { w: 296, h: 205 };
+    // const bannerDim = { w: 296, h: 205 };
+    const bannerDim = { w: 192, h: 252 };
     const choiceDim = { w: 312, h: 74 };
     const banner = document.querySelector(".q7-banner");
     banner.style.height = `${
@@ -126,10 +130,12 @@ export default {
     }px`;
     // console.log('banner', document.querySelector('.q7-banner'))
     const innerBanner = document.querySelector(".q7-banner-inner");
-    innerBanner.style.width = `${0.8 * banner.offsetWidth}px`;
-    innerBanner.style.height = `${
-      0.8 * banner.offsetWidth * (bannerDim.h / bannerDim.w)
-    }px`;
+    innerBanner.style.height = `${0.95 * banner.offsetHeight}px`
+    innerBanner.style.width= `${(0.95 * banner.offsetHeight) * (bannerDim.w/bannerDim.h)}px`
+    // innerBanner.style.width = `${0.8 * banner.offsetWidth}px`;
+    // innerBanner.style.height = `${
+    //   0.8 * banner.offsetWidth * (bannerDim.h / bannerDim.w)
+    // }px`;
     const section = document.querySelector(".q7-section");
     section.style.height = `${window.innerHeight - banner.offsetHeight}px`;
     const choices = document.querySelectorAll(".q7-choices > div");
@@ -179,11 +185,12 @@ $img: "../../assets/images/regular/q7banner.png";
     animation: fadeIn 1.5s;
     &-inner {
       @include absXCenter;
-      top: 20%;
+      // top: 10%;
+      // top: 2%;
       // margin-top: 8rem;
       // width: 29rem;
       // height: 20.5rem;
-      background: url($img);
+      // background: url($img);
       // background-size: cover;
       background-size: contain;
       background-repeat: no-repeat;

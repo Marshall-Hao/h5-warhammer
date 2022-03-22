@@ -168,7 +168,7 @@ export default {
         background-repeat: no-repeat;
         // margin-bottom: 4rem;
         position: relative;
-        transition: all 0.3s;
+        transition: all 0.1s;
         div {
           height: 60%;
           width: 50%;

@@ -9,13 +9,15 @@
           ref="q"
           v-for="(answer, index) in questionChoices"
           :key="answer"
-          :class="{ 'selected-q': selected === index }"
+          :class="{
+            'select-card': selected === index,
+            'unselect-card': selected && selected !== index,
+          }"
           :style="`background-image:url(${answer.image})`"
         >
           <div
-            @touchstart.prevent="choiceTouchStart(index)"
+            @touchstart.prevent="choiceTouchZoom(index, answer.id)"
             @touchmove.prevent="choiceTouchMove(index)"
-            @touchend.prevent="choiceTouchEnd(answer.id)"
             @mouseenter.prevent="choiceTouchStart(index)"
             @mousemove.prevent="choiceTouchMove(index)"
             @mousedown="choiceTouchEnd(answer.id)"
@@ -23,67 +25,14 @@
         </div>
       </div>
     </section>
-    <svg width="0" height="0">
-      <filter
-        id="fractal2"
-        filterUnits="userSpaceOnUse"
-        x="0"
-        y="0"
-        width="100%"
-        height="100%"
-      >
-        <feTurbulence
-          type="fractalNoise"
-          baseFrequency="0.995"
-          numOctaves="10"
-          seed="1"
-          result="img"
-        />
-        <feDisplacementMap
-          in="SourceGraphic"
-          in2="img"
-          xChannelSelector="R"
-          yChannelSelector="G"
-          scale="200"
-        >
-          <animate
-            id="scale1"
-            attributeName="scale"
-            attributeType="XML"
-            from="200"
-            to="10"
-            dur="2s"
-            fill="freeze"
-            begin="0; scale3.end"
-          />
-          <animate
-            id="scale2"
-            attributeName="scale"
-            attributeType="XML"
-            from="10"
-            to="1"
-            dur="2.5s"
-            fill="freeze"
-            begin="scale1.end"
-          />
-          <animate
-            id="scale3"
-            attributeName="scale"
-            attributeType="XML"
-            from="1"
-            to="200"
-            dur="2s"
-            fill="freeze"
-            begin="scale2.end"
-          />
-        </feDisplacementMap>
-      </filter>
-    </svg>
   </div>
 </template>
 
 <script>
+import { nextTick } from "vue";
 import useSelectPattern from "../../assets/js/use-select-pattern";
+import gsap from "gsap";
+import { getOffset } from "../../assets/js/dom";
 
 export default {
   name: "aos-q1",
@@ -97,20 +46,61 @@ export default {
   setup(props, { emit }) {
     const questionId = props.currentQuestion.id;
     // * ref
+
     // * store
 
     // * hooks
     const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
-      useSelectPattern(emit, questionId);
+      useSelectPattern(emit, questionId, 1500);
     //  * computed
 
     //  * lifecycle
     //  * methods
+    async function choiceTouchZoom(index, answer) {
+      // choiceTouchEnd(answer);
+      choiceTouchStart(index);
+      await nextTick();
+      await nextTick();
+      const selected = await document.querySelector(".select-card");
+      let positionX = getOffset(selected).left;
+      let positionY = getOffset(selected).top;
+      const unselected = await document.querySelector(".unselect-card");
+      if (unselected) {
+        gsap
+          .timeline()
+          .to(".unselect-card", {
+            opacity: 0,
+            stagger: {
+              amount: 0.5,
+            },
+          })
+          .fromTo(
+            ".select-card",
+            {
+              position: "absolute",
+              left: `${positionX}`,
+              top: `${positionY}`,
+            },
+            {
+              xPercent: -50,
+              left: "50%",
+              yPercent: -50,
+              top: "50%",
+              position: "absolute",
+              duration: 1,
+              scale: 1.5,
+              onComplete: () => {
+                choiceTouchEnd(answer);
+              },
+            }
+          );
+      }
+    }
     //  * return
     return {
       choiceTouchMove,
-      choiceTouchEnd,
-      choiceTouchStart,
+
+      choiceTouchZoom,
       selected,
     };
   },
@@ -241,10 +231,7 @@ export default {
     }
   }
 }
-.selected-q {
-  transition: all 0.7s ease-in;
-  transform: scale(1.2, 1.2);
-}
+
 @keyframes glitch-one {
   @for $i from 20 to 30 {
     #{$i / 2} {

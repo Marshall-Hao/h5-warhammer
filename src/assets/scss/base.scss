@@ -92,3 +92,14 @@ body, html {
     transform: rotateZ(0);
   }
 }
+  @keyframes logo5 {
+    // 0% {
+    //   transform: rotateZ(180deg);
+    // }
+    // 50% {
+    //   transform: rotateZ(0);
+    // }
+    100% {
+      transform: rotateZ(360deg);
+    }
+}

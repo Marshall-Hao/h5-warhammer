@@ -4,8 +4,12 @@
       <div
         v-for="(answer, index) in questionChoices"
         :key="answer"
-        :style="{ backgroundImage: `url(${answer.image})` }"
-        :class="{ 'selected-q': selected === index }"
+        :style="{
+          backgroundImage: `url(${answer.image})`,
+          backgroundSize: 'cover',
+        }"
+        class="q4-bg-choice"
+        :class="{ 'selected-q4': selected && selected === index }"
       ></div>
     </div>
     <div class="q4-intro">
@@ -167,7 +171,7 @@ export default {
       choice2: ["0", "11", "10"],
       choice3: ["4", "5", "6"],
       choice4: ["7", "8", "9"],
-      selected: "",
+      selected: null,
     };
   },
   props: {
@@ -260,29 +264,35 @@ export default {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    div {
-      background-size: cover;
+    &-choice {
       background-repeat: no-repeat;
       background-position: right;
       position: relative;
       transform: scale(1.01, 1.01);
+      // background: linear-gradient(0deg, #fff 0%, #fff 4%, transparent 50%);
       &::after {
         position: absolute;
         top: 0;
         left: 0;
         height: 100%;
         width: 100%;
+        transition: all 2s;
       }
       &:nth-child(-n + 2) {
         &::after {
           content: "";
-          background: linear-gradient(0deg, #fff 0%, #fff 4%, transparent 50%);
+          background-image: linear-gradient(
+            0deg,
+            #fff 0%,
+            #fff 4%,
+            transparent 50%
+          );
         }
       }
       &:nth-child(n + 3) {
         &::after {
           content: "";
-          background: linear-gradient(
+          background-image: linear-gradient(
             180deg,
             #fff 0%,
             #fff 4%,
@@ -316,10 +326,36 @@ export default {
     border-radius: 50%;
   }
 }
-.selected-q {
-  animation: pulse 0.7s infinite;
+.selected-q4 ~ .q4-bg-choice {
+  // &:nth-child(-n + 2) {
+  //   &::after {
+  //     // content: "";
+  //     // background-image: none !important;
+  //     background: linear-gradient(0deg, #fff 0%, #fff 54%, transparent 100%);
+  //   }
+  // }
+  // &:nth-child(n + 3) {
+  //   &::after {
+  //     // content: "";
+  //     // background-image: none !important;
+  //     background: linear-gradient(180deg, #fff 0%, #fff 54%, transparent 100%);
+  //   }
+  // }
 }
 
+@keyframes whiteGraident {
+  0% {
+    background: linear-gradient(0deg, #fff 0%, #fff 4%, transparent 50%);
+  }
+  100% {
+    background-color: linear-gradient(
+      0deg,
+      #fff 0%,
+      #fff 54%,
+      transparent 100%
+    );
+  }
+}
 @keyframes jump {
   0% {
     transform: translateY(-0.5rem);

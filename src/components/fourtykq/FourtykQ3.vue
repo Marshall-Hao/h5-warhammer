@@ -17,7 +17,7 @@
           v-for="(answer, index) in questionChoices"
           :key="answer"
           class="q3-section-choice"
-          :class="{ 'selected-q': selected === index }"
+          :class="{ 'select-q3': selected === index }"
           @touchstart.prevent="choiceTouchStart(index)"
           @touchmove.prevent="choiceTouchMove(index)"
           @touchend.prevent="choiceTouchEnd(answer.id)"
@@ -39,62 +39,6 @@
         </div>
       </div>
     </div>
-    <svg width="0" height="0">
-      <filter
-        id="fractal2"
-        filterUnits="userSpaceOnUse"
-        x="0"
-        y="0"
-        width="100%"
-        height="100%"
-      >
-        <feTurbulence
-          type="fractalNoise"
-          baseFrequency="0.995"
-          numOctaves="10"
-          seed="1"
-          result="img"
-        />
-        <feDisplacementMap
-          in="SourceGraphic"
-          in2="img"
-          xChannelSelector="R"
-          yChannelSelector="G"
-          scale="10"
-        >
-          <animate
-            id="scale1"
-            attributeName="scale"
-            attributeType="XML"
-            from="50"
-            to="5"
-            dur="2s"
-            fill="freeze"
-            begin="0; scale3.end"
-          />
-          <animate
-            id="scale2"
-            attributeName="scale"
-            attributeType="XML"
-            from="5"
-            to="0"
-            dur="2.5s"
-            fill="freeze"
-            begin="scale1.end"
-          />
-          <animate
-            id="scale3"
-            attributeName="scale"
-            attributeType="XML"
-            from="0"
-            to="50"
-            dur="2s"
-            fill="freeze"
-            begin="scale2.end"
-          />
-        </feDisplacementMap>
-      </filter>
-    </svg>
   </div>
 </template>
 
@@ -129,6 +73,7 @@ export default {
       useSelectPattern(emit, questionId);
     //  * lifecycle
     //  * methods
+
     //  * return
     return {
       choiceTouchMove,
@@ -206,11 +151,12 @@ export default {
       border: 0.3rem solid black;
       background-color: $color-text-pr;
       box-shadow: 0 0 1rem 0.1rem white;
+      transition: all 0.7s;
       animation: fadeIn 1s ease-in, logo4 10s infinite ease-in-out forwards;
     }
   }
 }
-.selected-q {
-  animation: flash 1s infinite;
+.select-q3 {
+  animation: rotateOut 0.7s infinite;
 }
 </style>

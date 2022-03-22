@@ -15,10 +15,10 @@
               <div
                 class="q4-choice"
                 :style="`background-image:url(${answer.image})`"
+                :class="{ 'selected-q': selected === index }"
               ></div>
               <div
                 class="q4-pick"
-                :class="{ 'selected-q': selected === index }"
                 @touchstart.prevent="choiceTouchStart(index)"
                 @touchmove.prevent="choiceTouchMove(index)"
                 @touchend.prevent="choiceTouchEnd(answer.id)"
@@ -233,7 +233,7 @@ export default {
   }
 }
 .selected-q {
-  animation: pulse 2s infinite forwards;
+  animation: pulse 1s infinite forwards;
 }
 .glide__arrow {
   border: 0px;

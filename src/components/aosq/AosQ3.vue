@@ -9,7 +9,7 @@
           ref="q"
           v-for="(answer, index) in questionChoices"
           :key="answer"
-          :class="{ 'selected-q': selected === index }"
+          :class="{ 'selected-q3': selected === index }"
           :style="`background-image:url(${answer.image})`"
           @touchstart.prevent="choiceTouchStart(index)"
           @touchmove.prevent="choiceTouchMove(index)"
@@ -181,9 +181,13 @@ export default {
       justify-self: center;
       background-size: cover;
       // margin-bottom: 5rem;
-      animation: rotate 10s infinite ease-in-out forwards;
+      animation: fadeIn 1s ease-in, logo4 10s infinite ease-in-out forwards;
     }
   }
+}
+
+.selected-q3 {
+  animation: rotateOut 1s infinite !important;
 }
 
 @keyframes rotate {

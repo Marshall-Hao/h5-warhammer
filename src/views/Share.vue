@@ -34,8 +34,10 @@
                 {{ sub.short_desc }}
               </div>
               <div class="q6-section-sub-button">
+
                 <a :href="sub.article_url">
                   <button>了解更多</button>
+
                 </a>
               </div>
               <!-- <div class="q6-section-about">关于</div> -->
@@ -103,7 +105,7 @@
       </div>
       <div class="q6-section-func">
         <p @touchstart.prevent="retake">Retake Quiz</p>
-        <p>Share Quiz</p>
+        <p @touchstart.prevent="share">Share Quiz</p>
       </div>
     </section>
     <div class="q6-packs">
@@ -131,7 +133,8 @@
                   <div class="q6-product-container-desc">
                     {{ product.short_desc }}
                   </div>
-                  <a :href="product.shop_url" class="q6-product-container-btn">
+                  <!-- <a :href="product.shop_url" class="q6-product-container-btn"> -->
+                  <a @touchstart.prevent="goToProduct" :data-href="product.shop_url" :data-name="product.name" class="q6-product-container-btn">
                     <span>BUY NOW</span>
                   </a>
                 </div>
@@ -156,9 +159,10 @@
 import { USER_KEY } from "../assets/js/constant";
 import { useCookie } from "vue-cookie-next";
 import useFaction from "../services/faction";
-import { computed, onBeforeMount, onMounted, onUpdated, ref } from "vue";
+import { computed, onBeforeMount, onUnmounted, onBeforeUnmount, onMounted, onUpdated, ref } from "vue";
 import Glide from "@glidejs/glide";
 import { useRouter } from "vue-router";
+import ahoy from "../services/ahoy"
 
 export default {
   name: "share",
@@ -198,8 +202,22 @@ export default {
     //  * lifecycle
     onBeforeMount(async () => {
       faction.value = await useFaction(headers);
+      ahoy.track("Completed Quiz", {
+        category: faction.value.category.name,
+        faction_revealed: faction.value.name_en,
+        faction_revealed_cn: faction.value.name
+      })
+    });
+    onUnmounted(() => {
+      // ⛔️ ⛔️ ⛔️ WHERE BEST TO TRACK THIS EVENT??? ⛔️
+      // ahoy.track("Completed Quiz", {
+      //   category: faction.value.category.name,
+      //   faction_revealed: faction.value.name_en,
+      //   faction_revealed_cn: faction.value.name
+      // })
     });
     onUpdated(() => {
+      console.log('on updated')
       if (showSub.value) {
         new Glide(".glide", {
           type: "carousel",
@@ -227,9 +245,53 @@ export default {
     });
     // * methods
     function retake() {
+      console.log({faction})
+      ahoy.track("Clicked Retake Quiz", {
+        prev_category: faction.value.category.name,
+        prev_faction_revealed: faction.value.name_en,
+        prev_faction_revealed_cn: faction.value.name
+      })
       router.push({
         path: "/choose",
       });
+    }
+    function share() {
+      ahoy.track("Clicked Share Quiz", {
+        category: faction.value.category.name,
+        faction_revealed: faction.value.name_en,
+        faction_revealed_cn: faction.value.name
+      })
+      // do something
+    }
+    function goToProduct(e) {
+      // console.log('goToProduct', e.currentTarget.dataset)
+      const dataset = e.currentTarget.dataset
+      ahoy.track("Clicked Buy Product", {
+        product_name: dataset.name,
+        product_url: dataset.href,
+        category: faction.value.category.name,
+        faction_revealed: faction.value.name_en,
+        faction_revealed_cn: faction.value.name
+      })
+      // and then go to product, Marshall please test 👇
+      if (dataset.href) {
+        window.location.href = dataset.href
+      }
+    }
+    function goToArticle(e) {
+      // console.log('goToProduct', e.currentTarget.dataset)
+      const dataset = e.currentTarget.dataset
+      ahoy.track("Clicked Sub-faction Article", {
+        sub_faction_name: dataset.name,
+        article_url: dataset.href,
+        category: faction.value.category.name,
+        faction_revealed: faction.value.name_en,
+        faction_revealed_cn: faction.value.name
+      })
+      // and then go to product, Marshall please test 👇
+      if (dataset.href) {
+        window.location.href = dataset.href
+      }
     }
     return {
       faction,
@@ -238,6 +300,9 @@ export default {
       factionLogo,
       showSub,
       retake,
+      share,
+      goToProduct,
+      goToArticle
     };
   },
 };

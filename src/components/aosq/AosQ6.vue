@@ -171,19 +171,6 @@ export default {
     }
   }
 }
-.selected-q {
-  // span {
-  //   animation: smoky 5s;
-  // }
-  // span:nth-child(even) {
-  //   animation-name: smoky-mirror;
-  // }
-  // @for $item from 1 through 21 {
-  //   span:nth-of-type(#{$item}) {
-  //     animation-delay: #{(3 + ($item/10))}s;
-  //   }
-  // }
-}
 
 @keyframes shadowtext {
   0% {

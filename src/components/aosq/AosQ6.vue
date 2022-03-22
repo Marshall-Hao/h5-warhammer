@@ -15,16 +15,17 @@
           ref="q"
           v-for="(answer, index) in questionChoices"
           :key="answer"
-          :class="{ 'selected-q': selected === index }"
+          :class="{
+            'selected-q': selected === index,
+            'unselect-q': selected && selected !== index,
+          }"
         >
           <!-- {{ answer.text }} -->
           <span v-for="letter in answer.text" :key="letter">{{ letter }}</span>
           <div
-            @touchstart.prevent="choiceTouchStartSmoke(index)"
+            @touchstart.prevent="choiceTouchStartSmoke(index, answer.id)"
             @touchmove.prevent="choiceTouchMove(index)"
-            @touchend.prevent="choiceTouchEnd(answer.id)"
-            @mousedown="choiceTouchEnd(answer.id)"
-            @mouseenter.prevent="choiceTouchStart(index)"
+            @mouseenter.prevent="choiceTouchStartSmoke(index, answer.id)"
             @mousemove.prevent="choiceTouchMove(index)"
           ></div>
         </div>
@@ -53,31 +54,51 @@ export default {
 
     // * hooks
     const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
-      useSelectPattern(emit, questionId, 1500);
+      useSelectPattern(emit, questionId, 1200);
     //  * computed
-    async function choiceTouchStartSmoke(index) {
+    async function choiceTouchStartSmoke(index, answer) {
       await choiceTouchStart(index);
-      gsap.to(".selected-q span", {
-        // // x: 120,
-        // // y: -60,
-        // // rotate: -140,
-        // // skewX: 70,
-        // scale: 1.5,
-        textShadow: "0 0 25px whitesmoke",
-        filter: "blur(8px)",
-        opacity: 0,
-        stagger: {
-          amount: 1,
-        },
-      });
+      const unselected = await document.querySelector(".unselect-q");
+      if (unselected) {
+        gsap
+          .timeline()
+          .to(".unselect-q", {
+            opacity: 0,
+            stagger: {
+              amount: 0.5,
+            },
+          })
+          .to(".selected-q span", {
+            textShadow: "0 0 25px whitesmoke",
+            filter: "blur(8px)",
+            opacity: 0,
+            stagger: {
+              amount: 2,
+            },
+          })
+          .to(
+            ".selected-q",
+            {
+              translateX: 80,
+              translateY: -40,
+              rotate: -40,
+              skewX: 60,
+              scale: 1.2,
+              duration: 2,
+              onComplete: () => {
+                choiceTouchEnd(answer);
+              },
+            },
+            "<"
+          );
+      }
     }
     //  * lifecycle
     //  * methods
     //  * return
     return {
       choiceTouchMove,
-      choiceTouchEnd,
-      choiceTouchStart,
+
       choiceTouchStartSmoke,
       selected,
     };
@@ -162,7 +183,6 @@ export default {
   //     animation-delay: #{(3 + ($item/10))}s;
   //   }
   // }
-  animation: smoky 1s;
 }
 
 @keyframes shadowtext {

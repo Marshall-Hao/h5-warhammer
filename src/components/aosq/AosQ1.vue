@@ -131,26 +131,26 @@ export default {
       console.log({ choices });
 
       // how about just maximize and either use h or w depending on dimension ?
-      let w = (window.innerWidth - 10)
-      let h = ((window.innerHeight * sectionH) - 45 - 2)
+      let w = window.innerWidth - 10;
+      let h = window.innerHeight * sectionH - 45 - 2;
 
-      const useW = (w/2 * (25/17)) * 2 <= h
+      const useW = (w / 2) * (25 / 17) * 2 <= h;
 
-      console.log({useW})
+      console.log({ useW });
 
       if (useW) {
         choices.forEach((c) => {
-          c.style.width = `${w/2}px`;
-          c.style.height = `${w/2 * (25 / 17)}px`;
+          c.style.width = `${w / 2}px`;
+          c.style.height = `${(w / 2) * (25 / 17)}px`;
         });
       } else {
         choices.forEach((c) => {
-          c.style.height = `${h/2}px`;
-          c.style.width = `${h/2 * (17/25)}px`;
+          c.style.height = `${h / 2}px`;
+          c.style.width = `${(h / 2) * (17 / 25)}px`;
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -175,7 +175,7 @@ export default {
   &-background {
     position: fixed;
     background-size: cover;
-    filter: url(#fractal2);
+
     height: 100%;
     width: 100%;
     z-index: -2;

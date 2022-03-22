@@ -89,10 +89,10 @@
             </button>
           </div>
           <div class="glide__bullets" data-glide-el="controls[nav]">
-            <button class="glide__bullet" data-glide-dir="=0"></button>
+            <!-- <button class="glide__bullet" data-glide-dir="=0"></button>
             <button class="glide__bullet" data-glide-dir="=1"></button>
             <button class="glide__bullet" data-glide-dir="=2"></button>
-            <button class="glide__bullet" data-glide-dir="=3"></button>
+            <button class="glide__bullet" data-glide-dir="=3"></button> -->
           </div>
         </div>
 
@@ -101,7 +101,6 @@
         </p>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -131,7 +130,9 @@ export default {
 
     //  * lifecycle
     onMounted(() => {
-      new Glide(".glide").mount();
+      new Glide(".glide", {
+        type: "carousel",
+      }).mount();
     });
     //  * methods
     //  * return
@@ -143,25 +144,25 @@ export default {
     };
   },
   mounted() {
-    const choiceDim = { w: 271, h: 375 }
+    const choiceDim = { w: 271, h: 375 };
     // instruction text, margin top, padding bottom, select button area
-    const safeH = (window.innerHeight * 0.85) - 40 - 10 - 40 - 64
-    const safeW = window.innerWidth * 0.75
-    console.log({safeH, safeW})
-    const choices = document.querySelectorAll('.q4-choice')
-    choices.forEach(c => {
+    const safeH = window.innerHeight * 0.85 - 40 - 10 - 40 - 64;
+    const safeW = window.innerWidth * 0.75;
+    console.log({ safeH, safeW });
+    const choices = document.querySelectorAll(".q4-choice");
+    choices.forEach((c) => {
       // card.style.width
-      if (safeW * (choiceDim.h/choiceDim.w) <= safeH) {
-        console.log('use W')
+      if (safeW * (choiceDim.h / choiceDim.w) <= safeH) {
+        console.log("use W");
         // w = safeW
         c.style.width = `${safeW}px`;
-        c.style.height = `${safeW * (choiceDim.h/choiceDim.w)}px`;
+        c.style.height = `${safeW * (choiceDim.h / choiceDim.w)}px`;
       } else {
         c.style.height = `${safeH}px`;
-        c.style.width = `${safeH* (choiceDim.w/choiceDim.h)}px`;
+        c.style.width = `${safeH * (choiceDim.w / choiceDim.h)}px`;
       }
-    })
-  }
+    });
+  },
 };
 </script>
 
@@ -185,11 +186,15 @@ export default {
     font-size: 2.25rem;
     // letter-spacing: 0.3rem;
     line-height: 3rem;
-    height: 15%; width: 100%;
-    display: flex; align-items: center; justify-content: center;
+    height: 15%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  &-section-wrapper{
-    height: 85%; width: 100%;
+  &-section-wrapper {
+    height: 85%;
+    width: 100%;
     @include flexCenter;
     // flex-direction: column;
     align-items: center;
@@ -202,7 +207,7 @@ export default {
     // width: 27.1rem;
     // height: 37.5rem;
     background-size: cover;
-    animation: pulse 2s infinite forwards;
+    // animation: pulse 2s infinite forwards;
   }
   &-pick {
     // margin-top: 6rem;
@@ -234,11 +239,11 @@ export default {
   border: 0px;
   &--left {
     left: 1rem;
-    animation: left 2s infinite forwards ease-in-out;
+    // animation: left 2s infinite forwards ease-in-out;
   }
   &--right {
     right: 0rem;
-    animation: right 2s infinite backwards ease-in-out;
+    // animation: right 2s infinite backwards ease-in-out;
   }
 }
 .glide__track {

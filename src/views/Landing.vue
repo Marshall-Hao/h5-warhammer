@@ -256,6 +256,7 @@ export default {
       display: flex;
       justify-content: center;
       video {
+        box-shadow: 0 0 0.8rem 0.2rem rgba(255, 255, 255, 0.5);
         border: 1px solid $color-text-pr;
         width: 100%;
         @media only screen and (max-height: 740px) {

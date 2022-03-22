@@ -29,7 +29,7 @@
                 @mouseenter.prevent="flipCard(index, answer.id)"
                 @mousemove.prevent="choiceTouchMove(index)"
               >
-                Flip
+                <!-- Flip -->
               </div>
             </div>
           </div>
@@ -186,46 +186,31 @@ export default {
     } else {
       this.setChoiceDimension(0.8);
     }
-
   },
   methods: {
     setChoiceDimension(sectionH) {
       const cards = document.querySelectorAll(".q6-card");
       console.log({ cards });
 
-      let w = (window.innerWidth - 40 - 2)
-      let h = ((window.innerHeight * sectionH) - 45 - 10)
+      let w = window.innerWidth - 40 - 2;
+      let h = window.innerHeight * sectionH - 45 - 10;
 
-      const useW = (w/2 * (25/17)) * 2 <= h
-      console.log({useW})
+      const useW = (w / 2) * (25 / 17) * 2 <= h;
+      console.log({ useW });
 
       if (useW) {
         cards.forEach((c) => {
-          c.style.width = `${w/2}px`;
-          c.style.height = `${w/2 * (25 / 17)}px`;
+          c.style.width = `${w / 2}px`;
+          c.style.height = `${(w / 2) * (25 / 17)}px`;
         });
       } else {
         cards.forEach((c) => {
-          c.style.height = `${h/2}px`;
-          c.style.width = `${h/2 * (17/25)}px`;
+          c.style.height = `${h / 2}px`;
+          c.style.width = `${(h / 2) * (17 / 25)}px`;
         });
       }
-
-      // cards.forEach((card) => {
-      //   if (window.innerHeight > 700) {
-      //     const w = window.innerWidth / 2 - 20;
-      //     card.style.width = `${w}px`;
-      //     card.style.height = `${w * (25 / 17)}px`;
-      //   } else {
-      //     // 45px is the padding bottom of the container
-      //     // 16px is the grid row-gap
-      //     const h = (((window.innerHeight * 0.8) - 45 -16) / 2 );
-      //     card.style.height = `${h}px`;
-      //     card.style.width = `${h * (17/25)}px`;
-      //   }
-      // });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -286,6 +271,7 @@ export default {
     perspective: 150rem;
     -moz-perspective: 150rem;
     animation: zoomIn 1.8s ease;
+    filter: drop-shadow(0px 0px 10px #64798b);
 
     &-side {
       position: absolute;
@@ -296,7 +282,7 @@ export default {
       // height: 25rem;
       backface-visibility: hidden;
       overflow: hidden;
-      transition: all 0.5s ease;
+      transition: all 0.7s ease;
     }
     &-front {
       padding: 1.1rem 1rem 0.8rem 1rem;

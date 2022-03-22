@@ -3,13 +3,13 @@
     <h1 class="q2-title">
       {{ questionText }}
     </h1>
-    <div
+    <!-- <div
       class="q2-banner"
       :style="{
         background: `url(${currentQuestion.instruction_image})`,
         backgroundSize: 'cover',
       }"
-    ></div>
+    ></div> -->
     <div class="q2-section">
       <div class="q2-choices">
         <div
@@ -18,7 +18,7 @@
           :key="answer"
           :class="{ 'selected-q': selected === index }"
           :style="{
-            'backgroundImage': `url(${answer.image})`
+            backgroundImage: `url(${answer.image})`,
           }"
         >
           <div
@@ -116,46 +116,52 @@ export default {
   // overflow-x: hidden;
   text-align: center;
   &-title {
-    height: 10%; width: 100%;
-    display: flex; align-items: center; justify-content: center;
+    height: 20%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 2.5rem;
     // margin: 5rem auto 3rem;
   }
-  &-banner {
-    width: auto;
-    margin: 0 1.5rem;
-    // height: 20.5rem;
-    height: 25%;
-    animation: flipInY 1.5s;
-    position: relative;
+  // &-banner {
+  //   width: auto;
+  //   margin: 0 1.5rem;
+  //   // height: 20.5rem;
+  //   height: 25%;
+  //   animation: flipInY 1.5s;
+  //   position: relative;
 
-    // &::before {
-    //   content: "";
-    //   position: absolute;
-    //   left: 0;
-    //   top: -0.8rem;
-    //   right: 0;
-    //   bottom: 0;
-    //   width: 120%;
-    //   background: linear-gradient(
-    //     180deg,
-    //     rgba(35, 46, 254, 1),
-    //     rgba(192, 247, 254, 0.8) 20%,
-    //     transparent 35%
-    //   );
-    //   filter: url(#smoke);
-    // }
-  }
+  // &::before {
+  //   content: "";
+  //   position: absolute;
+  //   left: 0;
+  //   top: -0.8rem;
+  //   right: 0;
+  //   bottom: 0;
+  //   width: 120%;
+  //   background: linear-gradient(
+  //     180deg,
+  //     rgba(35, 46, 254, 1),
+  //     rgba(192, 247, 254, 0.8) 20%,
+  //     transparent 35%
+  //   );
+  //   filter: url(#smoke);
+  // }
+  // }
   &-section {
     @include flexCenter;
-    padding: 2rem 0rem;
-    height: 65%; width: 100%;
+    // padding: 2rem 0rem;
+    padding-bottom: 4.5rem;
+    height: 80%;
+    width: 100%;
     box-sizing: border-box;
   }
   &-choices {
     // @include absXCenter;
     // margin-top: 4rem;
-    display: flex; flex-direction: column;
+    display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
     animation: zoomInUp 1s ease-in;
@@ -167,7 +173,7 @@ export default {
       height: 100%;
       // margin-bottom: 1.5rem;
       position: relative;
-      background-position: center;
+      background-position: top;
       background-size: contain;
       background-repeat: no-repeat;
       div {
@@ -179,6 +185,6 @@ export default {
   }
 }
 .selected-q {
-  animation: heartBeat 2s infinite ease-out;
+  animation: fadeOutLeft 2s infinite ease-out;
 }
 </style>

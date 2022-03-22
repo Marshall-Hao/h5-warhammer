@@ -126,6 +126,7 @@ export default {
       }
       colorAttribute.needsUpdate = true;
       const number = this.$refs.number;
+
       gsap.to(number, {
         innerText: 0,
         duration: 5,

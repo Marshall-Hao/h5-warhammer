@@ -8,6 +8,8 @@
         autoRotate: true,
         enableDamping: true,
         enableZoom: false,
+        minPolarAngle: Math.PI * 0.5,
+        maxPolarAngle: Math.PI * 0.5,
       }"
     >
       <Camera :position="{ z: 160 }" :aspect="ratio" :fov="75" />
@@ -30,7 +32,7 @@
             <Texture :src="scene" />
           </BasicMaterial>
         </Mesh>
-        <FbxModel :src="logo" :scale="scale" @load="onLoad" />
+        <!-- <FbxModel :src="logo" :scale="scale" @load="onLoad" /> -->
       </Scene>
     </Renderer>
   </div>
@@ -47,7 +49,6 @@ import {
   SphereGeometry,
   BasicMaterial,
   Texture,
-  FbxModel,
 } from "troisjs";
 
 export default {
@@ -62,7 +63,6 @@ export default {
     SphereGeometry,
     BasicMaterial,
     Texture,
-    FbxModel,
   },
   data() {
     return {
@@ -73,9 +73,9 @@ export default {
     scene: {
       default: null,
     },
-    logo: {
-      default: require("../../../assets/eaglelogo/eagle.fbx"),
-    },
+    // logo: {
+    //   default: require("../../../assets/eaglelogo/eagle.fbx"),
+    // },
     scale: {
       type: Object,
       default: { x: 0.005, y: 0.005, z: 0.005 },
@@ -89,14 +89,14 @@ export default {
     geometry.scale(16, 16, -16);
   },
   methods: {
-    onLoad(object) {
-      object.traverse(function (child) {
-        if (child.isMesh) {
-          child.castShadow = true;
-          child.receiveShadow = true;
-        }
-      });
-    },
+    // onLoad(object) {
+    //   object.traverse(function (child) {
+    //     if (child.isMesh) {
+    //       child.castShadow = true;
+    //       child.receiveShadow = true;
+    //     }
+    //   });
+    // },
   },
 };
 </script>

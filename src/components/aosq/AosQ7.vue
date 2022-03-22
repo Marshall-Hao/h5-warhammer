@@ -2,10 +2,12 @@
   <div class="q7 fixed-no-scroll">
     <div class="q7-background" :style="questionBackground"></div>
     <div class="q7-banner">
-      <div class="q7-banner-inner"
+      <div
+        class="q7-banner-inner"
         :style="{
-        'background-image': `url(${currentQuestion.instruction_image})`}">
-      </div>
+          'background-image': `url(${currentQuestion.instruction_image})`,
+        }"
+      ></div>
     </div>
     <div class="q7-section">
       <h1 class="q7-title">{{ questionText }}</h1>
@@ -14,81 +16,26 @@
           ref="q"
           v-for="(answer, index) in questionChoices"
           :key="answer"
-          :class="{ 'selected-q': selected === index }"
           :style="`background-image:url(${answer.image})`"
+          :class="{ 'selected-q': selected === index }"
+          @touchstart.prevent="choiceTouchStartParticle(index, $event)"
+          @touchmove.prevent="choiceTouchMove(index)"
+          @touchend.prevent="choiceTouchEnd(answer.id)"
+          @mousedown="choiceTouchEnd(answer.id)"
+          @mouseenter.prevent="choiceTouchStart(index)"
+          @mousemove.prevent="choiceTouchMove(index)"
         >
-          <div
-            @touchstart.prevent="choiceTouchStart(index)"
-            @touchmove.prevent="choiceTouchMove(index)"
-            @touchend.prevent="choiceTouchEnd(answer.id)"
-            @mouseenter.prevent="choiceTouchStart(index)"
-            @mousemove.prevent="choiceTouchMove(index)"
-            @mousedown="choiceTouchEnd(answer.id)"
-          ></div>
+          <div :class="{ 'selected-qd': selected === index }"></div>
         </div>
       </div>
     </div>
-    <svg width="0" height="0">
-      <filter
-        id="fractal2"
-        filterUnits="userSpaceOnUse"
-        x="0"
-        y="0"
-        width="100%"
-        height="100%"
-      >
-        <feTurbulence
-          type="fractalNoise"
-          baseFrequency="0.995"
-          numOctaves="10"
-          seed="1"
-          result="img"
-        />
-        <feDisplacementMap
-          in="SourceGraphic"
-          in2="img"
-          xChannelSelector="R"
-          yChannelSelector="G"
-          scale="10"
-        >
-          <animate
-            id="scale1"
-            attributeName="scale"
-            attributeType="XML"
-            from="50"
-            to="5"
-            dur="2s"
-            fill="freeze"
-            begin="0; scale3.end"
-          />
-          <animate
-            id="scale2"
-            attributeName="scale"
-            attributeType="XML"
-            from="5"
-            to="0"
-            dur="2.5s"
-            fill="freeze"
-            begin="scale1.end"
-          />
-          <animate
-            id="scale3"
-            attributeName="scale"
-            attributeType="XML"
-            from="0"
-            to="50"
-            dur="2s"
-            fill="freeze"
-            begin="scale2.end"
-          />
-        </feDisplacementMap>
-      </filter>
-    </svg>
   </div>
 </template>
 
 <script>
 import useSelectPattern from "../../assets/js/use-select-pattern";
+import particleCanvas from "../../assets/js/particle";
+
 export default {
   name: "aos-q7",
   props: {
@@ -110,11 +57,16 @@ export default {
 
     //  * lifecycle
     //  * methods
+    function choiceTouchStartParticle(index, e) {
+      choiceTouchStart(index);
+
+      particleCanvas(e.target, false);
+    }
     //  * return
     return {
       choiceTouchMove,
       choiceTouchEnd,
-      choiceTouchStart,
+      choiceTouchStartParticle,
       selected,
     };
   },
@@ -130,8 +82,10 @@ export default {
     }px`;
     // console.log('banner', document.querySelector('.q7-banner'))
     const innerBanner = document.querySelector(".q7-banner-inner");
-    innerBanner.style.height = `${0.95 * banner.offsetHeight}px`
-    innerBanner.style.width= `${(0.95 * banner.offsetHeight) * (bannerDim.w/bannerDim.h)}px`
+    innerBanner.style.height = `${0.95 * banner.offsetHeight}px`;
+    innerBanner.style.width = `${
+      0.95 * banner.offsetHeight * (bannerDim.w / bannerDim.h)
+    }px`;
     // innerBanner.style.width = `${0.8 * banner.offsetWidth}px`;
     // innerBanner.style.height = `${
     //   0.8 * banner.offsetWidth * (bannerDim.h / bannerDim.w)
@@ -245,7 +199,7 @@ $img: "../../assets/images/regular/q7banner.png";
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    animation: zoomIn 1.5s ease-in-out, opacity 5s infinite ease-out;
+    animation: zoomIn 1.5s ease-in-out;
     div {
       // width: 31.2rem;
       // height: 7.4rem;
@@ -262,15 +216,39 @@ $img: "../../assets/images/regular/q7banner.png";
       // margin-bottom: 5rem;
       position: relative;
       div {
+        position: absolute;
+        margin: 0;
+        top: 10%;
+        left: 25%;
+        right: 0;
+        z-index: -2;
+        // width: 26rem;
+        // height: 14rem;
         height: 70%;
-        width: 55%;
-        @include absCenter;
+
+        // mask: url(../../assets/images/regular/maskdetail.png);
+        // mask-position: 100% 0;
+        // mask-size: 3000% 100%;
+        // animation: maskmove 2s 1s steps(29) forwards;
+
+        width: 50%;
+
+        border-radius: 2rem;
+        background-color: $color-sub-theme;
       }
     }
   }
 }
 .selected-q {
-  animation: flash 2s infinite forwards;
+  animation: slideRight 1s ease backwards;
+}
+.selected-qd {
+  opacity: 0;
+}
+@keyframes slideRight {
+  100% {
+    transform: translateX(35rem);
+  }
 }
 
 @keyframes opacity {

@@ -6,7 +6,7 @@ import { useCookie } from "vue-cookie-next";
 import { USER_KEY } from "../../assets/js/constant";
 import storage from "good-storage";
 
-export default function useSelectPattern(emit, questionId) {
+export default function useSelectPattern(emit, questionId, delay = 1000) {
   // * router guard
   onBeforeRouteUpdate(() => {
     const currentQuiz = storage.session.get("__currentquiz__");
@@ -43,7 +43,7 @@ export default function useSelectPattern(emit, questionId) {
   }
   function choiceTouchEnd(index) {
     // selected.value = null;
-    debounce(getPoinstAndNext.bind(index), 1000, index)();
+    debounce(getPoinstAndNext.bind(index), delay, index)();
   }
 
   function getPoinstAndNext(choiceId) {

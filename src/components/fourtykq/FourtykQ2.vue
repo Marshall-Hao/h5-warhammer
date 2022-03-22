@@ -30,8 +30,7 @@
 
 <script>
 import useSelectPattern from "../../assets/js/use-select-pattern";
-import * as disintegrate from "disintegrate";
-import html2canvas from "html2canvas";
+
 import particleCanvas from "../../assets/js/particle";
 
 import { ref } from "vue";
@@ -53,7 +52,7 @@ export default {
 
     // * hooks
     const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
-      useSelectPattern(emit, questionId);
+      useSelectPattern(emit, questionId, 1000);
     //  * computed
     //  * lifecycle
 

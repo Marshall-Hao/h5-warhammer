@@ -1,7 +1,7 @@
 import html2canvas from "html2canvas";
 let ctx;
 
-export default function particleGenerator(btn, e) {
+export default function particleGenerator(btn, smallPottion = true) {
   html2canvas(btn).then((canvas) => {
     ctx = canvas.getContext("2d");
 
@@ -16,10 +16,18 @@ export default function particleGenerator(btn, e) {
     // Get the button's positioning in terms of the window
     // let globalX = rect.left + localX;
     // let globalY = rect.top + localY;
+    // let width = canvas.width;
+    // let height = canvas.height;
+    let colorData;
     let width = btn.offsetWidth;
     let height = btn.offsetHeight;
-    let colorData = ctx.getImageData(0, 0, width, height).data;
-    let reductionFactor = 17;
+    if (smallPottion) {
+      colorData = ctx.getImageData(5, 5, 24, 24).data;
+    } else {
+      colorData = ctx.getImageData(0, 0, width, height).data;
+    }
+    console.log(colorData);
+    let reductionFactor = 15;
 
     let count = 0;
 
@@ -89,7 +97,7 @@ let ExplodingParticle = function () {
 
 let ExplodeToRightParticle = function () {
   this.name = "ExplodeToRightParticle";
-  this.animationDuration = 500; // in ms
+  this.animationDuration = 25000; // in ms
 
   this.speed = {
     x: 0 + Math.random() * 6,

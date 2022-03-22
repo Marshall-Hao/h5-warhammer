@@ -157,7 +157,7 @@
 import { USER_KEY } from "../assets/js/constant";
 import { useCookie } from "vue-cookie-next";
 import useFaction from "../services/faction";
-import { computed, onBeforeMount, onMounted, onUpdated, ref } from "vue";
+import { computed, onBeforeMount, onUnmounted, onBeforeUnmount, onMounted, onUpdated, ref } from "vue";
 import Glide from "@glidejs/glide";
 import { useRouter } from "vue-router";
 import ahoy from "../services/ahoy"
@@ -200,8 +200,22 @@ export default {
     //  * lifecycle
     onBeforeMount(async () => {
       faction.value = await useFaction(headers);
+      ahoy.track("Completed Quiz", {
+        category: faction.value.category.name,
+        faction_revealed: faction.value.name_en,
+        faction_revealed_cn: faction.value.name
+      })
+    });
+    onUnmounted(() => {
+      // ⛔️ ⛔️ ⛔️ WHERE BEST TO TRACK THIS EVENT??? ⛔️
+      // ahoy.track("Completed Quiz", {
+      //   category: faction.value.category.name,
+      //   faction_revealed: faction.value.name_en,
+      //   faction_revealed_cn: faction.value.name
+      // })
     });
     onUpdated(() => {
+      console.log('on updated')
       if (showSub.value) {
         new Glide(".glide", {
           type: "carousel",
@@ -230,11 +244,10 @@ export default {
     // * methods
     function retake() {
       console.log({faction})
-      console.log('raw value?', faction._rawValue)
       ahoy.track("Clicked Retake Quiz", {
-        prev_category: faction._rawValue.category.name,
-        prev_faction_revealed: faction._rawValue.name_en,
-        prev_faction_revealed_cn: faction._rawValue.name
+        prev_category: faction.value.category.name,
+        prev_faction_revealed: faction.value.name_en,
+        prev_faction_revealed_cn: faction.value.name
       })
       router.push({
         path: "/choose",
@@ -242,9 +255,9 @@ export default {
     }
     function share() {
       ahoy.track("Clicked Share Quiz", {
-        category: faction._rawValue.category.name,
-        faction_revealed: faction._rawValue.name_en,
-        faction_revealed_cn: faction._rawValue.name
+        category: faction.value.category.name,
+        faction_revealed: faction.value.name_en,
+        faction_revealed_cn: faction.value.name
       })
       // do something
     }
@@ -254,9 +267,9 @@ export default {
       ahoy.track("Clicked Buy Product", {
         product_name: dataset.name,
         product_url: dataset.href,
-        category: faction._rawValue.category.name,
-        faction_revealed: faction._rawValue.name_en,
-        faction_revealed_cn: faction._rawValue.name
+        category: faction.value.category.name,
+        faction_revealed: faction.value.name_en,
+        faction_revealed_cn: faction.value.name
       })
       // and then go to product, Marshall please test 👇
       if (dataset.href) {
@@ -269,9 +282,9 @@ export default {
       ahoy.track("Clicked Sub-faction Article", {
         sub_faction_name: dataset.name,
         article_url: dataset.href,
-        category: faction._rawValue.category.name,
-        faction_revealed: faction._rawValue.name_en,
-        faction_revealed_cn: faction._rawValue.name
+        category: faction.value.category.name,
+        faction_revealed: faction.value.name_en,
+        faction_revealed_cn: faction.value.name
       })
       // and then go to product, Marshall please test 👇
       if (dataset.href) {

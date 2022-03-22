@@ -34,7 +34,7 @@
                 {{sub.short_desc}}
               </div>
               <div class="q6-section-sub-button">
-                <a :href="sub.article_url">
+                <a @touchstart.prevent="goToArticle" :data-name="sub.name" :data-href="sub.article_url">
                   <button>了解跟多</button>
                 </a>
               </div>
@@ -132,7 +132,7 @@
                     {{ product.short_desc }}
                   </div>
                   <!-- <a :href="product.shop_url" class="q6-product-container-btn"> -->
-                  <a @click="goToProduct" :data-href="product.shop_url" :data-name="product.name" class="q6-product-container-btn">
+                  <a @touchstart.prevent="goToProduct" :data-href="product.shop_url" :data-name="product.name" class="q6-product-container-btn">
                     <span>BUY NOW</span>
                   </a>
                 </div>
@@ -249,7 +249,7 @@ export default {
       // do something
     }
     function goToProduct(e) {
-      console.log('goToProduct', e.currentTarget.dataset)
+      // console.log('goToProduct', e.currentTarget.dataset)
       const dataset = e.currentTarget.dataset
       ahoy.track("Clicked Buy Product", {
         product_name: dataset.name,
@@ -259,10 +259,24 @@ export default {
         faction_revealed_cn: faction._rawValue.name
       })
       // and then go to product, Marshall please test 👇
-      // window.location.href = dataset.href
+      if (dataset.href) {
+        window.location.href = dataset.href
+      }
     }
     function goToArticle(e) {
-
+      // console.log('goToProduct', e.currentTarget.dataset)
+      const dataset = e.currentTarget.dataset
+      ahoy.track("Clicked Sub-faction Article", {
+        sub_faction_name: dataset.name,
+        article_url: dataset.href,
+        category: faction._rawValue.category.name,
+        faction_revealed: faction._rawValue.name_en,
+        faction_revealed_cn: faction._rawValue.name
+      })
+      // and then go to product, Marshall please test 👇
+      if (dataset.href) {
+        window.location.href = dataset.href
+      }
     }
     return {
       faction,

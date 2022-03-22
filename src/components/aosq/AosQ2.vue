@@ -20,37 +20,23 @@
           :style="{
             backgroundImage: `url(${answer.image})`,
           }"
+          @touchstart.prevent="choiceTouchStartParticle(index, $event)"
+          @touchmove.prevent="choiceTouchMove(index)"
+          @touchend.prevent="choiceTouchEnd(answer.id)"
+          @mouseenter.prevent="choiceTouchStart(index)"
+          @mousemove.prevent="choiceTouchMove(index)"
+          @mousedown="choiceTouchEnd(answer.id)"
         >
-          <div
-            @touchmove.prevent="choiceTouchMove(index)"
-            @touchstart.prevent="choiceTouchStart(index)"
-            @touchend.prevent="choiceTouchEnd(answer.id)"
-            @mouseenter.prevent="choiceTouchStart(index)"
-            @mousemove.prevent="choiceTouchMove(index)"
-            @mousedown="choiceTouchEnd(answer.id)"
-          ></div>
+          <div :class="{ 'selected-qd': selected === index }"></div>
         </div>
       </div>
     </div>
-    <svg width="0" height="0">
-      <filter id="smoke">
-        <feTurbulence
-          ref="turbulence"
-          id="turbulence"
-          type="fractalNoise"
-          baseFrequency=".03"
-          numOctaves="20"
-        />
-        <feDisplacementMap in="SourceGraphic" scale="30" />
-      </filter>
-    </svg>
   </div>
 </template>
 
 <script>
-import { onMounted } from "@vue/runtime-core";
-import { ref } from "vue";
 import useSelectPattern from "../../assets/js/use-select-pattern";
+import particleCanvas from "../../assets/js/particle";
 
 export default {
   name: "aos-q2",
@@ -65,10 +51,10 @@ export default {
     const questionId = props.currentQuestion.id;
 
     // * ref
-    const turbulence = ref(null);
-    let frames = 1;
-    let rad = Math.PI / 180;
-    let bf, bfx, bfy;
+    // const turbulence = ref(null);
+    // let frames = 1;
+    // let rad = Math.PI / 180;
+    // let bf, bfx, bfy;
     // * store
 
     // * hooks
@@ -77,28 +63,31 @@ export default {
     //  * computed
 
     //  * lifecycle
-    onMounted(() => {
-      window.requestAnimationFrame(freqAnimation);
-    });
+    // onMounted(() => {
+    //   window.requestAnimationFrame(freqAnimation);
+    // });
     //  * methods
-    function freqAnimation() {
-      frames += 0.35;
-
-      bfx = 0.035;
-      bfy = 0.015;
-
-      bfx += 0.01 * Math.cos(frames * rad);
-      bfy += 0.009 * Math.sin(frames * rad);
-      bf = bfx.toString() + " " + bfy.toString();
-      turbulence.value.setAttributeNS(null, "baseFrequency", bf);
-      window.requestAnimationFrame(freqAnimation);
+    function choiceTouchStartParticle(index, e) {
+      choiceTouchStart(index);
+      particleCanvas(e.target, e);
     }
+    // function freqAnimation() {
+    //   frames += 0.35;
+
+    //   bfx = 0.035;
+    //   bfy = 0.015;
+
+    //   bfx += 0.01 * Math.cos(frames * rad);
+    //   bfy += 0.009 * Math.sin(frames * rad);
+    //   bf = bfx.toString() + " " + bfy.toString();
+    //   turbulence.value.setAttributeNS(null, "baseFrequency", bf);
+    //   window.requestAnimationFrame(freqAnimation);
+    // }
     //  * return
     return {
-      turbulence,
       choiceTouchMove,
       choiceTouchEnd,
-      choiceTouchStart,
+      choiceTouchStartParticle,
       selected,
     };
   },
@@ -165,7 +154,8 @@ export default {
     justify-content: space-around;
     align-items: center;
     animation: zoomInUp 1s ease-in;
-    width: 100%;
+    width: 90%;
+    overflow: hidden;
     div {
       // width: 23.3rem;
       width: 70%;
@@ -177,14 +167,35 @@ export default {
       background-size: contain;
       background-repeat: no-repeat;
       div {
-        height: 60%;
+        position: absolute;
+        top: 15%;
+        left: 15%;
+        height: 50%;
         width: 60%;
-        @include absCenter;
+        z-index: -2;
+
+        background: linear-gradient(
+          90deg,
+          rgb(132, 117, 80),
+          rgb(208, 197, 151),
+          rgb(228, 220, 196),
+          rgb(194, 180, 125)
+        );
       }
     }
   }
 }
 .selected-q {
-  animation: fadeOutLeft 2s infinite ease-out;
+  animation: slideRight 1s ease backwards;
+}
+
+.selected-qd {
+  opacity: 0;
+}
+
+@keyframes slideRight {
+  100% {
+    transform: translateX(35rem);
+  }
 }
 </style>

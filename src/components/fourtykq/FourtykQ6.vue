@@ -7,6 +7,10 @@
           v-for="(answer, index) in questionChoices"
           :key="answer"
           class="q6-card"
+          :class="{
+            'select-card': flip === index,
+            'unselect-card': flip && flip !== index,
+          }"
         >
           <div
             class="q6-card-side q6-card-back"
@@ -36,107 +40,14 @@
         </div>
       </div>
     </div>
-    <svg width="0" height="0">
-      <filter
-        id="fractal2"
-        filterUnits="userSpaceOnUse"
-        x="0"
-        y="0"
-        width="100%"
-        height="100%"
-      >
-        <feTurbulence
-          type="fractalNoise"
-          baseFrequency="0.995"
-          numOctaves="10"
-          seed="1"
-          result="img"
-        />
-        <feDisplacementMap
-          in="SourceGraphic"
-          in2="img"
-          xChannelSelector="R"
-          yChannelSelector="G"
-          scale="10"
-        >
-          <animate
-            id="scale1"
-            attributeName="scale"
-            attributeType="XML"
-            from="10"
-            to="5"
-            dur="2s"
-            fill="freeze"
-            begin="0; scale3.end"
-          />
-          <animate
-            id="scale2"
-            attributeName="scale"
-            attributeType="XML"
-            from="5"
-            to="0"
-            dur="2.5s"
-            fill="freeze"
-            begin="scale1.end"
-          />
-          <animate
-            id="scale3"
-            attributeName="scale"
-            attributeType="XML"
-            from="0"
-            to="10"
-            dur="2s"
-            fill="freeze"
-            begin="scale2.end"
-          />
-        </feDisplacementMap>
-      </filter>
-    </svg>
-    <svg width="0" height="0">
-      <filter
-        id="fractal"
-        filterUnits="objectBoundingBox"
-        x="0%"
-        y="0%"
-        width="100%"
-        height="100%"
-      >
-        <feTurbulence
-          id="turbulence"
-          type="fractalNoise"
-          baseFrequency="0.032 0.02"
-          numOctaves="1"
-        >
-          <animate
-            id="wave1"
-            attributeName="baseFrequency"
-            attributeType="XML"
-            from="0.032 0.02"
-            to="0.022 0.01"
-            dur="3.5s"
-            fill="freeze"
-            begin="0; wave2.end"
-          />
-          <animate
-            id="wave2"
-            attributeName="baseFrequency"
-            attributeType="XML"
-            from="0.022 0.01"
-            to="0.032 0.02"
-            dur="3.5s"
-            fill="freeze"
-            begin="wave1.end"
-          />
-        </feTurbulence>
-        <feDisplacementMap in="SourceGraphic" scale="15"></feDisplacementMap>
-      </filter>
-    </svg>
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
+import { nextTick, ref } from "vue";
 import useSelectPattern from "../../assets/js/use-select-pattern";
+import gsap from "gsap";
+import { getOffset } from "../../assets/js/dom";
 
 export default {
   name: "fourtyk-q6",
@@ -158,16 +69,66 @@ export default {
     // * hooks
     const { choiceTouchMove, choiceTouchEnd } = useSelectPattern(
       emit,
-      questionId
+      questionId,
+      2500
     );
     //  * methods
-    function flipCard(index, answer) {
-      choiceTouchEnd(answer);
+    async function flipCard(index, answer) {
+      // choiceTouchEnd(answer);
+
       flip.value = index;
+      await nextTick();
+      await nextTick();
+      const selected = await document.querySelector(".select-card");
+      let positionX = getOffset(selected).left;
+      let positionY = getOffset(selected).top;
+      const unselected = await document.querySelector(".unselect-card");
+      if (unselected) {
+        gsap
+          .timeline()
+          .to(".unselect-card", {
+            opacity: 0,
+            stagger: {
+              amount: 0.5,
+            },
+          })
+          .fromTo(
+            ".select-card",
+            {
+              position: "absolute",
+              left: `${positionX}`,
+              top: `${positionY}`,
+            },
+            {
+              xPercent: -50,
+              left: "50%",
+              yPercent: -50,
+              top: "50%",
+              position: "absolute",
+              duration: 1,
+              scale: 1.5,
+            }
+          )
+          .to(".front-flip", {
+            rotateY: -180,
+          })
+          .to(
+            ".back-flip",
+            {
+              rotateY: 0,
+              duration: 0.5,
+              onComplete: () => {
+                choiceTouchEnd(answer);
+              },
+            },
+            "<"
+          );
+      }
     }
     function backPos() {
       flip.value = null;
     }
+
     //  * return
     return {
       flip,
@@ -282,7 +243,7 @@ export default {
       // height: 25rem;
       backface-visibility: hidden;
       overflow: hidden;
-      transition: all 0.7s ease;
+      transition: all 2s ease;
     }
     &-front {
       padding: 1.1rem 1rem 0.8rem 1rem;
@@ -308,13 +269,6 @@ export default {
     &-back {
       transform: rotateY(180deg);
     }
-    &:hover &-front {
-      transform: rotateY(-180deg);
-    }
-
-    &:hover &-back {
-      transform: rotateY(0);
-    }
   }
   &-text {
     margin-top: 3rem;
@@ -322,11 +276,5 @@ export default {
     font-size: 2rem;
     filter: url(#fractal);
   }
-}
-.front-flip {
-  transform: rotateY(-180deg);
-}
-.back-flip {
-  transform: rotateY(0);
 }
 </style>

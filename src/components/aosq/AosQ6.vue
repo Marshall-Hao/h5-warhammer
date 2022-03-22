@@ -15,64 +15,28 @@
           ref="q"
           v-for="(answer, index) in questionChoices"
           :key="answer"
-          :class="{ 'selected-q': selected === index }"
+          :class="{
+            'selected-q': selected === index,
+            'unselect-q': selected && selected !== index,
+          }"
         >
-          {{ answer.text }}
+          <!-- {{ answer.text }} -->
+          <span v-for="letter in answer.text" :key="letter">{{ letter }}</span>
           <div
-            @touchstart.prevent="choiceTouchStart(index)"
+            @touchstart.prevent="choiceTouchStartSmoke(index, answer.id)"
             @touchmove.prevent="choiceTouchMove(index)"
-            @touchend.prevent="choiceTouchEnd(answer.id)"
-            @mouseenter.prevent="choiceTouchStart(index)"
+            @mouseenter.prevent="choiceTouchStartSmoke(index, answer.id)"
             @mousemove.prevent="choiceTouchMove(index)"
-            @mousedown="choiceTouchEnd(answer.id)"
           ></div>
         </div>
       </div>
     </section>
-    <svg width="0" height="0">
-      <filter
-        id="fractal"
-        filterUnits="objectBoundingBox"
-        x="0%"
-        y="0%"
-        width="100%"
-        height="100%"
-      >
-        <feTurbulence
-          id="turbulence"
-          type="fractalNoise"
-          baseFrequency="0.032 0.02"
-          numOctaves="1"
-        >
-          <animate
-            id="wave1"
-            attributeName="baseFrequency"
-            attributeType="XML"
-            from="0.032 0.02"
-            to="0.022 0.01"
-            dur="3.5s"
-            fill="freeze"
-            begin="0; wave2.end"
-          />
-          <animate
-            id="wave2"
-            attributeName="baseFrequency"
-            attributeType="XML"
-            from="0.022 0.01"
-            to="0.032 0.02"
-            dur="3.5s"
-            fill="freeze"
-            begin="wave1.end"
-          />
-        </feTurbulence>
-        <feDisplacementMap in="SourceGraphic" scale="15"></feDisplacementMap>
-      </filter>
-    </svg>
   </div>
 </template>
 
 <script>
 import useSelectPattern from "../../assets/js/use-select-pattern";
+import gsap from "gsap";
 
 export default {
   name: "aos-q6",
@@ -90,16 +54,52 @@ export default {
 
     // * hooks
     const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
-      useSelectPattern(emit, questionId);
+      useSelectPattern(emit, questionId, 1200);
     //  * computed
-
+    async function choiceTouchStartSmoke(index, answer) {
+      await choiceTouchStart(index);
+      const unselected = await document.querySelector(".unselect-q");
+      if (unselected) {
+        gsap
+          .timeline()
+          .to(".unselect-q", {
+            opacity: 0,
+            stagger: {
+              amount: 0.5,
+            },
+          })
+          .to(".selected-q span", {
+            textShadow: "0 0 25px whitesmoke",
+            filter: "blur(8px)",
+            opacity: 0,
+            stagger: {
+              amount: 2,
+            },
+          })
+          .to(
+            ".selected-q",
+            {
+              translateX: 80,
+              translateY: -40,
+              rotate: -40,
+              skewX: 60,
+              scale: 1.2,
+              duration: 2,
+              onComplete: () => {
+                choiceTouchEnd(answer);
+              },
+            },
+            "<"
+          );
+      }
+    }
     //  * lifecycle
     //  * methods
     //  * return
     return {
       choiceTouchMove,
-      choiceTouchEnd,
-      choiceTouchStart,
+
+      choiceTouchStartSmoke,
       selected,
     };
   },
@@ -149,6 +149,7 @@ export default {
       flex-direction: column;
       // padding: 0 3rem;
       animation: backInUp 1s ease-in;
+
       div {
         position: relative;
         font-size: 1.8rem;
@@ -156,9 +157,11 @@ export default {
         line-height: 2rem;
         margin: 0 auto 4rem;
         border-radius: 1rem;
-        transition: 0.2s all;
+        // transition: 0.2s all;
         // width: 25.5rem;
         width: 70%;
+        // filter: url("#filter");
+
         div {
           height: 60%;
           width: 50%;
@@ -169,10 +172,17 @@ export default {
   }
 }
 .selected-q {
-  color: $color-text-py;
-  box-shadow: 0;
-  box-shadow: inset -7px -7px 12px transparent,
-    inset 7px 7px 12px rgba(0, 0, 0, 0.4);
+  // span {
+  //   animation: smoky 5s;
+  // }
+  // span:nth-child(even) {
+  //   animation-name: smoky-mirror;
+  // }
+  // @for $item from 1 through 21 {
+  //   span:nth-of-type(#{$item}) {
+  //     animation-delay: #{(3 + ($item/10))}s;
+  //   }
+  // }
 }
 
 @keyframes shadowtext {
@@ -184,6 +194,25 @@ export default {
   }
   100% {
     text-shadow: 1px 1px 1px #fff, -1px -1px 1px #000;
+  }
+}
+
+@keyframes smoky {
+  to {
+    transform: translate3d(8rem, -6rem, 0) rotate(-30deg) skewX(60deg)
+      scale(1.2);
+  }
+}
+
+@keyframes smoky-mirror {
+  60% {
+    text-shadow: 0 0 40px whitesmoke;
+  }
+  to {
+    transform: translate3d(12rem, -6rem, 0) rotate(-40deg) skewX(70deg)
+      scale(1.5);
+    text-shadow: 0 0 20px whitesmoke;
+    opacity: 0;
   }
 }
 </style>

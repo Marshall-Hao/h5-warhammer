@@ -29,7 +29,16 @@
               <div class="q6-section-subtitle">
                 {{ sub.name }}
               </div>
-              <div class="q6-section-about">关于</div>
+              <div class="q6-section-sub-desc">
+                <!-- 欧克蛮人遵循简单粗暴的游戏规则，你们信奉人海战术，任何低估你们能力的敌人都将付出惨痛的代价。 -->
+                {{sub.short_desc}}
+              </div>
+              <div class="q6-section-sub-button">
+                <a :href="sub.article_url">
+                  <button>了解跟多</button>
+                </a>
+              </div>
+              <!-- <div class="q6-section-about">关于</div> -->
             </li>
           </ul>
         </div>
@@ -205,6 +214,18 @@ export default {
         startAt: 0,
         perView: 1,
       }).mount();
+      const dim = {w: 1, h: window.innerHeight/window.innerWidth}
+      // console.log({dim})
+      const subDescs = document.querySelectorAll('.q6-section-sub-desc')
+      // console.log({subDescs})
+      subDescs.forEach(x => {
+        if (dim.h < 2.1) {
+          // console.log('h < 2.1?')
+          x.style.padding = `0 2.5rem`
+        } else {
+          // console.log('dim.h', dim.h)
+        }
+      })
     });
     // * methods
     function retake() {
@@ -340,12 +361,40 @@ export default {
       background-position: center;
       font-size: 1.6rem;
       animation: pulse 2s infinite forwards;
+      &-desc {
+        text-align: left;
+        color: #fff;
+        font-size: 1.2rem;
+        line-height: 2rem;
+        padding: 0rem 3rem;
+        box-sizing: border-box;
+        // min-height: 12rem;
+        height: 12rem;
+        @media screen and (max-width: 400px) {
+          height: 11rem;
+        }
+        // overflow: hidden;
+      }
+      &-button {
+        margin-top: 1rem;
+        padding: 0.5rem 3rem;
+        box-sizing: border-box;
+        button {
+          width: 100%;
+          padding: 0.25rem 0;
+          box-sizing: border-box;
+          background-color: #BC3F2F;
+          color: #fff;
+          border: 0;
+        }
+      }
     }
     &-subtitle {
       color: $color-sub-theme;
       margin-bottom: 1rem;
       font-size: 1.825rem;
       text-transform: uppercase;
+      min-height: 3.5rem;
     }
     &-about {
       font-size: 1.5rem;

@@ -94,7 +94,7 @@
       </div>
       <div class="q6-section-func">
         <p @touchstart.prevent="retake">Retake Quiz</p>
-        <p>Share Quiz</p>
+        <p @touchstart.prevent="share">Share Quiz</p>
       </div>
     </section>
     <div class="q6-packs">
@@ -122,7 +122,8 @@
                   <div class="q6-product-container-desc">
                     {{ product.short_desc }}
                   </div>
-                  <a :href="product.shop_url" class="q6-product-container-btn">
+                  <!-- <a :href="product.shop_url" class="q6-product-container-btn"> -->
+                  <a @click="goToProduct" :data-href="product.shop_url" :data-name="product.name" class="q6-product-container-btn">
                     <span>BUY NOW</span>
                   </a>
                 </div>
@@ -150,6 +151,7 @@ import useFaction from "../services/faction";
 import { computed, onBeforeMount, onMounted, onUpdated, ref } from "vue";
 import Glide from "@glidejs/glide";
 import { useRouter } from "vue-router";
+import ahoy from "../services/ahoy"
 
 export default {
   name: "share",
@@ -206,9 +208,40 @@ export default {
     });
     // * methods
     function retake() {
+      console.log({faction})
+      console.log('raw value?', faction._rawValue)
+      ahoy.track("Clicked Retake Quiz", {
+        prev_category: faction._rawValue.category.name,
+        prev_faction_revealed: faction._rawValue.name_en,
+        prev_faction_revealed_cn: faction._rawValue.name
+      })
       router.push({
         path: "/choose",
       });
+    }
+    function share() {
+      ahoy.track("Clicked Share Quiz", {
+        category: faction._rawValue.category.name,
+        faction_revealed: faction._rawValue.name_en,
+        faction_revealed_cn: faction._rawValue.name
+      })
+      // do something
+    }
+    function goToProduct(e) {
+      console.log('goToProduct', e.currentTarget.dataset)
+      const dataset = e.currentTarget.dataset
+      ahoy.track("Clicked Buy Product", {
+        product_name: dataset.name,
+        product_url: dataset.href,
+        category: faction._rawValue.category.name,
+        faction_revealed: faction._rawValue.name_en,
+        faction_revealed_cn: faction._rawValue.name
+      })
+      // and then go to product, Marshall please test 👇
+      // window.location.href = dataset.href
+    }
+    function goToArticle(e) {
+
     }
     return {
       faction,
@@ -217,6 +250,9 @@ export default {
       factionLogo,
       showSub,
       retake,
+      share,
+      goToProduct,
+      goToArticle
     };
   },
 };

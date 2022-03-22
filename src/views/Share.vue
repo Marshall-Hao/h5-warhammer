@@ -31,11 +31,11 @@
               </div>
               <div class="q6-section-sub-desc">
                 <!-- 欧克蛮人遵循简单粗暴的游戏规则，你们信奉人海战术，任何低估你们能力的敌人都将付出惨痛的代价。 -->
-                {{sub.short_desc}}
+                {{ sub.short_desc }}
               </div>
               <div class="q6-section-sub-button">
                 <a :href="sub.article_url">
-                  <button>了解跟多</button>
+                  <button>了解更多</button>
                 </a>
               </div>
               <!-- <div class="q6-section-about">关于</div> -->
@@ -212,18 +212,18 @@ export default {
         startAt: 0,
         perView: 1,
       }).mount();
-      const dim = {w: 1, h: window.innerHeight/window.innerWidth}
+      const dim = { w: 1, h: window.innerHeight / window.innerWidth };
       // console.log({dim})
-      const subDescs = document.querySelectorAll('.q6-section-sub-desc')
+      const subDescs = document.querySelectorAll(".q6-section-sub-desc");
       // console.log({subDescs})
-      subDescs.forEach(x => {
+      subDescs.forEach((x) => {
         if (dim.h < 2.1) {
           // console.log('h < 2.1?')
-          x.style.padding = `0 2.5rem`
+          x.style.padding = `0 2.5rem`;
         } else {
           // console.log('dim.h', dim.h)
         }
-      })
+      });
     });
     // * methods
     function retake() {
@@ -347,7 +347,7 @@ export default {
           width: 100%;
           padding: 0.25rem 0;
           box-sizing: border-box;
-          background-color: #BC3F2F;
+          background-color: #bc3f2f;
           color: #fff;
           border: 0;
         }

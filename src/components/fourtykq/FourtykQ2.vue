@@ -3,15 +3,15 @@
     <div class="q2-background" :style="questionBackground"></div>
     <h1 class="q2-title">{{ questionText }}</h1>
     <section class="q2-section">
-      <div class="q2-section-choices">
+      <div class="q2-section-choices" ref="q">
         <div
-          ref="q"
           v-for="(answer, index) in questionChoices"
           :key="answer"
           :style="{
             backgroundImage: `url(${answer.image})`,
           }"
-          @touchstart.prevent="choiceTouchStart(index)"
+          :class="{ 'selected-q': selected === index }"
+          @touchstart.prevent="choiceTouchStartParticle(index, $event)"
           @touchmove.prevent="choiceTouchMove(index)"
           @touchend.prevent="choiceTouchEnd(answer.id)"
           @mouseenter.prevent="choiceTouchStart(index)"
@@ -30,6 +30,11 @@
 
 <script>
 import useSelectPattern from "../../assets/js/use-select-pattern";
+import * as disintegrate from "disintegrate";
+import html2canvas from "html2canvas";
+import particleCanvas from "../../assets/js/particle";
+
+import { ref } from "vue";
 
 export default {
   name: "fourtyk-q2",
@@ -43,6 +48,7 @@ export default {
   setup(props, { emit }) {
     const questionId = props.currentQuestion.id;
     // * ref
+    const q = ref(null);
     // * store
 
     // * hooks
@@ -50,12 +56,19 @@ export default {
       useSelectPattern(emit, questionId);
     //  * computed
     //  * lifecycle
+
     //  * methods
+    function choiceTouchStartParticle(index, e) {
+      choiceTouchStart(index);
+      particleCanvas(e.target, e);
+    }
+
     //  * return
     return {
+      q,
       choiceTouchMove,
       choiceTouchEnd,
-      choiceTouchStart,
+      choiceTouchStartParticle,
       selected,
     };
   },
@@ -92,19 +105,24 @@ export default {
   &-section {
     position: relative;
     // height: 70rem;
-    animation: pulse 2s 1s infinite ease-in-out;
+    // animation: pulse 2s 1s infinite ease-in-out;
     height: 80%;
     width: 100%;
     padding-bottom: 4.5rem;
     box-sizing: border-box;
+
     @include flexCenter;
     &-choices {
       // @include absCenter;
       height: 100%;
+      width: 90%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      overflow: hidden;
+
       div {
+        margin: 0 auto;
         position: relative;
         width: 26rem;
         // height: 14rem;
@@ -113,8 +131,8 @@ export default {
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
+
         // margin-bottom: 4rem;
-        animation: maskmove 2s 1s steps(29) forwards;
         div {
           position: absolute;
           top: 0;
@@ -127,6 +145,7 @@ export default {
           mask: url(../../assets/images/regular/maskdetail.png);
           mask-position: 100% 0;
           mask-size: 3000% 100%;
+          animation: maskmove 2s 1s steps(29) forwards;
 
           &::before {
             content: "";
@@ -150,7 +169,7 @@ export default {
 }
 
 .selected-q {
-  animation: fadeOut 1s;
+  animation: slideRight 1s ease backwards;
 }
 @keyframes maskmove {
   0% {
@@ -159,6 +178,11 @@ export default {
 
   100% {
     mask-position: 0 0;
+  }
+}
+@keyframes slideRight {
+  100% {
+    transform: translateX(35rem);
   }
 }
 </style>

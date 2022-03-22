@@ -16,7 +16,7 @@
           v-for="(answer, index) in questionChoices"
           :key="answer"
           :class="{
-            'selected-q': selected === index,
+            'selected-q6': selected === index,
             'unselect-q': selected && selected !== index,
           }"
         >
@@ -68,7 +68,7 @@ export default {
               amount: 0.5,
             },
           })
-          .to(".selected-q span", {
+          .to(".selected-q6 span", {
             textShadow: "0 0 25px whitesmoke",
             filter: "blur(8px)",
             opacity: 0,
@@ -77,7 +77,7 @@ export default {
             },
           })
           .to(
-            ".selected-q",
+            ".selected-q6",
             {
               translateX: 80,
               translateY: -40,

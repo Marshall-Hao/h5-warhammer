@@ -8,6 +8,7 @@ import { detectMob } from "./util";
 import { useCookie } from "vue-cookie-next";
 import { USER_KEY } from "../../assets/js/constant";
 import storage from "good-storage";
+import ahoy from "../../services/ahoy";
 
 export default function useMiddleInteraction(
   direction = "h",
@@ -155,12 +156,18 @@ export default function useMiddleInteraction(
       if (touch.percentX > 0) {
         quizStart(1, headers);
         store.commit("setCategory", "40k");
+        ahoy.track("Started Quiz", {
+          category: '40k'
+        })
         router.push({
           path: "/questions/40k/1",
         });
       } else {
         quizStart(2, headers);
         store.commit("setCategory", "aos");
+        ahoy.track("Started Quiz", {
+          category: 'AOS'
+        })
         router.push({
           path: "/questions/aos/1",
         });

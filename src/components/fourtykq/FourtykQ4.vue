@@ -10,10 +10,10 @@
         }"
         class="q4-bg-choice"
       >
+        <!-- 'selected-q4': selected === index, -->
         <div
           :class="{
-            'selected-q4': selected === index,
-            unselected: selected && selected !== index,
+            unselected: selected !== index,
           }"
         ></div>
       </div>
@@ -190,29 +190,28 @@ export default {
         headers
       );
       await this.$nextTick;
-      await this.$nextTick;
 
       const unSelected = document.querySelector(".unselected");
       console.log(unSelected);
 
-      gsap
-        .timeline()
-        .to(".unselected", {
-          background:
-            "linear-gradient( 0deg,#fff 0%,#fff 100%,transparent 100%)",
-          opacity: 0.8,
-          duration: 3,
-          ease: "expo.out",
-        })
-        .to(".selected-q4", {
-          background: "linear-gradient( 0deg,#fff 0%,#fff 0%,transparent 0%)",
-          opacity: 0,
-          duration: 1,
-          ease: "expo.out",
-          onComplete: () => {
-            this.goNextPage();
-          },
-        });
+      gsap.to(".unselected", {
+        background: "linear-gradient( 0deg,#fff 0%,#fff 100%,transparent 100%)",
+        opacity: 0.8,
+        duration: 3,
+        ease: "expo.out",
+        onComplete: () => {
+          this.goNextPage();
+        },
+      });
+      // .to(".selected-q4", {
+      //   background: "linear-gradient( 0deg,#fff 0%,#fff 0%,transparent 0%)",
+      //   opacity: 0,
+      //   duration: 1,
+      //   ease: "expo.out",
+      //   onComplete: () => {
+      //     this.goNextPage();
+      //   },
+      // });
     },
     goNextPage() {
       storage.session.set("__currentquiz__", 4);

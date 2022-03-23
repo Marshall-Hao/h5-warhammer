@@ -1,13 +1,16 @@
 <template>
   <div class="q7 fixed-no-scroll">
     <div class="q7-background" :style="questionBackground"></div>
-    <div class="q7-banner">
-      <div
+    <div class="q7-banner"
+        :style="{
+          'background-image': `url(${currentQuestion.instruction_image})`,
+        }">
+      <!-- <div
         class="q7-banner-inner"
         :style="{
           'background-image': `url(${currentQuestion.instruction_image})`,
         }"
-      ></div>
+      ></div> -->
     </div>
     <div class="q7-section">
       <h1 class="q7-title">{{ questionText }}</h1>
@@ -81,11 +84,11 @@ export default {
       banner.offsetWidth * (scrollDim.h / scrollDim.w)
     }px`;
     // console.log('banner', document.querySelector('.q7-banner'))
-    const innerBanner = document.querySelector(".q7-banner-inner");
-    innerBanner.style.height = `${0.95 * banner.offsetHeight}px`;
-    innerBanner.style.width = `${
-      0.95 * banner.offsetHeight * (bannerDim.w / bannerDim.h)
-    }px`;
+    // const innerBanner = document.querySelector(".q7-banner-inner");
+    // innerBanner.style.height = `${0.95 * banner.offsetHeight}px`;
+    // innerBanner.style.width = `${
+    //   0.95 * banner.offsetHeight * (bannerDim.w / bannerDim.h)
+    // }px`;
     // innerBanner.style.width = `${0.8 * banner.offsetWidth}px`;
     // innerBanner.style.height = `${
     //   0.8 * banner.offsetWidth * (bannerDim.h / bannerDim.w)
@@ -129,7 +132,7 @@ $img: "../../assets/images/regular/q7banner.png";
   }
   &-banner {
     position: relative;
-    background: url(../../assets/images/regular/reel.png);
+    // background: url(../../assets/images/regular/reel.png);
     // background-size: contain;
     background-size: cover;
     background-repeat: no-repeat;

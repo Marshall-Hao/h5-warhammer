@@ -1,8 +1,14 @@
 import html2canvas from "html2canvas";
 let ctx;
 
-export default function particleGenerator(btn, smallPottion = true) {
-  html2canvas(btn).then((canvas) => {
+export default function particleGenerator(
+  btn,
+  smallPottion = true,
+  slideRight = true
+) {
+  html2canvas(btn, {
+    useCORS: true,
+  }).then((canvas) => {
     ctx = canvas.getContext("2d");
 
     createParticleCanvas();
@@ -42,7 +48,7 @@ export default function particleGenerator(btn, smallPottion = true) {
           let globalX = bcr.left + localX;
           let globalY = bcr.top + localY;
 
-          createParticleAtPoint(globalX, globalY, rgbaColorArr);
+          createParticleAtPoint(globalX, globalY, rgbaColorArr, slideRight);
         }
         count++;
       }
@@ -53,7 +59,7 @@ export default function particleGenerator(btn, smallPottion = true) {
 /* An "exploding" particle effect that uses circles */
 let ExplodingParticle = function () {
   // Set how long we want our particle to animate for
-  this.animationDuration = 1000; // in ms
+  this.animationDuration = 10000; // in ms
 
   // Set the speed for our particle
   this.speed = {
@@ -62,10 +68,10 @@ let ExplodingParticle = function () {
   };
 
   // Size our particle
-  this.radius = 5 + Math.random() * 5;
+  this.radius = 3 + Math.random() * 10;
 
   // Set a max time to live for our particle
-  this.life = 30 + Math.random() * 10;
+  this.life = 5000 + Math.random() * 20;
   this.remainingLife = this.life;
 
   // This function will be called by our animation logic later on
@@ -87,8 +93,8 @@ let ExplodingParticle = function () {
       ctx.fill();
 
       // Update the particle's location and life
-      p.remainingLife--;
-      p.radius -= 0.25;
+      p.remainingLife -= 0.1;
+      p.radius -= 0.05;
       p.startX += p.speed.x;
       p.startY += p.speed.y;
     }
@@ -135,8 +141,13 @@ let ExplodeToRightParticle = function () {
 };
 
 let particles = [];
-function createParticleAtPoint(x, y, colorData) {
-  let particle = new ExplodeToRightParticle();
+function createParticleAtPoint(x, y, colorData, slideRight) {
+  let particle;
+  if (slideRight) {
+    particle = new ExplodeToRightParticle();
+  } else {
+    particle = new ExplodingParticle();
+  }
 
   particle.rgbArray = colorData;
   particle.startX = x;

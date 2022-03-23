@@ -59,7 +59,7 @@ export default {
     //  * methods
     function choiceTouchStartParticle(index, e) {
       choiceTouchStart(index);
-      particleCanvas(e.target, e);
+      particleCanvas(e.target);
     }
 
     //  * return

@@ -261,8 +261,8 @@ export default {
         @include absCenter;
         letter-spacing: 0.3rem;
         font-size: 1.2rem;
-        height: 16rem;
-        width: 8rem;
+        height: 18rem;
+        width: 10rem;
         padding-top: 7rem;
       }
     }

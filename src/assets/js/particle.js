@@ -22,7 +22,7 @@ export default function particleGenerator(btn, smallPottion = true) {
     let width = btn.offsetWidth;
     let height = btn.offsetHeight;
     if (smallPottion) {
-      colorData = ctx.getImageData(5, 5, 24, 24).data;
+      colorData = ctx.getImageData(5, 5, 23, 23).data;
     } else {
       colorData = ctx.getImageData(0, 0, width, height).data;
     }
@@ -97,14 +97,14 @@ let ExplodingParticle = function () {
 
 let ExplodeToRightParticle = function () {
   this.name = "ExplodeToRightParticle";
-  this.animationDuration = 25000; // in ms
+  this.animationDuration = 10000; // in ms
 
   this.speed = {
     x: 0 + Math.random() * 6,
     y: -1.5 + Math.random() * 3,
   };
-  this.radius = 0 + Math.random() * 5;
-  this.life = 30 + Math.random() * 10;
+  this.radius = 0 + Math.random() * 9;
+  this.life = 500 + Math.random() * 20;
   this.remainingLife = this.life;
 
   this.firstRun = true;

@@ -54,6 +54,6 @@ export default {
 
 <style scoped>
 div {
-  font-family: "jingdian";
+  font-family: "jingdian", "jingdian2";
 }
 </style>

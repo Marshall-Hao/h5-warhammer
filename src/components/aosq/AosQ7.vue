@@ -55,7 +55,7 @@ export default {
 
     // * hooks
     const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
-      useSelectPattern(emit, questionId);
+      useSelectPattern(emit, questionId, 2100);
     //  * computed
 
     //  * lifecycle
@@ -243,14 +243,14 @@ $img: "../../assets/images/regular/q7banner.png";
   }
 }
 .selected-q {
-  animation: slideRight 1s ease backwards;
+  animation: slideRight 2s ease forwards;
 }
 .selected-qd {
   opacity: 0;
 }
 @keyframes slideRight {
   100% {
-    transform: translateX(35rem);
+    transform: translateX(45rem);
   }
 }
 

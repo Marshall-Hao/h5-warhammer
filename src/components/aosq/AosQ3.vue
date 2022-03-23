@@ -187,7 +187,7 @@ export default {
 }
 
 .selected-q3 {
-  animation: rotateOut 1s infinite !important;
+  animation: rotateOut 1s ease-out forwards !important;
 }
 
 @keyframes rotate {

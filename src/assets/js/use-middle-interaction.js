@@ -9,6 +9,8 @@ import { useCookie } from "vue-cookie-next";
 import { USER_KEY } from "../../assets/js/constant";
 import storage from "good-storage";
 import ahoy from "../../services/ahoy";
+import particleGenerator from "./particle";
+import gsap from "gsap";
 
 export default function useMiddleInteraction(
   direction = "h",
@@ -18,6 +20,7 @@ export default function useMiddleInteraction(
   const cookie = useCookie();
   const headers = cookie.getCookie(USER_KEY);
   const isMob = detectMob();
+
   // * ref
   const swipeOne = ref(null);
   const swipeTwo = ref(null);
@@ -132,7 +135,6 @@ export default function useMiddleInteraction(
         55
       );
     }
-
     iconTransform.value = {
       transform: `translate3d(0,${deltaY}px,0)`,
       transitionDuration: "0ms",
@@ -157,8 +159,8 @@ export default function useMiddleInteraction(
         quizStart(1, headers);
         store.commit("setCategory", "40k");
         ahoy.track("Started Quiz", {
-          category: '40k'
-        })
+          category: "40k",
+        });
         router.push({
           path: "/questions/40k/1",
         });
@@ -166,8 +168,8 @@ export default function useMiddleInteraction(
         quizStart(2, headers);
         store.commit("setCategory", "aos");
         ahoy.track("Started Quiz", {
-          category: 'AOS'
-        })
+          category: "AOS",
+        });
         router.push({
           path: "/questions/aos/1",
         });
@@ -196,6 +198,7 @@ export default function useMiddleInteraction(
           },
           headers
         );
+        explosion("top");
       } else {
         submitAnswer(
           {
@@ -204,14 +207,36 @@ export default function useMiddleInteraction(
           },
           headers
         );
+        explosion("bottom");
       }
       storage.session.set("__currentquiz__", 7);
-      router.push({
-        path: "/reveal",
-      });
+      // router.push({
+      //   path: "/reveal",
+      // });
     }
   }
 
+  function explosion(ele) {
+    const element = document.querySelector(`.${ele}`);
+    const elementMask = document.querySelector(`.${ele} div`);
+    particleGenerator(element, false, false);
+    gsap
+      .timeline()
+      .to(elementMask, {
+        opacity: 0,
+        duration: 0.2,
+      })
+      .to(element, {
+        opacity: 0,
+        duration: 2,
+        ease: "expo.out",
+        onComplete: () => {
+          router.push({
+            path: "/reveal",
+          });
+        },
+      });
+  }
   //   *return
   return {
     onMiddleTouchStart,

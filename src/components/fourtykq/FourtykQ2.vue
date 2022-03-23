@@ -52,14 +52,14 @@ export default {
 
     // * hooks
     const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
-      useSelectPattern(emit, questionId, 1000);
+      useSelectPattern(emit, questionId, 2100);
     //  * computed
     //  * lifecycle
 
     //  * methods
     function choiceTouchStartParticle(index, e) {
       choiceTouchStart(index);
-      particleCanvas(e.target, e);
+      particleCanvas(e.target);
     }
 
     //  * return
@@ -168,7 +168,7 @@ export default {
 }
 
 .selected-q {
-  animation: slideRight 1s ease backwards;
+  animation: slideRight 2s ease forwards;
 }
 @keyframes maskmove {
   0% {

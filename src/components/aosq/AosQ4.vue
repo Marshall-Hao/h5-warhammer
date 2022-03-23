@@ -233,7 +233,7 @@ export default {
   }
 }
 .selected-q {
-  animation: pulse 1s infinite forwards;
+  animation: pulse 1s ease-out forwards;
 }
 .glide__arrow {
   border: 0px;

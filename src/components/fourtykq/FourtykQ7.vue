@@ -59,7 +59,7 @@
 import SvgIcon from "../base/svgIcon/SvgIcon";
 import VideoBox from "../base/video-box/VideoBox";
 import useMiddleInteraction from "../../assets/js/use-middle-interaction";
-import { computed, onMounted, onUpdated, ref } from "vue";
+import { computed, onMounted, onUnmounted, onUpdated, ref } from "vue";
 
 export default {
   name: "fourtyk-q7",
@@ -127,7 +127,10 @@ export default {
     onMounted(() => {
       // window.requestAnimationFrame(freqAnimation);
     });
-
+    onUnmounted(() => {
+      const canvas = document.querySelector("canvas");
+      canvas.remove();
+    });
     //  * methods
     // function freqAnimation() {
     //   frames += 0.35;

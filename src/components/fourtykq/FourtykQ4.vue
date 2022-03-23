@@ -12,7 +12,7 @@
       >
         <div
           :class="{
-            'selected-q4': selected && selected === index,
+            'selected-q4': selected === index,
             unselected: selected && selected !== index,
           }"
         ></div>

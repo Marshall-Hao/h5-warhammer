@@ -13,7 +13,7 @@
           class="top"
         >
           <div></div>
-          <!-- <img :src="answer.image" crossOrigin="anonymous" alt="" class="top" /> -->
+          <!-- <img :src="answer.image" alt="" class="top" /> -->
           <!-- <div
             :style="`background: ${maskValue};transition:all ${duration};`"
           ></div> -->

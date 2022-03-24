@@ -163,15 +163,14 @@ export default {
       },
     };
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     onClick() {
       this.$router.push({
         path: "/choose",
       });
     },
-  }
+  },
 };
 </script>
 
@@ -327,10 +326,10 @@ export default {
     &-terms {
       color: $color-text-py;
       //   text-decoration: underline $color-text-py;
-      animation: slideInLeft 3s ease-in, underline 2s ease-in-out 6s infinite;
+      animation: slideInLeft 2s ease-in, underline 2s ease-in-out 1.5s infinite;
     }
     &-beian {
-      animation: slideInRight 3s ease-in;
+      animation: slideInRight 2s ease-in;
     }
   }
 }

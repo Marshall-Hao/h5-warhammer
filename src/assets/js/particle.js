@@ -63,12 +63,12 @@ let ExplodingParticle = function () {
 
   // Set the speed for our particle
   this.speed = {
-    x: -5 + Math.random() * 10,
-    y: -5 + Math.random() * 10,
+    x: -5 + Math.random() * 15,
+    y: -5 + Math.random() * 15,
   };
 
   // Size our particle
-  this.radius = 3 + Math.random() * 10;
+  this.radius = 2 + Math.random() * 1;
 
   // Set a max time to live for our particle
   this.life = 5000 + Math.random() * 20;
@@ -94,7 +94,7 @@ let ExplodingParticle = function () {
 
       // Update the particle's location and life
       p.remainingLife -= 0.1;
-      p.radius -= 0.05;
+      p.radius -= 0.01;
       p.startX += p.speed.x;
       p.startY += p.speed.y;
     }

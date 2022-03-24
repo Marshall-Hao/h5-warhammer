@@ -8,11 +8,16 @@
           backgroundImage: `url(${answer.image})`,
           backgroundSize: 'cover',
         }"
+        :class="{
+          selected: selected === index,
+          unselected: selected !== index,
+        }"
         class="q4-bg-choice"
       >
         <!-- 'selected-q4': selected === index, -->
         <div
           :class="{
+            selected: selected === index,
             unselected: selected !== index,
           }"
         ></div>
@@ -194,10 +199,9 @@ export default {
       const unSelected = document.querySelector(".unselected");
       console.log(unSelected);
 
-      gsap.to(".unselected", {
-        background: "linear-gradient( 0deg,#fff 0%,#fff 100%,transparent 100%)",
-        opacity: 0.8,
-        duration: 3,
+      gsap.to(".selected", {
+        scale: 1.05,
+        duration: 1.5,
         ease: "expo.out",
         onComplete: () => {
           this.goNextPage();

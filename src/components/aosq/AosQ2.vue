@@ -161,6 +161,7 @@ export default {
       width: 70%;
       // height: 9rem;
       height: 100%;
+
       // margin-bottom: 1.5rem;
       position: relative;
       background-position: top;
@@ -169,9 +170,17 @@ export default {
       div {
         position: absolute;
         top: 15%;
-        left: 15%;
-        height: 40%;
-        width: 60%;
+        @media only screen and (min-height: 668px) {
+          top: 9%;
+          height: 48%;
+        }
+        @media only screen and (min-height: 667px) and (max-height: 667px) {
+          top: 14%;
+          height: 55%;
+        }
+        left: 12%;
+        height: 62%;
+        width: 80%;
         z-index: -2;
 
         background: linear-gradient(

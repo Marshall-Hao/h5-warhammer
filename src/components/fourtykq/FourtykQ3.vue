@@ -157,6 +157,6 @@ export default {
   }
 }
 .select-q3 {
-  animation: rotateOut 0.7s infinite;
+  animation: rotateOut 1s ease-out forwards !important;
 }
 </style>

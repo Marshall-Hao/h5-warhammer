@@ -9,8 +9,14 @@
           backgroundSize: 'cover',
         }"
         class="q4-bg-choice"
-        :class="{ 'selected-q4': selected && selected === index }"
-      ></div>
+      >
+        <!-- 'selected-q4': selected === index, -->
+        <div
+          :class="{
+            unselected: selected !== index,
+          }"
+        ></div>
+      </div>
     </div>
     <div class="q4-intro">
       <p>Press</p>
@@ -84,45 +90,6 @@
       @touchstart.prevent="startWheel"
       @mousedown="startWheel"
     ></div>
-    <svg width="0" height="0">
-      <filter
-        id="fractal"
-        filterUnits="objectBoundingBox"
-        x="0%"
-        y="0%"
-        width="100%"
-        height="100%"
-      >
-        <feTurbulence
-          id="turbulence"
-          type="fractalNoise"
-          baseFrequency="0.032 0.02"
-          numOctaves="1"
-        >
-          <animate
-            id="wave1"
-            attributeName="baseFrequency"
-            attributeType="XML"
-            from="0.032 0.02"
-            to="0.022 0.01"
-            dur="3.5s"
-            fill="freeze"
-            begin="0; wave2.end"
-          />
-          <animate
-            id="wave2"
-            attributeName="baseFrequency"
-            attributeType="XML"
-            from="0.022 0.01"
-            to="0.032 0.02"
-            dur="3.5s"
-            fill="freeze"
-            begin="wave1.end"
-          />
-        </feTurbulence>
-        <feDisplacementMap in="SourceGraphic" scale="15"></feDisplacementMap>
-      </filter>
-    </svg>
   </div>
 </template>
 
@@ -131,6 +98,7 @@ import submitAnswer from "../../services/answer";
 import { USER_KEY } from "../../assets/js/constant";
 import storage from "good-storage";
 import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
+import gsap from "gsap";
 
 export default {
   name: "fourtyk-q4",
@@ -195,7 +163,7 @@ export default {
       }, 4000);
     },
     // 抽奖结束会触发end回调
-    endCallback(prize) {
+    async endCallback(prize) {
       const headers = this.$cookie.getCookie(USER_KEY);
       const result = prize.title;
       const questionId = this.currentQuestion.id;
@@ -221,15 +189,36 @@ export default {
         },
         headers
       );
-      this.goNextPage();
+      await this.$nextTick;
+
+      const unSelected = document.querySelector(".unselected");
+      console.log(unSelected);
+
+      gsap.to(".unselected", {
+        background: "linear-gradient( 0deg,#fff 0%,#fff 100%,transparent 100%)",
+        opacity: 0.8,
+        duration: 3,
+        ease: "expo.out",
+        onComplete: () => {
+          this.goNextPage();
+        },
+      });
+      // .to(".selected-q4", {
+      //   background: "linear-gradient( 0deg,#fff 0%,#fff 0%,transparent 0%)",
+      //   opacity: 0,
+      //   duration: 1,
+      //   ease: "expo.out",
+      //   onComplete: () => {
+      //     this.goNextPage();
+      //   },
+      // });
     },
     goNextPage() {
       storage.session.set("__currentquiz__", 4);
-      setTimeout(() => {
-        this.$router.push({
-          path: "/questions/40k/5",
-        });
-      }, 1000);
+
+      this.$router.push({
+        path: "/questions/40k/5",
+      });
     },
   },
   setup() {
@@ -270,7 +259,7 @@ export default {
       position: relative;
       transform: scale(1.01, 1.01);
       // background: linear-gradient(0deg, #fff 0%, #fff 4%, transparent 50%);
-      &::after {
+      div {
         position: absolute;
         top: 0;
         left: 0;
@@ -279,7 +268,7 @@ export default {
         transition: all 2s;
       }
       &:nth-child(-n + 2) {
-        &::after {
+        div {
           content: "";
           background-image: linear-gradient(
             0deg,
@@ -290,7 +279,7 @@ export default {
         }
       }
       &:nth-child(n + 3) {
-        &::after {
+        div {
           content: "";
           background-image: linear-gradient(
             180deg,

@@ -10,12 +10,21 @@
         <div
           :style="{ backgroundImage: `url(${answer.image})` }"
           v-if="index === 0"
+          class="top"
         >
+          <div></div>
+          <!-- <img :src="answer.image" crossOrigin="anonymous" alt="" class="top" /> -->
           <!-- <div
             :style="`background: ${maskValue};transition:all ${duration};`"
           ></div> -->
         </div>
-        <div v-else :style="{ backgroundImage: `url(${answer.image})` }">
+        <div
+          v-else
+          :style="{ backgroundImage: `url(${answer.image})` }"
+          class="bottom"
+          crossOrigin="anonymous"
+        >
+          <div></div>
           <!-- <div
             :style="`background: ${greyMask};transition:all ${duration};`"
           ></div> -->
@@ -50,7 +59,7 @@
 import SvgIcon from "../base/svgIcon/SvgIcon";
 import VideoBox from "../base/video-box/VideoBox";
 import useMiddleInteraction from "../../assets/js/use-middle-interaction";
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, onUnmounted, onUpdated, ref } from "vue";
 
 export default {
   name: "fourtyk-q7",
@@ -70,10 +79,10 @@ export default {
       animation: "mainlogo 0.8s infinite alternate",
     };
 
-    const turbulence = ref(null);
-    let frames = 1;
-    let rad = Math.PI / 180;
-    let bf, bfx, bfy;
+    // const turbulence = ref(null);
+    // let frames = 1;
+    // let rad = Math.PI / 180;
+    // let bf, bfx, bfy;
 
     // *props
     const questionId = props.currentQuestion.id;
@@ -101,6 +110,8 @@ export default {
     const duration = computed(() => {
       return `${maskTransform.duration}ms`;
     });
+    // * watch
+
     // * hooks
     const {
       swipeOne,
@@ -111,23 +122,28 @@ export default {
       iconTransform,
       maskTransform,
     } = useMiddleInteraction("v", questionId, choices);
+
     //  * lifecycle
     onMounted(() => {
-      window.requestAnimationFrame(freqAnimation);
+      // window.requestAnimationFrame(freqAnimation);
+    });
+    onUnmounted(() => {
+      const canvas = document.querySelector("canvas");
+      canvas.remove();
     });
     //  * methods
-    function freqAnimation() {
-      frames += 0.35;
+    // function freqAnimation() {
+    //   frames += 0.35;
 
-      bfx = 0.035;
-      bfy = 0.015;
+    //   bfx = 0.035;
+    //   bfy = 0.015;
 
-      bfx += 0.01 * Math.cos(frames * rad);
-      bfy += 0.009 * Math.sin(frames * rad);
-      bf = bfx.toString() + " " + bfy.toString();
-      turbulence.value.setAttributeNS(null, "baseFrequency", bf);
-      window.requestAnimationFrame(freqAnimation);
-    }
+    //   bfx += 0.01 * Math.cos(frames * rad);
+    //   bfy += 0.009 * Math.sin(frames * rad);
+    //   bf = bfx.toString() + " " + bfy.toString();
+    //   turbulence.value.setAttributeNS(null, "baseFrequency", bf);
+    //   window.requestAnimationFrame(freqAnimation);
+    // }
     //  * return
     return {
       animation,
@@ -137,7 +153,6 @@ export default {
       onMiddleTouchMove,
       onMiddleTouchEnd,
       iconTransform,
-      turbulence,
       maskTransform,
       maskValue,
       greyMask,
@@ -189,17 +204,22 @@ export default {
         //   transform: scale(1.08, 1.08);
         // }
         div {
-          border-radius: 2%;
           position: absolute;
           top: 0;
           left: 0;
           width: 100%;
           height: 100%;
-          // transform: translateX(2.5%);
-          // @media only screen and (min-height: 667px) and (max-height: 667px) {
-          //   transform: translateX(0%);
-          // }
+          transform: scale(0.8);
+          z-index: -2;
         }
+        // img {
+        //   position: absolute;
+        //   top: 0;
+        //   left: 0;
+        //   width: 100%;
+        //   height: 100%;
+
+        // }
       }
       &:not(:last-child) {
         margin: 0 auto 13rem;
@@ -212,6 +232,25 @@ export default {
     }
   }
 
+  .top div {
+    background: linear-gradient(
+      90deg,
+      rgb(108, 87, 73),
+      rgb(59, 51, 46),
+      rgb(150, 142, 124),
+      rgb(163, 160, 132)
+    );
+  }
+
+  .bottom div {
+    background: linear-gradient(
+      90deg,
+      rgb(174, 192, 137),
+      rgb(116, 72, 76),
+      rgb(44, 32, 27),
+      rgb(33, 25, 25)
+    );
+  }
   &-progress {
     height: 100%;
     width: 73.3%;

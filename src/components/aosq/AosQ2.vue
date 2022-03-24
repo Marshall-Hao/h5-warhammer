@@ -59,7 +59,7 @@ export default {
 
     // * hooks
     const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
-      useSelectPattern(emit, questionId);
+      useSelectPattern(emit, questionId, 2100);
     //  * computed
 
     //  * lifecycle
@@ -170,7 +170,7 @@ export default {
         position: absolute;
         top: 15%;
         left: 15%;
-        height: 50%;
+        height: 40%;
         width: 60%;
         z-index: -2;
 
@@ -186,7 +186,7 @@ export default {
   }
 }
 .selected-q {
-  animation: slideRight 1s ease backwards;
+  animation: slideRight 2s ease forwards;
 }
 
 .selected-qd {

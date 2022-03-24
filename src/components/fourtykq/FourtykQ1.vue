@@ -22,62 +22,6 @@
         </div>
       </div>
     </section>
-    <svg width="0" height="0">
-      <filter
-        id="fractal2"
-        filterUnits="userSpaceOnUse"
-        x="0"
-        y="0"
-        width="100%"
-        height="100%"
-      >
-        <feTurbulence
-          type="fractalNoise"
-          baseFrequency="0.995"
-          numOctaves="10"
-          seed="1"
-          result="img"
-        />
-        <feDisplacementMap
-          in="SourceGraphic"
-          in2="img"
-          xChannelSelector="R"
-          yChannelSelector="G"
-          scale="200"
-        >
-          <animate
-            id="scale1"
-            attributeName="scale"
-            attributeType="XML"
-            from="200"
-            to="10"
-            dur="2s"
-            fill="freeze"
-            begin="0; scale3.end"
-          />
-          <animate
-            id="scale2"
-            attributeName="scale"
-            attributeType="XML"
-            from="10"
-            to="1"
-            dur="2.5s"
-            fill="freeze"
-            begin="scale1.end"
-          />
-          <animate
-            id="scale3"
-            attributeName="scale"
-            attributeType="XML"
-            from="1"
-            to="200"
-            dur="2s"
-            fill="freeze"
-            begin="scale2.end"
-          />
-        </feDisplacementMap>
-      </filter>
-    </svg>
   </div>
 </template>
 
@@ -100,7 +44,7 @@ export default {
 
     // * hooks
     const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
-      useSelectPattern(emit, questionId);
+      useSelectPattern(emit, questionId, 1500);
     //  * computed
 
     //  * lifecycle
@@ -129,7 +73,6 @@ export default {
   &-background {
     position: fixed;
     background-size: cover;
-    filter: url(#fractal2);
     height: 100%;
     width: 100%;
     z-index: -2;
@@ -168,7 +111,7 @@ export default {
         background-repeat: no-repeat;
         // margin-bottom: 4rem;
         position: relative;
-        transition: all 0.1s;
+        transition: all 1s ease-out;
         div {
           height: 60%;
           width: 50%;

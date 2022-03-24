@@ -202,22 +202,13 @@ export default {
     //  * lifecycle
     onBeforeMount(async () => {
       faction.value = await useFaction(headers);
-      ahoy.track("Completed Quiz", {
-        category: faction.value.category.name,
-        faction: faction.value.name_en,
-        faction_cn: faction.value.name
-      })
-    });
-    onUnmounted(() => {
-      // ⛔️ ⛔️ ⛔️ WHERE BEST TO TRACK THIS EVENT??? ⛔️
       // ahoy.track("Completed Quiz", {
       //   category: faction.value.category.name,
-      //   faction_revealed: faction.value.name_en,
-      //   faction_revealed_cn: faction.value.name
+      //   faction: faction.value.name_en,
+      //   faction_cn: faction.value.name
       // })
     });
     onUpdated(() => {
-      console.log('on updated')
       if (showSub.value) {
         new Glide(".glide", {
           type: "carousel",
@@ -305,7 +296,7 @@ export default {
       goToArticle
     };
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

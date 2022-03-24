@@ -16,6 +16,7 @@ import storage from "good-storage";
 import { USER_KEY } from "../assets/js/constant";
 import { useCookie } from "vue-cookie-next";
 import useFaction from "../services/faction";
+import ahoy from "../services/ahoy";
 
 export default {
   name: "reveal-faction",
@@ -31,18 +32,24 @@ export default {
   },
   setup() {
     const router = useRouter();
-    onBeforeUnmount(() => {
+    onBeforeUnmount(async () => {
       const currentQuiz = storage.session.get("__currentquiz__");
       if (currentQuiz === 7) {
         router.push({
           path: `/share`,
         });
       }
+      const faction = await useFaction(headers);
+      ahoy.track("Completed Quiz", {
+        category: faction.category.name,
+        faction: faction.name_en,
+        faction_cn: faction.name
+      })
     });
 
     const cookie = useCookie();
     const headers = cookie.getCookie(USER_KEY);
-    useFaction(headers);
+    // useFaction(headers);
   },
 };
 </script>

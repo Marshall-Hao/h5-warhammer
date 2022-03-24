@@ -3,9 +3,8 @@ import ahoy from "./ahoy";
 
 let baseURL;
 if (process.env.NODE_ENV !== "production") {
-  // baseURL = "https://api-staging.h5.games-workshop-china.com/api/v1/";
-  // baseURL = "https://api-staging.h5.games-workshop-china.com/api/v1/";
-  baseURL = "http://localhost:3002/api/v1/"
+  // baseURL = "http://localhost:3002/api/v1/"
+  baseURL = "https://api-staging.h5.games-workshop-china.com/api/v1/";
 } else {
   baseURL = "https://api-staging.h5.games-workshop-china.com/api/v1/";
 }

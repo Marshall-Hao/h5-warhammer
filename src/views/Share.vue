@@ -202,22 +202,13 @@ export default {
     //  * lifecycle
     onBeforeMount(async () => {
       faction.value = await useFaction(headers);
-      ahoy.track("Completed Quiz", {
-        category: faction.value.category.name,
-        faction_revealed: faction.value.name_en,
-        faction_revealed_cn: faction.value.name
-      })
-    });
-    onUnmounted(() => {
-      // ⛔️ ⛔️ ⛔️ WHERE BEST TO TRACK THIS EVENT??? ⛔️
       // ahoy.track("Completed Quiz", {
       //   category: faction.value.category.name,
-      //   faction_revealed: faction.value.name_en,
-      //   faction_revealed_cn: faction.value.name
+      //   faction: faction.value.name_en,
+      //   faction_cn: faction.value.name
       // })
     });
     onUpdated(() => {
-      console.log('on updated')
       if (showSub.value) {
         new Glide(".glide", {
           type: "carousel",
@@ -247,9 +238,9 @@ export default {
     function retake() {
       console.log({faction})
       ahoy.track("Clicked Retake Quiz", {
-        prev_category: faction.value.category.name,
-        prev_faction_revealed: faction.value.name_en,
-        prev_faction_revealed_cn: faction.value.name
+        category: faction.value.category.name,
+        faction: faction.value.name_en,
+        faction_cn: faction.value.name
       })
       router.push({
         path: "/choose",
@@ -258,8 +249,8 @@ export default {
     function share() {
       ahoy.track("Clicked Share Quiz", {
         category: faction.value.category.name,
-        faction_revealed: faction.value.name_en,
-        faction_revealed_cn: faction.value.name
+        faction: faction.value.name_en,
+        faction_cn: faction.value.name
       })
       // do something
     }
@@ -267,11 +258,11 @@ export default {
       // console.log('goToProduct', e.currentTarget.dataset)
       const dataset = e.currentTarget.dataset
       ahoy.track("Clicked Buy Product", {
-        product_name: dataset.name,
-        product_url: dataset.href,
+        item_name: dataset.name,
+        item_url: dataset.href,
         category: faction.value.category.name,
-        faction_revealed: faction.value.name_en,
-        faction_revealed_cn: faction.value.name
+        faction: faction.value.name_en,
+        faction_cn: faction.value.name
       })
       // and then go to product, Marshall please test 👇
       if (dataset.href) {
@@ -282,11 +273,11 @@ export default {
       // console.log('goToProduct', e.currentTarget.dataset)
       const dataset = e.currentTarget.dataset
       ahoy.track("Clicked Sub-faction Article", {
-        sub_faction_name: dataset.name,
-        article_url: dataset.href,
+        item_name: dataset.name,
+        item_url: dataset.href,
         category: faction.value.category.name,
-        faction_revealed: faction.value.name_en,
-        faction_revealed_cn: faction.value.name
+        faction: faction.value.name_en,
+        faction_cn: faction.value.name
       })
       // and then go to product, Marshall please test 👇
       if (dataset.href) {
@@ -305,7 +296,7 @@ export default {
       goToArticle
     };
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -409,8 +400,9 @@ export default {
         padding: 0.5rem 3rem;
         box-sizing: border-box;
         button {
+          font-family: "jingdian";
           width: 100%;
-          padding: 0.25rem 0;
+          padding: 0.5rem 0;
           box-sizing: border-box;
           background-color: #bc3f2f;
           color: #fff;

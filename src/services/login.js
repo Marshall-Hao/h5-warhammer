@@ -2,22 +2,27 @@ import { post } from "./base";
 import { USER_KEY } from "../assets/js/constant";
 import storage from "good-storage";
 import { useCookie } from "vue-cookie-next";
+import ahoy from "./ahoy";
 
 export default async function login() {
   const cookie = useCookie();
   const loginUser = cookie.getCookie(USER_KEY);
+  const headers = {"Ahoy-Visit": ahoy.getVisitId(), "Ahoy-Visitor": ahoy.getVisitorId()}
   console.log(loginUser);
   let loginRes;
   if (loginUser) {
     console.log("cookie test");
-    loginRes = await post("/login", {
-      email: loginUser["X-USER-EMAIL"],
-    });
+    loginRes = await post("/login",
+      {
+        email: loginUser["X-USER-EMAIL"],
+      },
+      headers
+    );
     save40kQSession(loginRes["categories"]["40k"]["questions"]);
     saveAosQSession(loginRes["categories"]["aos"]["questions"]);
     return loginRes;
   } else {
-    loginRes = await post("/login");
+    loginRes = await post("/login", {}, headers);
     cookie.setCookie(USER_KEY, JSON.stringify(loginRes["headers"]));
     storage.session.set(USER_KEY, loginRes["headers"]);
     save40kQSession(loginRes["categories"]["40k"]["questions"]);

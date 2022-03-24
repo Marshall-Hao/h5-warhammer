@@ -43,7 +43,8 @@ export default {
       ahoy.track("Completed Quiz", {
         category: faction.category.name,
         faction: faction.name_en,
-        faction_cn: faction.name
+        faction_cn: faction.name,
+        user_quiz_id: faction.user_quiz_id
       })
     });
 

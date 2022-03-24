@@ -400,8 +400,9 @@ export default {
         padding: 0.5rem 3rem;
         box-sizing: border-box;
         button {
+          font-family: "jingdian";
           width: 100%;
-          padding: 0.25rem 0;
+          padding: 0.5rem 0;
           box-sizing: border-box;
           background-color: #bc3f2f;
           color: #fff;

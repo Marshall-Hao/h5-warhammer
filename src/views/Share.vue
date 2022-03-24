@@ -6,8 +6,9 @@
         backgroundImage: ` url(${faction && faction.bg_image})`,
       }"
     ></div>
+    <div class="q6-share"></div>
     <section class="q6-section">
-      <div class="q6-section-logo" :style="factionLogo"></div>
+      <div class="q6-section-logo" :style="factionLogo" id="top"></div>
       <h1 class="q6-section-name">{{ faction && faction.name }}</h1>
       <p class="q6-section-des">{{ faction && faction.short_desc }}</p>
       <h3 class="q6-section-title" v-if="showSub">关于我的团:</h3>
@@ -34,10 +35,8 @@
                 {{ sub.short_desc }}
               </div>
               <div class="q6-section-sub-button">
-
                 <a :href="sub.article_url">
                   <button>了解更多</button>
-
                 </a>
               </div>
               <!-- <div class="q6-section-about">关于</div> -->
@@ -134,7 +133,12 @@
                     {{ product.short_desc }}
                   </div>
                   <!-- <a :href="product.shop_url" class="q6-product-container-btn"> -->
-                  <a @touchstart.prevent="goToProduct" :data-href="product.shop_url" :data-name="product.name" class="q6-product-container-btn">
+                  <a
+                    @touchstart.prevent="goToProduct"
+                    :data-href="product.shop_url"
+                    :data-name="product.name"
+                    class="q6-product-container-btn"
+                  >
                     <span>BUY NOW</span>
                   </a>
                 </div>
@@ -159,11 +163,13 @@
 import { USER_KEY } from "../assets/js/constant";
 import { useCookie } from "vue-cookie-next";
 import useFaction from "../services/faction";
-import { computed, onBeforeMount, onUnmounted, onBeforeUnmount, onMounted, onUpdated, ref } from "vue";
+import { computed, nextTick, onBeforeMount, onUpdated, ref } from "vue";
 import Glide from "@glidejs/glide";
 import { useRouter } from "vue-router";
-import ahoy from "../services/ahoy"
-
+import ahoy from "../services/ahoy";
+import gsap from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+gsap.registerPlugin(ScrollToPlugin);
 export default {
   name: "share",
   setup() {
@@ -236,52 +242,60 @@ export default {
     });
     // * methods
     function retake() {
-      console.log({faction})
+      console.log({ faction });
       ahoy.track("Clicked Retake Quiz", {
         category: faction.value.category.name,
         faction: faction.value.name_en,
-        faction_cn: faction.value.name
-      })
+        faction_cn: faction.value.name,
+      });
       router.push({
         path: "/choose",
       });
     }
     function share() {
-      ahoy.track("Clicked Share Quiz", {
-        category: faction.value.category.name,
-        faction: faction.value.name_en,
-        faction_cn: faction.value.name
-      })
-      // do something
+      // * share
+      gsap.timeline().to(".q6", {
+        duration: 1,
+        scrollTo: 0,
+        overflowY: "hidden",
+        ease: "",
+      });
+
+      // * ahoy
+      // ahoy.track("Clicked Share Quiz", {
+      //   category: faction.value.category.name,
+      //   faction: faction.value.name_en,
+      //   faction_cn: faction.value.name,
+      // });
     }
     function goToProduct(e) {
       // console.log('goToProduct', e.currentTarget.dataset)
-      const dataset = e.currentTarget.dataset
+      const dataset = e.currentTarget.dataset;
       ahoy.track("Clicked Buy Product", {
         item_name: dataset.name,
         item_url: dataset.href,
         category: faction.value.category.name,
         faction: faction.value.name_en,
-        faction_cn: faction.value.name
-      })
+        faction_cn: faction.value.name,
+      });
       // and then go to product, Marshall please test 👇
       if (dataset.href) {
-        window.location.href = dataset.href
+        window.location.href = dataset.href;
       }
     }
     function goToArticle(e) {
       // console.log('goToProduct', e.currentTarget.dataset)
-      const dataset = e.currentTarget.dataset
+      const dataset = e.currentTarget.dataset;
       ahoy.track("Clicked Sub-faction Article", {
         item_name: dataset.name,
         item_url: dataset.href,
         category: faction.value.category.name,
         faction: faction.value.name_en,
-        faction_cn: faction.value.name
-      })
+        faction_cn: faction.value.name,
+      });
       // and then go to product, Marshall please test 👇
       if (dataset.href) {
-        window.location.href = dataset.href
+        window.location.href = dataset.href;
       }
     }
     return {
@@ -293,10 +307,10 @@ export default {
       retake,
       share,
       goToProduct,
-      goToArticle
+      goToArticle,
     };
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -323,6 +337,13 @@ export default {
     background-size: cover;
     mask: linear-gradient(180deg, #222222 25%, #222222 50%, transparent 90%);
     z-index: -2;
+  }
+  &-share {
+    position: fixed;
+    background: red;
+    width: 100%;
+    height: 30rem;
+    bottom: 0vh;
   }
   &-section {
     width: 100%;

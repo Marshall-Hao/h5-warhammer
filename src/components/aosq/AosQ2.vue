@@ -172,7 +172,7 @@ export default {
         top: 15%;
         @media only screen and (min-height: 668px) {
           top: 9%;
-          height: 48%;
+          height: 43%;
         }
         @media only screen and (min-height: 667px) and (max-height: 667px) {
           top: 14%;

@@ -326,7 +326,7 @@ export default {
   padding: 1.2rem;
   overflow-y: scroll;
   overflow-x: hidden;
-  font-family: "jingdian";
+  font-family: "jingdian", "jingdian2";
   font-weight: 400;
   &-bg {
     position: absolute;

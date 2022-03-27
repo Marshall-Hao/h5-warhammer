@@ -415,14 +415,14 @@ export default {
     function quitShare() {
       gsap
         .timeline()
-        .to(".q6", {
-          duration: 0,
-          overflowY: "scroll",
-        })
         .to(".q6-share", {
           opacity: 0,
           display: "none",
           duration: 1,
+        })
+        .to(".q6", {
+          duration: 0,
+          overflowY: "scroll",
         });
     }
 

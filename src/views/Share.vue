@@ -19,9 +19,12 @@
         </div>
         <div class="q6-share-details">
           <div class="q6-share-details-left">
-            <p>分享至好友：</p>
+            <p>分享至好友:</p>
             <div class="q6-share-details-icons">
-              <div class="q6-share-details-icons-details">
+              <div
+                class="q6-share-details-icons-details"
+                @touchstart.prevent="weiboShare"
+              >
                 <div>
                   <svg-icon
                     prefix="war-"
@@ -31,8 +34,12 @@
                     :duration="{}"
                   ></svg-icon>
                 </div>
+                <p class="social">微博</p>
               </div>
-              <div class="q6-share-details-icons-details">
+              <div
+                class="q6-share-details-icons-details"
+                @touchstart.prevent="posterDownload"
+              >
                 <div>
                   <svg-icon
                     prefix="war-"
@@ -42,11 +49,24 @@
                     :duration="{}"
                   ></svg-icon>
                 </div>
+                <p class="social">下载</p>
               </div>
             </div>
           </div>
           <div class="q6-share-details-right">
-            <p>去天猫购买：</p>
+            <p>去天猫购买:</p>
+            <div class="q6-share-details-right-icons" @touchstart="goTmall">
+              <div>
+                <svg-icon
+                  prefix="war-"
+                  name="Tmall"
+                  fill="white"
+                  stroke="white"
+                  :duration="{}"
+                ></svg-icon>
+              </div>
+              <p>天猫</p>
+            </div>
           </div>
         </div>
       </div>
@@ -314,7 +334,15 @@ export default {
           display: "block",
           opacity: 1,
           duration: 1,
-        });
+        })
+        .from(
+          ".q6-share-box",
+          {
+            translateY: "130%",
+            duration: 1,
+          },
+          "<"
+        );
 
       // * ahoy
       // ahoy.track("Clicked Share Quiz", {
@@ -356,19 +384,15 @@ export default {
     function quitShare() {
       gsap
         .timeline()
+        .to(".q6", {
+          duration: 0,
+          overflowY: "scroll",
+        })
         .to(".q6-share", {
           display: "none",
           opacity: 0,
           duration: 1,
-        })
-        .to(
-          ".q6",
-          {
-            duration: 0,
-            overflowY: "scroll",
-          },
-          "<"
-        );
+        });
     }
 
     return {
@@ -454,30 +478,52 @@ export default {
       }
     }
     &-details {
-      height: 100%;
-      width: 100%;
+      // height: 100%;
+      width: 33rem;
+      @include absCenter;
       display: flex;
       justify-content: space-between;
       text-align: center;
-      &-icons {
-        display: flex;
-        justify-content: space-between;
-        gap: 4.5rem;
-        div {
-          position: relative;
-          height: 4rem;
-          width: 4rem;
-        }
-      }
-      &-left {
-      }
-      &-right {
-      }
+      // gap: 10rem;
       p {
         color: $color-text-py;
         font-size: 1.4rem;
         font-family: Heiti SC, STHeiti, SimHei;
         margin-bottom: 3rem;
+      }
+      &-icons {
+        display: flex;
+        justify-content: space-between;
+        gap: 4.5rem;
+        &-details {
+          div {
+            position: relative;
+            height: 4rem;
+            width: 4rem;
+            margin-bottom: 2rem;
+          }
+          p {
+            color: white !important;
+            margin-bottom: 0 !important;
+          }
+        }
+      }
+      &-left {
+      }
+      &-right {
+        width: 33%;
+        &-icons {
+          div {
+            position: relative;
+            height: 5rem;
+            width: 5rem;
+            margin: 0 auto 1rem;
+          }
+          p {
+            color: white !important;
+            margin-bottom: 0 !important;
+          }
+        }
       }
     }
   }

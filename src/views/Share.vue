@@ -7,6 +7,18 @@
       }"
     ></div>
     <div class="q6-share" @touchstart.stop="quitShare">
+      <!-- <div class="q6-share-poster">
+        <div
+          class="q6-share-poster-bg"
+          :style="{
+            backgroundImage: ` url(${faction && faction.bg_image})`,
+          }"
+        ></div>
+        <div class="q6-share-poster-des">
+          <h1 class="q6-section-name">{{ faction && faction.name }}</h1>
+        </div>
+      </div> -->
+
       <div class="q6-share-arrow" v-show="isWechat()">
         <div>
           <svg-icon
@@ -19,6 +31,7 @@
         </div>
         <p>分享给微信好友</p>
       </div>
+
       <div class="q6-share-box">
         <div class="q6-share-logo">
           <svg-icon
@@ -434,7 +447,10 @@ export default {
       // TODO: Ahoy
     }
 
-    function posterDownload() {}
+    function posterDownload() {
+      // TODO: generate poster
+      // TODO:Ahoy
+    }
 
     function isWechat() {
       return /MicroMessenger/i.test(window.navigator.userAgent);
@@ -496,6 +512,33 @@ export default {
     bottom: 0vh;
     z-index: 3;
     padding: 0 2rem;
+    &-poster {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 65%;
+      // background: red;
+      z-index: 6;
+      &-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 70%;
+        width: 100%;
+        background-size: cover;
+        mask: linear-gradient(
+          180deg,
+          #222222 25%,
+          #222222 50%,
+          transparent 90%
+        );
+      }
+      &-des {
+        @include absXCenter;
+        bottom: 20%;
+      }
+    }
     &-arrow {
       position: absolute;
       right: 3rem;

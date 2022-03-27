@@ -184,7 +184,7 @@ export default {
         audio.play();
         document.removeEventListener("touchstart", play, false);
       }
-      document.addEventListener("WeixinJSBridgeReady", play, false);
+      // document.addEventListener("WeixinJSBridgeReady", play, false);
       document.addEventListener("touchstart", play, false);
     },
   },

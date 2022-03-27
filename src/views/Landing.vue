@@ -103,7 +103,11 @@
       >
       <p class="landing-footer-beian">沪ICP备11032828号-1</p>
     </footer>
-    <svg width="0" height="0">
+    <audio autoplay loop ref="audio">
+      <source src="../assets/music/landing-music.wav" type="audio/wav" />
+      Your browser does not support the audio element.
+    </audio>
+    <!-- <svg width="0" height="0">
       <filter
         id="fractal"
         filterUnits="objectBoundingBox"
@@ -141,7 +145,7 @@
         </feTurbulence>
         <feDisplacementMap in="SourceGraphic" scale="15"></feDisplacementMap>
       </filter>
-    </svg>
+    </svg> -->
   </div>
 </template>
 
@@ -163,12 +167,25 @@ export default {
       },
     };
   },
-  mounted() {},
+  mounted() {
+    this.autoPlay();
+  },
   methods: {
     onClick() {
       this.$router.push({
         path: "/choose",
       });
+    },
+    // * autoplay on wechat internal browser
+    autoPlay() {
+      const audio = this.$refs.audio;
+      // audio.play();
+      function play() {
+        audio.play();
+        document.removeEventListener("touchstart", play, false);
+      }
+      document.addEventListener("WeixinJSBridgeReady", play, false);
+      document.addEventListener("touchstart", play, false);
     },
   },
 };
@@ -332,6 +349,11 @@ export default {
       animation: slideInRight 2s ease-in;
     }
   }
+}
+
+audio {
+  position: absolute;
+  bottom: 0;
 }
 
 @keyframes stroke {

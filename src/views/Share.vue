@@ -6,7 +6,19 @@
         backgroundImage: ` url(${faction && faction.bg_image})`,
       }"
     ></div>
-    <div class="q6-share" @touchstart="quitShare">
+    <div class="q6-share" @touchstart.stop="quitShare">
+      <div class="q6-share-arrow" v-show="isWechat()">
+        <div>
+          <svg-icon
+            prefix="war-"
+            name="share"
+            fill="white"
+            stroke="white"
+            :duration="{}"
+          ></svg-icon>
+        </div>
+        <p>分享给微信好友</p>
+      </div>
       <div class="q6-share-box">
         <div class="q6-share-logo">
           <svg-icon
@@ -17,13 +29,14 @@
             :duration="{}"
           ></svg-icon>
         </div>
+
         <div class="q6-share-details">
           <div class="q6-share-details-left">
             <p>分享至好友:</p>
             <div class="q6-share-details-icons">
               <div
                 class="q6-share-details-icons-details"
-                @touchstart.prevent="weiboShare"
+                @touchstart.stop.prevent="weiboShare"
               >
                 <div>
                   <svg-icon
@@ -38,7 +51,7 @@
               </div>
               <div
                 class="q6-share-details-icons-details"
-                @touchstart.prevent="posterDownload"
+                @touchstart.stop.prevent="posterDownload"
               >
                 <div>
                   <svg-icon
@@ -53,9 +66,9 @@
               </div>
             </div>
           </div>
-          <div class="q6-share-details-right">
+          <div class="q6-share-details-right" @touchstart.stop="goTmall">
             <p>去天猫购买:</p>
-            <div class="q6-share-details-right-icons" @touchstart="goTmall">
+            <div class="q6-share-details-right-icons">
               <div>
                 <svg-icon
                   prefix="war-"
@@ -99,7 +112,7 @@
                 {{ sub.short_desc }}
               </div>
               <div class="q6-section-sub-button">
-                <a :href="sub.article_url">
+                <a :href="sub.article_url" target="_blank">
                   <button>了解更多</button>
                 </a>
               </div>
@@ -248,6 +261,7 @@ export default {
     const router = useRouter();
     // *ref
     const faction = ref("");
+
     // * computed
     const subFactions = computed(() => {
       return faction.value.sub_factions;
@@ -345,11 +359,11 @@ export default {
         );
 
       // * ahoy
-      // ahoy.track("Clicked Share Quiz", {
-      //   category: faction.value.category.name,
-      //   faction: faction.value.name_en,
-      //   faction_cn: faction.value.name,
-      // });
+      ahoy.track("Clicked Share Quiz", {
+        category: faction.value.category.name,
+        faction: faction.value.name_en,
+        faction_cn: faction.value.name,
+      });
     }
     function goToProduct(e) {
       // console.log('goToProduct', e.currentTarget.dataset)
@@ -361,14 +375,16 @@ export default {
         faction: faction.value.name_en,
         faction_cn: faction.value.name,
       });
-      // and then go to product, Marshall please test 👇
+      // and then go to product, Marshall please test 👇 test pass
       if (dataset.href) {
         window.location.href = dataset.href;
+        // window.open(dataset.href, "_blank");
       }
     }
     function goToArticle(e) {
       // console.log('goToProduct', e.currentTarget.dataset)
       const dataset = e.currentTarget.dataset;
+
       ahoy.track("Clicked Sub-faction Article", {
         item_name: dataset.name,
         item_url: dataset.href,
@@ -376,9 +392,11 @@ export default {
         faction: faction.value.name_en,
         faction_cn: faction.value.name,
       });
-      // and then go to product, Marshall please test 👇
+      // and then go to product, Marshall please test 👇 test pass
       if (dataset.href) {
         window.location.href = dataset.href;
+
+        // window.open(dataset.href, "_blank");
       }
     }
     function quitShare() {
@@ -389,12 +407,38 @@ export default {
           overflowY: "scroll",
         })
         .to(".q6-share", {
-          display: "none",
           opacity: 0,
+          display: "none",
           duration: 1,
         });
     }
 
+    function goTmall() {
+      // window.open("https://warhammer.tmall.com/", "_blank");
+      window.location.href = "https://warhammer.tmall.com/";
+      // TODO: Ahoy
+    }
+
+    function weiboShare() {
+      const title = "快来测测你的战锤阵营";
+      const url = "https://frontend.h5.games-workshop-china.com/";
+      const photo = faction.value.bg_image;
+      window.location.href =
+        "http://service.weibo.com/share/share.php?url=" +
+        url +
+        "&title=" +
+        title +
+        "&pic=" +
+        photo;
+
+      // TODO: Ahoy
+    }
+
+    function posterDownload() {}
+
+    function isWechat() {
+      return /MicroMessenger/i.test(window.navigator.userAgent);
+    }
     return {
       faction,
       subFactions,
@@ -406,6 +450,10 @@ export default {
       goToProduct,
       goToArticle,
       quitShare,
+      goTmall,
+      weiboShare,
+      posterDownload,
+      isWechat,
     };
   },
 };
@@ -448,6 +496,26 @@ export default {
     bottom: 0vh;
     z-index: 3;
     padding: 0 2rem;
+    &-arrow {
+      position: absolute;
+      right: 3rem;
+      top: 2rem;
+      width: 100%;
+      div {
+        position: absolute;
+        right: 0;
+        height: 10rem;
+        width: 10rem;
+        transform: rotateZ(-5deg);
+      }
+      p {
+        position: absolute;
+        right: 0;
+        top: 12rem;
+        font-size: 2.6rem;
+        font-family: Heiti SC, STHeiti, SimHei;
+      }
+    }
     &-logo {
       background: #222222;
       position: absolute;
@@ -465,6 +533,7 @@ export default {
       border: 0.1rem solid #bc3f2f;
       bottom: 3rem;
       padding: 5rem 4rem;
+
       &::after {
         content: "";
         position: absolute;
@@ -484,6 +553,7 @@ export default {
       display: flex;
       justify-content: space-between;
       text-align: center;
+      z-index: 5;
       // gap: 10rem;
       p {
         color: $color-text-py;

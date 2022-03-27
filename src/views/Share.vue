@@ -6,7 +6,51 @@
         backgroundImage: ` url(${faction && faction.bg_image})`,
       }"
     ></div>
-    <div class="q6-share"></div>
+    <div class="q6-share" @touchstart="quitShare">
+      <div class="q6-share-box">
+        <div class="q6-share-logo">
+          <svg-icon
+            prefix="war-"
+            name="hammer"
+            fill="white"
+            stroke="white"
+            :duration="{}"
+          ></svg-icon>
+        </div>
+        <div class="q6-share-details">
+          <div class="q6-share-details-left">
+            <p>分享至好友：</p>
+            <div class="q6-share-details-icons">
+              <div class="q6-share-details-icons-details">
+                <div>
+                  <svg-icon
+                    prefix="war-"
+                    name="weibo"
+                    fill="white"
+                    stroke="white"
+                    :duration="{}"
+                  ></svg-icon>
+                </div>
+              </div>
+              <div class="q6-share-details-icons-details">
+                <div>
+                  <svg-icon
+                    prefix="war-"
+                    name="download"
+                    fill="white"
+                    stroke="white"
+                    :duration="{}"
+                  ></svg-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="q6-share-details-right">
+            <p>去天猫购买：</p>
+          </div>
+        </div>
+      </div>
+    </div>
     <section class="q6-section">
       <div class="q6-section-logo" :style="factionLogo" id="top"></div>
       <h1 class="q6-section-name">{{ faction && faction.name }}</h1>
@@ -163,15 +207,19 @@
 import { USER_KEY } from "../assets/js/constant";
 import { useCookie } from "vue-cookie-next";
 import useFaction from "../services/faction";
-import { computed, nextTick, onBeforeMount, onUpdated, ref } from "vue";
+import { computed, onBeforeMount, onUpdated, ref } from "vue";
 import Glide from "@glidejs/glide";
 import { useRouter } from "vue-router";
 import ahoy from "../services/ahoy";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import SvgIcon from "../components/base/svgIcon/SvgIcon";
 gsap.registerPlugin(ScrollToPlugin);
 export default {
   name: "share",
+  components: {
+    SvgIcon,
+  },
   setup() {
     // * api request
     const cookie = useCookie();
@@ -254,12 +302,19 @@ export default {
     }
     function share() {
       // * share
-      gsap.timeline().to(".q6", {
-        duration: 1,
-        scrollTo: 0,
-        overflowY: "hidden",
-        ease: "",
-      });
+      gsap
+        .timeline()
+        .to(".q6", {
+          duration: 1,
+          scrollTo: 0,
+          overflowY: "hidden",
+          ease: "",
+        })
+        .to(".q6-share", {
+          display: "block",
+          opacity: 1,
+          duration: 1,
+        });
 
       // * ahoy
       // ahoy.track("Clicked Share Quiz", {
@@ -298,6 +353,24 @@ export default {
         window.location.href = dataset.href;
       }
     }
+    function quitShare() {
+      gsap
+        .timeline()
+        .to(".q6-share", {
+          display: "none",
+          opacity: 0,
+          duration: 1,
+        })
+        .to(
+          ".q6",
+          {
+            duration: 0,
+            overflowY: "scroll",
+          },
+          "<"
+        );
+    }
+
     return {
       faction,
       subFactions,
@@ -308,6 +381,7 @@ export default {
       share,
       goToProduct,
       goToArticle,
+      quitShare,
     };
   },
 };
@@ -340,10 +414,72 @@ export default {
   }
   &-share {
     position: fixed;
-    background: red;
+    top: 0;
+    left: 0;
+    display: none;
+    background: linear-gradient(0deg, #222222 34%, transparent 100%);
+    opacity: 0;
     width: 100%;
-    height: 30rem;
+    height: 100vh;
     bottom: 0vh;
+    z-index: 3;
+    padding: 0 2rem;
+    &-logo {
+      background: #222222;
+      position: absolute;
+      left: 50%;
+      top: 0%;
+      height: 5rem;
+      width: 5rem;
+      transform: translate(-50%, -50%);
+      z-index: 4;
+    }
+    &-box {
+      position: absolute;
+      width: 91.5%;
+      height: 28%;
+      border: 0.1rem solid #bc3f2f;
+      bottom: 3rem;
+      padding: 5rem 4rem;
+      &::after {
+        content: "";
+        position: absolute;
+        top: 3px;
+        bottom: 3px;
+        left: 3px;
+        right: 3px;
+        border: 0.1rem solid #bc3f2f;
+        // width: 96.5%;
+        // height: 95%;
+      }
+    }
+    &-details {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+      &-icons {
+        display: flex;
+        justify-content: space-between;
+        gap: 4.5rem;
+        div {
+          position: relative;
+          height: 4rem;
+          width: 4rem;
+        }
+      }
+      &-left {
+      }
+      &-right {
+      }
+      p {
+        color: $color-text-py;
+        font-size: 1.4rem;
+        font-family: Heiti SC, STHeiti, SimHei;
+        margin-bottom: 3rem;
+      }
+    }
   }
   &-section {
     width: 100%;

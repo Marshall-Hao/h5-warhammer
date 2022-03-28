@@ -121,7 +121,6 @@
                 {{ sub.name }}
               </div>
               <div class="q6-section-sub-desc">
-                <!-- 欧克蛮人遵循简单粗暴的游戏规则，你们信奉人海战术，任何低估你们能力的敌人都将付出惨痛的代价。 -->
                 {{ sub.short_desc }}
               </div>
               <div class="q6-section-sub-button">
@@ -129,7 +128,6 @@
                   <button>了解更多</button>
                 </a>
               </div>
-              <!-- <div class="q6-section-about">关于</div> -->
             </li>
           </ul>
         </div>
@@ -354,7 +352,7 @@ export default {
         .to(".q6", {
           duration: 1,
           scrollTo: 0,
-          overflowY: "hidden",
+          // overflowY: "hidden",
           ease: "",
         })
         .to(".q6-share", {
@@ -432,7 +430,7 @@ export default {
         category: faction.value.category.name,
         faction: faction.value.name_en,
         faction_cn: faction.value.name,
-      })
+      });
       // window.open("https://warhammer.tmall.com/", "_blank");
       window.location.href = "https://warhammer.tmall.com/";
     }
@@ -443,7 +441,7 @@ export default {
         category: faction.value.category.name,
         faction: faction.value.name_en,
         faction_cn: faction.value.name,
-      })
+      });
 
       const title = "快来测测你的战锤阵营";
       const url = "https://frontend.h5.games-workshop-china.com/";
@@ -455,7 +453,6 @@ export default {
         title +
         "&pic=" +
         photo;
-
     }
 
     function posterDownload() {
@@ -464,7 +461,7 @@ export default {
         category: faction.value.category.name,
         faction: faction.value.name_en,
         faction_cn: faction.value.name,
-      })
+      });
 
       // TODO: generate poster
     }
@@ -525,8 +522,8 @@ export default {
     background: linear-gradient(0deg, #222222 34%, transparent 100%);
     opacity: 0;
     width: 100%;
-    height: 100vh;
-    bottom: 0vh;
+    height: 100%;
+    // bottom: 0vh;
     z-index: 3;
     padding: 0 2rem;
     &-poster {
@@ -591,7 +588,7 @@ export default {
       width: 91.5%;
       height: 28%;
       border: 0.1rem solid #bc3f2f;
-      bottom: 3rem;
+      bottom: 1%;
       padding: 5rem 4rem;
 
       &::after {

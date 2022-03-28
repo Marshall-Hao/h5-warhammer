@@ -171,15 +171,15 @@ export default {
         position: absolute;
         top: 15%;
         @media only screen and (min-height: 668px) {
-          top: 12%;
-          height: 40%;
+          top: 13%;
+          height: 35%;
         }
         @media only screen and (min-height: 667px) and (max-height: 667px) {
           top: 14%;
           height: 55%;
         }
         left: 12%;
-        height: 62%;
+        height: 50%;
         width: 80%;
         z-index: -2;
 

@@ -1,6 +1,7 @@
 <template>
   <div class="landing fixed-no-scroll">
     <header class="landing-header">
+      <div class="landing-header-sound"><sound></sound></div>
       <div class="landing-header-icon">
         <svg-icon
           :name="`hammer`"
@@ -103,10 +104,10 @@
       >
       <p class="landing-footer-beian">沪ICP备11032828号-1</p>
     </footer>
-    <audio autoplay loop ref="audio">
+    <!-- <audio autoplay loop ref="audio">
       <source src="../assets/music/landing-music.wav" type="audio/wav" />
       Your browser does not support the audio element.
-    </audio>
+    </audio> -->
     <!-- <svg width="0" height="0">
       <filter
         id="fractal"
@@ -151,14 +152,15 @@
 
 <script>
 import LandingBall from "../components/base/landingBall/LandingBall";
-
 import SvgIcon from "../components/base/svgIcon/SvgIcon";
+import Sound from "../components/base/sounding/Sound";
 
 export default {
   name: "landing",
   components: {
     LandingBall,
     SvgIcon,
+    Sound,
   },
   data() {
     return {
@@ -168,7 +170,7 @@ export default {
     };
   },
   mounted() {
-    this.autoPlay();
+    // this.autoPlay();
   },
   methods: {
     onClick() {
@@ -177,16 +179,16 @@ export default {
       });
     },
     // * autoplay on wechat internal browser
-    autoPlay() {
-      const audio = this.$refs.audio;
-      // audio.play();
-      function play() {
-        audio.play();
-        document.removeEventListener("touchstart", play, false);
-      }
-      document.addEventListener("WeixinJSBridgeReady", play, false);
-      document.addEventListener("touchstart", play, false);
-    },
+    // autoPlay() {
+    //   const audio = this.$refs.audio;
+    //   // audio.play();
+    //   function play() {
+    //     audio.play();
+    //     document.removeEventListener("touchstart", play, false);
+    //   }
+    //   document.addEventListener("WeixinJSBridgeReady", play, false);
+    //   document.addEventListener("touchstart", play, false);
+    // },
   },
 };
 </script>
@@ -208,6 +210,12 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
+    &-sound {
+      position: absolute;
+      right: 10%;
+      top: 15%;
+    }
     &-icon {
       position: relative;
       // height: 6rem;

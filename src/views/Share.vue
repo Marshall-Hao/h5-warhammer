@@ -427,12 +427,24 @@ export default {
     }
 
     function goTmall() {
+      // TODO: Ahoy
+      ahoy.track("Clicked Visit Tmall Shop", {
+        category: faction.value.category.name,
+        faction: faction.value.name_en,
+        faction_cn: faction.value.name,
+      })
       // window.open("https://warhammer.tmall.com/", "_blank");
       window.location.href = "https://warhammer.tmall.com/";
-      // TODO: Ahoy
     }
 
     function weiboShare() {
+      // TODO: Ahoy
+      ahoy.track("Clicked Share to Weibo", {
+        category: faction.value.category.name,
+        faction: faction.value.name_en,
+        faction_cn: faction.value.name,
+      })
+
       const title = "快来测测你的战锤阵营";
       const url = "https://frontend.h5.games-workshop-china.com/";
       const photo = faction.value.bg_image;
@@ -444,12 +456,17 @@ export default {
         "&pic=" +
         photo;
 
-      // TODO: Ahoy
     }
 
     function posterDownload() {
-      // TODO: generate poster
       // TODO:Ahoy
+      ahoy.track("Clicked Download Poster", {
+        category: faction.value.category.name,
+        faction: faction.value.name_en,
+        faction_cn: faction.value.name,
+      })
+
+      // TODO: generate poster
     }
 
     function isWechat() {

@@ -113,6 +113,7 @@ export default {
   methods: {
     updateColors() {
       animate1.pause();
+      const white = this.$refs.white;
       const { randFloat: rnd, randInt, randFloatSpread: rndFS } = MathUtils;
       this.targetTimeCoef = 10;
       const colorAttribute = this.$refs.points.geometry.attributes.color;
@@ -134,8 +135,10 @@ export default {
           innerText: 1,
         },
         onUpdate: () => {
+          white.style.background = "";
+
           if (number.innerText < 50) {
-            number.style.color = "white";
+            number.style.color = "";
           }
         },
       });

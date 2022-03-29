@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="terms-all">
+    <div class="terms-sound"><sound></sound></div>
     <section class="terms">
       <h2 class="terms-title">网站使用条款</h2>
       <h3 class="terms-sub">吉韦优趣（上海）商业有限公司</h3>
@@ -180,14 +181,18 @@
 </template>
 
 <script>
+import Sound from "../components/base/sounding/Sound";
+
 export default {
   name: "terms",
-  mounted() {},
+  components: {
+    Sound,
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-div {
+.terms-all {
   position: fixed;
   top: 0;
   left: 0;
@@ -197,6 +202,10 @@ div {
   background-size: cover;
   overflow-y: scroll;
   padding: 4rem;
+}
+.terms-sound {
+  position: absolute;
+  right: 10%;
 }
 .terms {
   text-align: center;

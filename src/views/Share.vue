@@ -1,5 +1,6 @@
 <template>
   <div class="q6">
+    <div class="q6-sound"><sound></sound></div>
     <div
       class="q6-bg"
       :style="{
@@ -258,11 +259,14 @@ import ahoy from "../services/ahoy";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import SvgIcon from "../components/base/svgIcon/SvgIcon";
+import Sound from "../components/base/sounding/Sound";
+
 gsap.registerPlugin(ScrollToPlugin);
 export default {
   name: "share",
   components: {
     SvgIcon,
+    Sound,
   },
   setup() {
     // * api request
@@ -504,6 +508,11 @@ export default {
   overflow-x: hidden;
   font-family: "jingdian", "jingdian2";
   font-weight: 400;
+  &-sound {
+    position: fixed;
+    right: 7%;
+    top: 5%;
+  }
   &-bg {
     position: absolute;
     top: 0;

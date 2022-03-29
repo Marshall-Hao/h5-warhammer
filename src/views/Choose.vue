@@ -64,6 +64,7 @@
           </p>
         </div>
       </div>
+      <div class="choose-header-sound"><sound></sound></div>
     </header>
 
     <section class="choose-section">
@@ -340,12 +341,14 @@
 
 <script>
 import SvgIcon from "../components/base/svgIcon/SvgIcon";
+import Sound from "../components/base/sounding/Sound";
 import { computed } from "@vue/runtime-core";
 import useMiddleInteraction from "../assets/js/use-middle-interaction";
 export default {
   name: "choose",
   components: {
     SvgIcon,
+    Sound,
   },
   setup() {
     const animation = {
@@ -390,10 +393,10 @@ export default {
     };
   },
   mounted() {
-    if (window.innerWidth/window.innerHeight > 0.5) {
-      document.querySelector('.choose-section').style.height = '62%'
+    if (window.innerWidth / window.innerHeight > 0.5) {
+      document.querySelector(".choose-section").style.height = "62%";
     }
-  }
+  },
 };
 </script>
 
@@ -410,6 +413,12 @@ export default {
     text-align: center;
     position: relative;
     z-index: 10;
+    &-sound {
+      z-index: 5;
+      position: absolute;
+      right: 5%;
+      bottom: -10%;
+    }
     &-icons {
       width: 100%;
       display: grid;
@@ -430,6 +439,7 @@ export default {
     display: flex;
     z-index: 0;
     mask: linear-gradient(0, $color-theme-b 0%, transparent 100%);
+
     &-displayF {
       height: 100%;
       width: 100%;
@@ -514,14 +524,16 @@ export default {
 
 #choose-header-description-left {
   // width: 16.7rem;
-  width: 95%; margin: auto;
+  width: 95%;
+  margin: auto;
   line-height: 2rem;
   font-size: 1.2rem;
 }
 
 #choose-header-description-right {
   // width: 16.7rem;
-  width: 95%; margin: auto;
+  width: 95%;
+  margin: auto;
   line-height: 2rem;
   font-size: 1.2rem;
 }

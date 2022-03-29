@@ -10,7 +10,7 @@ export default function particleGenerator(
     useCORS: true,
   }).then((canvas) => {
     ctx = canvas.getContext("2d");
-
+    console.log(canvas);
     createParticleCanvas();
 
     // Get our color data like before
@@ -28,6 +28,7 @@ export default function particleGenerator(
     let width = btn.offsetWidth;
     let height = btn.offsetHeight;
     if (smallPottion) {
+      console.log("small");
       colorData = ctx.getImageData(5, 5, 23, 23).data;
     } else {
       colorData = ctx.getImageData(0, 0, width, height).data;

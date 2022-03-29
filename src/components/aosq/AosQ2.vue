@@ -27,7 +27,7 @@
           @mousemove.prevent="choiceTouchMove(index)"
           @mousedown="choiceTouchEnd(answer.id)"
         >
-          <div :class="{ 'selected-qd': selected === index }"></div>
+          <!-- <div :class="{ 'selected-qd': selected === index }"></div> -->
         </div>
       </div>
     </div>
@@ -69,7 +69,7 @@ export default {
     //  * methods
     function choiceTouchStartParticle(index, e) {
       choiceTouchStart(index);
-      particleCanvas(e.target, e);
+      particleCanvas(e.target);
     }
     // function freqAnimation() {
     //   frames += 0.35;

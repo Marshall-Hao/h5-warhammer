@@ -7,18 +7,32 @@
         backgroundImage: ` url(${faction && faction.bg_image})`,
       }"
     ></div>
-    <div class="q6-share" @touchstart.stop="quitShare">
-      <!-- <div class="q6-share-poster">
-        <div
-          class="q6-share-poster-bg"
-          :style="{
-            backgroundImage: ` url(${faction && faction.bg_image})`,
-          }"
-        ></div>
-        <div class="q6-share-poster-des">
-          <h1 class="q6-section-name">{{ faction && faction.name }}</h1>
+    <div class="q6-share" @click="quitShare">
+      <div class="q6-share-before" @click.stop.prevent="quitPoster">
+        <div class="q6-share-poster">
+          <div class="q6-share-poster-logo" :style="factionLogo"></div>
+          <img class="q6-share-poster-bg" :src="faction && faction.bg_image" />
+          <div class="q6-share-poster-des">
+            <h1 class="q6-share-poster-name">
+              {{ faction && faction.name }}
+            </h1>
+            <p class="q6-share-poster-details">
+              {{ faction && faction.short_desc }}
+            </p>
+            <div class="q6-share-poster-end">
+              <p class="q6-share-poster-intro">
+                在战火纷飞的战锤世界，你将立身何处? <br />
+                接受测试，揭晓你所属的阵营吧！
+              </p>
+              <img src="../assets/images/regular/barcode.png" alt="barcode" />
+            </div>
+          </div>
         </div>
-      </div> -->
+        <p class="q6-share-before-intro">
+          长按以保存海报 <br />
+          点击灰色以退出
+        </p>
+      </div>
 
       <div class="q6-share-arrow" v-show="isWechat()">
         <div>
@@ -76,7 +90,7 @@
                     :duration="{}"
                   ></svg-icon>
                 </div>
-                <p class="social">下载</p>
+                <p class="social">海报</p>
               </div>
             </div>
           </div>
@@ -260,8 +274,9 @@ import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import SvgIcon from "../components/base/svgIcon/SvgIcon";
 import Sound from "../components/base/sounding/Sound";
-
+import posterGenerator from "../assets/js/toCanvas";
 gsap.registerPlugin(ScrollToPlugin);
+
 export default {
   name: "share",
   components: {
@@ -468,7 +483,55 @@ export default {
       });
 
       // TODO: generate poster
+      gsap
+        .timeline()
+        .to(".q6-share-box", {
+          opacity: 0,
+          display: "none",
+          duration: 1,
+        })
+        .fromTo(
+          ".q6-share-before",
+          {
+            display: "block",
+            opacity: 0,
+          },
+          {
+            opacity: 1,
+            duration: 0.5,
+            onComplete: () => {
+              posterGenerator(".q6-share-poster");
+            },
+          }
+        );
     }
+
+    function quitPoster() {
+      document.querySelector(".newposter").remove();
+      gsap
+        .timeline()
+        .to(".q6-share-before", {
+          opacity: 0,
+          display: "none",
+        })
+        .to(".q6-share-box", {
+          duration: 1,
+          opacity: 1,
+          display: "block",
+        });
+    }
+
+    // let timeout = null;
+    // function longPressPoster() {
+    //   timeout = setTimeout(() => {
+    //     posterGenerator(".q6-share-poster");
+    //   }, 800);
+    //   // posterGenerator(".q6-share-poster");
+    // }
+
+    // function quitPoster() {
+    //   clearTimeout(timeout);
+    // }
 
     function isWechat() {
       return /MicroMessenger/i.test(window.navigator.userAgent);
@@ -487,6 +550,7 @@ export default {
       goTmall,
       weiboShare,
       posterDownload,
+      quitPoster,
       isWechat,
     };
   },
@@ -512,6 +576,7 @@ export default {
     position: fixed;
     right: 7%;
     top: 5%;
+    z-index: 6;
   }
   &-bg {
     position: absolute;
@@ -532,34 +597,103 @@ export default {
     opacity: 0;
     width: 100%;
     height: 100%;
+
     // bottom: 0vh;
     z-index: 3;
     padding: 0 2rem;
-    &-poster {
-      position: absolute;
+    &-before {
       top: 0;
       left: 0;
+      position: fixed;
       width: 100%;
-      height: 65%;
+      height: 100%;
+      background: rgba(34, 34, 34, 0.9);
+      display: none;
+      z-index: 10;
+      &-intro {
+        @include absXCenter;
+        bottom: 4%;
+        font-size: 1.6rem;
+        letter-spacing: 0.2rem;
+        line-height: 1.8rem;
+      }
+    }
+    &-poster {
+      @include absCenter;
+      transform: translateY(-200%);
+      width: 38.2rem;
+      height: 54rem;
       // background: red;
-      z-index: 6;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0.8rem;
+        bottom: 0.8rem;
+        left: 0.8rem;
+        right: 0.8rem;
+        border: 0.3rem solid rgba(255, 255, 255, 0.7);
+      }
+      &-logo {
+        width: 16rem;
+        height: 4.3rem;
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 1rem auto 0;
+      }
       &-bg {
         position: absolute;
         top: 0;
-        left: 0;
-        height: 70%;
+
+        height: 100%;
         width: 100%;
-        background-size: cover;
+        object-fit: cover;
         mask: linear-gradient(
           180deg,
           #222222 25%,
           #222222 50%,
           transparent 90%
         );
+        z-index: -2;
       }
       &-des {
-        @include absXCenter;
-        bottom: 20%;
+        // @include absXCenter;
+        margin: 29rem auto 0;
+
+        width: 100%;
+        padding: 0 2rem;
+        z-index: 7;
+      }
+      &-name {
+        text-align: center;
+        font-size: 3.2rem;
+
+        color: $color-text-py;
+        margin-bottom: 1rem;
+      }
+      &-details {
+        text-align: justify;
+        width: 100%;
+        font-size: 1.4rem;
+
+        line-height: 2.2rem;
+      }
+      &-end {
+        margin-top: -1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        img {
+          height: 6.8rem;
+          width: 6.8rem;
+          object-fit: cover;
+          border: 0.1rem solid $color-text-py;
+        }
+      }
+      &-intro {
+        font-size: 1.2rem;
+        line-height: 1.9rem;
+        color: #b3584d;
       }
     }
     &-arrow {
@@ -567,6 +701,7 @@ export default {
       right: 3rem;
       top: 2rem;
       width: 100%;
+      z-index: 1;
       div {
         position: absolute;
         right: 0;
@@ -858,6 +993,13 @@ export default {
       }
     }
   }
+}
+
+.newposter {
+  @include absCenter;
+
+  width: 38.2rem;
+  height: 54rem;
 }
 
 .glide__slide {

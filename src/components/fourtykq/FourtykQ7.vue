@@ -12,7 +12,7 @@
           v-if="index === 0"
           class="top"
         >
-          <div></div>
+          <!-- <div></div> -->
           <!-- <img :src="answer.image" alt="" class="top" /> -->
           <!-- <div
             :style="`background: ${maskValue};transition:all ${duration};`"
@@ -22,9 +22,8 @@
           v-else
           :style="{ backgroundImage: `url(${answer.image})` }"
           class="bottom"
-          crossOrigin="anonymous"
         >
-          <div></div>
+          <!-- <div></div> -->
           <!-- <div
             :style="`background: ${greyMask};transition:all ${duration};`"
           ></div> -->

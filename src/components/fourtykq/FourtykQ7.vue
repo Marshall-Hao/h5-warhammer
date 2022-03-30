@@ -51,6 +51,10 @@
       </div>
       <div class="q7-progress-bottom" ref="swipeTwo"></div>
     </div>
+    <audio ref="audio">
+      <source src="../../assets/music/explode.wav" type="audio/wav" />
+      Your browser does not support the audio element.
+    </audio>
   </div>
 </template>
 
@@ -87,6 +91,7 @@ export default {
     const questionId = props.currentQuestion.id;
     const choices = props.questionChoices;
     // * ref
+
     // * store
 
     //  * computed
@@ -115,9 +120,11 @@ export default {
     const {
       swipeOne,
       swipeTwo,
+      audio,
       onMiddleTouchStart,
       onMiddleTouchMove,
       onMiddleTouchEnd,
+
       iconTransform,
       maskTransform,
     } = useMiddleInteraction("v", questionId, choices);
@@ -156,6 +163,7 @@ export default {
       maskValue,
       greyMask,
       duration,
+      audio,
     };
   },
 };

@@ -25,6 +25,11 @@
         </div>
       </div>
     </section>
+
+    <audio ref="audio">
+      <source src="../../assets/music/laser.wav" type="audio/wav" />
+      Your browser does not support the audio element.
+    </audio>
   </div>
 </template>
 
@@ -48,6 +53,7 @@ export default {
     const questionId = props.currentQuestion.id;
     // * ref
     const q = ref(null);
+    const audio = ref(null);
     // * store
 
     // * hooks
@@ -58,6 +64,7 @@ export default {
 
     //  * methods
     function choiceTouchStartParticle(index, e) {
+      audio.value.play();
       choiceTouchStart(index);
       particleCanvas(e.target);
     }
@@ -65,6 +72,7 @@ export default {
     //  * return
     return {
       q,
+      audio,
       choiceTouchMove,
       choiceTouchEnd,
       choiceTouchStartParticle,

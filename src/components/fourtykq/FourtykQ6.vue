@@ -9,7 +9,7 @@
           class="q6-card"
           :class="{
             'select-card': flip === index,
-            'unselect-card': flip && flip !== index,
+            'unselect-card': flip !== index,
           }"
         >
           <div

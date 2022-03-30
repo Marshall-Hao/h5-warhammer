@@ -17,7 +17,7 @@
           :key="answer"
           :class="{
             'selected-q6': selected === index,
-            'unselect-q': selected && selected !== index,
+            'unselect-q': selected !== index,
           }"
         >
           <!-- {{ answer.text }} -->

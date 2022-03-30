@@ -8,12 +8,7 @@ export default function posterGenerator(el) {
   const Canvas = document.createElement("canvas");
   const width = dom.offsetWidth; // 可见屏幕的宽
   const height = dom.offsetHeight; // 可见屏幕的高
-  console.log(
-    dom,
 
-    dom.offsetWidth,
-    dom.offsetHeight
-  );
   const scale = window.devicePixelRatio;
 
   // 将Canvas画布放大scale倍，然后放在小的屏幕里，解决模糊问题
@@ -23,7 +18,7 @@ export default function posterGenerator(el) {
 
   html2canvas(dom, {
     canvas: Canvas,
-    scale: scale * 0.5,
+    scale: 1,
     useCORS: true,
     width: width + "px",
     hegiht: height + "px",
@@ -41,7 +36,7 @@ export default function posterGenerator(el) {
     document.body.appendChild(img);
     img.classList.add("newposter");
     img.style.cssText =
-      "width:38.2rem;height: 54rem;position:fixed;top:50%;left:50%;transform: translate(-50%, -50%);opacity:1;object-fit:cover;z-index:20;";
+      "width:38.2rem;height: 54rem;position:fixed;top:50%;left:50%;transform: translate(-50%, -50%);opacity:;object-fit:cover;z-index:20;";
   });
 }
 

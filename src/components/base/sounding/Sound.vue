@@ -25,7 +25,7 @@ export default {
   },
   data() {
     return {
-      isplaying: false,
+      isplaying: true,
     };
   },
   props: {
@@ -35,6 +35,8 @@ export default {
   },
   mounted() {
     this.autoPlay();
+    // if (this.isplaying) {
+    // }
   },
   methods: {
     autoPlay() {

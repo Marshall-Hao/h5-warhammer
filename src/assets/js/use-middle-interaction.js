@@ -22,6 +22,7 @@ export default function useMiddleInteraction(
   const isMob = detectMob();
 
   // * ref
+  const audio = ref(null);
   const swipeOne = ref(null);
   const swipeTwo = ref(null);
   const iconTransform = ref(null);
@@ -211,6 +212,8 @@ export default function useMiddleInteraction(
   }
 
   function explosion(ele) {
+    console.log(audio.value);
+    audio.value.play();
     const element = document.querySelector(`.${ele}`);
     const elementMask = document.querySelector(`.${ele} div`);
     particleGenerator(element, false, false);
@@ -239,6 +242,7 @@ export default function useMiddleInteraction(
     iconTransform,
     swipeOne,
     swipeTwo,
+    audio,
     maskTransform,
     beatAnimate,
   };

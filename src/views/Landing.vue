@@ -1,7 +1,9 @@
 <template>
   <div class="landing fixed-no-scroll">
     <header class="landing-header">
-      <div class="landing-header-sound"><sound></sound></div>
+      <div class="landing-header-sound">
+        <sound></sound>
+      </div>
       <div class="landing-header-icon">
         <svg-icon
           :name="`hammer`"

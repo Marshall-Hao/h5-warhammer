@@ -12,7 +12,7 @@
           v-if="index === 0"
           class="top"
         >
-          <div></div>
+          <!-- <div></div> -->
           <!-- <img :src="answer.image" alt="" class="top" /> -->
           <!-- <div
             :style="`background: ${maskValue};transition:all ${duration};`"
@@ -22,9 +22,8 @@
           v-else
           :style="{ backgroundImage: `url(${answer.image})` }"
           class="bottom"
-          crossOrigin="anonymous"
         >
-          <div></div>
+          <!-- <div></div> -->
           <!-- <div
             :style="`background: ${greyMask};transition:all ${duration};`"
           ></div> -->
@@ -52,6 +51,10 @@
       </div>
       <div class="q7-progress-bottom" ref="swipeTwo"></div>
     </div>
+    <audio ref="audio">
+      <source src="../../assets/music/explode.wav" type="audio/wav" />
+      Your browser does not support the audio element.
+    </audio>
   </div>
 </template>
 
@@ -88,6 +91,7 @@ export default {
     const questionId = props.currentQuestion.id;
     const choices = props.questionChoices;
     // * ref
+
     // * store
 
     //  * computed
@@ -116,9 +120,11 @@ export default {
     const {
       swipeOne,
       swipeTwo,
+      audio,
       onMiddleTouchStart,
       onMiddleTouchMove,
       onMiddleTouchEnd,
+
       iconTransform,
       maskTransform,
     } = useMiddleInteraction("v", questionId, choices);
@@ -157,6 +163,7 @@ export default {
       maskValue,
       greyMask,
       duration,
+      audio,
     };
   },
 };

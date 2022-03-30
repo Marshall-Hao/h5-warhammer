@@ -1,10 +1,12 @@
 <template>
   <div class="q7 fixed-no-scroll">
     <div class="q7-background" :style="questionBackground"></div>
-    <div class="q7-banner"
-        :style="{
-          'background-image': `url(${currentQuestion.instruction_image})`,
-        }">
+    <div
+      class="q7-banner"
+      :style="{
+        'background-image': `url(${currentQuestion.instruction_image})`,
+      }"
+    >
       <!-- <div
         class="q7-banner-inner"
         :style="{
@@ -28,7 +30,7 @@
           @mouseenter.prevent="choiceTouchStart(index)"
           @mousemove.prevent="choiceTouchMove(index)"
         >
-          <div :class="{ 'selected-qd': selected === index }"></div>
+          <!-- <div :class="{ 'selected-qd': selected === index }"></div> -->
         </div>
       </div>
     </div>
@@ -63,7 +65,7 @@ export default {
     function choiceTouchStartParticle(index, e) {
       choiceTouchStart(index);
 
-      particleCanvas(e.target, false);
+      particleCanvas(e.target, true);
     }
     //  * return
     return {

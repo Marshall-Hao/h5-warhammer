@@ -75,14 +75,13 @@ export default {
         .timeline()
         .to(".q2-section-choices-mask", {
           display: "none",
-          onComplete: () => {
+          duration: 1,
+          onStart: () => {
             particleCanvas(e.target);
+            audio.value.play();
           },
         })
         .to(".selected-q", {
-          onStart: () => {
-            audio.value.play();
-          },
           translateX: "120%",
           duration: 1,
           // ease: "sine.out",

@@ -212,8 +212,6 @@ export default function useMiddleInteraction(
   }
 
   function explosion(ele) {
-    console.log(audio.value);
-    audio.value.play();
     const element = document.querySelector(`.${ele}`);
     const elementMask = document.querySelector(`.${ele} div`);
     particleGenerator(element, false, false);
@@ -222,6 +220,9 @@ export default function useMiddleInteraction(
       .to(elementMask, {
         opacity: 0,
         duration: 0.2,
+        onStart: () => {
+          audio.value.play();
+        },
       })
       .to(element, {
         opacity: 0,

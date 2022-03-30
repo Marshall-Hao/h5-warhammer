@@ -64,9 +64,9 @@ export default {
 
     //  * methods
     function choiceTouchStartParticle(index, e) {
+      particleCanvas(e.target);
       audio.value.play();
       choiceTouchStart(index);
-      particleCanvas(e.target);
     }
 
     //  * return

@@ -488,7 +488,9 @@ export default {
         .to(".q6-share-box", {
           opacity: 0,
           display: "none",
-          duration: 1,
+          onStart: () => {
+            posterGenerator(".q6-share-poster");
+          },
         })
         .fromTo(
           ".q6-share-before",
@@ -499,9 +501,6 @@ export default {
           {
             opacity: 1,
             duration: 0.5,
-            onComplete: () => {
-              posterGenerator(".q6-share-poster");
-            },
           }
         );
     }

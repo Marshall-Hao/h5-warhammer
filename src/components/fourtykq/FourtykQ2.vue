@@ -11,9 +11,10 @@
             backgroundImage: `url(${answer.image})`,
           }"
           :class="{ 'selected-q': selected === index }"
-          @touchstart.prevent="choiceTouchStartParticle(index, $event)"
+          @touchstart.prevent="
+            choiceTouchStartParticle(index, $event, answer.id)
+          "
           @touchmove.prevent="choiceTouchMove(index)"
-          @touchend.prevent="choiceTouchEnd(answer.id)"
           @mouseenter.prevent="choiceTouchStart(index)"
           @mousemove.prevent="choiceTouchMove(index)"
           @mousedown="choiceTouchEnd(answer.id)"
@@ -38,7 +39,8 @@ import useSelectPattern from "../../assets/js/use-select-pattern";
 
 import particleCanvas from "../../assets/js/particle";
 
-import { ref } from "vue";
+import { nextTick, ref } from "vue";
+import gsap from "gsap";
 
 export default {
   name: "fourtyk-q2",
@@ -58,15 +60,28 @@ export default {
 
     // * hooks
     const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
-      useSelectPattern(emit, questionId, 2100);
+      useSelectPattern(emit, questionId, 0);
     //  * computed
     //  * lifecycle
 
     //  * methods
-    function choiceTouchStartParticle(index, e) {
+    async function choiceTouchStartParticle(index, e, answer) {
+      // particleCanvas(e.target);
+      // audio.value.play();
       particleCanvas(e.target);
-      audio.value.play();
       choiceTouchStart(index);
+      await nextTick();
+      gsap.to(".selected-q", {
+        onStart: () => {
+          audio.value.play();
+        },
+        translateX: "120%",
+        duration: 4.5,
+        // ease: "sine.out",
+        onComplete: () => {
+          choiceTouchEnd(answer);
+        },
+      });
     }
 
     //  * return
@@ -175,9 +190,9 @@ export default {
   }
 }
 
-.selected-q {
-  animation: slideRight 2s ease forwards;
-}
+// .selected-q {
+//   // animation: slideRight 2s ease forwards;
+// }
 @keyframes maskmove {
   0% {
     mask-position: 100% 0;

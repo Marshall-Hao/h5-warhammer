@@ -28,6 +28,7 @@
             </div>
           </div>
         </div>
+        <p class="q6-share-before-between">海报生成中...</p>
         <p class="q6-share-before-intro">
           长按以保存海报 <br />
           点击灰色以退出
@@ -616,6 +617,11 @@ export default {
         letter-spacing: 0.2rem;
         line-height: 1.8rem;
       }
+      &-between {
+        @include absCenter;
+        font-size: 1.6rem;
+        letter-spacing: 0.2rem;
+      }
     }
     &-poster {
       @include absCenter;
@@ -673,9 +679,9 @@ export default {
       &-details {
         text-align: justify;
         width: 100%;
-        font-size: 1.4rem;
+        font-size: 1.2rem;
 
-        line-height: 2.2rem;
+        line-height: 1.9rem;
       }
       &-end {
         margin-top: -1.5rem;

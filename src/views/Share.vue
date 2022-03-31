@@ -131,7 +131,11 @@
 
       <h3 class="q6-section-title" v-if="showSub">关于我的团:</h3>
       <div v-else class="q6-section-sub-button q6-section-article-button">
-        <a :href="faction && faction.article_url" target="_blank">
+        <a
+          :href="faction && faction.article_url"
+          target="_blank"
+          @click.stop.prevent="goToArticle"
+        >
           <button>了解更多</button>
         </a>
       </div>
@@ -156,7 +160,10 @@
               <div class="q6-section-sub-desc">
                 {{ sub.short_desc }}
               </div>
-              <div class="q6-section-sub-button">
+              <div
+                class="q6-section-sub-button"
+                @click.stop.prevent="goToArticle"
+              >
                 <a :href="sub.article_url" target="_blank">
                   <button>了解更多</button>
                 </a>
@@ -493,6 +500,7 @@ export default {
     }
 
     function posterDownload() {
+      document.querySelector("audio").pause();
       // TODO:Ahoy
       ahoy.track("Clicked Download Poster", {
         category: faction.value.category.name,

@@ -1,6 +1,6 @@
 <template>
   <div class="q6">
-    <div class="q6-sound"><sound></sound></div>
+    <div class="q6-sound" v-if="soundOn"><sound></sound></div>
     <div
       class="q6-bg"
       :style="{
@@ -316,7 +316,7 @@ export default {
     const router = useRouter();
     // *ref
     const faction = ref("");
-
+    const soundOn = ref(true);
     // * computed
     const subFactions = computed(() => {
       return faction.value.sub_factions;
@@ -500,7 +500,7 @@ export default {
     }
 
     function posterDownload() {
-      document.querySelector("audio").pause();
+      soundOn.value = false;
       // TODO:Ahoy
       ahoy.track("Clicked Download Poster", {
         category: faction.value.category.name,
@@ -532,6 +532,7 @@ export default {
     }
 
     function quitPoster() {
+      soundOn.value = true;
       document.querySelector(".newposter").remove();
       gsap
         .timeline()
@@ -567,6 +568,7 @@ export default {
       factionProducts,
       factionLogo,
       showSub,
+      soundOn,
       retake,
       share,
       goToProduct,

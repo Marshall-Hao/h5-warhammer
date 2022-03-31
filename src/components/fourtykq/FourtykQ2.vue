@@ -68,14 +68,18 @@ export default {
     async function choiceTouchStartParticle(index, e, answer) {
       // particleCanvas(e.target);
       // audio.value.play();
-      particleCanvas(e.target);
-      audio.value.play();
+      // particleCanvas(e.target);
+      // audio.value.play();
       choiceTouchStart(index);
       await nextTick();
       gsap.to(".selected-q", {
-        translateX: "120%",
+        onStart: () => {
+          particleCanvas(e.target);
+          audio.value.play();
+        },
+        translateX: "35rem",
         duration: 2.5,
-        // ease: "sine.out",
+        ease: "sine.out",
         onComplete: () => {
           choiceTouchEnd(answer);
         },

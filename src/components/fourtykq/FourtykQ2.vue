@@ -68,7 +68,7 @@ export default {
     async function choiceTouchStartParticle(index, e, answer) {
       // particleCanvas(e.target);
       // audio.value.play();
-      particleCanvas(e.target);
+
       audio.value.play();
       choiceTouchStart(index);
       await nextTick();
@@ -77,6 +77,9 @@ export default {
         .to(".q2-section-choices-mask", {
           display: "none",
           duration: 0.5,
+          onStart: () => {
+            particleCanvas(e.target);
+          },
         })
         .to(".selected-q", {
           translateX: "120%",

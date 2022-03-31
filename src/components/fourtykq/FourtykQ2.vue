@@ -66,25 +66,31 @@ export default {
 
     //  * methods
     async function choiceTouchStartParticle(index, e, answer) {
-      audio.value.play();
-      particleCanvas(e.target);
+      // particleCanvas(e.target);
 
+      particleCanvas(e.target);
       choiceTouchStart(index);
       await nextTick();
-      setTimeout(() => {
-        gsap.to(".selected-q", {
-          // onStart: () => {
-          //   particleCanvas(e.target);
-          //   audio.value.play();
-          // },
-          translateX: "35rem",
-          duration: 2.5,
-          ease: "sine.out",
+      gsap
+        .timeline()
+        .to(".q2-section-choices-mask", {
+          display: "none",
+          duration: 0.5,
+          onStart: () => {
+            particleCanvas(e.target);
+          },
+        })
+        .to(".selected-q", {
+          onStart: () => {
+            audio.value.play();
+          },
+          translateX: "120%",
+          duration: 1.5,
+          // ease: "sine.out",
           onComplete: () => {
             choiceTouchEnd(answer);
           },
         });
-      }, 500);
     }
 
     //  * return

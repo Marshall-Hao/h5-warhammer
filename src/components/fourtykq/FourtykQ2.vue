@@ -66,24 +66,25 @@ export default {
 
     //  * methods
     async function choiceTouchStartParticle(index, e, answer) {
-      // particleCanvas(e.target);
-      // audio.value.play();
-      // particleCanvas(e.target);
-      // audio.value.play();
+      audio.value.play();
+      particleCanvas(e.target);
+
       choiceTouchStart(index);
       await nextTick();
-      gsap.to(".selected-q", {
-        onStart: () => {
-          particleCanvas(e.target);
-          audio.value.play();
-        },
-        translateX: "35rem",
-        duration: 2.5,
-        ease: "sine.out",
-        onComplete: () => {
-          choiceTouchEnd(answer);
-        },
-      });
+      setTimeout(() => {
+        gsap.to(".selected-q", {
+          // onStart: () => {
+          //   particleCanvas(e.target);
+          //   audio.value.play();
+          // },
+          translateX: "35rem",
+          duration: 2.5,
+          ease: "sine.out",
+          onComplete: () => {
+            choiceTouchEnd(answer);
+          },
+        });
+      }, 500);
     }
 
     //  * return

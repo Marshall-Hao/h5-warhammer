@@ -66,6 +66,17 @@ const routes = [
   {
     path: "/share",
     component: Share,
+    beforeEnter: (to, from, next) => {
+      const id = to.params.id;
+      const currentQuiz = storage.session.get("__currentquiz__");
+      if (!currentQuiz || id > 7) {
+        next({
+          path: "/landing",
+        });
+      } else {
+        next();
+      }
+    },
   },
 ];
 

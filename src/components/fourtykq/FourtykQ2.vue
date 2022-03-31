@@ -69,21 +69,18 @@ export default {
       // particleCanvas(e.target);
       // audio.value.play();
       particleCanvas(e.target);
+      audio.value.play();
       choiceTouchStart(index);
       await nextTick();
       gsap
         .timeline()
         .to(".q2-section-choices-mask", {
           display: "none",
-          duration: 1,
-          onStart: () => {
-            particleCanvas(e.target);
-            audio.value.play();
-          },
+          duration: 0.5,
         })
         .to(".selected-q", {
           translateX: "120%",
-          duration: 1,
+          duration: 1.5,
           // ease: "sine.out",
           onComplete: () => {
             choiceTouchEnd(answer);

@@ -10,7 +10,12 @@
     <div class="q6-share" @click="quitShare">
       <div class="q6-share-before" @click.stop.prevent="quitPoster">
         <div class="q6-share-poster">
-          <div class="q6-share-poster-logo" :style="factionLogo"></div>
+          <div
+            class="q6-share-poster-logo"
+            :style="{
+              backgroundImage: ` url(${faction && faction.category.logo})`,
+            }"
+          ></div>
           <img class="q6-share-poster-bg" :src="faction && faction.bg_image" />
           <div class="q6-share-poster-des">
             <h1 class="q6-share-poster-name">
@@ -114,10 +119,22 @@
       </div>
     </div>
     <section class="q6-section">
-      <div class="q6-section-logo" :style="factionLogo" id="top"></div>
+      <div
+        class="q6-section-logo"
+        :style="{
+          backgroundImage: ` url(${faction && faction.category.logo})`,
+        }"
+        id="top"
+      ></div>
       <h1 class="q6-section-name">{{ faction && faction.name }}</h1>
       <p class="q6-section-des">{{ faction && faction.short_desc }}</p>
+
       <h3 class="q6-section-title" v-if="showSub">关于我的团:</h3>
+      <div v-else class="q6-section-sub-button q6-section-article-button">
+        <a :href="faction && faction.article_url" target="_blank">
+          <button>了解更多</button>
+        </a>
+      </div>
       <div v-if="showSub" class="glide q6-section-glide">
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
@@ -628,8 +645,22 @@ export default {
       transform: translateY(-200%);
       width: 38.2rem;
       height: 54rem;
+      display: flex;
+      flex-direction: column;
       // background: red;
-
+      justify-content: space-between;
+      padding-bottom: 2rem;
+      background: linear-gradient(0, #222222 25%, transparent 88%);
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0rem;
+        bottom: 0rem;
+        left: 0rem;
+        right: 0rem;
+        background: linear-gradient(0, #222222 20%, transparent 45%);
+        z-index: -1;
+      }
       &::after {
         content: "";
         position: absolute;
@@ -638,6 +669,7 @@ export default {
         left: 0.8rem;
         right: 0.8rem;
         border: 0.3rem solid rgba(255, 255, 255, 0.7);
+        // background: linear-gradient(0, #222222 25%, transparent 88%);
       }
       &-logo {
         width: 16rem;
@@ -653,25 +685,20 @@ export default {
         height: 100%;
         width: 100%;
         object-fit: cover;
-        mask: linear-gradient(
-          180deg,
-          #222222 25%,
-          #222222 50%,
-          transparent 90%
-        );
         z-index: -2;
       }
       &-des {
         // @include absXCenter;
-        margin: 29rem auto 0;
-
+        margin: 0 auto;
+        // justify-self: flex-end;
         width: 100%;
         padding: 0 2rem;
         z-index: 7;
       }
       &-name {
         text-align: center;
-        font-size: 3.2rem;
+        font-size: 4.2rem;
+        font-weight: 400;
 
         color: $color-text-py;
         margin-bottom: 1rem;
@@ -684,7 +711,7 @@ export default {
         line-height: 1.9rem;
       }
       &-end {
-        margin-top: -1.5rem;
+        margin-top: 0.5rem;
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
@@ -817,7 +844,7 @@ export default {
     }
     &-name {
       font-size: 4.2rem;
-
+      font-weight: 400;
       color: $color-text-py;
       margin-bottom: 0.5rem;
     }
@@ -833,6 +860,11 @@ export default {
 
       color: $color-text-py;
       margin-bottom: 2rem;
+    }
+    &-article-button {
+      width: 10rem;
+      padding: 0 !important;
+      margin: 0 auto;
     }
     &-glide {
       width: 85%;

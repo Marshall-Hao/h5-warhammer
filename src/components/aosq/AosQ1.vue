@@ -11,7 +11,7 @@
           :key="answer"
           :class="{
             'select-card': selected === index,
-            'unselect-card': selected && selected !== index,
+            'unselect-card': selected !== index,
           }"
           :style="`background-image:url(${answer.image})`"
         >

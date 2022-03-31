@@ -1,6 +1,6 @@
 <template>
   <div class="sound" @click.prevent="toggleSound">
-    <div v-show="isplaying" class="line"></div>
+    <div v-show="!isplaying" class="line"></div>
     <svg-icon
       prefix="war-"
       name="sound"

@@ -15,6 +15,7 @@
             choiceTouchStartParticle(index, $event, answer.id)
           "
           @touchmove.prevent="choiceTouchMove(index)"
+          @touchend.prevent="choiceTouchEnd(answer.id)"
           @mouseenter.prevent="choiceTouchStart(index)"
           @mousemove.prevent="choiceTouchMove(index)"
           @mousedown="choiceTouchEnd(answer.id)"
@@ -60,37 +61,39 @@ export default {
 
     // * hooks
     const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
-      useSelectPattern(emit, questionId, 0);
+      useSelectPattern(emit, questionId, 2100);
     //  * computed
     //  * lifecycle
 
     //  * methods
     async function choiceTouchStartParticle(index, e, answer) {
-      // particleCanvas(e.target);
-
-      particleCanvas(e.target);
       choiceTouchStart(index);
-      await nextTick();
-      gsap
-        .timeline()
-        .to(".q2-section-choices-mask", {
-          display: "none",
-          duration: 0.5,
-          onStart: () => {
-            particleCanvas(e.target);
-          },
-        })
-        .to(".selected-q", {
-          onStart: () => {
-            audio.value.play();
-          },
-          translateX: "120%",
-          duration: 1.5,
-          // ease: "sine.out",
-          onComplete: () => {
-            choiceTouchEnd(answer);
-          },
-        });
+      particleCanvas(e.target);
+
+      audio.value.play();
+
+      // particleCanvas(e.target);
+      // await nextTick();
+      // gsap
+      //   .timeline()
+      //   .to(".q2-section-choices-mask", {
+      //     display: "none",
+      //     duration: 0.5,
+      //     onStart: () => {
+      //       particleCanvas(e.target);
+      //     },
+      //   })
+      //   .to(".selected-q", {
+      //     onStart: () => {
+      //       audio.value.play();
+      //     },
+      //     translateX: "120%",
+      //     duration: 1.5,
+      //     // ease: "sine.out",
+      //     onComplete: () => {
+      //       choiceTouchEnd(answer);
+      //     },
+      //   });
     }
 
     //  * return
@@ -199,9 +202,9 @@ export default {
   }
 }
 
-// .selected-q {
-//   // animation: slideRight 2s ease forwards;
-// }
+.selected-q {
+  animation: slideRight 2s ease 0.5s forwards;
+}
 @keyframes maskmove {
   0% {
     mask-position: 100% 0;

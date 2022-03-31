@@ -185,6 +185,8 @@ export default function useMiddleInteraction(
       maskTransform.greyOffset = 25;
       maskTransform.duration = 300;
     } else {
+      const sound = document.querySelector("audio");
+      sound.play();
       if (touch.percentY < 0) {
         submitAnswer(
           {
@@ -202,6 +204,7 @@ export default function useMiddleInteraction(
           },
           headers
         );
+
         explosion("bottom");
       }
       storage.session.set("__currentquiz__", 7);

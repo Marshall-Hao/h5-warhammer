@@ -51,10 +51,10 @@
       </div>
       <div class="q7-progress-bottom" ref="swipeTwo"></div>
     </div>
-    <audio ref="audio">
+    <!-- <audio ref="audio">
       <source src="../../assets/music/explode.wav" type="audio/wav" />
       Your browser does not support the audio element.
-    </audio>
+    </audio> -->
   </div>
 </template>
 
@@ -120,7 +120,6 @@ export default {
     const {
       swipeOne,
       swipeTwo,
-      audio,
       onMiddleTouchStart,
       onMiddleTouchMove,
       onMiddleTouchEnd,
@@ -133,10 +132,10 @@ export default {
     onMounted(() => {
       // window.requestAnimationFrame(freqAnimation);
     });
-    onUnmounted(() => {
-      const canvas = document.querySelector("canvas");
-      canvas.remove();
-    });
+    // onUnmounted(() => {
+    //   const canvas = document.querySelector("canvas");
+    //   canvas.remove();
+    // });
     //  * methods
     // function freqAnimation() {
     //   frames += 0.35;
@@ -163,7 +162,6 @@ export default {
       maskValue,
       greyMask,
       duration,
-      audio,
     };
   },
 };

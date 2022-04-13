@@ -1,6 +1,6 @@
 <template>
   <div class="q6">
-    <div class="q6-sound" v-if="soundOn"><sound></sound></div>
+    <!-- <div class="q6-sound" v-if="soundOn"><sound></sound></div> -->
     <div
       class="q6-bg"
       :style="{

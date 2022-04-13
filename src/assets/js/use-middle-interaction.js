@@ -9,7 +9,7 @@ import { useCookie } from "vue-cookie-next";
 import { USER_KEY } from "../../assets/js/constant";
 import storage from "good-storage";
 // import ahoy from "../../services/ahoy";
-import particleGenerator from "./particle";
+// import particleGenerator from "./particle";
 import gsap from "gsap";
 
 export default function useMiddleInteraction(
@@ -22,7 +22,7 @@ export default function useMiddleInteraction(
   const isMob = detectMob();
 
   // * ref
-  const audio = ref(null);
+
   const swipeOne = ref(null);
   const swipeTwo = ref(null);
   const iconTransform = ref(null);
@@ -185,8 +185,6 @@ export default function useMiddleInteraction(
       maskTransform.greyOffset = 25;
       maskTransform.duration = 300;
     } else {
-      const sound = document.querySelector("audio");
-      sound.play();
       if (touch.percentY < 0) {
         submitAnswer(
           {
@@ -217,15 +215,12 @@ export default function useMiddleInteraction(
   function explosion(ele) {
     const element = document.querySelector(`.${ele}`);
     const elementMask = document.querySelector(`.${ele} div`);
-    particleGenerator(element, false, false);
+    // particleGenerator(element, false, false);
     gsap
       .timeline()
       .to(elementMask, {
         opacity: 0,
-        duration: 0.2,
-        onStart: () => {
-          audio.value.play();
-        },
+        duration: 0,
       })
       .to(element, {
         opacity: 0,
@@ -246,7 +241,6 @@ export default function useMiddleInteraction(
     iconTransform,
     swipeOne,
     swipeTwo,
-    audio,
     maskTransform,
     beatAnimate,
   };

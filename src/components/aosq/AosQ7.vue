@@ -39,7 +39,7 @@
 
 <script>
 import useSelectPattern from "../../assets/js/use-select-pattern";
-import particleCanvas from "../../assets/js/particle";
+// import particleCanvas from "../../assets/js/particle";
 
 export default {
   name: "aos-q7",
@@ -65,7 +65,7 @@ export default {
     function choiceTouchStartParticle(index, e) {
       choiceTouchStart(index);
 
-      particleCanvas(e.target, true);
+      // particleCanvas(e.target, true);
     }
     //  * return
     return {

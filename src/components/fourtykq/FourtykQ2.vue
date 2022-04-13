@@ -28,10 +28,10 @@
       </div>
     </section>
 
-    <audio ref="audio">
+    <!-- <audio ref="audio">
       <source src="../../assets/music/laser.wav" type="audio/wav" />
       Your browser does not support the audio element.
-    </audio>
+    </audio> -->
   </div>
 </template>
 
@@ -56,7 +56,7 @@ export default {
     const questionId = props.currentQuestion.id;
     // * ref
     const q = ref(null);
-    const audio = ref(null);
+    // const audio = ref(null);
     // * store
 
     // * hooks
@@ -68,9 +68,9 @@ export default {
     //  * methods
     async function choiceTouchStartParticle(index, e, answer) {
       choiceTouchStart(index);
-      particleCanvas(e.target);
+      // particleCanvas(e.target);
 
-      audio.value.play();
+      // audio.value.play();
 
       // particleCanvas(e.target);
       // await nextTick();
@@ -99,7 +99,6 @@ export default {
     //  * return
     return {
       q,
-      audio,
       choiceTouchMove,
       choiceTouchEnd,
       choiceTouchStartParticle,
@@ -203,7 +202,7 @@ export default {
 }
 
 .selected-q {
-  animation: slideRight 2s ease 0.5s forwards;
+  animation: slideRight 2s ease forwards;
 }
 @keyframes maskmove {
   0% {

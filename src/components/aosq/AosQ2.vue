@@ -36,7 +36,7 @@
 
 <script>
 import useSelectPattern from "../../assets/js/use-select-pattern";
-import particleCanvas from "../../assets/js/particle";
+// import particleCanvas from "../../assets/js/particle";
 
 export default {
   name: "aos-q2",
@@ -69,7 +69,7 @@ export default {
     //  * methods
     function choiceTouchStartParticle(index, e) {
       choiceTouchStart(index);
-      particleCanvas(e.target);
+      // particleCanvas(e.target);
     }
     // function freqAnimation() {
     //   frames += 0.35;

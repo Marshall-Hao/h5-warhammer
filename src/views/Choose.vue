@@ -49,8 +49,7 @@
           />
 
           <p id="choose-header-description-left">
-            Enter the Mortal Realms in Warhammer Age of Sigmar, a fantasy
-            setting full of magic, gods, and monsters.
+            进入凡世诸域：一个充满魔法、神灵和怪兽的奇幻世界。
           </p>
         </div>
         <div>
@@ -59,8 +58,7 @@
             alt="40,000"
           />
           <p id="choose-header-description-right">
-            Explore the grim darkness of the far future in Warhammer 40,000,
-            where science and sorcery fuel endless war.
+            探索遥远未来的黑暗宇宙：长夜漫漫，唯有战争！
           </p>
         </div>
       </div>
@@ -334,7 +332,7 @@
       </div>
     </div>
     <div class="choose-tips">
-      <h1>Swipe left or right to get started.</h1>
+      <h1>向左或右滑动，开始你的冒险</h1>
     </div>
   </div>
 </template>
@@ -509,10 +507,10 @@ export default {
     // position: absolute;
     // display: block;
     position: relative;
+    @media only screen and (min-height: 844px) {
+      margin-top: 4.8rem;
+    }
     margin-top: 2.8rem;
-    // @media screen and (max-width: 375px) {
-    //   margin-top: 2.4rem;
-    // }
     width: 100vw;
     // bottom: 2.5vh;
     // bottom: 3vh;
@@ -524,18 +522,19 @@ export default {
 
 #choose-header-description-left {
   // width: 16.7rem;
-  width: 95%;
-  margin: auto;
+  width: 70%;
+  height: 8.7rem;
+  margin: 0.2rem auto 0;
   line-height: 2rem;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 #choose-header-description-right {
   // width: 16.7rem;
-  width: 95%;
-  margin: auto;
+  width: 60%;
+  margin: 0.2rem auto 0;
   line-height: 2rem;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .heartbeat {

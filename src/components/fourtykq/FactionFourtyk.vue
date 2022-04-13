@@ -6,7 +6,7 @@
     @mousedown="preReveal"
   >
     <img src="../../assets/images/regular/black_hole.gif" alt="blackhole" />
-    <p>Click to reveal your faction</p>
+    <p>点击揭晓</p>
   </div>
   <Renderer ref="renderer" pointer resize="window">
     <Camera :position="{ z: 0 }" :fov="50" />
@@ -46,7 +46,7 @@
     @mouseenter="targetTimeCoef = 100"
     @mouseleave="targetTimeCoef = 1"
   >
-    <p class="effect">Press until faction reveal</p>
+    <p class="effect">长按以揭晓你的命运阵营</p>
   </div>
   <div v-show="!pre" class="number" ref="number">0</div>
 </template>
@@ -261,7 +261,7 @@ export default {
   width: 22rem;
   transform: translateX(-50%);
   padding: 1rem 2rem;
-  font-family: sans-serif;
+  // font-family: sans-serif;
   font-size: 1.5rem;
   line-height: 2rem;
   border: 1px solid #fff;

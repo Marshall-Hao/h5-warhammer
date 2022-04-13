@@ -14,8 +14,9 @@
         ></svg-icon>
       </div>
       <div class="landing-header-title">
-        Enter the Worlds of<br />
-        Warhammer
+        <!-- Enter the Worlds of<br />
+        Warhammer -->
+        进入战锤的世界
       </div>
     </header>
 
@@ -26,8 +27,8 @@
 
       <div class="landing-section-description">
         <span id="landing-section-typed">
-          War is everything. Mighty empires clash in the eternal struggle for
-          domination – across realms of magic, and the bleak vastness of space
+          硝烟弥漫，战事绵延。不论是魔法涌动的凡世诸域,<br />
+          还是荒蛮绝望的广袤宇宙，列国的纷争从未停息.
         </span>
       </div>
 
@@ -95,8 +96,8 @@
         </div>
 
         <h4>
-          Where do you belong in these incredible settings? Discover your
-          destiny now.
+          在全新的战锤世界，你将立身何处?<br />
+          点击揭晓你的命运吧!
         </h4>
       </div>
     </section>
@@ -227,8 +228,8 @@ export default {
       // }
     }
     &-title {
-      margin: $font-size-medium-x auto 0;
-      font-size: 2.75rem;
+      margin: 3rem auto 0;
+      font-size: 3.2rem;
       // font-size: 220%;
       line-height: 3.3rem;
       color: #c9c9c9;
@@ -265,8 +266,8 @@ export default {
       }
     }
     &-description {
-      margin-top: 1rem;
-      padding: 0.5rem 2.5rem;
+      margin-top: 1.5rem;
+      padding: 0.5rem 0.5rem;
       text-align: center;
       height: 6rem;
       span {
@@ -275,7 +276,8 @@ export default {
         //   font-size: $font-size-medium;
         //   line-height: $font-size-large;
         // }
-        line-height: 2rem;
+        font-weight: 400;
+        line-height: 2.4rem;
       }
     }
 
@@ -284,7 +286,7 @@ export default {
       width: 100%;
       display: flex;
       justify-content: center;
-      padding: 1rem 0;
+      padding: 0.5rem 0;
       img {
         // top: -2rem;
         // @include absXCenter;
@@ -319,11 +321,11 @@ export default {
         }
       }
       h4 {
-        margin-top: 1rem;
+        margin-top: 0.5rem;
         padding: 0 2.5rem;
         font-size: $font-size-medium;
         letter-spacing: 0.05rem;
-        line-height: $font-size-large;
+        line-height: 2rem;
         // @media only screen and (max-height: 740px) {
         //   font-size: $font-size-small;
         //   line-height: $font-size-medium-x;
@@ -350,13 +352,20 @@ export default {
     // @media only screen and (max-height: 740px) {
     //   font-size: $font-size-small;
     // }
+    font-family: Heiti SC, STHeiti, SimHei;
+
     &-terms {
-      color: $color-text-py;
+      color: $color-text-p;
+      font-size: 1.2rem;
+      // font-family: Heiti SC, STHeiti, SimHei;
       //   text-decoration: underline $color-text-py;
-      animation: slideInLeft 2s ease-in, underline 2s ease-in-out 1.5s infinite;
+      // animation: slideInLeft 2s ease-in, underline 2s ease-in-out 1.5s infinite;
     }
     &-beian {
-      animation: slideInRight 2s ease-in;
+      font-size: 1.2rem;
+      // font-family: Heiti SC, STHeiti, SimHei;
+
+      // animation: slideInRight 2s ease-in;
     }
   }
 }

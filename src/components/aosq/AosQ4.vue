@@ -26,7 +26,7 @@
                 @mousemove.prevent="choiceTouchMove(index)"
                 @mousedown="choiceTouchEnd(answer.id)"
               >
-                Select
+                选择
               </div>
             </li>
           </ul>

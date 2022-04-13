@@ -231,13 +231,13 @@
         </div>
       </div>
       <div class="q6-section-func">
-        <p @touchstart.prevent="retake">Retake Quiz</p>
-        <p @touchstart.prevent="share">Share Quiz</p>
+        <p @touchstart.prevent="retake">重做测试</p>
+        <p @touchstart.prevent="share">分享好友</p>
       </div>
     </section>
     <div class="q6-packs">
       <div class="q6-bottom"></div>
-      <h4 class="q6-packs-title">Starter Packs:</h4>
+      <h4 class="q6-packs-title">新手套装</h4>
       <div class="glide2 q6-packs-glide2">
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
@@ -267,7 +267,7 @@
                     :data-name="product.name"
                     class="q6-product-container-btn"
                   >
-                    <span>BUY NOW</span>
+                    <span>前往购买</span>
                   </a>
                 </div>
               </div>
@@ -887,6 +887,7 @@ export default {
       text-decoration: underline;
       // margin: 3rem 6.5rem 1rem;
       margin: 3rem 6.5rem;
+      padding: 0 2.5rem;
       // font-size: 1.2rem;
       font-size: 1.5rem;
     }
@@ -1004,7 +1005,7 @@ export default {
         font-weight: 700;
         @include absCenter;
         margin-top: 3.5rem;
-        font-family: Heiti SC, STHeiti, SimHei;
+        // font-family: Heiti SC, STHeiti, SimHei;
         // width: 21rem;
         width: 100%;
         text-align: center;
@@ -1015,7 +1016,7 @@ export default {
         @include absCenter;
         font-size: 1.325rem;
         line-height: 1.8rem;
-        font-family: Heiti SC, STHeiti, SimHei;
+        // font-family: Heiti SC, STHeiti, SimHei;
         color: #fff;
         // margin-top: 10rem;
         margin-top: 9.5rem;

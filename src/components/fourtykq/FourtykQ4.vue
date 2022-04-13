@@ -24,7 +24,10 @@
       </div>
     </div>
     <div class="q4-intro">
-      <p>Press</p>
+      <p>
+        你仍然不能决定好前进的方向，但这里有一个罗盘也许可以帮助你。
+        点击它，为你的命运注入启示。
+      </p>
       <div>
         <svg width="16.5" height="30" viewBox="0 0 110 200">
           <polyline
@@ -297,11 +300,14 @@ export default {
   }
   &-intro {
     position: absolute;
-    left: 44.3%;
-    top: 14.5%;
+    // left: 44.3%;
+    top: 12%;
     animation: jump 2s infinite ease-in-out forwards;
     p {
       font-size: 1.8rem;
+      padding: 0 2.5rem;
+      line-height: 2.4rem;
+      margin-bottom: 5.7rem;
     }
     div {
       transform: rotateZ(270deg);

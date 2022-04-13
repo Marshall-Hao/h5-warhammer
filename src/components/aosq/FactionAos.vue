@@ -7,7 +7,7 @@
     @touchstart.prevent="preReveal"
     @mousedown="preReveal"
   >
-    <p>Click to reveal your faction</p>
+    <p>点击揭晓</p>
   </div>
 </template>
 

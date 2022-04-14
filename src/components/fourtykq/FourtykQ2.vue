@@ -132,7 +132,12 @@ export default {
     align-items: center;
     justify-content: center;
     // margin: 6rem 0;
-    font-size: 2.5rem;
+    // font-size: 2.5rem;
+    font-weight: 400;
+    font-size: 1.8rem;
+    line-height: 2.6rem;
+    letter-spacing: 0.05rem;
+    padding: 0 2.5rem;
     // filter: url(#fractal);
   }
   &-section {

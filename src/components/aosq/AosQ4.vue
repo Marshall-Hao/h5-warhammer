@@ -183,9 +183,11 @@ export default {
   background-repeat: no-repeat;
   &-title {
     // margin-top: 5rem;
-    font-size: 2.25rem;
-    // letter-spacing: 0.3rem;
-    line-height: 3rem;
+    // font-size: 2.25rem;
+    padding: 2rem 5rem 0;
+    font-size: 1.8rem;
+    letter-spacing: 0.05rem;
+    line-height: 2.4rem;
     height: 15%;
     width: 100%;
     display: flex;

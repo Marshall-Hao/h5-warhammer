@@ -79,12 +79,15 @@ export default {
   }
   &-title {
     // margin: 6rem 0;
-    height: 20%;
+    height: 15%;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 3rem;
+    // font-size: 3rem;
+    font-size: 2.4rem;
+    line-height: 3.6rem;
+    padding: 0 3rem;
   }
   &-section {
     position: relative;

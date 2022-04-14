@@ -186,7 +186,10 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.5rem;
+    // font-size: 2.5rem;
+    font-size: 1.8rem;
+    line-height: 2.8rem;
+    padding: 0 10rem;
   }
   &-section {
     // margin-top: 5rem;
@@ -314,14 +317,14 @@ export default {
       line-height: 3.6rem;
       text-align: center;
       position: absolute;
-      left: 3%;
-      // left: 0;
-      // right: 0;
+      // left: 3%;
+      left: 0;
+      right: 0;
 
       // @media only screen and (min-height: 844px) {
       //   left: 28%;
       // }
-      top: 75%;
+      top: 85%;
       // top: 39%;
       animation: jump 2s infinite ease;
     }

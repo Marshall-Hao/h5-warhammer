@@ -177,7 +177,11 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.5rem;
+    // font-size: 2.5rem;
+    font-size: 1.8rem;
+    line-height: 2.4rem;
+    letter-spacing: 0.05rem;
+    padding: 0 4rem;
     animation: fadeInDown 1s;
   }
   &-section {

@@ -189,7 +189,10 @@ export default {
   overflow-x: hidden;
   text-align: center;
   &-title {
-    font-size: 3rem;
+    // font-size: 3rem;
+    font-size: 1.8rem;
+    line-height: 2.4rem;
+    letter-spacing: 0.05rem;
     color: #000;
     height: 20%;
     width: 100%;

@@ -863,7 +863,7 @@ export default {
 
       line-height: 1.8rem;
       // margin: 0.5rem 0.6rem 3rem;
-      margin: 0.5rem 1.6rem 3rem;
+      margin: 1rem 1.6rem 3rem;
     }
     &-title {
       font-size: 1.6rem;

@@ -105,7 +105,7 @@ export default {
   &-section {
     width: 37rem;
     height: 100%;
-    padding: 2.25rem 4rem;
+    padding: 2.25rem 0;
     // margin-top: 1rem;
     position: relative;
     @include absXCenter;
@@ -123,11 +123,17 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
-      line-height: 4rem;
-      font-size: 3rem;
+      // line-height: 4rem;
+      // font-size: 3rem;
+      font-weight: 400;
+      font-size: 1.8rem;
+      line-height: 2.6rem;
+      letter-spacing: 0.05rem;
+      padding: 0 1.8rem;
       animation: backInLeft 1s ease-in;
     }
     &-choices {
+      padding: 0 4rem;
       height: 75%;
       width: 100%;
       display: grid;

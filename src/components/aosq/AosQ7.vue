@@ -189,9 +189,10 @@ $img: "../../assets/images/regular/q7banner.png";
     display: flex;
     align-items: center;
     justify-content: center;
-    // letter-spacing: 0.3rem;
-    font-size: 2.5rem;
-    line-height: 3.2rem;
+    letter-spacing: 0.1rem;
+    font-size: 2rem;
+    line-height: 2.8rem;
+    padding: 0 3rem;
     // filter: url(#fractal);
   }
 

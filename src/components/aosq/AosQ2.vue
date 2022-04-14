@@ -111,6 +111,7 @@ export default {
     align-items: center;
     justify-content: center;
     font-size: 2.5rem;
+    padding: 0 4rem;
     // margin: 5rem auto 3rem;
   }
   // &-banner {

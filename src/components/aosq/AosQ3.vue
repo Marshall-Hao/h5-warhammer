@@ -142,15 +142,15 @@ export default {
   }
   &-title {
     // margin-top: 5rem;
-    padding: 1rem 3rem;
+    padding: 1.6rem 4rem 0;
     height: 20%;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 2.5rem;
-    letter-spacing: 0.2rem;
-    line-height: 4rem;
+    letter-spacing: 0.1rem;
+    line-height: 3.4rem;
   }
   &-section {
     padding: 4rem 3rem;

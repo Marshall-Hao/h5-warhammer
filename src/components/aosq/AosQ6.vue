@@ -127,18 +127,20 @@ export default {
   &-icon {
     @include absXCenter;
     margin-top: 2rem;
-    height: 10.9rem;
-    width: 10rem;
+    height: 15.9rem;
+    width: 15rem;
+    // height: 10.9rem;
+    // width: 10rem;
     // filter: url(#fractal);
   }
   &-title {
-    margin-top: 14rem;
-    // letter-spacing: 0.3rem;
-    line-height: 3.2rem;
-    padding: 0 4rem;
+    margin-top: 20rem;
+    letter-spacing: 0.2rem;
+    padding: 0 4.5rem;
     // color: #7d300b;
     color: $color-text-py;
-    font-size: 2.6rem;
+    font-size: 2rem;
+    line-height: 2.4rem;
     // animation: fadeInDownBig 1s, shadowtext 5s infinite ease-out;
     animation: fadeInDownBig 1s;
   }
@@ -152,9 +154,9 @@ export default {
 
       div {
         position: relative;
-        font-size: 1.8rem;
-        letter-spacing: 0.3rem;
-        line-height: 2rem;
+        font-size: 2rem;
+        letter-spacing: 0.2rem;
+        line-height: 2.8rem;
         margin: 0 auto 4rem;
         border-radius: 1rem;
         // transition: 0.2s all;

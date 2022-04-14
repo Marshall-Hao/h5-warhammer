@@ -3,7 +3,7 @@
     <div class="q2-background" :style="questionBackground"></div>
     <h1 class="q2-title">{{ questionText }}</h1>
     <section class="q2-section">
-      <div class="q2-section-choices" ref="q">
+      <div class="q2-section-choices">
         <div
           v-for="(answer, index) in questionChoices"
           :key="answer"
@@ -38,10 +38,10 @@
 <script>
 import useSelectPattern from "../../assets/js/use-select-pattern";
 
-import particleCanvas from "../../assets/js/particle";
+// import particleCanvas from "../../assets/js/particle";
 
-import { nextTick, ref } from "vue";
-import gsap from "gsap";
+// import { ref } from "vue";
+// import gsap from "gsap";
 
 export default {
   name: "fourtyk-q2",
@@ -55,7 +55,7 @@ export default {
   setup(props, { emit }) {
     const questionId = props.currentQuestion.id;
     // * ref
-    const q = ref(null);
+    // const q = ref(null);
     // const audio = ref(null);
     // * store
 
@@ -98,7 +98,6 @@ export default {
 
     //  * return
     return {
-      q,
       choiceTouchMove,
       choiceTouchEnd,
       choiceTouchStartParticle,

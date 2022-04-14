@@ -8,6 +8,12 @@ const mutations = {
   setCategory(state, faction) {
     state.category = faction;
   },
+  togglePlay(state) {
+    state.play = !state.play;
+  },
+  noPlay(state) {
+    state.play = false;
+  },
 };
 
 export default mutations;

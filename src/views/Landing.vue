@@ -2,7 +2,7 @@
   <div class="landing fixed-no-scroll">
     <header class="landing-header">
       <div class="landing-header-sound">
-        <sound></sound>
+        <switch-sound></switch-sound>
       </div>
       <div class="landing-header-icon">
         <svg-icon
@@ -154,16 +154,16 @@
 </template>
 
 <script>
-import LandingBall from "../components/base/landingBall/LandingBall";
+// import LandingBall from "../components/base/landingBall/LandingBall";
 import SvgIcon from "../components/base/svgIcon/SvgIcon";
-import Sound from "../components/base/sounding/Sound";
-
+// import Switch from "../components/base/switch/Switch";
+import SwitchSound from "../components/base/switch/SwitchSound";
 export default {
   name: "landing",
   components: {
-    LandingBall,
+    // LandingBall,
     SvgIcon,
-    Sound,
+    SwitchSound,
   },
   data() {
     return {

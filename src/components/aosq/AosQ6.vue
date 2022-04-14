@@ -79,10 +79,9 @@ export default {
           .to(
             ".selected-q6",
             {
-              translateX: 80,
               translateY: -40,
               rotate: -40,
-              skewX: 60,
+              skewX: 30,
               scale: 1.2,
               duration: 2,
               onComplete: () => {

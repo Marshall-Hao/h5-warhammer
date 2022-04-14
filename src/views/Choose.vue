@@ -62,7 +62,7 @@
           </p>
         </div>
       </div>
-      <div class="choose-header-sound"><sound></sound></div>
+      <div class="choose-header-sound"><switch-sound></switch-sound></div>
     </header>
 
     <section class="choose-section">
@@ -339,14 +339,15 @@
 
 <script>
 import SvgIcon from "../components/base/svgIcon/SvgIcon";
-import Sound from "../components/base/sounding/Sound";
+import SwitchSound from "../components/base/switch/SwitchSound";
+
 import { computed } from "@vue/runtime-core";
 import useMiddleInteraction from "../assets/js/use-middle-interaction";
 export default {
   name: "choose",
   components: {
     SvgIcon,
-    Sound,
+    SwitchSound,
   },
   setup() {
     const animation = {

@@ -33,6 +33,7 @@ import { nextTick } from "vue";
 import useSelectPattern from "../../assets/js/use-select-pattern";
 import gsap from "gsap";
 import { getOffset } from "../../assets/js/dom";
+// import touchZoom from "../../assets/js/touchZoom";
 
 export default {
   name: "aos-q1",
@@ -58,6 +59,14 @@ export default {
     //  * methods
     async function choiceTouchZoom(index, answer) {
       // choiceTouchEnd(answer);
+      // await touchZoom(
+      //   choiceTouchStart,
+      //   choiceTouchEnd,
+      //   index,
+      //   answer,
+      //   ".select-card",
+      //   ".unselect-card"
+      // );
       choiceTouchStart(index);
       await nextTick();
       await nextTick();
@@ -200,6 +209,7 @@ export default {
       // display: flex;
       // justify-content: space-between;
       // flex-wrap: wrap;
+
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       column-gap: 0.25rem;

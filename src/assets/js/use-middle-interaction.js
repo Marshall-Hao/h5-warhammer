@@ -193,7 +193,7 @@ export default function useMiddleInteraction(
           },
           headers
         );
-        explosion("top");
+        explosion("bottom");
       } else {
         submitAnswer(
           {
@@ -203,7 +203,7 @@ export default function useMiddleInteraction(
           headers
         );
 
-        explosion("bottom");
+        explosion("top");
       }
       storage.session.set("__currentquiz__", 7);
       // router.push({

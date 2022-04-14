@@ -17,14 +17,17 @@
           v-for="(answer, index) in questionChoices"
           :key="answer"
           class="q3-section-choice"
-          :class="{ 'select-q3': selected === index }"
-          @touchstart.prevent="choiceTouchStart(index)"
-          @touchmove.prevent="choiceTouchMove(index)"
+          :class="{
+            'select-q3': selected === index,
+            'unselect-q3': selected !== index,
+          }"
+          @click.prevent="choiceTouchZoom(index, answer.id)"
+        >
+          <!-- @touchmove.prevent="choiceTouchMove(index)"
           @touchend.prevent="choiceTouchEnd(answer.id)"
           @mouseenter.prevent="choiceTouchStart(index)"
           @mousemove.prevent="choiceTouchMove(index)"
-          @mousedown="choiceTouchEnd(answer.id)"
-        >
+          @mousedown="choiceTouchEnd(answer.id)" -->
           <svg-icon
             :name="index + 1"
             :duration="{}"
@@ -46,6 +49,8 @@
 import VideoBox from "../base/video-box/VideoBox";
 import SvgIcon from "../base/svgIcon/SvgIcon";
 import useSelectPattern from "../../assets/js/use-select-pattern";
+
+import touchZoom from "../../assets/js/touchZoom";
 
 export default {
   name: "fourtyk-q3",
@@ -73,12 +78,23 @@ export default {
       useSelectPattern(emit, questionId);
     //  * lifecycle
     //  * methods
-
+    async function choiceTouchZoom(index, answer) {
+      await touchZoom(
+        choiceTouchStart,
+        choiceTouchEnd,
+        index,
+        answer,
+        ".select-q3",
+        ".unselect-q3",
+        true
+      );
+    }
     //  * return
     return {
       choiceTouchMove,
       choiceTouchEnd,
       choiceTouchStart,
+      choiceTouchZoom,
       selected,
     };
   },
@@ -158,11 +174,12 @@ export default {
       background-color: $color-text-pr;
       box-shadow: 0 0 1rem 0.1rem white;
       transition: all 0.7s;
-      animation: fadeIn 1s ease-in, logo4 10s infinite ease-in-out forwards;
+      animation: fadeIn 1s ease-in;
+      // , logo4 10s infinite ease-in-out forwards;
     }
   }
 }
-.select-q3 {
-  animation: rotateOut 1s ease-out forwards !important;
-}
+// .select-q3 {
+//   animation: rotateOut 1s ease-out forwards !important;
+// }
 </style>

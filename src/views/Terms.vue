@@ -1,6 +1,6 @@
 <template>
   <div class="terms-all">
-    <div class="terms-sound"><sound></sound></div>
+    <div class="terms-sound"><switch-sound></switch-sound></div>
     <section class="terms">
       <h2 class="terms-title">网站使用条款</h2>
       <h3 class="terms-sub">吉韦优趣（上海）商业有限公司</h3>
@@ -181,12 +181,11 @@
 </template>
 
 <script>
-import Sound from "../components/base/sounding/Sound";
-
+import SwitchSound from "../components/base/switch/SwitchSound";
 export default {
   name: "terms",
   components: {
-    Sound,
+    SwitchSound,
   },
 };
 </script>

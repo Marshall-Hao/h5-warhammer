@@ -9,15 +9,19 @@
           ref="q"
           v-for="(answer, index) in questionChoices"
           :key="answer"
-          :class="{ 'selected-q3': selected === index }"
+          :class="{
+            'select-q3': selected === index,
+            'unselect-q3': selected !== index,
+          }"
+          @click.prevent="choiceTouchZoom(index, answer.id)"
           :style="`background-image:url(${answer.image})`"
-          @touchstart.prevent="choiceTouchStart(index)"
+        ></div>
+        <!-- @touchstart.prevent="choiceTouchStart(index)"
           @touchmove.prevent="choiceTouchMove(index)"
           @touchend.prevent="choiceTouchEnd(answer.id)"
           @mouseenter.prevent="choiceTouchStart(index)"
           @mousemove.prevent="choiceTouchMove(index)"
-          @mousedown="choiceTouchEnd(answer.id)"
-        ></div>
+          @mousedown="choiceTouchEnd(answer.id)" -->
       </div>
     </div>
     <!-- <svg width="0" height="0">
@@ -81,6 +85,7 @@
 
 <script>
 import useSelectPattern from "../../assets/js/use-select-pattern";
+import touchZoom from "../../assets/js/touchZoom";
 
 export default {
   name: "aos-q3",
@@ -103,11 +108,22 @@ export default {
 
     //  * lifecycle
     //  * methods
+    async function choiceTouchZoom(index, answer) {
+      await touchZoom(
+        choiceTouchStart,
+        choiceTouchEnd,
+        index,
+        answer,
+        ".select-q3",
+        ".unselect-q3"
+      );
+    }
     //  * return
     return {
       choiceTouchMove,
       choiceTouchEnd,
       choiceTouchStart,
+      choiceTouchZoom,
       selected,
     };
   },
@@ -181,14 +197,15 @@ export default {
       justify-self: center;
       background-size: cover;
       // margin-bottom: 5rem;
-      animation: fadeIn 1s ease-in, logo4 10s infinite ease-in-out forwards;
+      animation: fadeIn 1s ease-in;
+      //  logo4 10s infinite ease-in-out forwards;
     }
   }
 }
 
-.selected-q3 {
-  animation: rotateOut 1s ease-out forwards !important;
-}
+// .selected-q3 {
+//   animation: rotateOut 1s ease-out forwards !important;
+// }
 
 @keyframes rotate {
   0% {

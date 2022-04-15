@@ -27,9 +27,10 @@ export default {
       }
     },
   },
-  mounted() {
+  activated() {
     this.autoPlay();
-
+  },
+  mounted() {
     // if (this.isplaying) {
     // }
   },

@@ -298,7 +298,7 @@ import ahoy from "../services/ahoy";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import SvgIcon from "../components/base/svgIcon/SvgIcon";
-import Sound from "../components/base/sounding/Sound";
+// import Sound from "../components/base/sounding/Sound";
 import posterGenerator from "../assets/js/toCanvas";
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -306,7 +306,6 @@ export default {
   name: "share",
   components: {
     SvgIcon,
-    Sound,
   },
   setup() {
     // * api request
@@ -316,7 +315,7 @@ export default {
     const router = useRouter();
     // *ref
     const faction = ref("");
-    const soundOn = ref(true);
+    // const soundOn = ref(true);
     // * computed
     const subFactions = computed(() => {
       return faction.value.sub_factions;
@@ -500,7 +499,7 @@ export default {
     }
 
     function posterDownload() {
-      soundOn.value = false;
+      // soundOn.value = false;
       // TODO:Ahoy
       ahoy.track("Clicked Download Poster", {
         category: faction.value.category.name,
@@ -532,7 +531,7 @@ export default {
     }
 
     function quitPoster() {
-      soundOn.value = true;
+      // soundOn.value = true;
       document.querySelector(".newposter").remove();
       gsap
         .timeline()
@@ -568,7 +567,7 @@ export default {
       factionProducts,
       factionLogo,
       showSub,
-      soundOn,
+      // soundOn,
       retake,
       share,
       goToProduct,

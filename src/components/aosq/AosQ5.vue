@@ -1,7 +1,10 @@
 <template>
   <div class="q5">
     <!-- <div class="q5-title">{{ questionText }}</div> -->
-    <new-scene :choicesList="questionChoices"></new-scene>
+    <new-scene
+      :choicesList="questionChoices"
+      :nowQuestion="currentQuestion"
+    ></new-scene>
   </div>
 </template>
 
@@ -51,38 +54,5 @@ export default {
   overflow-y: scroll;
   overflow-x: hidden;
   text-align: center;
-  &-title {
-    @include absXCenter;
-    font-size: 2rem;
-    width: 100%;
-    line-height: 3rem;
-    top: 3rem;
-  }
-  &-rotate {
-    @include absCenter;
-    height: 10rem;
-    width: 10rem;
-    background-image: url(../../assets/images/regular/rotate.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0.6;
-  }
-  &-confirm {
-    @include absXCenter;
-    bottom: 10rem;
-    font-size: 2rem;
-  }
-  &-select {
-    @include absXCenter;
-    bottom: 3rem;
-    display: flex;
-    justify-content: space-between;
-    width: 20rem;
-    font-size: 3rem;
-  }
-}
-.select-q {
-  color: $color-text-py;
-  transition: all 0.3s;
 }
 </style>

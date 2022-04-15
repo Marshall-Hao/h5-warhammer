@@ -11,7 +11,17 @@
             class="scene-choice"
             :style="`background-image:url(${answer.image})`"
           >
-            <div class="scene-pick">确认</div>
+            <div
+              class="scene-pick"
+              @touchstart.prevent="choiceTouchStart(index)"
+              @touchmove.prevent="choiceTouchMove(index)"
+              @touchend.prevent="choiceTouchEnd(answer.id)"
+              @mouseenter.prevent="choiceTouchStart(index)"
+              @mousemove.prevent="choiceTouchMove(index)"
+              @mousedown="choiceTouchEnd(answer.id)"
+            >
+              确认
+            </div>
           </div>
         </li>
       </ul>
@@ -84,6 +94,7 @@
 </template>
 
 <script>
+import useSelectPattern from "../../../assets/js/use-select-pattern";
 import Glide from "@glidejs/glide";
 import { onMounted } from "@vue/runtime-core";
 
@@ -91,14 +102,34 @@ export default {
   name: "new-scene",
   props: {
     choicesList: Array,
+    nowQuestion: Object,
   },
-  setup() {
+  emits: ["updateParams"],
+  setup(props, { emit }) {
+    //   * variables
+    const questionId = props.nowQuestion.id;
+
+    //  * ref
+
+    // * hooks
+    const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
+      useSelectPattern(emit, questionId);
+    // * lifecycle
     onMounted(() => {
       new Glide(".glide", {
         type: "carousel",
         gap: 0,
       }).mount();
     });
+    // * methods
+
+    // * return
+    return {
+      choiceTouchMove,
+      choiceTouchEnd,
+      choiceTouchStart,
+      selected,
+    };
   },
 };
 </script>

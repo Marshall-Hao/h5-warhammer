@@ -1,19 +1,33 @@
 <template>
   <div class="q5">
-    <!-- <div class="q5-title">{{ questionText }}</div> -->
-    <new-scene :choicesList="questionChoices"></new-scene>
+    <div class="q5-title">{{ questionText }}</div>
+    <scene :scene="scene"></scene>
+    <div class="q5-rotate"></div>
+    <div class="q5-confirm" @touchstart.prevent="next" @mousedown="next">
+      confirm
+    </div>
+    <ul class="q5-select">
+      <li
+        v-for="(answer, index) in questionChoices"
+        :key="answer"
+        :class="{ 'select-q': selected === index }"
+        @touchstart.prevent="changeScene(answer, index)"
+        @mousedown="changeScene(answer, index)"
+      >
+        {{ index + 1 }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import newScene from "../base/scene/newScene.vue";
-import NewScene from "../base/scene/newScene.vue";
+import Scene from "../base/scene/ Scene.vue";
+import use3DView from "../../assets/js/use-3dview-pattern";
 
 export default {
-  name: "aos-q5",
+  name: "fourtyk-q5",
   components: {
-    newScene,
-    NewScene,
+    Scene,
   },
   props: {
     currentQuestion: Object,
@@ -22,11 +36,9 @@ export default {
     questionChoices: Array,
   },
   setup(props) {
-    // const logo = require("@/assets/khorne/source/Khorne.fbx");
     const questionId = props.currentQuestion.id;
     const defaultScene = props.questionChoices[0].image;
     const defaultChoiceId = props.questionChoices[0].id;
-
     // * ref
     // * store
 
@@ -34,9 +46,18 @@ export default {
 
     //  * lifecycle
     //  * methods
-
+    const { changeScene, next, scene, selected } = use3DView(
+      questionId,
+      defaultScene,
+      defaultChoiceId
+    );
     //  * return
-    return {};
+    return {
+      changeScene,
+      next,
+      scene,
+      selected,
+    };
   },
 };
 </script>
@@ -69,7 +90,7 @@ export default {
   }
   &-confirm {
     @include absXCenter;
-    bottom: 10rem;
+    bottom: 13rem;
     font-size: 2rem;
   }
   &-select {

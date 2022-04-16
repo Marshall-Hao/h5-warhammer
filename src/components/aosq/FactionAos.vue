@@ -4,45 +4,61 @@
   </div> -->
   <div
     class="pre-reveal"
-    :class="{ revealed: !pre }"
     @touchstart.prevent="preReveal"
     @mousedown="preReveal"
   >
     <p>点击揭晓</p>
   </div>
+  <div class="fires">
+    <div class="fires-all" :style="animationSpeed">
+      <div
+        v-for="(fire, index) in new Array(16)"
+        :key="index"
+        class="fires-side"
+      ></div>
+    </div>
+  </div>
   <div
-    v-show="!pre"
     class="effect-page"
     ref="white"
     @touchstart.prevent="holdReveal"
-    @touchmove.prevent="speed = 100"
+    @touchmove.prevent="speed = 2.2"
     @touchend.prevent="cancelReveal"
-    @mouseenter="speed = 100"
-    @mouseleave="speed = 1"
+    @mouseenter="speed = 2.2"
+    @mouseleave="speed = 5"
   >
     <p class="effect">长按以揭晓你的命运阵营</p>
   </div>
-  <div v-show="!pre" class="number" ref="number">0</div>
+  <div class="number" ref="number">0</div>
 </template>
 
 <script>
-import Lighting from "../base/lighting/Lighting.vue";
+// import Lighting from "../base/lighting/Lighting.vue";
 import gsap from "gsap";
 let animate1 = null;
 export default {
   name: "faction-aos",
-  components: {
-    Lighting,
-  },
+  // components: {
+  //   Lighting,
+  // },
   data() {
     return {
       blink: false,
-      pre: true,
-      speed: 1,
+
+      speed: 5,
     };
+  },
+  computed: {
+    animationSpeed() {
+      return {
+        animationDuration: `${this.speed}s`,
+        // animation: ` ${this.speed}s linear infinite polygon`,
+      };
+    },
   },
   methods: {
     holdReveal() {
+      this.speed = 2.2;
       const number = this.$refs.number;
       const white = this.$refs.white;
       animate1 = gsap.to(number, {
@@ -74,6 +90,7 @@ export default {
       if (this.blink) {
         return;
       }
+      this.speed = 4;
       animate1.pause();
       const white = this.$refs.white;
       const number = this.$refs.number;
@@ -99,13 +116,124 @@ export default {
       //     path: "/share",
       //   });
       // }, 5000);
-      this.pre = false;
+
+      gsap.timeline().to(".pre-reveal", {
+        opacity: 0,
+        zIndex: 0,
+        duration: 1,
+      });
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+@function pow($number, $exp) {
+  $value: 1;
+  @if $exp > 0 {
+    @for $i from 1 through $exp {
+      $value: $value * $number;
+    }
+  } @else if $exp < 0 {
+    @for $i from 1 through -$exp {
+      $value: $value / $number;
+    }
+  }
+  @return $value;
+}
+@function fact($number) {
+  $value: 1;
+  @if $number > 0 {
+    @for $i from 1 through $number {
+      $value: $value * $i;
+    }
+  }
+  @return $value;
+}
+@function pi() {
+  @return 3.14159265359;
+}
+
+@function rad($angle) {
+  $unit: unit($angle);
+  $unitless: $angle / ($angle * 0 + 1);
+  // If the angle has 'deg' as unit, convert to radians.
+  @if $unit == deg {
+    $unitless: $unitless / 180 * pi();
+  }
+  @return $unitless;
+}
+
+@function sin($angle) {
+  $sin: 0;
+  $angle: rad($angle);
+  // Iterate a bunch of times.
+  @for $i from 0 through 10 {
+    $sin: $sin + pow(-1, $i) * pow($angle, (2 * $i + 1)) / fact(2 * $i + 1);
+  }
+  @return $sin;
+}
+
+@function cos($angle) {
+  $cos: 0;
+  $angle: rad($angle);
+  // Iterate a bunch of times.
+  @for $i from 0 through 10 {
+    $cos: $cos + pow(-1, $i) * pow($angle, 2 * $i) / fact(2 * $i);
+  }
+  @return $cos;
+}
+
+@function tan($angle) {
+  @return sin($angle) / cos($angle);
+}
+$n: 16; // number of sides
+$r: 25vmin; // inradius (apothem)
+$a: 2 * $r * tan(180deg / $n); // side length
+.fires {
+  background-color: #340468;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  perspective: 3.125vmin;
+  z-index: -3;
+  // perspective: 3.125vmin;
+  &::after {
+    background-color: #340468;
+    border-radius: 50%;
+    box-shadow: 0 0 2.5vmin 2.5vmin #340468;
+    content: "";
+    height: 2.5vmin;
+    @include absCenter;
+    width: 2.5vmin;
+  }
+  &-all {
+    animation-name: polygon;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform-style: preserve-3d;
+    transform: rotatex(90deg) rotatey(0) translatey(-25vmin);
+  }
+  &-side {
+    background-image: url(../../assets/images/regular/aosreveal.png);
+    background-size: ($n * $a) 25%;
+    filter: hue-rotate(-10deg);
+    position: absolute;
+    height: 100vmin;
+    transform-origin: 0;
+    width: calc(#{$a} + 1px);
+    @for $i from 1 through $n {
+      &:nth-child(#{$i}) {
+        background-position: ($a * $i * -1) 0;
+        transform: rotatey(360deg / $n * $i) translate3d(-50%, -50%, $r);
+      }
+    }
+  }
+}
+
 .effect-page {
   position: fixed;
   top: 0;
@@ -143,9 +271,13 @@ export default {
   top: 0;
   left: 0;
   height: 100%;
+
   width: 100%;
-  background-image: url(../../assets/images/regular/aosPrereveal.png);
+  // background: linear-gradient(#e66465, #9198e5);
+  background: linear-gradient(0deg, rgba(33, 33, 33, 0.5) 18%, transparent),
+    url(../../assets/images/regular/aosPrereveal.png);
   background-size: cover;
+  z-index: 3;
   // filter: url(#fractal);
   p {
     font-size: 2rem;
@@ -156,8 +288,14 @@ export default {
   }
 }
 
-.revealed {
-  animation: fadeOut 1.5s forwards;
+// .revealed {
+//   animation: fadeOut 1.5s forwards;
+// }
+
+@keyframes polygon {
+  100% {
+    transform: rotatex(90deg) rotatey(360deg) translatey(0);
+  }
 }
 
 @keyframes breath {

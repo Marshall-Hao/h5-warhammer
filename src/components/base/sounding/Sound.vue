@@ -27,10 +27,8 @@ export default {
       }
     },
   },
-  activated() {
-    this.autoPlay();
-  },
   mounted() {
+    this.autoPlay();
     // if (this.isplaying) {
     // }
   },

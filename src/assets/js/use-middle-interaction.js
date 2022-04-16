@@ -224,7 +224,7 @@ export default function useMiddleInteraction(
       })
       .to(element, {
         opacity: 0,
-        duration: 2,
+        duration: 0.7,
         ease: "expo.out",
         onComplete: () => {
           router.push({

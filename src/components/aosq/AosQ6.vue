@@ -73,23 +73,12 @@ export default {
             filter: "blur(8px)",
             opacity: 0,
             stagger: {
-              amount: 2,
+              amount: 1,
             },
-          })
-          .to(
-            ".selected-q6",
-            {
-              translateY: -40,
-              rotate: -40,
-              skewX: 30,
-              scale: 1.2,
-              duration: 2,
-              onComplete: () => {
-                choiceTouchEnd(answer);
-              },
+            onComplete: () => {
+              choiceTouchEnd(answer);
             },
-            "<"
-          );
+          });
       }
     }
     //  * lifecycle

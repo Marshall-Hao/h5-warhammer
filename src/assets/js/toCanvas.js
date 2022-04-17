@@ -22,8 +22,14 @@ export default function posterGenerator(el) {
     useCORS: true,
     width: width + "px",
     hegiht: height + "px",
+    ignoreElements: (element) => {
+      if (element.tagName === "AUDIO") return true;
+    },
   }).then((canvas) => {
     const context = canvas.getContext("2d");
+    const audio = document.querySelector("audio");
+
+    audio.removeAttribute("autoplay");
     // 关闭抗锯齿形
     context.mozImageSmoothingEnabled = false;
     context.webkitImageSmoothingEnabled = false;

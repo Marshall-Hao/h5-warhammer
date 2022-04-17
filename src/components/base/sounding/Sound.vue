@@ -29,8 +29,12 @@ export default {
   },
   mounted() {
     this.autoPlay();
+    console.log("mounted");
     // if (this.isplaying) {
     // }
+  },
+  unmounted() {
+    console.log("unmounted");
   },
   methods: {
     autoPlay() {

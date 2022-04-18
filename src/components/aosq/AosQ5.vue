@@ -54,5 +54,7 @@ export default {
   overflow-y: scroll;
   overflow-x: hidden;
   text-align: center;
+  background: url(../../assets/images/regular/aosq5bg.png);
+  background-size: cover;
 }
 </style>

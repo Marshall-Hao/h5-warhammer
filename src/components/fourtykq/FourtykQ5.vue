@@ -54,5 +54,7 @@ export default {
   overflow-y: scroll;
   overflow-x: hidden;
   text-align: center;
+  background: url(../../assets/images/regular/40kq5bg.png);
+  background-size: cover;
 }
 </style>

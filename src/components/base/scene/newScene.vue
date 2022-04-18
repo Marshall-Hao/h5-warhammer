@@ -1,14 +1,20 @@
 <template>
   <div class="glide scene">
-    <p class="scene-title">
+    <p class="scene-title" v-show="selected === null">
       滑动查看四个幻境 <br />
       选择你喜欢的据点
     </p>
+
     <div class="glide__track" data-glide-el="track">
       <ul class="glide__slides">
-        <li class="glide__slide" v-for="answer in choicesList" :key="answer">
+        <li
+          class="glide__slide"
+          v-for="(answer, index) in choicesList"
+          :key="answer"
+        >
           <div
             class="scene-choice"
+            :class="{ 'selected-q': selected === index }"
             :style="`background-image:url(${answer.image})`"
           >
             <div
@@ -19,13 +25,18 @@
               @mouseenter.prevent="choiceTouchStart(index)"
               @mousemove.prevent="choiceTouchMove(index)"
               @mousedown="choiceTouchEnd(answer.id)"
+              v-show="selected === null"
             >
               确认
             </div>
           </div>
         </li>
       </ul>
-      <div class="glide__arrows" data-glide-el="controls">
+      <div
+        class="glide__arrows"
+        data-glide-el="controls"
+        v-show="selected === null"
+      >
         <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
           <svg width="16.5" height="30" viewBox="0 0 110 200">
             <polyline
@@ -83,7 +94,11 @@
           </svg>
         </button>
       </div>
-      <div class="glide__bullets" data-glide-el="controls[nav]">
+      <div
+        class="glide__bullets"
+        data-glide-el="controls[nav]"
+        v-show="selected === null"
+      >
         <button class="glide__bullet" data-glide-dir="=0"></button>
         <button class="glide__bullet" data-glide-dir="=1"></button>
         <button class="glide__bullet" data-glide-dir="=2"></button>
@@ -113,7 +128,7 @@ export default {
 
     // * hooks
     const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
-      useSelectPattern(emit, questionId);
+      useSelectPattern(emit, questionId, 1700);
     // * lifecycle
     onMounted(() => {
       new Glide(".glide", {
@@ -141,11 +156,15 @@ export default {
   position: absolute;
   height: 100%;
   width: 100%;
+
   &-choice {
     position: relative;
     height: 100%;
     width: 100%;
     background-size: cover;
+    mask: url(../../../assets/images/regular/maskdetail.png);
+    mask-position: 100% 0;
+    mask-size: 3000% 100%;
   }
   &-pick {
     @include absXCenter;
@@ -199,6 +218,19 @@ export default {
   height: 0.5rem;
   &--active {
     background-color: #bc3f2f;
+  }
+}
+.selected-q {
+  animation: maskmove 2s steps(29) forwards;
+}
+
+@keyframes maskmove {
+  0% {
+    mask-position: 100% 0;
+  }
+
+  100% {
+    mask-position: 0 0;
   }
 }
 // .glide__slide {

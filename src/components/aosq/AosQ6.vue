@@ -130,7 +130,7 @@ export default {
     font-size: 2rem;
     line-height: 2.4rem;
     // animation: fadeInDownBig 1s, shadowtext 5s infinite ease-out;
-    animation: fadeInDownBig 1s;
+    animation: fadeInDown 1s;
   }
   &-section {
     margin-top: 6rem;
@@ -138,7 +138,7 @@ export default {
       display: flex;
       flex-direction: column;
       // padding: 0 3rem;
-      animation: backInUp 1s ease-in;
+      animation: fadeInUp 1s ease-in;
 
       div {
         position: relative;

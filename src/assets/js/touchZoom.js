@@ -8,16 +8,12 @@ export default async function touchZoom(
   index,
   answer,
   selected,
-  unselect,
-  needOffset = false
+  unselect
 ) {
   clickFn(index);
   await nextTick();
   const selectedAns = await document.querySelector(selected);
   let positionX = getOffset(selectedAns).left;
-  if (needOffset) {
-    positionX -= 40;
-  }
   let positionY = getOffset(selectedAns).top;
 
   const unselectedAns = await document.querySelector(unselect);
@@ -44,11 +40,11 @@ function gsapZoom(selected, unselect, positionX, positionY, endFn, answer) {
       },
       {
         position: "absolute",
-        xPercent: -50,
         left: "50%",
-        yPercent: -50,
         top: "50%",
-        duration: 1,
+        yPercent: -50,
+        xPercent: -50,
+        duration: 0.6,
         scale: 1.5,
         ease: "sine.out",
         onComplete: () => {

@@ -16,29 +16,33 @@
         <div
           v-for="(answer, index) in questionChoices"
           :key="answer"
-          class="q3-section-choice"
-          :class="{
-            'select-q3': selected === index,
-            'unselect-q3': selected !== index,
-          }"
-          @click.prevent="choiceTouchZoom(index, answer.id)"
+          class="q3-section-container"
         >
-          <!-- @touchmove.prevent="choiceTouchMove(index)"
+          <div
+            class="q3-section-choice"
+            :class="{
+              'select-q3': selected === index,
+              'unselect-q3': selected !== index,
+            }"
+            @click.prevent="choiceTouchZoom(index, answer.id)"
+          >
+            <!-- @touchmove.prevent="choiceTouchMove(index)"
           @touchend.prevent="choiceTouchEnd(answer.id)"
           @mouseenter.prevent="choiceTouchStart(index)"
           @mousemove.prevent="choiceTouchMove(index)"
           @mousedown="choiceTouchEnd(answer.id)" -->
-          <svg-icon
-            :name="index + 1"
-            :duration="{}"
-            v-if="index !== 2"
-          ></svg-icon>
-          <svg-icon
-            :name="index + 1"
-            :duration="{}"
-            icon="icon-special"
-            v-else
-          ></svg-icon>
+            <svg-icon
+              :name="index + 1"
+              :duration="{}"
+              v-if="index !== 2"
+            ></svg-icon>
+            <svg-icon
+              :name="index + 1"
+              :duration="{}"
+              icon="icon-special"
+              v-else
+            ></svg-icon>
+          </div>
         </div>
       </div>
     </div>
@@ -85,8 +89,7 @@ export default {
         index,
         answer,
         ".select-q3",
-        ".unselect-q3",
-        true
+        ".unselect-q3"
       );
     }
     //  * return
@@ -123,8 +126,12 @@ export default {
     height: 100%;
     padding: 2.25rem 0;
     // margin-top: 1rem;
-    position: relative;
-    @include absXCenter;
+    // position: relative;
+    // @include absXCenter;
+    @include flexCenter;
+    flex-direction: column;
+    align-items: flex-start;
+
     text-align: center;
     &-video {
       width: 37rem;
@@ -145,7 +152,7 @@ export default {
       font-size: 1.8rem;
       line-height: 2.6rem;
       letter-spacing: 0.05rem;
-      padding: 0 1.8rem;
+      padding: 0 2.8rem;
       animation: backInLeft 1s ease-in;
     }
     &-choices {
@@ -154,12 +161,18 @@ export default {
       width: 100%;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      column-gap: 4rem;
+
       row-gap: 1.25rem;
       // margin-top: 3rem;
       // padding: 2rem 0;
       padding-bottom: 3rem;
       animation: fadeInUp 1s;
+    }
+    &-container {
+      // position: relative;
+
+      display: flex;
+      justify-content: space-around;
     }
     &-choice {
       // @include absCenter;

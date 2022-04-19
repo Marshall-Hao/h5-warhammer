@@ -218,13 +218,17 @@ export default function useMiddleInteraction(
     // particleGenerator(element, false, false);
     gsap
       .timeline()
+      .to(".q7-progress-eagle", {
+        opacity: 0,
+        duration: 0,
+      })
       .to(elementMask, {
         opacity: 0,
         duration: 0,
       })
       .to(element, {
         opacity: 0,
-        duration: 0.7,
+        duration: 0.8,
         ease: "expo.out",
         onComplete: () => {
           router.push({

@@ -33,6 +33,6 @@ export default {
 .question-sound {
   position: absolute;
   right: 1.3rem;
-  top: 6.5%;
+  top: 5%;
 }
 </style>

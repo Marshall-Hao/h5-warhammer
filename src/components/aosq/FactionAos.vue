@@ -248,7 +248,7 @@ $a: 2 * $r * tan(180deg / $n); // side length
   width: 22rem;
   transform: translateX(-50%);
   padding: 1rem 2rem;
-  font-family: sans-serif;
+  // font-family: sans-serif;
   font-size: 1.5rem;
   line-height: 2rem;
   border: 1px solid #fff;

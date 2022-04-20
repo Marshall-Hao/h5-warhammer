@@ -209,26 +209,29 @@ export default {
       // display: flex;
       // justify-content: space-between;
       // flex-wrap: wrap;
-
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       column-gap: 0.25rem;
       // row-gap: 1rem;
       width: 100%;
       div {
-        // width: 16.5rem;
-        // height: 28rem; dynamically injected
-        background-position: center;
-        background-size: contain;
-        background-repeat: no-repeat;
-        margin-bottom: 1rem;
-        animation: zoomIn 0.8s ease-in;
+        display: flex;
+        justify-content: space-around;
         div {
-          // height: 13rem;
-          // width: 7rem;
-          width: 100%;
-          height: 100%;
-          // margin: 12rem auto;
+          // width: 16.5rem;
+          // height: 28rem; dynamically injected
+          background-position: center;
+          background-size: contain;
+          background-repeat: no-repeat;
+          margin-bottom: 1rem;
+          animation: zoomIn 0.8s ease-in;
+          div {
+            // height: 13rem;
+            // width: 7rem;
+            width: 100%;
+            height: 100%;
+            // margin: 12rem auto;
+          }
         }
       }
       // div::before,

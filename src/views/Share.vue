@@ -770,7 +770,7 @@ export default {
         right: 0;
         top: 12rem;
         font-size: 2.6rem;
-        font-family: Heiti SC, STHeiti, SimHei;
+        // font-family: Heiti SC, STHeiti, SimHei;
       }
     }
     &-logo {
@@ -815,7 +815,7 @@ export default {
       p {
         color: $color-text-py;
         font-size: 1.4rem;
-        font-family: Heiti SC, STHeiti, SimHei;
+        // font-family: Heiti SC, STHeiti, SimHei;
         margin-bottom: 3rem;
       }
       &-icons {
@@ -1045,10 +1045,10 @@ export default {
         background-repeat: no-repeat;
         margin-top: 17rem;
         // padding-top: 0.25rem;
-        color: #000;
-        font-family: Heiti SC, STHeiti, SimHei;
+        color: $color-background;
+        // font-family: Heiti SC, STHeiti, SimHei;
         font-size: 2rem;
-        font-weight: 700;
+        font-weight: 200;
         display: flex;
         justify-content: center;
         align-items: center;

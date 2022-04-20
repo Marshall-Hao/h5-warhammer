@@ -339,7 +339,7 @@ export default {
     position: fixed;
     bottom: 2rem;
     @media only screen and (max-height: 667px) {
-      bottom: 0.8rem;
+      bottom: 0.3rem;
     }
     left: 0;
     right: 0;
@@ -352,7 +352,7 @@ export default {
     // @media only screen and (max-height: 740px) {
     //   font-size: $font-size-small;
     // }
-    font-family: Heiti SC, STHeiti, SimHei;
+    // font-family: Heiti SC, STHeiti, SimHei;
 
     &-terms {
       color: $color-text-p;

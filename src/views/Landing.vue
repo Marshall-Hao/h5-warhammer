@@ -337,9 +337,9 @@ export default {
   &-footer {
     // margin-top: 9rem;
     position: fixed;
-    bottom: 1rem;
+    bottom: 2rem;
     @media only screen and (max-height: 667px) {
-      bottom: 0.3rem;
+      bottom: 0.8rem;
     }
     left: 0;
     right: 0;

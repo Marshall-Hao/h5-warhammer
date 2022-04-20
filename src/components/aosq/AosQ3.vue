@@ -4,18 +4,18 @@
     <h1 class="q3-title">{{ questionText }}</h1>
     <div class="q3-section">
       <div class="q3-choices">
-        <div
-          class="q3-choice"
-          ref="q"
-          v-for="(answer, index) in questionChoices"
-          :key="answer"
-          :class="{
-            'select-q3': selected === index,
-            'unselect-q3': selected !== index,
-          }"
-          @click.prevent="choiceTouchZoom(index, answer.id)"
-          :style="`background-image:url(${answer.image})`"
-        ></div>
+        <div v-for="(answer, index) in questionChoices" :key="answer">
+          <div
+            class="q3-choice"
+            ref="q"
+            :class="{
+              'select-q3': selected === index,
+              'unselect-q3': selected !== index,
+            }"
+            @click.prevent="choiceTouchZoom(index, answer.id)"
+            :style="`background-image:url(${answer.image})`"
+          ></div>
+        </div>
         <!-- @touchstart.prevent="choiceTouchStart(index)"
           @touchmove.prevent="choiceTouchMove(index)"
           @touchend.prevent="choiceTouchEnd(answer.id)"
@@ -103,7 +103,7 @@ export default {
 
     // * hooks
     const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
-      useSelectPattern(emit, questionId);
+      useSelectPattern(emit, questionId, 800);
     //  * computed
 
     //  * lifecycle

@@ -22,10 +22,10 @@
     class="effect-page"
     ref="white"
     @touchstart.prevent="holdReveal"
-    @touchmove.prevent="speed = 2.2"
+    @touchmove.prevent="speed = 3.5"
     @touchend.prevent="cancelReveal"
-    @mouseenter="speed = 2.2"
-    @mouseleave="speed = 5"
+    @mouseenter="speed = 3.5"
+    @mouseleave="speed = 6"
   >
     <p class="effect">长按以揭晓你的命运阵营</p>
   </div>
@@ -45,7 +45,7 @@ export default {
     return {
       blink: false,
 
-      speed: 5,
+      speed: 6,
     };
   },
   computed: {
@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     holdReveal() {
-      this.speed = 2.2;
+      this.speed = 3.5;
       const number = this.$refs.number;
       const white = this.$refs.white;
       animate1 = gsap.to(number, {
@@ -90,7 +90,7 @@ export default {
       if (this.blink) {
         return;
       }
-      this.speed = 4;
+      this.speed = 6;
       animate1.pause();
       const white = this.$refs.white;
       const number = this.$refs.number;

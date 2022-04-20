@@ -129,14 +129,19 @@
       <h1 class="q6-section-name">{{ faction && faction.name }}</h1>
       <p class="q6-section-des">{{ faction && faction.short_desc }}</p>
 
-      <h3 class="q6-section-title" v-if="showSub">关于我的团:</h3>
+      <h3 class="q6-section-title" v-if="showSub">旗下阵营:</h3>
       <div v-else class="q6-section-sub-button q6-section-article-button">
         <a
           :href="faction && faction.article_url"
           target="_blank"
           @click.stop.prevent="goToArticle"
         >
-          <button>了解更多</button>
+          <button
+            :data-href="faction && faction.article_url"
+            :data-name="faction && faction.name_en"
+          >
+            了解更多
+          </button>
         </a>
       </div>
       <div v-if="showSub" class="glide q6-section-glide">
@@ -164,8 +169,10 @@
                 class="q6-section-sub-button"
                 @click.stop.prevent="goToArticle"
               >
-                <a :href="sub.article_url" target="_blank">
-                  <button>了解更多</button>
+                <a :href="sub.article_url" target="_blank" :name="sub.name_en">
+                  <button :data-href="sub.article_url" :data-name="sub.name_en">
+                    了解更多
+                  </button>
                 </a>
               </div>
             </li>
@@ -232,12 +239,12 @@
       </div>
       <div class="q6-section-func">
         <p @touchstart.prevent="retake">重做测试</p>
-        <p @touchstart.prevent="share">分享好友</p>
+        <p @touchstart.prevent="share">分享测试</p>
       </div>
     </section>
     <div class="q6-packs">
       <div class="q6-bottom"></div>
-      <h4 class="q6-packs-title">新手套装</h4>
+      <h4 class="q6-packs-title">{{ productTitle }}</h4>
       <div class="glide2 q6-packs-glide2">
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
@@ -318,10 +325,10 @@ export default {
     // const soundOn = ref(true);
     // * computed
     const subFactions = computed(() => {
-      return faction.value.sub_factions;
+      return faction.value && faction.value.sub_factions;
     });
     const factionProducts = computed(() => {
-      return faction.value.products;
+      return faction.value && faction.value.products;
     });
     const factionLogo = computed(() => {
       if (faction.value && faction.value.category.name === "AOS") {
@@ -332,6 +339,13 @@ export default {
         return {
           backgroundImage: `url(${require("../assets/images/regular/40,000SmallIcon.png")})`,
         };
+      }
+    });
+    const productTitle = computed(() => {
+      if (faction.value && faction.value.category.name === "AOS") {
+        return "《战锤:西格玛时代》新手套装";
+      } else {
+        return "《战锤: 40000》新手套装";
       }
     });
     const showSub = computed(() => {
@@ -437,7 +451,8 @@ export default {
     }
     function goToArticle(e) {
       // console.log('goToProduct', e.currentTarget.dataset)
-      const dataset = e.currentTarget.dataset;
+      const dataset = e.target.dataset;
+      console.log(dataset.name, dataset.href);
 
       ahoy.track("Clicked Sub-faction Article", {
         item_name: dataset.name,
@@ -449,7 +464,6 @@ export default {
       // and then go to product, Marshall please test 👇 test pass
       if (dataset.href) {
         window.location.href = dataset.href;
-
         // window.open(dataset.href, "_blank");
       }
     }
@@ -566,6 +580,7 @@ export default {
       subFactions,
       factionProducts,
       factionLogo,
+      productTitle,
       showSub,
       // soundOn,
       retake,
@@ -918,7 +933,7 @@ export default {
       }
       &-button {
         margin-top: 1rem;
-        padding: 0.5rem 3rem;
+        padding: 0.5rem 3.7rem 0.5rem 3rem;
         box-sizing: border-box;
         button {
           font-family: "jingdian";
@@ -965,7 +980,7 @@ export default {
     &-title {
       color: $color-text-py;
       font-size: 2rem;
-      margin-bottom: 2rem;
+      margin: 4rem 0 -2rem;
     }
     &-glide2 {
       width: 31.5rem;

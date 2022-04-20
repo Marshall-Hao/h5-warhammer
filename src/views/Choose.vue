@@ -74,9 +74,9 @@
     </section>
     <div class="choose-section-options">
       <div class="choose-section-options-l" ref="swipeOne">
-        <div :class="{ heartbeat: beatAnimate.left }">前尘</div>
+        <!-- <div :class="{ heartbeat: beatAnimate.left }">前尘</div> -->
         <ul>
-          <!-- <li>
+          <li>
             <svg width="16.5" height="30" viewBox="0 0 110 200">
               <polyline
                 points="100 0, 0 100, 100 200,110 190,25 100, 110 10 "
@@ -103,7 +103,7 @@
                 ></animate>
               </polyline>
             </svg>
-          </li> -->
+          </li>
           <li>
             <svg width="16.5" height="24" viewBox="0 0 110 200">
               <polyline
@@ -294,7 +294,7 @@
               </polyline>
             </svg>
           </li>
-          <!-- <li>
+          <li>
             <svg width="16.5" height="24" viewBox="0 0 110 200">
               <polyline
                 points="10 200, 110 100, 10 0,0 10,85 100, 0 190 "
@@ -321,18 +321,18 @@
                 ></animate>
               </polyline>
             </svg>
-          </li> -->
+          </li>
         </ul>
-        <div
+        <!-- <div
           style="color: #64798b; text-align: right"
           :class="{ heartbeat: beatAnimate.right }"
         >
           未来
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="choose-tips">
-      <h1>向左或右滑动，开始你的冒险</h1>
+      <h1 class="choose-tips-intro">向左或右滑动，开始你的冒险</h1>
     </div>
   </div>
 </template>
@@ -484,7 +484,7 @@ export default {
           color: $color-theme-y;
         }
         ul {
-          width: 65%;
+          width: 100%;
           display: flex;
           flex-direction: row-reverse;
           justify-content: space-between;
@@ -518,6 +518,9 @@ export default {
     text-align: center;
     font-size: 0.8rem;
     animation: headShake 2s infinite ease-out;
+    &-intro {
+      font-weight: 400 !important;
+    }
   }
 }
 

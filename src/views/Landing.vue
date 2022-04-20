@@ -95,10 +95,10 @@
           </svg>
         </div>
 
-        <h4>
+        <p class="landing-section-intro-desc">
           在全新的战锤世界，你将立身何处?<br />
           点击揭晓你的命运吧!
-        </h4>
+        </p>
       </div>
     </section>
     <footer class="landing-footer">
@@ -320,7 +320,7 @@ export default {
           opacity: 0.5;
         }
       }
-      h4 {
+      &-desc {
         margin-top: 0.5rem;
         padding: 0 2.5rem;
         font-size: $font-size-medium;

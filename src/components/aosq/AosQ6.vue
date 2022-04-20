@@ -54,7 +54,7 @@ export default {
 
     // * hooks
     const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
-      useSelectPattern(emit, questionId, 1200);
+      useSelectPattern(emit, questionId, 200);
     //  * computed
     async function choiceTouchStartSmoke(index, answer) {
       await choiceTouchStart(index);

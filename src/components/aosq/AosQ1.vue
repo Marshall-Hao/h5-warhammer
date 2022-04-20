@@ -4,24 +4,24 @@
     <h1 class="q1-title">{{ questionText }}</h1>
     <section class="q1-section">
       <div class="q1-section-choices">
-        <div
-          class="q1-section-choice"
-          ref="q"
-          v-for="(answer, index) in questionChoices"
-          :key="answer"
-          :class="{
-            'select-card': selected === index,
-            'unselect-card': selected !== index,
-          }"
-          :style="`background-image:url(${answer.image})`"
-        >
+        <div v-for="(answer, index) in questionChoices" :key="answer">
           <div
-            @touchstart.prevent="choiceTouchZoom(index, answer.id)"
-            @touchmove.prevent="choiceTouchMove(index)"
-            @mouseenter.prevent="choiceTouchStart(index)"
-            @mousemove.prevent="choiceTouchMove(index)"
-            @mousedown="choiceTouchEnd(answer.id)"
-          ></div>
+            class="q1-section-choice"
+            ref="q"
+            :class="{
+              'select-card': selected === index,
+              'unselect-card': selected !== index,
+            }"
+            :style="`background-image:url(${answer.image})`"
+          >
+            <div
+              @touchstart.prevent="choiceTouchZoom(index, answer.id)"
+              @touchmove.prevent="choiceTouchMove(index)"
+              @mouseenter.prevent="choiceTouchStart(index)"
+              @mousemove.prevent="choiceTouchMove(index)"
+              @mousedown="choiceTouchEnd(answer.id)"
+            ></div>
+          </div>
         </div>
       </div>
     </section>
@@ -52,7 +52,7 @@ export default {
 
     // * hooks
     const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
-      useSelectPattern(emit, questionId, 1500);
+      useSelectPattern(emit, questionId, 300);
     //  * computed
 
     //  * lifecycle

@@ -193,7 +193,7 @@ export default {
     font-size: 1.8rem;
     line-height: 2.4rem;
     letter-spacing: 0.05rem;
-    color: #000;
+    color: #6b6868;
     height: 20%;
     width: 100%;
     display: flex;

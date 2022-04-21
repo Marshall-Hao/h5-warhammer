@@ -16,3 +16,5 @@ createApp(App)
   .mount("#app");
 
 VueCookieNext.config({ expire: "7d" });
+
+if (process.env.NODE_ENV === "production") console.log = () => {};

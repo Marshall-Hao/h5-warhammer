@@ -61,7 +61,7 @@ export default {
 
     // * hooks
     const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
-      useSelectPattern(emit, questionId, 2100);
+      useSelectPattern(emit, questionId, 1500);
     //  * computed
     //  * lifecycle
 
@@ -152,7 +152,7 @@ export default {
     &-choices {
       // @include absCenter;
       height: 100%;
-      width: 90%;
+      width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -219,7 +219,7 @@ export default {
 }
 @keyframes slideRight {
   100% {
-    transform: translateX(35rem);
+    transform: translateX(200%);
   }
 }
 </style>

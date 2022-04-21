@@ -501,7 +501,8 @@ export default {
       });
 
       const title = "快来测测你的战锤阵营";
-      const url = "https://frontend.h5.games-workshop-china.com/";
+      const url =
+        "https://h5.games-workshop-china.com?utm_medium=social&utm_source=weibo";
       const photo = faction.value.bg_image;
       window.location.href =
         "http://service.weibo.com/share/share.php?url=" +
@@ -918,7 +919,7 @@ export default {
       font-size: 1.6rem;
       animation: pulse 2s infinite forwards;
       &-desc {
-        text-align: left;
+        text-align: justify;
         color: #fff;
         font-size: 1.2rem;
         line-height: 2rem;
@@ -933,7 +934,7 @@ export default {
       }
       &-button {
         margin-top: 1rem;
-        padding: 0.5rem 3.7rem 0.5rem 3rem;
+        padding: 0.5rem 3rem;
         box-sizing: border-box;
         button {
           font-family: "jingdian";
@@ -1071,11 +1072,11 @@ export default {
 .glide__arrow {
   border: 0px;
   &--left {
-    left: -2rem;
+    left: -3rem;
     animation: left 2s infinite forwards ease-in-out;
   }
   &--right {
-    right: -2.5rem;
+    right: -3rem;
     animation: right 2s infinite backwards ease-in-out;
   }
 }

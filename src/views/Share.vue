@@ -489,7 +489,8 @@ export default {
         faction_cn: faction.value.name,
       });
       // window.open("https://warhammer.tmall.com/", "_blank");
-      window.location.href = "https://warhammer.tmall.com/";
+      window.location.href =
+        "https://shop.m.taobao.com/shop/sr.htm?p=CWZsKMQ_BiDbx_0_mntcQ";
     }
 
     function weiboShare() {

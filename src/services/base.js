@@ -12,13 +12,15 @@ if (process.env.NODE_ENV !== "production") {
 axios.defaults.baseURL = baseURL;
 axios.defaults.headers["Content-Type"] = "application/json";
 
-
 export function get(url, params) {
-  const headers = {"Ahoy-Visit": ahoy.getVisitId(), "Ahoy-Visitor": ahoy.getVisitorId()}
+  const headers = {
+    "Ahoy-Visit": ahoy.getVisitId(),
+    "Ahoy-Visitor": ahoy.getVisitorId(),
+  };
   return axios
     .get(url, {
       params,
-      headers
+      headers,
     })
     .then((res) => {
       const serverData = res.data;
@@ -30,8 +32,11 @@ export function get(url, params) {
 }
 
 export function post(url, params, realheaders) {
-  realheaders = {... realheaders, ...{"Ahoy-Visit": ahoy.getVisitId(), "Ahoy-Visitor": ahoy.getVisitorId()} }
-  console.log({realheaders})
+  realheaders = {
+    ...realheaders,
+    ...{ "Ahoy-Visit": ahoy.getVisitId(), "Ahoy-Visitor": ahoy.getVisitorId() },
+  };
+  // console.log({realheaders})
   return axios
     .post(url, params, { headers: realheaders })
     .then((res) => {

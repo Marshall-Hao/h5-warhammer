@@ -62,7 +62,9 @@
 import SvgIcon from "../base/svgIcon/SvgIcon";
 import VideoBox from "../base/video-box/VideoBox";
 import useMiddleInteraction from "../../assets/js/use-middle-interaction";
-import { computed, onMounted, onUnmounted, onUpdated, ref } from "vue";
+import storage from "good-storage";
+import { computed } from "vue";
+import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 
 export default {
   name: "fourtyk-q7",
@@ -91,7 +93,8 @@ export default {
     const questionId = props.currentQuestion.id;
     const choices = props.questionChoices;
     // * ref
-
+    const route = useRoute();
+    const router = useRouter();
     // * store
 
     //  * computed
@@ -129,8 +132,14 @@ export default {
     } = useMiddleInteraction("v", questionId, choices);
 
     //  * lifecycle
-    onMounted(() => {
-      // window.requestAnimationFrame(freqAnimation);
+    onBeforeRouteUpdate(() => {
+      const currentQuiz = storage.session.get("__currentquiz__");
+      console.log(Number(route.params.id), currentQuiz);
+      if (Number(route.params.id) > currentQuiz) {
+        router.push({
+          path: `/questions/40k/${currentQuiz + 1}`,
+        });
+      }
     });
     // onUnmounted(() => {
     //   const canvas = document.querySelector("canvas");

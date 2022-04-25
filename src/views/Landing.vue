@@ -105,7 +105,7 @@
       <router-link class="landing-footer-terms" :to="`/terms`"
         >服务与条款</router-link
       >
-      <p class="landing-footer-beian">沪ICP备11032828号-1</p>
+      <p class="landing-footer-beian">沪ICP备17004107号-1</p>
     </footer>
     <!-- <audio autoplay loop ref="audio">
       <source src="../assets/music/landing-music.wav" type="audio/wav" />

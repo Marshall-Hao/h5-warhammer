@@ -198,7 +198,7 @@ export default {
     // font-size: 2.5rem;
     font-size: 1.8rem;
     line-height: 2.8rem;
-    padding: 0 10rem;
+    white-space: break-spaces;
   }
   &-section {
     // margin-top: 5rem;

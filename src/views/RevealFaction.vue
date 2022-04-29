@@ -17,6 +17,7 @@ import { USER_KEY } from "../assets/js/constant";
 import { useCookie } from "vue-cookie-next";
 import useFaction from "../services/faction";
 import ahoy from "../services/ahoy";
+import { disableBack } from "../assets/js/util.js";
 
 export default {
   name: "reveal-faction",
@@ -31,6 +32,7 @@ export default {
     ...mapState(["category"]),
   },
   setup() {
+    disableBack(window.location.href);
     const router = useRouter();
     onBeforeUnmount(async () => {
       const currentQuiz = storage.session.get("__currentquiz__");
@@ -44,8 +46,8 @@ export default {
         category: faction.category.name,
         faction: faction.name_en,
         faction_cn: faction.name,
-        user_quiz_id: faction.user_quiz_id
-      })
+        user_quiz_id: faction.user_quiz_id,
+      });
     });
 
     const cookie = useCookie();

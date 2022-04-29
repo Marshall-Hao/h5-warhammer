@@ -162,7 +162,9 @@ export default function useMiddleInteraction(
         router.push({
           path: "/questions/40k/1",
         });
-      } else {
+      }
+      if (touch.percentX < 0) {
+        console.log("???");
         quizStart(2, headers);
         store.commit("setCategory", "aos");
         router.push({

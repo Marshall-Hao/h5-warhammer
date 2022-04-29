@@ -17,6 +17,7 @@ export default function posterGenerator(el) {
   Canvas.getContext("2d").scale(scale, scale);
 
   html2canvas(dom, {
+    // dpi: 300,
     logging: false,
     canvas: Canvas,
     scale: 1,

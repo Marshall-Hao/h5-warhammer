@@ -43,3 +43,11 @@ export function detectMob() {
     return navigator.userAgent.match(toMatchItem);
   });
 }
+
+// * cannnot goback
+export function disableBack(path) {
+  window.history.pushState(null, null, path);
+  window.onpopstate = function () {
+    window.history.go(1);
+  };
+}

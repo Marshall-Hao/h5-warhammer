@@ -28,7 +28,7 @@
       <div class="landing-section-description">
         <span id="landing-section-typed">
           硝烟弥漫，战事绵延。不论是魔法涌动的凡世诸域,<br />
-          还是荒蛮绝望的广袤宇宙，列国的纷争从未停息.
+          还是荒蛮绝望的广袤宇宙，列国的纷争从未停息。
         </span>
       </div>
 

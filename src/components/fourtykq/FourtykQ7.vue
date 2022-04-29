@@ -293,7 +293,7 @@ export default {
     &-container {
       @include absXCenter;
 
-      top: 31%;
+      top: 31.5%;
     }
     &-eagle {
       width: 19rem;

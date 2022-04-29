@@ -192,7 +192,8 @@ $img: "../../assets/images/regular/q7banner.png";
     letter-spacing: 0.1rem;
     font-size: 2rem;
     line-height: 2.8rem;
-    padding: 0 3rem;
+    // padding: 0 3rem;
+    white-space: break-spaces;
     // filter: url(#fractal);
   }
 

@@ -10,12 +10,10 @@
     <div class="q6-share" @click="quitShare">
       <div class="q6-share-before" @click.stop.prevent="quitPoster">
         <div class="q6-share-poster">
-          <div
+          <img
             class="q6-share-poster-logo"
-            :style="{
-              backgroundImage: ` url(${faction && faction.category.logo})`,
-            }"
-          ></div>
+            :src="faction && faction.category.logo"
+          />
           <img class="q6-share-poster-bg" :src="faction && faction.bg_image" />
           <div class="q6-share-poster-des">
             <h1 class="q6-share-poster-name">
@@ -101,7 +99,7 @@
             </div>
           </div>
           <div class="q6-share-details-right" @touchstart.stop="goTmall">
-            <p>去天猫购买:</p>
+            <p>去旗舰店购买:</p>
             <div class="q6-share-details-right-icons">
               <div>
                 <svg-icon
@@ -112,7 +110,7 @@
                   :duration="{}"
                 ></svg-icon>
               </div>
-              <p>天猫</p>
+              <p>战锤旗舰店</p>
             </div>
           </div>
         </div>
@@ -307,6 +305,8 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import SvgIcon from "../components/base/svgIcon/SvgIcon";
 // import Sound from "../components/base/sounding/Sound";
 import posterGenerator from "../assets/js/toCanvas";
+import { disableBack } from "../assets/js/util.js";
+
 gsap.registerPlugin(ScrollToPlugin);
 
 export default {
@@ -315,6 +315,7 @@ export default {
     SvgIcon,
   },
   setup() {
+    disableBack(window.location.href);
     // * api request
     const cookie = useCookie();
     const headers = cookie.getCookie(USER_KEY);
@@ -345,7 +346,7 @@ export default {
       if (faction.value && faction.value.category.name === "AOS") {
         return "《战锤:西格玛时代》新手套装";
       } else {
-        return "《战锤: 40000》新手套装";
+        return "《战锤40000》新手套装";
       }
     });
     const showSub = computed(() => {
@@ -368,12 +369,14 @@ export default {
       if (showSub.value) {
         new Glide(".glide", {
           type: "carousel",
+          swipeThreshold: 10,
           startAt: 0,
           perView: 2,
         }).mount();
       }
       new Glide(".glide2", {
         type: "carousel",
+        swipeThreshold: 10,
         startAt: 0,
         perView: 1,
       }).mount();
@@ -434,7 +437,7 @@ export default {
       });
     }
     function goToProduct(e) {
-      // console.log('goToProduct', e.currentTarget.dataset)
+      console.log("goToProduct", e.currentTarget.dataset);
       const dataset = e.currentTarget.dataset;
       ahoy.track("Clicked Buy Product", {
         item_name: dataset.name,
@@ -501,7 +504,8 @@ export default {
         faction_cn: faction.value.name,
       });
 
-      const title = "快来测测你的战锤阵营";
+      const title =
+        "我的%23战锤%23阵营竟然是它！快来测测你的阵营是哪个？看我们在战锤世界还能不能做朋友了！%23战锤40k%23战锤西格玛时代%23";
       const url =
         "https://h5.games-workshop-china.com?utm_medium=social&utm_source=weibo";
       const photo = faction.value.bg_image;
@@ -700,9 +704,9 @@ export default {
       &-logo {
         width: 16rem;
         height: 4.3rem;
-        background-size: cover;
-        background-repeat: no-repeat;
+
         margin: 1rem auto 0;
+        object-fit: cover;
       }
       &-bg {
         position: absolute;
@@ -823,7 +827,11 @@ export default {
       &-icons {
         display: flex;
         justify-content: space-between;
-        gap: 4.5rem;
+
+        // gap: 4.5rem;
+        &-details:nth-child(1) {
+          margin-right: 4.5rem;
+        }
         &-details {
           div {
             position: relative;

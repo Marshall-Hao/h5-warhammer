@@ -47,7 +47,8 @@ export function detectMob() {
 // * cannnot goback
 export function disableBack(path) {
   window.history.pushState(null, null, path);
+
   window.onpopstate = function () {
-    window.history.go(1);
+    window.history.pushState(null, null, path);
   };
 }

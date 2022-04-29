@@ -19,15 +19,13 @@
             'selected-q6': selected === index,
             'unselect-q': selected !== index,
           }"
+          @touchstart.prevent="choiceTouchStartSmoke(index, answer.id)"
+          @touchmove.prevent="choiceTouchMove(index)"
+          @mouseenter.prevent="choiceTouchStartSmoke(index, answer.id)"
+          @mousemove.prevent="choiceTouchMove(index)"
         >
           <!-- {{ answer.text }} -->
           <span v-for="letter in answer.text" :key="letter">{{ letter }}</span>
-          <div
-            @touchstart.prevent="choiceTouchStartSmoke(index, answer.id)"
-            @touchmove.prevent="choiceTouchMove(index)"
-            @mouseenter.prevent="choiceTouchStartSmoke(index, answer.id)"
-            @mousemove.prevent="choiceTouchMove(index)"
-          ></div>
         </div>
       </div>
     </section>

@@ -68,6 +68,7 @@ const routes = [
     component: Share,
     beforeEnter: (to, from, next) => {
       const id = to.params.id;
+      console.log(id);
       const currentQuiz = storage.session.get("__currentquiz__");
       if (!currentQuiz || id > 7) {
         next({

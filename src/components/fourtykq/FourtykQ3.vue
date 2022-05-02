@@ -149,7 +149,7 @@ export default {
       // line-height: 4rem;
       // font-size: 3rem;
       font-weight: 400;
-      font-size: 1.8rem;
+      font-size: 1.9rem;
       line-height: 2.6rem;
       letter-spacing: 0.05rem;
       padding: 0 2.8rem;

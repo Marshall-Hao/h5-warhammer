@@ -229,9 +229,9 @@ export default {
     }
     &-title {
       margin: 3rem auto 0;
-      font-size: 3.2rem;
+      font-size: 3.4rem;
       // font-size: 220%;
-      line-height: 3.3rem;
+      line-height: 3.6rem;
       color: #c9c9c9;
       font-weight: 400;
       // letter-spacing: 0.1rem;

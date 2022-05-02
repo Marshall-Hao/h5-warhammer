@@ -164,9 +164,9 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.5rem;
+    font-size: 2.6rem;
     letter-spacing: 0.1rem;
-    line-height: 3.4rem;
+    line-height: 3.6rem;
   }
   &-section {
     padding: 4rem 3rem;

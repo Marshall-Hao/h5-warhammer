@@ -85,7 +85,7 @@ export default {
     align-items: center;
     justify-content: center;
     // font-size: 3rem;
-    font-size: 2.4rem;
+    font-size: 2.6rem;
     line-height: 3.6rem;
     padding: 0 3rem;
   }

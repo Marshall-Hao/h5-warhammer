@@ -133,7 +133,7 @@ export default {
     // margin: 6rem 0;
     // font-size: 2.5rem;
     font-weight: 400;
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     line-height: 2.6rem;
     letter-spacing: 0.05rem;
     padding: 0 2.5rem;

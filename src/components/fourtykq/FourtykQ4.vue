@@ -304,7 +304,7 @@ export default {
     top: 12%;
     animation: jump 2s infinite ease-in-out forwards;
     p {
-      font-size: 1.8rem;
+      font-size: 2rem;
       padding: 0 2.5rem;
       line-height: 2.4rem;
       margin-bottom: 5.7rem;

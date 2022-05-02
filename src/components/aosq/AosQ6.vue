@@ -125,8 +125,8 @@ export default {
     padding: 0 4.5rem;
     // color: #7d300b;
     color: $color-text-py;
-    font-size: 2rem;
-    line-height: 2.4rem;
+    font-size: 2.1rem;
+    line-height: 3rem;
     // animation: fadeInDownBig 1s, shadowtext 5s infinite ease-out;
     animation: fadeInDown 1s;
   }
@@ -140,10 +140,10 @@ export default {
 
       div {
         position: relative;
-        font-size: 2rem;
+        font-size: 2.2rem;
         letter-spacing: 0.2rem;
         line-height: 2.8rem;
-        margin: 0 auto 4rem;
+        margin: 0 auto 6rem;
         border-radius: 1rem;
         // transition: 0.2s all;
         // width: 25.5rem;

@@ -184,11 +184,15 @@ export default {
   &-title {
     // margin-top: 5rem;
     // font-size: 2.25rem;
-    padding: 2rem 5rem 0;
-    font-size: 1.8rem;
-    letter-spacing: 0.05rem;
-    line-height: 2.4rem;
+    padding: 5rem 5rem 0;
     height: 15%;
+    @media screen and (min-width: 400px) and (min-height: 860px) {
+      padding: 6rem 5rem 0;
+      height: 18%;
+    }
+    font-size: 2.2rem;
+    line-height: 3.2rem;
+    letter-spacing: 0.05rem;
     width: 100%;
     display: flex;
     align-items: center;

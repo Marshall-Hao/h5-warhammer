@@ -883,9 +883,9 @@ export default {
       margin-bottom: 0.5rem;
     }
     &-des {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
 
-      line-height: 1.8rem;
+      line-height: 2rem;
       // margin: 0.5rem 0.6rem 3rem;
       margin: 1rem 1.6rem 3rem;
     }
@@ -906,22 +906,29 @@ export default {
     }
     &-func {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       color: $color-text-py;
       text-decoration: underline;
       // margin: 3rem 6.5rem 1rem;
-      margin: 3rem 6.5rem;
-      padding: 0 2.5rem;
+      // margin: 3rem 6.5rem;
+      width: 85%;
+      margin: 3rem auto;
+      // padding: 0 2.5rem;
       // font-size: 1.2rem;
-      font-size: 1.5rem;
+      font-size: 1.7rem;
+      p {
+        width: 100%;
+        text-align: center;
+      }
     }
     &-sub {
       // margin: 0rem 2.2rem 2rem;
       margin-bottom: 2rem;
       align-self: center;
       justify-self: center;
-      width: 12rem;
-      height: 15.7rem;
+      // width: 12rem;
+      // height: 15.7rem;
+      width: 100%; height: 22rem;
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
@@ -947,8 +954,9 @@ export default {
         box-sizing: border-box;
         button {
           font-family: "jingdian";
+          font-size: 1.7rem;
           width: 100%;
-          padding: 0.5rem 0;
+          padding: 0.6rem 0.5rem;
           box-sizing: border-box;
           background-color: #bc3f2f;
           color: #fff;
@@ -1038,8 +1046,8 @@ export default {
         width: 100%;
         color: #000;
         @include absCenter;
-        font-size: 1.325rem;
-        line-height: 1.8rem;
+        font-size: 1.375rem;
+        line-height: 1.9rem;
         // font-family: Heiti SC, STHeiti, SimHei;
         color: #fff;
         // margin-top: 10rem;

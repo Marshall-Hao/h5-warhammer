@@ -15,7 +15,7 @@
           <div
             class="scene-choice"
             :class="{ 'selected-q': selected === index }"
-            :style="`background-image:url(${answer.image})`"
+            :style="`background-image: linear-gradient(180deg, #222222 0%, rgba(34, 34, 34, 0) 27.79%), url(${answer.image})`"
           >
             <div
               class="scene-pick"
@@ -169,19 +169,20 @@ export default {
   &-pick {
     @include absXCenter;
     width: 8.5rem;
-    height: 2.2rem;
+    // height: 2.2rem;
     bottom: 5rem;
     color: #bc3f2f;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     background-color: white;
     border-radius: 2rem;
-    padding-top: 0.3rem;
+    // padding-top: 0.3rem;
+    padding: 0.5rem 0 0.3rem;
     border: 0.1rem solid #bc3f2f;
   }
   &-title {
     @include absXCenter;
-    font-size: 2rem;
-    line-height: 2.4rem;
+    font-size: 2.2rem;
+    line-height: 3rem;
     font-weight: 400;
     letter-spacing: 0.3rem;
     top: 5rem;

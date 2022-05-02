@@ -528,17 +528,17 @@ export default {
   // width: 16.7rem;
   width: 70%;
   height: 8.7rem;
-  margin: 0.2rem auto 0;
+  margin: 1.5rem auto 0;
   line-height: 2rem;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 }
 
 #choose-header-description-right {
   // width: 16.7rem;
-  width: 60%;
-  margin: 0.2rem auto 0;
+  width: 70%;
+  margin: 1.5rem auto 0;
   line-height: 2rem;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 }
 
 .heartbeat {

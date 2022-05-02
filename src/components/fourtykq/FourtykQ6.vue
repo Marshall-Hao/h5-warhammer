@@ -190,8 +190,8 @@ export default {
   text-align: center;
   &-title {
     // font-size: 3rem;
-    font-size: 1.8rem;
-    line-height: 2.4rem;
+    font-size: 1.9rem;
+    line-height: 2.7rem;
     letter-spacing: 0.05rem;
     color: #6b6868;
     height: 20%;

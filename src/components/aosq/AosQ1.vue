@@ -57,6 +57,7 @@ export default {
 
     //  * lifecycle
     //  * methods
+    let firstMove = false;
     async function choiceTouchZoom(index, answer) {
       // choiceTouchEnd(answer);
       // await touchZoom(
@@ -74,6 +75,8 @@ export default {
       let positionX = getOffset(selected).left;
       let positionY = getOffset(selected).top;
       const unselected = await document.querySelector(".unselect-card");
+      if (firstMove) return;
+      firstMove = true;
       if (unselected) {
         gsap
           .timeline()

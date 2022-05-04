@@ -40,7 +40,7 @@ const routes = [
     beforeEnter: (to, from, next) => {
       const id = to.params.id;
       const currentQuiz = storage.session.get("__currentquiz__");
-      if (!currentQuiz || id > 7) {
+      if (!currentQuiz || id > 7 || to.matched.length < 2) {
         next({
           path: "/landing",
         });

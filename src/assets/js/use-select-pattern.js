@@ -33,17 +33,24 @@ export default function useSelectPattern(emit, questionId, delay = 1000) {
   // * ref
   const selected = ref(null);
   //  * methods
+  // let firstMoveStart = false;
   function choiceTouchStart(index) {
+    // if (firstMoveStart) return;
     selected.value = index;
+    // firstMoveStart = true;
     // debounce(getPoinstAndNext.bind(index), 1000, index)();
   }
 
   function choiceTouchMove(index) {
     selected.value = index;
   }
+
+  // let firstMoveEnd = false;
   function choiceTouchEnd(index) {
+    // if (firstMoveEnd) return;
     // selected.value = null;
     debounce(getPoinstAndNext.bind(index), delay, index)();
+    // firstMoveEnd = true;
   }
 
   function getPoinstAndNext(choiceId) {

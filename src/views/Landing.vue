@@ -21,7 +21,7 @@
     </header>
 
     <section class="landing-section">
-      <div class="landing-section-video">
+      <div class="landing-section-video" @click.prevent="stopMusic">
         <video
           controls
           playsinline
@@ -164,6 +164,8 @@
 import SvgIcon from "../components/base/svgIcon/SvgIcon";
 // import Switch from "../components/base/switch/Switch";
 import SwitchSound from "../components/base/switch/SwitchSound";
+import { mapMutations } from "vuex";
+
 export default {
   name: "landing",
   components: {
@@ -187,6 +189,10 @@ export default {
         path: "/choose",
       });
     },
+    stopMusic() {
+      this.noPlay();
+    },
+    ...mapMutations(["noPlay"]),
     // * autoplay on wechat internal browser
     // autoPlay() {
     //   const audio = this.$refs.audio;

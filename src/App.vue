@@ -1,5 +1,8 @@
 <template>
-  <router-view v-slot="{ Component }">
+  <div v-if="!mobile">
+    <DesktopLanding />
+  </div>
+  <router-view v-slot="{ Component }" v-else>
     <transition name="fade">
       <component :is="Component" />
     </transition>
@@ -9,21 +12,25 @@
 
 <script>
 import login from "./services/login";
-// import ahoy from "./services/ahoy"
+import ahoy from "./services/ahoy"
 import { mapActions } from "vuex";
 // console.log({ahoy})
 import Sound from "./components/base/sounding/Sound";
+import DesktopLanding from "./views/DesktopLanding";
+import { detectMob } from "./assets/js/util";
 
 export default {
   data() {
-    return {};
+    return {
+      mobile: true
+    };
   },
   components: {
-    Sound,
+    Sound, DesktopLanding
   },
   mounted() {
-    // const loginRes = await login();
-    // console.log({loginRes})
+    console.log(111, detectMob())
+    this.mobile = detectMob()
     this.login();
   },
   methods: {

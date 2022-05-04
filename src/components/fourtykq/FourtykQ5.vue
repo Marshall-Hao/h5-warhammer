@@ -9,13 +9,11 @@
 </template>
 
 <script>
-import newScene from "../base/scene/newScene.vue";
 import NewScene from "../base/scene/newScene.vue";
 
 export default {
   name: "aos-q5",
   components: {
-    newScene,
     NewScene,
   },
   props: {

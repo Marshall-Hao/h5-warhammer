@@ -22,7 +22,13 @@
 
     <section class="landing-section">
       <div class="landing-section-video">
-        <video src="#" poster="../assets/images/regular/vidPoster.png"></video>
+        <video
+          controls
+          playsinline
+          loop
+          src="https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/intro_video.mp4"
+          poster="../assets/images/regular/vidPoster.png"
+        ></video>
       </div>
 
       <div class="landing-section-description">

@@ -6,7 +6,7 @@
     @mousedown="preReveal"
   >
     <img src="../../assets/images/regular/black_hole.gif" alt="blackhole" />
-    <p>点击揭晓</p>
+    <p>点击启动</p>
   </div>
   <Renderer ref="renderer" pointer resize="window">
     <Camera :position="{ z: 0 }" :fov="50" />
@@ -46,7 +46,7 @@
     @mouseenter="targetTimeCoef = 100"
     @mouseleave="targetTimeCoef = 1"
   >
-    <p class="effect">长按以揭晓你的命运阵营</p>
+    <p class="effect">长按至100，揭晓你的命运阵营</p>
   </div>
   <div v-show="!pre" class="number" ref="number">0</div>
 </template>
@@ -258,7 +258,7 @@ export default {
   position: fixed;
   bottom: 10%;
   left: 50%;
-  width: 22rem;
+  width: 25rem;
   transform: translateX(-50%);
   padding: 1rem 2rem;
   // font-family: sans-serif;

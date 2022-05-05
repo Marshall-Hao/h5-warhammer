@@ -7,7 +7,7 @@
     @touchstart.prevent="preReveal"
     @mousedown="preReveal"
   >
-    <p>点击揭晓</p>
+    <p>点击启动</p>
   </div>
   <div class="fires">
     <div class="fires-all" :style="animationSpeed">
@@ -27,7 +27,7 @@
     @mouseenter="speed = 3.5"
     @mouseleave="speed = 6"
   >
-    <p class="effect">长按以揭晓你的命运阵营</p>
+    <p class="effect">长按至100，揭晓你的命运阵营</p>
   </div>
   <div class="number" ref="number">0</div>
 </template>
@@ -245,7 +245,7 @@ $a: 2 * $r * tan(180deg / $n); // side length
   position: fixed;
   bottom: 10%;
   left: 50%;
-  width: 22rem;
+  width: 25rem;
   transform: translateX(-50%);
   padding: 1rem 2rem;
   // font-family: sans-serif;

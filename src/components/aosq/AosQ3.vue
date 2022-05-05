@@ -108,7 +108,10 @@ export default {
 
     //  * lifecycle
     //  * methods
+    let firstMove = false;
     async function choiceTouchZoom(index, answer) {
+      if (firstMove) return;
+      firstMove = true;
       await touchZoom(
         choiceTouchStart,
         choiceTouchEnd,

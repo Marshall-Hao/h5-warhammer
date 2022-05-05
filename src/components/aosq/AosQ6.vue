@@ -20,10 +20,9 @@
             'unselect-q': selected !== index,
           }"
           @touchstart.prevent="choiceTouchStartSmoke(index, answer.id)"
-          @touchmove.prevent="choiceTouchMove(index)"
-          @mouseenter.prevent="choiceTouchStartSmoke(index, answer.id)"
-          @mousemove.prevent="choiceTouchMove(index)"
         >
+          <!-- <div
+          ></div> -->
           <!-- {{ answer.text }} -->
           <span v-for="letter in answer.text" :key="letter">{{ letter }}</span>
         </div>
@@ -54,30 +53,32 @@ export default {
     const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
       useSelectPattern(emit, questionId, 200);
     //  * computed
+    let firstMove = false;
     async function choiceTouchStartSmoke(index, answer) {
+      if (firstMove) return;
       await choiceTouchStart(index);
       const unselected = await document.querySelector(".unselect-q");
-      if (unselected) {
-        gsap
-          .timeline()
-          .to(".unselect-q", {
-            opacity: 0,
-            stagger: {
-              amount: 0.5,
-            },
-          })
-          .to(".selected-q6 span", {
-            textShadow: "0 0 25px whitesmoke",
-            filter: "blur(8px)",
-            opacity: 0,
-            stagger: {
-              amount: 1,
-            },
-            onComplete: () => {
-              choiceTouchEnd(answer);
-            },
-          });
-      }
+      firstMove = true;
+
+      gsap
+        .timeline()
+        .to(".unselect-q", {
+          opacity: 0,
+          stagger: {
+            amount: 0.5,
+          },
+        })
+        .to(".selected-q6 span", {
+          textShadow: "0 0 25px whitesmoke",
+          filter: "blur(8px)",
+          opacity: 0,
+          stagger: {
+            amount: 1,
+          },
+          onComplete: () => {
+            choiceTouchEnd(answer);
+          },
+        });
     }
     //  * lifecycle
     //  * methods
@@ -151,8 +152,10 @@ export default {
         // filter: url("#filter");
 
         div {
-          height: 60%;
-          width: 50%;
+          height: 200%;
+          width: 100%;
+
+          background: red;
           @include absCenter;
         }
       }

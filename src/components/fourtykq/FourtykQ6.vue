@@ -73,9 +73,10 @@ export default {
       2500
     );
     //  * methods
+    let firstMove = false;
     async function flipCard(index, answer) {
       // choiceTouchEnd(answer);
-
+      if (firstMove) return;
       flip.value = index;
       await nextTick();
       await nextTick();
@@ -83,6 +84,7 @@ export default {
       let positionX = getOffset(selected).left;
       let positionY = getOffset(selected).top;
       const unselected = await document.querySelector(".unselect-card");
+      firstMove = true;
       if (unselected) {
         gsap
           .timeline()

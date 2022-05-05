@@ -59,7 +59,7 @@ export default {
 
     // * hooks
     const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
-      useSelectPattern(emit, questionId, 1500);
+      useSelectPattern(emit, questionId, 1300);
     //  * computed
 
     //  * lifecycle

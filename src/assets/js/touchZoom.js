@@ -17,11 +17,11 @@ export default async function touchZoom(
   let positionY = getOffset(selectedAns).top;
 
   const unselectedAns = await document.querySelector(unselect);
+
   if (unselectedAns) {
     gsapZoom(selected, unselect, positionX, positionY, endFn, answer);
   }
 }
-
 function gsapZoom(selected, unselect, positionX, positionY, endFn, answer) {
   gsap
     .timeline()

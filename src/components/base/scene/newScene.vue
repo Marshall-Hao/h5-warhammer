@@ -133,7 +133,7 @@ export default {
 
     // * hooks
     const { choiceTouchMove, choiceTouchEnd, choiceTouchStart, selected } =
-      useSelectPattern(emit, questionId, 1700);
+      useSelectPattern(emit, questionId, 1500);
     // * lifecycle
     onMounted(() => {
       new Glide(".glide", {

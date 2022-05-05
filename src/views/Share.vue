@@ -248,8 +248,8 @@
           <ul class="glide__slides">
             <li
               class="glide__slide"
-              v-for="product in factionProducts"
-              :key="product"
+              v-for="(product, index) in factionProducts"
+              :key="index"
             >
               <div class="q6-product">
                 <div class="q6-product-container">
@@ -282,7 +282,7 @@
         <div class="glide__bullets" data-glide-el="controls[nav]">
           <button
             v-for="(product, index) in factionProducts"
-            :key="product"
+            :key="index"
             class="glide__bullet"
             :data-glide-dir="`=${index}`"
           ></button>
@@ -296,7 +296,7 @@
 import { USER_KEY } from "../assets/js/constant";
 import { useCookie } from "vue-cookie-next";
 import useFaction from "../services/faction";
-import { computed, onBeforeMount, onUpdated, ref } from "vue";
+import { computed, onBeforeMount, onMounted, onUpdated, ref, watch } from "vue";
 import Glide from "@glidejs/glide";
 import { useRouter } from "vue-router";
 import ahoy from "../services/ahoy";
@@ -356,9 +356,41 @@ export default {
         return true;
       }
     });
+    // * watch
+    watch(faction, (newFaction) => {});
     //  * lifecycle
-    onBeforeMount(async () => {
-      faction.value = await useFaction(headers);
+    onMounted(() => {
+      // faction.value = await useFaction(headers);
+      // await new Glide(".glide2", {
+      //   type: "carousel",
+      //   swipeThreshold: 10,
+      //   startAt: 0,
+      //   perView: 1,
+      // }).mount();
+      const factionPromise = new Promise(async (resolve) => {
+        faction.value = await useFaction(headers);
+        resolve();
+      });
+      factionPromise.then(() => {
+        new Glide(".glide2", {
+          type: "carousel",
+          swipeThreshold: 10,
+          startAt: 0,
+          perView: 1,
+        }).mount();
+      });
+      // Promise.resolve()
+      //   .then(() => {
+      //     faction.value = useFaction(headers);
+      //   })
+      //   .then(() => {
+      //     new Glide(".glide2", {
+      //       type: "carousel",
+      //       swipeThreshold: 10,
+      //       startAt: 0,
+      //       perView: 1,
+      //     }).mount();
+      //   });
       // ahoy.track("Completed Quiz", {
       //   category: faction.value.category.name,
       //   faction: faction.value.name_en,
@@ -374,12 +406,7 @@ export default {
           perView: 2,
         }).mount();
       }
-      new Glide(".glide2", {
-        type: "carousel",
-        swipeThreshold: 10,
-        startAt: 0,
-        perView: 1,
-      }).mount();
+
       const dim = { w: 1, h: window.innerHeight / window.innerWidth };
       // console.log({dim})
       const subDescs = document.querySelectorAll(".q6-section-sub-desc");

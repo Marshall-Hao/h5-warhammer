@@ -21,8 +21,14 @@
     </header>
 
     <section class="landing-section">
-      <div class="landing-section-video">
-        <video src="#" poster="../assets/images/regular/vidPoster.png"></video>
+      <div class="landing-section-video" @click.prevent="stopMusic">
+        <video
+          controls
+          playsinline
+          loop
+          src="https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/intro_video.mp4"
+          poster="../assets/images/regular/vidPoster.png"
+        ></video>
       </div>
 
       <div class="landing-section-description">
@@ -158,6 +164,8 @@
 import SvgIcon from "../components/base/svgIcon/SvgIcon";
 // import Switch from "../components/base/switch/Switch";
 import SwitchSound from "../components/base/switch/SwitchSound";
+import { mapMutations } from "vuex";
+
 export default {
   name: "landing",
   components: {
@@ -181,6 +189,10 @@ export default {
         path: "/choose",
       });
     },
+    stopMusic() {
+      this.noPlay();
+    },
+    ...mapMutations(["noPlay"]),
     // * autoplay on wechat internal browser
     // autoPlay() {
     //   const audio = this.$refs.audio;

@@ -1,7 +1,12 @@
 const path = require("path");
+const isProduction = process.env.NODE_ENV === "production";
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = {
+  productionSourceMap: !isProduction,
   css: {
+    sourceMap: !isProduction,
     loaderOptions: {
       sass: {
         // 全局引入变量和 mixin
@@ -11,6 +16,12 @@ module.exports = {
         `,
       },
     },
+  },
+
+  configureWebpack: (config) => {
+    if (process.env.npm_config_report) {
+      config.plugins.push(new BundleAnalyzerPlugin());
+    }
   },
   // * https://blog.csdn.net/Liu_yunzhao/article/details/90520028
   // devServer: {
@@ -26,13 +37,13 @@ module.exports = {
   //   //  proxy: "http://localhost:8080",
   // },
 
-  chainWebpack: (config) => {
-    // gltf Loader
-    config.module
-      .rule("gltf")
-      .test(/\.(glb|gltf|fbx)$/i)
-      .use("file-loader")
-      .loader("file-loader")
-      .end();
-  },
+  // chainWebpack: (config) => {
+  //   // gltf Loader
+  //   config.module
+  //     .rule("gltf")
+  //     .test(/\.(glb|gltf|fbx)$/i)
+  //     .use("file-loader")
+  //     .loader("file-loader")
+  //     .end();
+  // },
 };

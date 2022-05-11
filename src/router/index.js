@@ -1,21 +1,26 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import storage from "good-storage";
 
-const Landing = () => import("../views/Landing");
+const Landing = () =>
+  import("../views/Landing" /*webpackChunkName: "landing" */);
 
-const Terms = () => import("../views/Terms");
+const Terms = () => import("../views/Terms" /*webpackChunkName: "terms" */);
 
-const Choose = () => import("../views/Choose");
+const Choose = () => import("../views/Choose" /*webpackChunkName: "choose" */);
 
-const Questions = () => import("../views/Questions");
+const Questions = () =>
+  import("../views/Questions" /*webpackChunkName: "question" */);
 
-const FourkQuestion = () => import("../views/fourkQuestion");
+const FourkQuestion = () =>
+  import("../views/fourkQuestion" /*webpackChunkName: "40kq" */);
 
-const AosQuestion = () => import("../views/aosQuestion");
+const AosQuestion = () =>
+  import("../views/aosQuestion" /*webpackChunkName: "aosq" */);
 
-const RevealFaction = () => import("../views/RevealFaction");
+const RevealFaction = () =>
+  import("../views/RevealFaction" /*webpackChunkName: "reveal" */);
 
-const Share = () => import("../views/Share");
+const Share = () => import("../views/Share" /*webpackChunkName: "share" */);
 
 const routes = [
   {

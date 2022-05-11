@@ -21,6 +21,8 @@ export default async function login() {
       },
       headers
     );
+    cookie.setCookie(USER_KEY, JSON.stringify(loginRes["headers"]));
+    storage.session.set(USER_KEY, loginRes["headers"]);
     save40kQSession(loginRes["categories"]["40k"]["questions"]);
     saveAosQSession(loginRes["categories"]["aos"]["questions"]);
     return loginRes;

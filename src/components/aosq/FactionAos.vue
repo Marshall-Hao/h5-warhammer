@@ -218,7 +218,7 @@ $a: 2 * $r * tan(180deg / $n); // side length
     transform: rotatex(90deg) rotatey(0) translatey(-25vmin);
   }
   &-side {
-    background-image: url(../../assets/images/regular/aosreveal.png);
+    background-image: url(https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/regular/aosreveal.png);
     background-size: ($n * $a) 25%;
     filter: hue-rotate(-10deg);
     position: absolute;
@@ -275,7 +275,7 @@ $a: 2 * $r * tan(180deg / $n); // side length
   width: 100%;
   // background: linear-gradient(#e66465, #9198e5);
   background: linear-gradient(0deg, rgba(33, 33, 33, 0.5) 18%, transparent),
-    url(../../assets/images/regular/aosPrereveal.png);
+    url(https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/regular/aosPrereveal.png);
   background-size: cover;
   z-index: 3;
   // filter: url(#fractal);

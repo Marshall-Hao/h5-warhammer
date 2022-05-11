@@ -254,7 +254,7 @@ export default {
       padding: 1.1rem 1rem 0.8rem 1rem;
 
       &-content {
-        background: url(../../assets/images/regular/warhammerMask.png);
+        background: url(https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/regular/warhammerMask.png);
         height: 100%;
         width: 100%;
         text-align: center;

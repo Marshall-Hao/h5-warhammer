@@ -232,7 +232,7 @@ export default {
   left: 0;
   height: 100%;
   width: 100%;
-  background-image: url(../assets/images/regular/homelanding.png);
+  background-image: url(https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/regular/homelanding.png);
   background-size: cover;
   overflow-y: scroll;
   padding: 4rem;

@@ -5,7 +5,10 @@
     @touchstart.prevent="preReveal"
     @mousedown="preReveal"
   >
-    <img src="../../assets/images/regular/black_hole.gif" alt="blackhole" />
+    <img
+      src="https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/regular/black_hole.gif"
+      alt="blackhole"
+    />
     <p>点击启动</p>
   </div>
   <Renderer ref="renderer" pointer resize="window">
@@ -23,9 +26,10 @@
           }"
         >
           <Texture
-            :src="require('@/assets/images/star/9.png')"
+            src="https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/regular/9.png"
             uniform="uTexture"
           />
+          <!-- :src="require('@/assets/images/star/9.png')" -->
         </ShaderMaterial>
       </Points>
     </Scene>
@@ -285,7 +289,7 @@ export default {
   left: 0;
   height: 100%;
   width: 100%;
-  background-image: url(../../assets/images/regular/prereveal.png);
+  background-image: url(https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/regular/prereveal.png);
   background-size: cover;
   img {
     @include absCenter;

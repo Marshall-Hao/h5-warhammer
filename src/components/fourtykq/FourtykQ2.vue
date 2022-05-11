@@ -179,7 +179,7 @@ export default {
           // width: 26rem;
           // height: 14rem;
           height: 100%;
-          mask: url(../../assets/images/regular/maskdetail.png);
+          mask: url(https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/regular/maskdetail.png);
           mask-position: 100% 0;
           mask-size: 3000% 100%;
           animation: maskmove 2s 1s steps(29) forwards;
@@ -193,7 +193,7 @@ export default {
             width: 100%;
             opacity: 0.5;
             border-radius: 2rem;
-            background-image: url(../../assets/images/regular/warhammerMask.png);
+            background-image: url(https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/regular/warhammerMask.png);
             background-repeat: no-repeat;
             // background-size: contain;
             // background-position: center;

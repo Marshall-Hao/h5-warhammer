@@ -27,7 +27,10 @@
                 在战火纷飞的战锤世界，你将立身何处? <br />
                 接受测试，揭晓你所属的阵营吧！
               </p>
-              <img src="../assets/images/regular/barcode.png" alt="barcode" />
+              <img
+                src="https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/regular/barcode.png"
+                alt="barcode"
+              />
             </div>
           </div>
         </div>
@@ -334,11 +337,15 @@ export default {
     const factionLogo = computed(() => {
       if (faction.value && faction.value.category.name === "AOS") {
         return {
-          backgroundImage: `url(${require("../assets/images/regular/sigMarSmallIcon.png")})`,
+          // backgroundImage: `url(${require("../assets/images/regular/sigMarSmallIcon.png")})`,
+          backgroundImage:
+            "url(https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/regular/sigMarSmallIcon.png)",
         };
       } else {
         return {
-          backgroundImage: `url(${require("../assets/images/regular/40,000SmallIcon.png")})`,
+          // backgroundImage: `url(${require("../assets/images/regular/40,000SmallIcon.png")})`,
+          backgroundImage:
+            "url(https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/regular/40%2C000SmallIcon.png)",
         };
       }
     });
@@ -955,7 +962,8 @@ export default {
       justify-self: center;
       // width: 12rem;
       // height: 15.7rem;
-      width: 100%; height: 22rem;
+      width: 100%;
+      height: 22rem;
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
@@ -1003,7 +1011,7 @@ export default {
     }
   }
   &-bottom {
-    background-image: url(../assets/images/regular/homelanding.png);
+    background-image: url(https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/regular/homelanding.png);
     background-size: cover;
     position: absolute;
     top: -3rem;
@@ -1084,7 +1092,7 @@ export default {
         @include absCenter;
         width: 16rem;
         height: 3.314rem;
-        background-image: url("../assets/images/misc/button_yellow.png");
+        background-image: url(https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/regular/button_yellow.png);
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;

@@ -15,7 +15,9 @@ export default {
   },
   props: {
     soundUrl: {
-      default: require("../../../assets/music/landing-music.wav"),
+      //  default: require("../../../assets/music/landing-music.wav"),
+      default:
+        "https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/regular/landing-music.wav",
     },
   },
   watch: {

@@ -44,7 +44,7 @@
       <div class="choose-header-icons">
         <div>
           <img
-            src="../assets/images/regular/sigMarSmallIcon.png"
+            src="https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/regular/sigMarSmallIcon.png"
             alt="sigMar"
           />
 
@@ -54,7 +54,7 @@
         </div>
         <div>
           <img
-            src="../assets/images/regular/40,000SmallIcon.png"
+            src="https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/regular/40%2C000SmallIcon.png"
             alt="40,000"
           />
           <p id="choose-header-description-right">
@@ -442,7 +442,7 @@ export default {
     &-displayF {
       height: 100%;
       width: 100%;
-      background: url(../assets/images/regular/chooseRightGuy.jpg);
+      background: url(https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/regular/chooseRightGuy.jpg);
       background-repeat: no-repeat;
       background-size: cover;
     }
@@ -452,7 +452,7 @@ export default {
       left: 0;
       right: 0;
       bottom: 0;
-      background-image: url(../assets/images/regular/chooseLeftGuy.jpg);
+      background-image: url(https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/regular/chooseLeftGuy.jpg);
       background-repeat: no-repeat;
       background-size: cover;
       mask: linear-gradient(90deg, #000 45%, transparent 60%);

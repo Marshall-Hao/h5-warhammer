@@ -27,7 +27,7 @@
           playsinline
           loop
           src="https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/intro_video.mp4"
-          poster="../assets/images/regular/vidPoster.png"
+          poster="https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/regular/vidPoster.png"
         ></video>
       </div>
 
@@ -39,7 +39,10 @@
       </div>
 
       <div class="landing-section-begin" @click="onClick">
-        <img src="../assets/images/regular/pulsing_orb.gif" alt="orb" />
+        <img
+          src="https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/regular/pulsing_orb.gif"
+          alt="orb"
+        />
       </div>
       <div class="landing-section-intro">
         <div>
@@ -214,7 +217,7 @@ export default {
   // @media only screen and (max-height: 740px) {
   //   padding: 1rem 0;
   // }
-  background-image: url(../assets/images/regular/homelanding.png);
+  background-image: url(https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/regular/homelanding.png);
   background-size: cover;
   &-header {
     height: 25%;
@@ -282,6 +285,7 @@ export default {
       padding: 0.5rem 0.5rem;
       text-align: center;
       height: 6rem;
+      text-indent: -0.5rem;
       span {
         font-size: $font-size-medium-x;
         // @media only screen and (max-height: 740px) {

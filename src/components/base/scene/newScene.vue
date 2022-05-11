@@ -17,12 +17,13 @@
             :class="{ 'selected-q': selected === index }"
             :style="`background-image: url(${answer.image})`"
           >
-<!--           <div
+            <!--           <div
             class="scene-choice"
             :class="{ 'selected-q': selected === index }"
             :style="`background-image: linear-gradient(180deg, #222222 0%, rgba(34, 34, 34, 0) 27.79%), url(${answer.image})`"
           >
- -->            <div
+ -->
+            <div
               class="scene-pick"
               @touchstart.prevent="choiceTouchStart(index)"
               @touchmove.prevent="choiceTouchMove(index)"
@@ -167,7 +168,7 @@ export default {
     height: 100%;
     width: 100%;
     background-size: cover;
-    mask: url(../../../assets/images/regular/maskdetail.png);
+    mask: url(https://warhammer-h5.oss-cn-shanghai.aliyuncs.com/assets/regular/maskdetail.png);
     mask-position: 100% 0;
     mask-size: 3000% 100%;
   }

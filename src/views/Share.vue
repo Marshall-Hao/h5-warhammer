@@ -385,6 +385,15 @@ export default {
           startAt: 0,
           perView: 1,
         }).mount();
+
+        if (showSub.value) {
+          new Glide(".glide", {
+            type: "carousel",
+            swipeThreshold: 10,
+            startAt: 0,
+            perView: 2,
+          }).mount();
+        }
       });
       // Promise.resolve()
       //   .then(() => {
@@ -405,15 +414,6 @@ export default {
       // })
     });
     onUpdated(() => {
-      if (showSub.value) {
-        new Glide(".glide", {
-          type: "carousel",
-          swipeThreshold: 10,
-          startAt: 0,
-          perView: 2,
-        }).mount();
-      }
-
       const dim = { w: 1, h: window.innerHeight / window.innerWidth };
       // console.log({dim})
       const subDescs = document.querySelectorAll(".q6-section-sub-desc");
